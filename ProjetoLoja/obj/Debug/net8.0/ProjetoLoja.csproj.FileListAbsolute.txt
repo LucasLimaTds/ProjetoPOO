@@ -12,3 +12,18 @@ C:\Users\tedes\Desktop\VS Code Files\C# Projects\ProjetoPOO\ProjetoLoja\obj\Debu
 C:\Users\tedes\Desktop\VS Code Files\C# Projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ProjetoLoja.pdb
 C:\Users\tedes\Desktop\VS Code Files\C# Projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ProjetoLoja.genruntimeconfig.cache
 C:\Users\tedes\Desktop\VS Code Files\C# Projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ref\ProjetoLoja.dll
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\bin\Debug\net8.0\ProjetoLoja.exe
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\bin\Debug\net8.0\ProjetoLoja.deps.json
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\bin\Debug\net8.0\ProjetoLoja.runtimeconfig.json
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\bin\Debug\net8.0\ProjetoLoja.dll
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\bin\Debug\net8.0\ProjetoLoja.pdb
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ProjetoLoja.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ProjetoLoja.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ProjetoLoja.AssemblyInfo.cs
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ProjetoLoja.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ProjetoLoja.sourcelink.json
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ProjetoLoja.dll
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\refint\ProjetoLoja.dll
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ProjetoLoja.pdb
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ProjetoLoja.genruntimeconfig.cache
+C:\Users\User\Desktop\vscode_files\C#_projects\ProjetoPOO\ProjetoLoja\obj\Debug\net8.0\ref\ProjetoLoja.dll
