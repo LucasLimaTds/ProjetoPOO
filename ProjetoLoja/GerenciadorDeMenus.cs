@@ -8,7 +8,12 @@ public class GerenciadorDeMenus
 {
     public GerenciadorDeMenus()
     {
-        
+        MenuInicial();
+    }
+
+    private void MenuInicial()
+    {
+           
         Console.WriteLine("[1] - FAZER LOGIN");
         Console.WriteLine("[2] - CADASTRAR USUÁRIO");
         Console.WriteLine("[0] - SAIR");
