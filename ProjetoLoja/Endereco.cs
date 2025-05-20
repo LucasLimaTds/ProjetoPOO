@@ -2,7 +2,7 @@ using System;
 
 namespace ProjetoLoja;
 
-public class Endereco
+public abstract class Endereco
 {
     public String Rua { get; set; }
     public String Numero { get; set; }
