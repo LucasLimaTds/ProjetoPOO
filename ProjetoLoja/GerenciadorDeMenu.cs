@@ -33,7 +33,7 @@ public class GerenciadorDeMenus
                 }
             case 2:
                 {
-                    // Implementar metodo de criar
+                    CriarUsuario();
                     break;
                 }
             case 0:
@@ -51,22 +51,20 @@ public class GerenciadorDeMenus
         Console.Write("Senha: ");
         String Senha = Console.ReadLine();
 
-        for (int i = 0; i < GerenciadorDeUsuario.TodosUsuarios.Length; i++)
+        if (GerenciadorDeUsuario.ValidarUsuario(Usuario, Senha)==0)
         {
-            if (Usuario == GerenciadorDeUsuario.TodosUsuarios[i].Nome)
-            {
-                if (Senha == GerenciadorDeUsuario.TodosUsuarios[i].Senha)
-                {
-                    if (GerenciadorDeUsuario.TodosUsuarios[i].DireitosDeUsuario == 0)
-                    {
-                        // Chama menus de admin
-                    }
-                    else
-                    {
-                        // Chama menus de usuario comum
-                    }
-                }
-            }
+            Console.WriteLine("FOI CAMBADA");
         }
+    }
+
+    private void CriarUsuario()
+    {
+        Console.Write("Digite o nome do novo usuário: ");
+        String NovoNome = Console.ReadLine();
+
+        Console.Write("Digita a senha: ");
+        String NovaSenha = Console.ReadLine();
+
+
     }
 }
