@@ -11,34 +11,42 @@ public class GerenciadorDeMenus
         MenuInicial();
     }
 
+
     private void MenuInicial()
     {
-           
-        Console.WriteLine("[1] - FAZER LOGIN");
-        Console.WriteLine("[2] - CADASTRAR USUÁRIO");
-        Console.WriteLine("[0] - SAIR");
-        
-        int OpcaoUsuario;
-        OpcaoUsuario=int.Parse(Console.ReadLine());
 
-        switch(OpcaoUsuario)
+        Console.WriteLine("[1] - FAZER LOGIN");
+        Console.WriteLine("[2] - CRIAR USUÁRIO");
+        Console.WriteLine("[0] - FINALIZAR O PROGRAMA");
+
+        int OpcaoUsuario;
+        OpcaoUsuario = int.Parse(Console.ReadLine());
+
+        switch (OpcaoUsuario)
         {
             case 1:
-            {
-                // Implementar metodo de login
-                break;
-            }
+                {
+                    FazerLogin();
+                    break;
+                }
             case 2:
-            {
-                // Implementar metodo de cadastro
-                break;
-            }
+                {
+                    // Implementar metodo de criar
+                    break;
+                }
             case 0:
-            {
-                Environment.Exit(0);
-                break;
-            }
+                {
+                    Environment.Exit(0);
+                    break;
+                }
         }
     }
+    private void FazerLogin()
+    {
+        Console.Write("Usuário: ");
+        String Usuario = Console.ReadLine();
 
+        Console.Write("Senha: ");
+        String Senha = Console.ReadLine();
+    }
 }

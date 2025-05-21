@@ -6,5 +6,6 @@ public class Usuario
 {
     public String Nome { get; set; }
     public String Senha { get; set; }
-    int DireitosDeUsuario { get; set; }
+    public int DireitosDeUsuario { get; set; }
+    public int ID { get; set; }
 }
