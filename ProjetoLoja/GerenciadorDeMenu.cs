@@ -65,6 +65,8 @@ public class GerenciadorDeMenus
         Console.Write("Digita a senha: ");
         String NovaSenha = Console.ReadLine();
 
+        GerenciadorDeUsuario.CriarUsuario(NovoNome, NovaSenha);
+
 
     }
 }

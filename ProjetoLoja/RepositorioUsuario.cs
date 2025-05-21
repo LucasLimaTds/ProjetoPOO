@@ -45,4 +45,9 @@ public class RepositorioUsuario
         }
         return retorno;
     }
+
+    public void CriarUsuario(String nome, String senha)
+    {
+        // Implementar a criacao do usuario   
+    }
 }
