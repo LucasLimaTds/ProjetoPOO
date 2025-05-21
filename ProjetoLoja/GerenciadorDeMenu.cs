@@ -6,11 +6,13 @@ namespace ProjetoLoja;
 
 public class GerenciadorDeMenus
 {
+
+    private RepositorioUsuario GerenciadorDeUsuario = new RepositorioUsuario();
+
     public GerenciadorDeMenus()
     {
         MenuInicial();
     }
-
 
     private void MenuInicial()
     {
@@ -48,5 +50,23 @@ public class GerenciadorDeMenus
 
         Console.Write("Senha: ");
         String Senha = Console.ReadLine();
+
+        for (int i = 0; i < GerenciadorDeUsuario.TodosUsuarios.Length; i++)
+        {
+            if (Usuario == GerenciadorDeUsuario.TodosUsuarios[i].Nome)
+            {
+                if (Senha == GerenciadorDeUsuario.TodosUsuarios[i].Senha)
+                {
+                    if (GerenciadorDeUsuario.TodosUsuarios[i].DireitosDeUsuario == 0)
+                    {
+                        // Chama menus de admin
+                    }
+                    else
+                    {
+                        // Chama menus de usuario comum
+                    }
+                }
+            }
+        }
     }
 }
