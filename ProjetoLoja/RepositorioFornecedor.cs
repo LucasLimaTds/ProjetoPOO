@@ -37,4 +37,18 @@ public class RepositorioFornecedor
         Console.WriteLine("-------------------------------------------------------------------");
     }
 
+    public void RemoverFornecedor(int idRemocao)
+    {
+        Fornecedor[] novosFornecedores = new Fornecedor[TodosFornecedores.Length - 1];
+        for (int i = 0; i < TodosFornecedores.Length; i++)
+        {
+            if (TodosFornecedores[i].ID == idRemocao)
+            {
+                novosFornecedores[i] = TodosFornecedores[i + 1];
+            }
+            else novosFornecedores[i] = TodosFornecedores[i];
+            TodosFornecedores = novosFornecedores;
+        }
+    }
+
 }

@@ -138,6 +138,7 @@ public class GerenciadorDeMenus
         OpcaoCadastro = int.Parse(Console.ReadLine());
         String nome;
         double valor;
+        int idRemocao;
 
         switch (OpcaoCadastro)
         {
@@ -180,6 +181,35 @@ public class GerenciadorDeMenus
                 }
             case 3:
                 {
+                    if (OpcaoUsuario == 3)
+                    {
+                        Console.WriteLine("Escolha o fornecedor que deseja remover: ");
+                        GerenciadorDeFornecedor.ListarFornecedores();
+                        Console.WriteLine("Insira o ID do fornecedor a ser removido: ");
+                        idRemocao = int.Parse (Console.ReadLine());
+                        GerenciadorDeFornecedor.RemoverFornecedor(idRemocao);
+                        GerenciadorDeFornecedor.ListarFornecedores();
+                    }
+
+                    if (OpcaoUsuario == 4)
+                    {
+                        Console.WriteLine("Insira o nome do novo produto: ");
+                        nome = Console.ReadLine();
+                        Console.WriteLine("Insira o valor do novo produto: ");
+                        valor = int.Parse((Console.ReadLine()));
+                        GerenciadorDeProduto.CadastrarProduto(nome, valor);
+                        GerenciadorDeProduto.ListarProdutos();
+                    }
+
+                    if (OpcaoUsuario == 5)
+                    {
+                        Console.WriteLine("Insira o nome da nova transportadora: ");
+                        nome = Console.ReadLine();
+                        Console.WriteLine("Insira o preço cobrado por Km: ");
+                        valor = int.Parse((Console.ReadLine()));
+                        GerenciadorDeTransportadora.CadastrarTransportadora(nome, valor);
+                        GerenciadorDeTransportadora.ListarTransportadoraes();
+                    }
                     break;
                 }
             case 4:
