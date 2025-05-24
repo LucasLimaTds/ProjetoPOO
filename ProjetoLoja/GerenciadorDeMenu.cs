@@ -51,7 +51,7 @@ public class GerenciadorDeMenus
         Console.Write("Senha: ");
         String Senha = Console.ReadLine();
 
-        if (GerenciadorDeUsuario.ValidarUsuario(Usuario, Senha)==0)
+        if (GerenciadorDeUsuario.ValidarUsuario(Usuario, Senha) == 0)
         {
             Console.WriteLine("FOI CAMBADA");
         }
@@ -66,7 +66,8 @@ public class GerenciadorDeMenus
         String NovaSenha = Console.ReadLine();
 
         GerenciadorDeUsuario.CriarUsuario(NovoNome, NovaSenha);
-
-
+        GerenciadorDeUsuario.ListarUsuarios();               //só uma função pra mostrar os nomes dos usuarios, para testar o cadastro
+        MenuInicial();
     }
+    
 }

@@ -13,7 +13,7 @@ public class RepositorioUsuario
 
     public int ValidarUsuario(String nome, String senha)
     {
-        int retorno=0;
+        int retorno = 0;
 
         for (int i = 0; i < TodosUsuarios.Length; i++)
         {
@@ -48,6 +48,27 @@ public class RepositorioUsuario
 
     public void CriarUsuario(String nome, String senha)
     {
-        // Implementar a criacao do usuario   
+        int novoId = TodosUsuarios.Length + 1;
+
+        Usuario[] novosUsuarios = new Usuario[TodosUsuarios.Length + 1];
+
+        for (int i = 0; i < TodosUsuarios.Length; i++)
+        {
+            novosUsuarios[i] = TodosUsuarios[i];
+        }
+
+        novosUsuarios[novosUsuarios.Length - 1] = new Usuario(nome, senha, 1, novoId); //sempre adicionando novos usuários com direitos de usuário comum, 
+                                                                                       // depois um outro admin pode editar o usuario pra torna-lo admin
+        TodosUsuarios = novosUsuarios;
+    }
+
+    public void ListarUsuarios()
+    {
+        int i;
+        Console.WriteLine("Usuarios cadastrados:");
+        for (i=0; i<TodosUsuarios.Length; i++)
+        {
+            Console.WriteLine(TodosUsuarios[i].Nome);
+        }
     }
 }
