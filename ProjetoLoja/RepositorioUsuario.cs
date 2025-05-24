@@ -5,6 +5,8 @@ namespace ProjetoLoja;
 public class RepositorioUsuario
 {
     public Usuario[] TodosUsuarios = new Usuario[1];
+    private int id = 2;
+    //achei melhor criar uma variavel separada para o ID para não dar confusão quando um usuário for excluído, a sequencia se manter correta ja que se não ela depende do tamanho do vetor
 
     public RepositorioUsuario()
     {
@@ -48,8 +50,6 @@ public class RepositorioUsuario
 
     public void CriarUsuario(String nome, String senha)
     {
-        int novoId = TodosUsuarios.Length + 1;
-
         Usuario[] novosUsuarios = new Usuario[TodosUsuarios.Length + 1];
 
         for (int i = 0; i < TodosUsuarios.Length; i++)
@@ -57,8 +57,8 @@ public class RepositorioUsuario
             novosUsuarios[i] = TodosUsuarios[i];
         }
 
-        novosUsuarios[novosUsuarios.Length - 1] = new Usuario(nome, senha, 1, novoId); //sempre adicionando novos usuários com direitos de usuário comum, 
-                                                                                       // depois um outro admin pode editar o usuario pra torna-lo admin
+        novosUsuarios[novosUsuarios.Length - 1] = new Usuario(nome, senha, 1, id++); //sempre adicionando novos usuários com direitos de usuário comum, 
+                                                                                     // depois um outro admin pode editar o usuario pra torna-lo admin
         TodosUsuarios = novosUsuarios;
     }
 
@@ -66,9 +66,15 @@ public class RepositorioUsuario
     {
         int i;
         Console.WriteLine("Usuarios cadastrados:");
-        for (i=0; i<TodosUsuarios.Length; i++)
+        for (i = 0; i < TodosUsuarios.Length; i++)
         {
-            Console.WriteLine(TodosUsuarios[i].Nome);
+            if (TodosUsuarios[i].DireitosDeUsuario == 0)
+            {
+                Console.Write("*Administrador | ");
+            }
+            Console.WriteLine("Usuário ID " + TodosUsuarios[i].ID + " | Nome: " + TodosUsuarios[i].Nome);
         }
+
+        Console.WriteLine("-------------------------------------------------------------------");
     }
 }
