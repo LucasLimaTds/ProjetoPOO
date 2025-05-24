@@ -76,6 +76,10 @@ public class GerenciadorDeMenus
     private void MenuAdmin()
     {
         Console.WriteLine("[1] - LISTAR USUÁRIOS");
+        Console.WriteLine("[2] - EDITAR USUÁRIOS");
+        Console.WriteLine("[3] - CADASTRO DE FORNECEDORES");
+        Console.WriteLine("[4] - CADASTRO DE PRODUTOS");
+        Console.WriteLine("[5] - CADASTRO DE TRANSPORTADORAS");
         Console.WriteLine("[0] - FAZER LOGOUT");
 
         int OpcaoUsuario;
@@ -89,11 +93,75 @@ public class GerenciadorDeMenus
                     MenuAdmin(); //retorna para as opções depois de listar os usuarios
                     break;
                 }
+            case 2:
+                {
+                    //chama metodo de editar usuario
+                    break;
+                 }
+            case 3:
+            case 4:
+            case 5:
+                {
+                    MenuDeCadastros(OpcaoUsuario);
+                    break;
+                }        
             case 0:
                 {
                     MenuInicial();
                     break;
                 }
+        }
+    }
+
+    private void MenuDeCadastros(int OpcaoUsuario)
+    {
+        if (OpcaoUsuario == 3)
+            Console.WriteLine("OPÇÕES DE CADASTRO DE FORNECEDORES:");
+        
+        if (OpcaoUsuario == 4)
+            Console.WriteLine("OPÇÕES DE CADASTRO DE PRODUTOS:");
+        
+        if (OpcaoUsuario == 5)
+            Console.WriteLine("OPÇÕES DE CADASTRO DE TRANSPORTADORAS:");
+        
+
+        Console.WriteLine("[1] - REALIZAR INCLUSÃO");
+        Console.WriteLine("[2] - REALIZAR ALTERAÇÃO");
+        Console.WriteLine("[3] - REALIZAR EDIÇÃO");
+        Console.WriteLine("[4] - LISTAR CADASTRADOS");
+
+        int OpcaoCadastro;
+        OpcaoCadastro = int.Parse(Console.ReadLine());
+
+        switch (OpcaoCadastro)
+        {
+            case 1:
+                {
+                    if (OpcaoUsuario == 3)
+                        //chama funcao de cadastro de fornecedores
+
+                    if (OpcaoUsuario == 4)
+                        //chama funcao de cadastro de produtos
+
+                    if (OpcaoUsuario == 5)
+                    {//chama funcao de cadastro de transportadoras
+                    }
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 3:
+                {
+                    break;
+                }
+            case 4:
+                {
+                    break;
+                }
+                 
+
         }
     }
 
