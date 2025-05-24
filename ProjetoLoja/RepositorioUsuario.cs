@@ -5,12 +5,12 @@ namespace ProjetoLoja;
 public class RepositorioUsuario
 {
     public Usuario[] TodosUsuarios = new Usuario[1];
-    private int idUsuario = 2;
+    private int idUsuario = 1;
     //achei melhor criar uma variavel separada para o ID para não dar confusão quando um usuário for excluído, a sequencia se manter correta ja que se não ela depende do tamanho do vetor
 
     public RepositorioUsuario()
     {
-        TodosUsuarios[0] = new Usuario("AdminMaster", "Admin", 0, 1);
+        TodosUsuarios[0] = new Usuario("AdminMaster", "Admin", 0, idUsuario++);
     }
 
     public int ValidarUsuario(String nome, String senha)

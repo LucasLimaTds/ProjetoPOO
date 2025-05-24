@@ -9,6 +9,7 @@ public class GerenciadorDeMenus
 
     private RepositorioUsuario GerenciadorDeUsuario = new RepositorioUsuario();
     private RepositorioFornecedor GerenciadorDeFornecedor = new RepositorioFornecedor();
+    private RepositorioProduto GerenciadorDeProduto = new RepositorioProduto();
 
     public GerenciadorDeMenus()
     {
@@ -98,14 +99,14 @@ public class GerenciadorDeMenus
                 {
                     //chama metodo de editar usuario
                     break;
-                 }
+                }
             case 3:
             case 4:
             case 5:
                 {
                     MenuDeCadastros(OpcaoUsuario);
                     break;
-                }        
+                }
             case 0:
                 {
                     MenuInicial();
@@ -119,13 +120,13 @@ public class GerenciadorDeMenus
     {
         if (OpcaoUsuario == 3)
             Console.WriteLine("OPÇÕES DE CADASTRO DE FORNECEDORES:");
-        
+
         if (OpcaoUsuario == 4)
             Console.WriteLine("OPÇÕES DE CADASTRO DE PRODUTOS:");
-        
+
         if (OpcaoUsuario == 5)
             Console.WriteLine("OPÇÕES DE CADASTRO DE TRANSPORTADORAS:");
-        
+
 
         Console.WriteLine("[1] - REALIZAR INCLUSÃO");
         Console.WriteLine("[2] - REALIZAR ALTERAÇÃO");
@@ -134,6 +135,7 @@ public class GerenciadorDeMenus
 
         int OpcaoCadastro;
         OpcaoCadastro = int.Parse(Console.ReadLine());
+        String nome;
 
         switch (OpcaoCadastro)
         {
@@ -142,18 +144,26 @@ public class GerenciadorDeMenus
                     if (OpcaoUsuario == 3)
                     {
                         Console.WriteLine("Insira o nome do novo fornecedor: ");
-                        String nomeFornecedor = Console.ReadLine();
+                        nome = Console.ReadLine();
                         Console.WriteLine("Insira o telefone do novo fornecedor: ");
                         String telefoneFornecedor = Console.ReadLine();
-                        GerenciadorDeFornecedor.CadastrarFornecedor(nomeFornecedor, telefoneFornecedor);
+                        GerenciadorDeFornecedor.CadastrarFornecedor(nome, telefoneFornecedor);
+                        GerenciadorDeFornecedor.ListarFornecedores();
                     }
-                    
-                    if (OpcaoUsuario == 4)
-                        //chama funcao de cadastro de produtos
 
-                        if (OpcaoUsuario == 5)
-                        {//chama funcao de cadastro de transportadoras
-                        }
+                    if (OpcaoUsuario == 4)
+                    {
+                        Console.WriteLine("Insira o nome do novo produto: ");
+                        nome = Console.ReadLine();
+                        Console.WriteLine("Insira o valor do novo produto: ");
+                        double valorProduto = int.Parse((Console.ReadLine()));
+                        GerenciadorDeProduto.CadastrarProduto(nome, valorProduto);
+                        GerenciadorDeProduto.ListarProdutos();
+                    }
+
+                    if (OpcaoUsuario == 5)
+                    {//chama funcao de cadastro de transportadoras
+                    }
                     break;
                 }
             case 2:
@@ -168,9 +178,8 @@ public class GerenciadorDeMenus
                 {
                     break;
                 }
-                 
-
         }
+        MenuAdmin();
     }
 
     private void MenuCliente()

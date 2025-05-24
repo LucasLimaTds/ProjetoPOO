@@ -9,7 +9,7 @@ public class RepositorioFornecedor
 
     public RepositorioFornecedor()
     {
-        TodosFornecedores[0] = new Fornecedor("Fornecedor1", "55 54 999999999", idFornecedor++); 
+        TodosFornecedores[0] = new Fornecedor("Fornecedor1", "55 54 999999999", idFornecedor++);
     }
 
     public void CadastrarFornecedor(String nome, String telefone)
@@ -23,6 +23,18 @@ public class RepositorioFornecedor
 
         novosFornecedores[novosFornecedores.Length - 1] = new Fornecedor(nome, telefone, idFornecedor);
         TodosFornecedores = novosFornecedores;
+    }
+
+    public void ListarFornecedores()
+    {
+        int i;
+        Console.WriteLine("Fornecedores cadastrados:");
+        for (i = 0; i < TodosFornecedores.Length; i++)
+        {
+            Console.WriteLine("Fornecedor ID " + TodosFornecedores[i].ID + " | Nome: " + TodosFornecedores[i].Nome);
+        }
+
+        Console.WriteLine("-------------------------------------------------------------------");
     }
 
 }

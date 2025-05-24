@@ -4,7 +4,7 @@ namespace ProjetoLoja;
 
 public class Fornecedor : Endereco
 {
-    public Fornecedor(String nome, String telefone, int id)
+    public Fornecedor (String nome, String telefone, int id)
     {
         Nome = nome;
         Telefone = telefone;
