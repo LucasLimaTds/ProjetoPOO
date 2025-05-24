@@ -21,7 +21,7 @@ public class RepositorioFornecedor
             novosFornecedores[i] = TodosFornecedores[i];
         }
 
-        novosFornecedores[novosFornecedores.Length - 1] = new Fornecedor(nome, telefone, idFornecedor);
+        novosFornecedores[novosFornecedores.Length - 1] = new Fornecedor(nome, telefone, idFornecedor++);
         TodosFornecedores = novosFornecedores;
     }
 

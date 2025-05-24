@@ -10,6 +10,7 @@ public class GerenciadorDeMenus
     private RepositorioUsuario GerenciadorDeUsuario = new RepositorioUsuario();
     private RepositorioFornecedor GerenciadorDeFornecedor = new RepositorioFornecedor();
     private RepositorioProduto GerenciadorDeProduto = new RepositorioProduto();
+    private RepositorioTransportadora GerenciadorDeTransportadora = new RepositorioTransportadora();
 
     public GerenciadorDeMenus()
     {
@@ -131,11 +132,12 @@ public class GerenciadorDeMenus
         Console.WriteLine("[1] - REALIZAR INCLUSÃO");
         Console.WriteLine("[2] - REALIZAR ALTERAÇÃO");
         Console.WriteLine("[3] - REALIZAR EDIÇÃO");
-        Console.WriteLine("[4] - LISTAR CADASTRADOS");
+        Console.WriteLine("[4] - CONSULTA CADASTRADOS");
 
         int OpcaoCadastro;
         OpcaoCadastro = int.Parse(Console.ReadLine());
         String nome;
+        double valor;
 
         switch (OpcaoCadastro)
         {
@@ -156,13 +158,19 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Insira o nome do novo produto: ");
                         nome = Console.ReadLine();
                         Console.WriteLine("Insira o valor do novo produto: ");
-                        double valorProduto = int.Parse((Console.ReadLine()));
-                        GerenciadorDeProduto.CadastrarProduto(nome, valorProduto);
+                        valor = int.Parse((Console.ReadLine()));
+                        GerenciadorDeProduto.CadastrarProduto(nome, valor);
                         GerenciadorDeProduto.ListarProdutos();
                     }
 
                     if (OpcaoUsuario == 5)
-                    {//chama funcao de cadastro de transportadoras
+                    {
+                        Console.WriteLine("Insira o nome da nova transportadora: ");
+                        nome = Console.ReadLine();
+                        Console.WriteLine("Insira o preço cobrado por Km: ");
+                        valor = int.Parse((Console.ReadLine()));
+                        GerenciadorDeTransportadora.CadastrarTransportadora(nome, valor);
+                        GerenciadorDeTransportadora.ListarTransportadoraes();
                     }
                     break;
                 }

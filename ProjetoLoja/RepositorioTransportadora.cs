@@ -1,0 +1,39 @@
+using System;
+
+namespace ProjetoLoja;
+
+public class RepositorioTransportadora
+{
+    public Transportadora[] TodasTransportadoras = new Transportadora[1];
+    private int idTransportadora = 1;
+
+    public RepositorioTransportadora()
+    {
+        TodasTransportadoras[0] = new Transportadora("Transportadora1", 5, idTransportadora++);
+    }
+
+    public void CadastrarTransportadora(String nome, double valor)
+    {
+        Transportadora[] novasTransportadoras = new Transportadora[TodasTransportadoras.Length + 1];
+
+        for (int i = 0; i < TodasTransportadoras.Length; i++)
+        {
+            novasTransportadoras[i] = TodasTransportadoras[i];
+        }
+
+        novasTransportadoras[novasTransportadoras.Length - 1] = new Transportadora(nome, valor, idTransportadora++);
+        TodasTransportadoras = novasTransportadoras;
+    }
+
+    public void ListarTransportadoraes()
+    {
+        int i;
+        Console.WriteLine("Transportadoraes cadastrados:");
+        for (i = 0; i < TodasTransportadoras.Length; i++)
+        {
+            Console.WriteLine("Transportadora ID " + TodasTransportadoras[i].ID + " | Nome: " + TodasTransportadoras[i].Nome);
+        }
+
+        Console.WriteLine("-------------------------------------------------------------------");
+    }
+}
