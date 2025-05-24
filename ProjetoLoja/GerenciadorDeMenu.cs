@@ -8,6 +8,7 @@ public class GerenciadorDeMenus
 {
 
     private RepositorioUsuario GerenciadorDeUsuario = new RepositorioUsuario();
+    private RepositorioFornecedor GerenciadorDeFornecedor = new RepositorioFornecedor();
 
     public GerenciadorDeMenus()
     {
@@ -113,7 +114,8 @@ public class GerenciadorDeMenus
         }
     }
 
-    private void MenuDeCadastros(int OpcaoUsuario)
+    private void MenuDeCadastros(int OpcaoUsuario) //deve existir um jeito um pouco melhor de fazer, mas como os tres tipos de cadastros tem as mesmas opções, achei de tentar
+    //abstrair em um metodo só ao invés de tres metodos diferentes mas parecidos
     {
         if (OpcaoUsuario == 3)
             Console.WriteLine("OPÇÕES DE CADASTRO DE FORNECEDORES:");
@@ -138,14 +140,20 @@ public class GerenciadorDeMenus
             case 1:
                 {
                     if (OpcaoUsuario == 3)
-                        //chama funcao de cadastro de fornecedores
-
+                    {
+                        Console.WriteLine("Insira o nome do novo fornecedor: ");
+                        String nomeFornecedor = Console.ReadLine();
+                        Console.WriteLine("Insira o telefone do novo fornecedor: ");
+                        String telefoneFornecedor = Console.ReadLine();
+                        GerenciadorDeFornecedor.CadastrarFornecedor(nomeFornecedor, telefoneFornecedor);
+                    }
+                    
                     if (OpcaoUsuario == 4)
                         //chama funcao de cadastro de produtos
 
-                    if (OpcaoUsuario == 5)
-                    {//chama funcao de cadastro de transportadoras
-                    }
+                        if (OpcaoUsuario == 5)
+                        {//chama funcao de cadastro de transportadoras
+                        }
                     break;
                 }
             case 2:
