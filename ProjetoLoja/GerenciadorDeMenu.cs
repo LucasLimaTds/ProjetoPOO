@@ -131,7 +131,7 @@ public class GerenciadorDeMenus
 
         Console.WriteLine("[1] - REALIZAR INCLUSÃO");
         Console.WriteLine("[2] - REALIZAR ALTERAÇÃO");
-        Console.WriteLine("[3] - REALIZAR EDIÇÃO");
+        Console.WriteLine("[3] - REALIZAR EXCLUSÃO");
         Console.WriteLine("[4] - CONSULTA CADASTRADOS");
 
         int OpcaoCadastro;
