@@ -40,14 +40,23 @@ public class RepositorioTransportadora
     public void RemoverTransportadora(int idRemocao)
     {
         Transportadora[] novasTransportadoras = new Transportadora[TodasTransportadoras.Length - 1];
-        for (int i = 0; i < TodasTransportadoras.Length; i++)
+        int j = 0;
+        for (int i = 0; j < TodasTransportadoras.Length; i++, j++)
         {
-            if (TodasTransportadoras[i].ID == idRemocao)
+            if (TodasTransportadoras[j].ID == idRemocao)
             {
-                novasTransportadoras[i] = TodasTransportadoras[i + 1];
+                if ((j + 1) < TodasTransportadoras.Length)
+                {
+                    novasTransportadoras[i] = TodasTransportadoras[j + 1];
+                    j++;
+                }
+                else break;
             }
-            else novasTransportadoras[i] = TodasTransportadoras[i];
-            TodasTransportadoras = novasTransportadoras;
+            else
+            {
+                novasTransportadoras[i] = TodasTransportadoras[j];
+            }
         }
+        TodasTransportadoras = novasTransportadoras;
     }
 }

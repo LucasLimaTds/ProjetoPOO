@@ -40,14 +40,23 @@ public class RepositorioProduto
     public void RemoverProduto(int idRemocao)
     {
         Produto[] novosProdutos = new Produto[TodosProdutos.Length - 1];
-        for (int i = 0; i < TodosProdutos.Length; i++)
+        int j = 0;
+        for (int i = 0; j < TodosProdutos.Length; i++, j++)
         {
-            if (TodosProdutos[i].ID == idRemocao)
+            if (TodosProdutos[j].ID == idRemocao)
             {
-                novosProdutos[i] = TodosProdutos[i + 1];
+                if ((j + 1)<TodosProdutos.Length)
+                {
+                    novosProdutos[i] = TodosProdutos[j + 1];
+                    j++;
+                }
+                else break;
             }
-            else novosProdutos[i] = TodosProdutos[i];
-            TodosProdutos = novosProdutos;
+            else
+            {
+                novosProdutos[i] = TodosProdutos[j];
+            }
         }
+        TodosProdutos = novosProdutos;
     }
 }
