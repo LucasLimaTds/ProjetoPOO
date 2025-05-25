@@ -19,6 +19,7 @@ public class GerenciadorDeMenus
 
     private void MenuInicial()
     {
+        Console.Clear();
         Console.WriteLine("[1] - FAZER LOGIN");
         Console.WriteLine("[2] - CRIAR USUÁRIO");
         Console.WriteLine("[0] - FINALIZAR O PROGRAMA");
@@ -78,42 +79,52 @@ public class GerenciadorDeMenus
 
     private void MenuAdmin()
     {
-        Console.WriteLine("[1] - LISTAR USUÁRIOS");
-        Console.WriteLine("[2] - EDITAR USUÁRIOS");
-        Console.WriteLine("[3] - CADASTRO DE FORNECEDORES");
-        Console.WriteLine("[4] - CADASTRO DE PRODUTOS");
-        Console.WriteLine("[5] - CADASTRO DE TRANSPORTADORAS");
-        Console.WriteLine("[0] - FAZER LOGOUT");
-
-        int OpcaoUsuario;
-        OpcaoUsuario = int.Parse(Console.ReadLine());
-
-        switch (OpcaoUsuario)
+        bool flag=true;
+        while (flag)
         {
-            case 1:
-                {
-                    GerenciadorDeUsuario.ListarUsuarios();
-                    MenuAdmin(); //retorna para as opções depois de listar os usuarios
-                    break;
-                }
-            case 2:
-                {
-                    //chama metodo de editar usuario
-                    break;
-                }
-            case 3:
-            case 4:
-            case 5:
-                {
-                    MenuDeCadastros(OpcaoUsuario);
-                    break;
-                }
-            case 0:
-                {
-                    MenuInicial();
-                    break;
-                }
+            Console.Clear();
+            Console.WriteLine("[1] - LISTAR USUÁRIOS");
+            Console.WriteLine("[2] - EDITAR USUÁRIOS");
+            Console.WriteLine("[3] - CADASTRO DE FORNECEDORES");
+            Console.WriteLine("[4] - CADASTRO DE PRODUTOS");
+            Console.WriteLine("[5] - CADASTRO DE TRANSPORTADORAS");
+            Console.WriteLine("[0] - FAZER LOGOUT");
+
+            int OpcaoUsuario;
+            OpcaoUsuario = int.Parse(Console.ReadLine());
+
+            switch (OpcaoUsuario)
+            {
+                case 1:
+                    {
+                        GerenciadorDeUsuario.ListarUsuarios();
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        /* o retorno das opcoes sera dado pelo loop, sem necessidade 
+                        de realizar chamadas de funcoes nao necessarias*/
+                        break;
+                    }
+                case 2:
+                    {
+                        //chama metodo de editar usuario
+                        break;
+                    }
+                case 3:
+                case 4:
+                case 5:
+                    {
+                        MenuDeCadastros(OpcaoUsuario);
+                        break;
+                    }
+                case 0:
+                    {
+                        flag = false;
+                        break;
+                    }
+            }
+            
         }
+        MenuInicial();
     }
 
     private void MenuDeCadastros(int OpcaoUsuario) //deve existir um jeito um pouco melhor de fazer, mas como os tres tipos de cadastros tem as mesmas opções, achei de tentar
@@ -154,7 +165,7 @@ public class GerenciadorDeMenus
                         GerenciadorDeFornecedor.ListarFornecedores();
                     }
 
-                    if (OpcaoUsuario == 4)
+                    else if (OpcaoUsuario == 4)
                     {
                         Console.WriteLine("Insira o nome do novo produto: ");
                         nome = Console.ReadLine();
@@ -164,7 +175,7 @@ public class GerenciadorDeMenus
                         GerenciadorDeProduto.ListarProdutos();
                     }
 
-                    if (OpcaoUsuario == 5)
+                    else
                     {
                         Console.WriteLine("Insira o nome da nova transportadora: ");
                         nome = Console.ReadLine();
@@ -173,6 +184,9 @@ public class GerenciadorDeMenus
                         GerenciadorDeTransportadora.CadastrarTransportadora(nome, valor);
                         GerenciadorDeTransportadora.ListarTransportadoras();
                     }
+                    Console.WriteLine("Inclusão realizada com sucesso!");
+                    Console.WriteLine("Pressione qualquer tecla para continuar");
+                    Console.ReadKey();
                     break;
                 }
             case 2:
@@ -191,7 +205,7 @@ public class GerenciadorDeMenus
                         GerenciadorDeFornecedor.ListarFornecedores();
                     }
 
-                    if (OpcaoUsuario == 4)
+                    else if (OpcaoUsuario == 4)
                     {
                         Console.WriteLine("Escolha o produto que deseja remover: ");
                         GerenciadorDeProduto.ListarProdutos();
@@ -201,7 +215,7 @@ public class GerenciadorDeMenus
                         GerenciadorDeProduto.ListarProdutos();
                     }
 
-                    if (OpcaoUsuario == 5)
+                    else
                     {
                         Console.WriteLine("Escolha a transportadora que deseja remover: ");
                         GerenciadorDeTransportadora.ListarTransportadoras();
@@ -210,6 +224,9 @@ public class GerenciadorDeMenus
                         GerenciadorDeTransportadora.RemoverTransportadora(idRemocao);
                         GerenciadorDeTransportadora.ListarTransportadoras();
                     }
+                    Console.WriteLine("Remoção realizada com sucesso!");
+                    Console.WriteLine("Pressione qualquer tecla para continuar");
+                    Console.ReadKey();
                     break;
                 }
             case 4:
@@ -217,7 +234,6 @@ public class GerenciadorDeMenus
                     break;
                 }
         }
-        MenuAdmin();
     }
 
     private void MenuCliente()
