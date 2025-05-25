@@ -171,7 +171,7 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Insira o preço cobrado por Km: ");
                         valor = int.Parse((Console.ReadLine()));
                         GerenciadorDeTransportadora.CadastrarTransportadora(nome, valor);
-                        GerenciadorDeTransportadora.ListarTransportadoraes();
+                        GerenciadorDeTransportadora.ListarTransportadoras();
                     }
                     break;
                 }
@@ -193,22 +193,22 @@ public class GerenciadorDeMenus
 
                     if (OpcaoUsuario == 4)
                     {
-                        Console.WriteLine("Insira o nome do novo produto: ");
-                        nome = Console.ReadLine();
-                        Console.WriteLine("Insira o valor do novo produto: ");
-                        valor = int.Parse((Console.ReadLine()));
-                        GerenciadorDeProduto.CadastrarProduto(nome, valor);
+                        Console.WriteLine("Escolha o produto que deseja remover: ");
+                        GerenciadorDeProduto.ListarProdutos();
+                        Console.WriteLine("Insira o ID do produto a ser removido: ");
+                        idRemocao = int.Parse (Console.ReadLine());
+                        GerenciadorDeProduto.RemoverProduto(idRemocao);
                         GerenciadorDeProduto.ListarProdutos();
                     }
 
                     if (OpcaoUsuario == 5)
                     {
-                        Console.WriteLine("Insira o nome da nova transportadora: ");
-                        nome = Console.ReadLine();
-                        Console.WriteLine("Insira o preço cobrado por Km: ");
-                        valor = int.Parse((Console.ReadLine()));
-                        GerenciadorDeTransportadora.CadastrarTransportadora(nome, valor);
-                        GerenciadorDeTransportadora.ListarTransportadoraes();
+                        Console.WriteLine("Escolha a transportadora que deseja remover: ");
+                        GerenciadorDeTransportadora.ListarTransportadoras();
+                        Console.WriteLine("Insira o ID do fornecedor a ser removido: ");
+                        idRemocao = int.Parse (Console.ReadLine());
+                        GerenciadorDeTransportadora.RemoverTransportadora(idRemocao);
+                        GerenciadorDeTransportadora.ListarTransportadoras();
                     }
                     break;
                 }

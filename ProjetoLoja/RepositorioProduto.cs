@@ -24,7 +24,7 @@ public class RepositorioProduto
         novosProdutos[novosProdutos.Length - 1] = new Produto(nome, valor, idProduto++);
         TodosProdutos = novosProdutos;
     }
-    
+
     public void ListarProdutos()
     {
         int i;
@@ -35,5 +35,19 @@ public class RepositorioProduto
         }
 
         Console.WriteLine("-------------------------------------------------------------------");
+    }
+    
+    public void RemoverProduto(int idRemocao)
+    {
+        Produto[] novosProdutos = new Produto[TodosProdutos.Length - 1];
+        for (int i = 0; i < TodosProdutos.Length; i++)
+        {
+            if (TodosProdutos[i].ID == idRemocao)
+            {
+                novosProdutos[i] = TodosProdutos[i + 1];
+            }
+            else novosProdutos[i] = TodosProdutos[i];
+            TodosProdutos = novosProdutos;
+        }
     }
 }

@@ -25,7 +25,7 @@ public class RepositorioTransportadora
         TodasTransportadoras = novasTransportadoras;
     }
 
-    public void ListarTransportadoraes()
+    public void ListarTransportadoras()
     {
         int i;
         Console.WriteLine("Transportadoraes cadastrados:");
@@ -35,5 +35,19 @@ public class RepositorioTransportadora
         }
 
         Console.WriteLine("-------------------------------------------------------------------");
+    }
+
+    public void RemoverTransportadora(int idRemocao)
+    {
+        Transportadora[] novasTransportadoras = new Transportadora[TodasTransportadoras.Length - 1];
+        for (int i = 0; i < TodasTransportadoras.Length; i++)
+        {
+            if (TodasTransportadoras[i].ID == idRemocao)
+            {
+                novasTransportadoras[i] = TodasTransportadoras[i + 1];
+            }
+            else novasTransportadoras[i] = TodasTransportadoras[i];
+            TodasTransportadoras = novasTransportadoras;
+        }
     }
 }

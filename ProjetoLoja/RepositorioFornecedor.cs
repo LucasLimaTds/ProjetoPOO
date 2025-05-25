@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel;
+using System.Globalization;
 
 namespace ProjetoLoja;
 
@@ -40,15 +42,23 @@ public class RepositorioFornecedor
     public void RemoverFornecedor(int idRemocao)
     {
         Fornecedor[] novosFornecedores = new Fornecedor[TodosFornecedores.Length - 1];
-        for (int i = 0; i < TodosFornecedores.Length; i++)
+        int j = 0;
+        for (int i = 0; j < TodosFornecedores.Length; i++, j++)
         {
-            if (TodosFornecedores[i].ID == idRemocao)
+            if (TodosFornecedores[j].ID == idRemocao)
             {
-                novosFornecedores[i] = TodosFornecedores[i + 1];
+                if ((j + 1)<TodosFornecedores.Length)
+                {
+                    novosFornecedores[i] = TodosFornecedores[j + 1];
+                    j++;
+                }
+                else break;
             }
-            else novosFornecedores[i] = TodosFornecedores[i];
-            TodosFornecedores = novosFornecedores;
+            else
+            {
+                novosFornecedores[i] = TodosFornecedores[j];
+            }
         }
+        TodosFornecedores = novosFornecedores;
     }
-
 }
