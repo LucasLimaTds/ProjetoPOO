@@ -12,7 +12,7 @@ public class RepositorioProduto
         TodosProdutos[0] = new Produto("Produto1", 2, idProduto++);
     }
 
-    public void CadastrarProduto(string nome, double valor)
+    public void CadastrarProduto(string nome, double valor, int quantidade)
     {
         Produto[] novosProdutos = new Produto[TodosProdutos.Length + 1];
 
@@ -21,7 +21,7 @@ public class RepositorioProduto
             novosProdutos[i] = TodosProdutos[i];
         }
 
-        novosProdutos[novosProdutos.Length - 1] = new Produto(nome, valor, idProduto++);
+        novosProdutos[novosProdutos.Length - 1] = new Produto(nome, valor, idProduto++, quantidade);
         TodosProdutos = novosProdutos;
     }
 
@@ -31,7 +31,7 @@ public class RepositorioProduto
         Console.WriteLine("Produtos cadastrados:");
         for (i = 0; i < TodosProdutos.Length; i++)
         {
-            Console.WriteLine("Produto ID " + TodosProdutos[i].ID + " | Nome: " + TodosProdutos[i].Nome + " | Valor do Produto: R$ " + TodosProdutos[i].Valor);
+            Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome} | Preço: R$ {TodosProdutos[i].Valor} | Quantidade em estoque: {TodosProdutos[i].QuantidadeEmEstoque}");
         }
 
         Console.WriteLine("-------------------------------------------------------------------");

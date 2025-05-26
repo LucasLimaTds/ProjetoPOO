@@ -277,6 +277,7 @@ public class GerenciadorDeMenus
 
             int OpcaoProduto=int.Parse(Console.ReadLine());
             string nome;
+            int quantidade;
             int idRemocao;
             double valor;
 
@@ -288,7 +289,9 @@ public class GerenciadorDeMenus
                         nome = Console.ReadLine();
                         Console.WriteLine("Insira o valor do novo produto: ");
                         valor = double.Parse(Console.ReadLine());
-                        GerenciadorDeProduto.CadastrarProduto(nome, valor);
+                        Console.WriteLine("Insira a quantidade do produto: ");
+                        quantidade = int.Parse(Console.ReadLine());
+                        GerenciadorDeProduto.CadastrarProduto(nome, valor, quantidade);
                         GerenciadorDeProduto.ListarProdutos();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");

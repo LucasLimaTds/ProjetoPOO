@@ -11,6 +11,14 @@ public class Produto
         ID = id;
     }
 
+    public Produto(string nome, double valor, int id, int quantidade)
+    {
+        Nome = nome;
+        Valor = valor;
+        ID = id;
+        QuantidadeEmEstoque = quantidade;
+    }
+
     public string Nome { get; set; }
     public double Valor { get; set; }
     public int QuantidadeEmEstoque { get; set; }
