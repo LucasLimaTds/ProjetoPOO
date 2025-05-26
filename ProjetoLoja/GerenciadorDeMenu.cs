@@ -18,32 +18,38 @@ public class GerenciadorDeMenus
     }
 
     private void MenuInicial()
-    {
-        Console.Clear();
-        Console.WriteLine("[1] - FAZER LOGIN");
-        Console.WriteLine("[2] - CRIAR USUÁRIO");
-        Console.WriteLine("[0] - FINALIZAR O PROGRAMA");
-
-        int OpcaoUsuario;
-        OpcaoUsuario = int.Parse(Console.ReadLine());
-
-        switch (OpcaoUsuario)
+    {        
+        while (true)
         {
-            case 1:
-                {
-                    FazerLogin();
-                    break;
-                }
-            case 2:
-                {
-                    CriarUsuario();
-                    break;
-                }
-            case 0:
-                {
-                    Environment.Exit(0);
-                    break;
-                }
+            
+            Console.Clear();
+            Console.WriteLine("MENU INICIAL\n");
+
+            Console.WriteLine("[1] - FAZER LOGIN");
+            Console.WriteLine("[2] - CRIAR USUÁRIO");
+            Console.WriteLine("[0] - FINALIZAR O PROGRAMA");
+
+            int OpcaoUsuario;
+            OpcaoUsuario = int.Parse(Console.ReadLine());
+
+            switch (OpcaoUsuario)
+            {
+                case 1:
+                    {
+                        FazerLogin();
+                        break;
+                    }
+                case 2:
+                    {
+                        CriarUsuario();
+                        break;
+                    }
+                case 0:
+                    {
+                        Environment.Exit(0);
+                        break;
+                    }
+            }
         }
     }
     private void FazerLogin()
@@ -58,7 +64,7 @@ public class GerenciadorDeMenus
         {
             MenuAdmin(); //mostra as opções para usuarios admin
         }
-        if (GerenciadorDeUsuario.ValidarUsuario(Usuario, Senha) == 0)
+        else if (GerenciadorDeUsuario.ValidarUsuario(Usuario, Senha) == 1)
         {
             MenuCliente(); //mostra opcoes para clientes 
         }
@@ -73,16 +79,19 @@ public class GerenciadorDeMenus
         String NovaSenha = Console.ReadLine();
 
         GerenciadorDeUsuario.CriarUsuario(NovoNome, NovaSenha);
-        GerenciadorDeUsuario.ListarUsuarios();               //só uma função pra mostrar os nomes dos usuarios, para testar o cadastro
-        MenuInicial();
+        GerenciadorDeUsuario.ListarUsuarios(); //só uma função pra mostrar os nomes dos usuarios, para testar o cadastro
+        Console.WriteLine("Pressione qualquer tecla para continuar");
+        Console.ReadKey();
     }
 
     private void MenuAdmin()
     {
-        bool flag=true;
-        while (flag)
+        bool flagAdmin=true;
+        while (flagAdmin)
         {
             Console.Clear();
+            Console.WriteLine("MENU DO ADMINISTRADOR\n");
+
             Console.WriteLine("[1] - LISTAR USUÁRIOS");
             Console.WriteLine("[2] - EDITAR USUÁRIOS");
             Console.WriteLine("[3] - CADASTRO DE FORNECEDORES");
@@ -126,13 +135,13 @@ public class GerenciadorDeMenus
                 }
                 case 0:
                     {
-                        flag = false;
+                        flagAdmin = false;
                         break;
                 }
             }
             
         }
-        MenuInicial();
+        //MenuInicial();
     }
 
     private void OpcoesDoCadastro()
