@@ -15,8 +15,6 @@ public class RepositorioUsuario
 
     public int ValidarUsuario(String nome, String senha)
     {
-        int retorno = 0;
-
         for (int i = 0; i < TodosUsuarios.Length; i++)
         {
             if (nome == TodosUsuarios[i].Nome)
@@ -25,29 +23,21 @@ public class RepositorioUsuario
                 {
                     if (TodosUsuarios[i].DireitosDeUsuario == 0)
                     {
-                        retorno = 0;
-                        break;
+                        return 0;
                     }
 
                     else
                     {
-                        retorno = 1;
-                        break;
+                        return 1;
                     }
                 }
                 else
                 {
-                    retorno = 3;
-                    break;
+                    return 3;
                 }
             }
-            else
-            {
-                retorno = 2;
-                break;
-            }
         }
-        return retorno;
+        return 2;
     }
 
     public void CriarUsuario(String nome, String senha)
