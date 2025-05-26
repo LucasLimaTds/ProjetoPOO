@@ -26,23 +26,25 @@ public class RepositorioUsuario
                     if (TodosUsuarios[i].DireitosDeUsuario == 0)
                     {
                         retorno = 0;
+                        break;
                     }
 
                     else
                     {
                         retorno = 1;
+                        break;
                     }
                 }
-
                 else
                 {
                     retorno = 3;
+                    break;
                 }
             }
-
             else
             {
                 retorno = 2;
+                break;
             }
         }
         return retorno;
