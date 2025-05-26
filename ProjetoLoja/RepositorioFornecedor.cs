@@ -14,7 +14,7 @@ public class RepositorioFornecedor
         TodosFornecedores[0] = new Fornecedor("Fornecedor1", "55 54 999999999", idFornecedor++);
     }
 
-    public void CadastrarFornecedor(String nome, String telefone)
+    public void CadastrarFornecedor(string nome, string telefone)
     {
         Fornecedor[] novosFornecedores = new Fornecedor[TodosFornecedores.Length + 1];
 

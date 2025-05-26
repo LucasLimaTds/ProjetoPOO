@@ -4,12 +4,12 @@ namespace ProjetoLoja;
 
 public class Usuario
 {
-    public String Nome { get; set; }
-    public String Senha { get; set; }
+    public string Nome { get; set; }
+    public string Senha { get; set; }
     public int DireitosDeUsuario { get; set; }
     public int ID { get; set; }
 
-    public Usuario(String nome, String senha, int direito, int id)
+    public Usuario(string nome, string senha, int direito, int id)
     {
         Nome = nome;
         Senha = senha;

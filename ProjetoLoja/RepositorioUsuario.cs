@@ -13,7 +13,7 @@ public class RepositorioUsuario
         TodosUsuarios[0] = new Usuario("AdminMaster", "Admin", 0, idUsuario++);
     }
 
-    public int ValidarUsuario(String nome, String senha)
+    public int ValidarUsuario(string nome, string senha)
     {
         for (int i = 0; i < TodosUsuarios.Length; i++)
         {
@@ -40,7 +40,7 @@ public class RepositorioUsuario
         return 2;
     }
 
-    public void CriarUsuario(String nome, String senha)
+    public void CriarUsuario(string nome, string senha)
     {
         Usuario[] novosUsuarios = new Usuario[TodosUsuarios.Length + 1];
 

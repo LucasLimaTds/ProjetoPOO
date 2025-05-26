@@ -4,11 +4,11 @@ namespace ProjetoLoja;
 
 public abstract class Endereco
 {
-    public String Rua { get; set; }
-    public String Numero { get; set; }
-    public String Complemento { get; set; }
-    public String Bairro { get; set; }
-    public String CEP { get; set; }
-    public String Cidade { get; set; }
-    public String Estado { get; set; }
+    public string Rua { get; set; }
+    public string Numero { get; set; }
+    public string Complemento { get; set; }
+    public string Bairro { get; set; }
+    public string CEP { get; set; }
+    public string Cidade { get; set; }
+    public string Estado { get; set; }
 }

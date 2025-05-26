@@ -12,7 +12,7 @@ public class RepositorioTransportadora
         TodasTransportadoras[0] = new Transportadora("Transportadora1", 5, idTransportadora++);
     }
 
-    public void CadastrarTransportadora(String nome, double valor)
+    public void CadastrarTransportadora(string nome, double valor)
     {
         Transportadora[] novasTransportadoras = new Transportadora[TodasTransportadoras.Length + 1];
 

@@ -12,7 +12,7 @@ public class RepositorioProduto
         TodosProdutos[0] = new Produto("Produto1", 2, idProduto++);
     }
 
-    public void CadastrarProduto(String nome, double valor)
+    public void CadastrarProduto(string nome, double valor)
     {
         Produto[] novosProdutos = new Produto[TodosProdutos.Length + 1];
 

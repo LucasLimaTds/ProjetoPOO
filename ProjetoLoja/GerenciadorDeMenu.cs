@@ -55,10 +55,10 @@ public class GerenciadorDeMenus
     private void FazerLogin()
     {
         Console.Write("Usuário: ");
-        String Usuario = Console.ReadLine();
+        string Usuario = Console.ReadLine();
 
         Console.Write("Senha: ");
-        String Senha = Console.ReadLine();
+        string Senha = Console.ReadLine();
 
         if (GerenciadorDeUsuario.ValidarUsuario(Usuario, Senha) == 0)
         {
@@ -73,10 +73,10 @@ public class GerenciadorDeMenus
     private void CriarUsuario()
     {
         Console.Write("Digite o nome do novo usuário: ");
-        String NovoNome = Console.ReadLine();
+        string NovoNome = Console.ReadLine();
 
         Console.Write("Digita a senha: ");
-        String NovaSenha = Console.ReadLine();
+        string NovaSenha = Console.ReadLine();
 
         GerenciadorDeUsuario.CriarUsuario(NovoNome, NovaSenha);
         GerenciadorDeUsuario.ListarUsuarios(); //só uma função pra mostrar os nomes dos usuarios, para testar o cadastro
@@ -149,7 +149,7 @@ public class GerenciadorDeMenus
         Console.WriteLine("[1] - REALIZAR INCLUSÃO");
         Console.WriteLine("[2] - REALIZAR ALTERAÇÃO");
         Console.WriteLine("[3] - REALIZAR EXCLUSÃO");
-        Console.WriteLine("[4] - CONSULTA CADASTRADOS");
+        Console.WriteLine("[4] - CONSULTAR CADASTRADOS");
         Console.WriteLine("[0] - VOLTAR AO MENU");
     }
     
@@ -164,7 +164,7 @@ public class GerenciadorDeMenus
             OpcoesDoCadastro();
 
             int OpcaoFornecedor = int.Parse(Console.ReadLine());
-            String nome;
+            string nome;
             int idRemocao;
 
             switch (OpcaoFornecedor)
@@ -174,7 +174,7 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Insira o nome do novo fornecedor: ");
                         nome = Console.ReadLine();
                         Console.WriteLine("Insira o telefone do novo fornecedor: ");
-                        String telefoneFornecedor = Console.ReadLine();
+                        string telefoneFornecedor = Console.ReadLine();
                         GerenciadorDeFornecedor.CadastrarFornecedor(nome, telefoneFornecedor);
                         GerenciadorDeFornecedor.ListarFornecedores();
 
@@ -203,6 +203,9 @@ public class GerenciadorDeMenus
                     }
                 case 4:
                     {
+                        Console.WriteLine("Digite o ID do fornecedor: ");
+                        
+
                         break;
                     }
                 case 0:
@@ -227,7 +230,7 @@ public class GerenciadorDeMenus
             OpcoesDoCadastro();
 
             int OpcaoProduto=int.Parse(Console.ReadLine());
-            String nome;
+            string nome;
             int idRemocao;
             double valor;
 
@@ -291,7 +294,7 @@ public class GerenciadorDeMenus
             OpcoesDoCadastro();
 
             int OpcaoTransportadora=int.Parse(Console.ReadLine());
-            String nome;
+            string nome;
             int idRemocao;
             double valor;
 
