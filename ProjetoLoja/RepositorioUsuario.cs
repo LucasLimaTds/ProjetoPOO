@@ -32,6 +32,18 @@ public class RepositorioUsuario
         return -1;
     }
 
+    public bool VerificaEmailExistente(string email)
+    {
+        for (int i = 0; i < TodosUsuarios.Length; i++)
+        {
+            if (email == TodosUsuarios[i].Email)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void CriarUsuario(string nome, string email, string telefone, string senha, string rua, string numero, string complemento, string bairro, string CEP, string cidade, string estado)
     {
         Usuario[] novosUsuarios = new Usuario[TodosUsuarios.Length + 1];
@@ -42,7 +54,7 @@ public class RepositorioUsuario
         }
 
         novosUsuarios[novosUsuarios.Length - 1] = new Usuario(nome, email, telefone, senha, 1, idUsuario++, rua, numero, complemento, bairro, CEP, cidade, estado); //sempre adicionando novos usuários com direitos de usuário comum, 
-                                                                                     // depois um outro admin pode editar o usuario pra torna-lo admin
+                                                                                                                                                                    // depois um outro admin pode editar o usuario pra torna-lo admin
         TodosUsuarios = novosUsuarios;
     }
 

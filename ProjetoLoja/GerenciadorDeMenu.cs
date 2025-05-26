@@ -82,15 +82,29 @@ public class GerenciadorDeMenus
         Console.Write("Digite o nome do novo usuário: ");
         string novoNome = Console.ReadLine();
 
-        Console.Write("Digite o email do novo usuário: ");
-        string novoEmail = Console.ReadLine();
+        string novoEmail;
+        bool testeEmail;
+        do
+        {
+            Console.Write("Digite o email do novo usuário: ");
+            novoEmail = Console.ReadLine();
 
+            testeEmail = GerenciadorDeUsuario.VerificaEmailExistente(novoEmail);
+            if (!testeEmail)
+            {
+                Console.WriteLine("Endereço de email já existente!");
+                Console.WriteLine("Pressione qualquer tecla para tentar novamente");
+                Console.ReadKey();
+            }
+
+        } while (!testeEmail);
+        
         Console.Write("Digite o telefone do novo usuário: ");
         string novoTelefone = Console.ReadLine();
 
         string novaSenha;
         string confirmarSenha;
-
+        bool testeSenha;
         do
         {
             Console.Write("Digita a senha: ");
@@ -101,12 +115,17 @@ public class GerenciadorDeMenus
 
             if (novaSenha != confirmarSenha)
             {
+                testeSenha = false;
                 Console.WriteLine("As senhas não coincidem");
                 Console.WriteLine("Pressione qualquer tecla para tentar novamente");
                 Console.ReadKey();
             }
+            else
+            {
+                testeSenha = true;
+            }
 
-        } while (novaSenha != confirmarSenha);
+        } while (!testeSenha);
 
 
         string novaRua="";
