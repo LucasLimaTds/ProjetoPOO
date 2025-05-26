@@ -210,6 +210,7 @@ public class GerenciadorDeMenus
 
             int OpcaoFornecedor = int.Parse(Console.ReadLine());
             string nome;
+            string email;
             string novaRua="";
             string novoNumero="";
             string novoComplemento="";
@@ -225,10 +226,12 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira o nome do novo fornecedor: ");
                         nome = Console.ReadLine();
+                        Console.WriteLine("Insira o email do novo fornecedor: ");
+                        email = Console.ReadLine();
                         Console.WriteLine("Insira o telefone do novo fornecedor: ");
                         string telefoneFornecedor = Console.ReadLine();
                         CadastroEndereco(ref novaRua, ref novoNumero, ref novoComplemento, ref novoBairro, ref novoCEP, ref novaCidade, ref novoEstado);
-                        GerenciadorDeFornecedor.CadastrarFornecedor(nome, telefoneFornecedor, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado);
+                        GerenciadorDeFornecedor.CadastrarFornecedor(nome, email, telefoneFornecedor, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado);
                         GerenciadorDeFornecedor.ListarFornecedores();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");

@@ -11,10 +11,10 @@ public class RepositorioFornecedor
 
     public RepositorioFornecedor()
     {
-        TodosFornecedores[0] = new Fornecedor("Fornecedor1", "55 54 999999999", idFornecedor++);
+        TodosFornecedores[0] = new Fornecedor("Fornecedor1", "fornecedor1@gmail.com", "55 54 999999999", idFornecedor++);
     }
 
-    public void CadastrarFornecedor(string nome, string telefone, string rua, string numero, string complemento, string bairro, string CEP, string cidade, string estado)
+    public void CadastrarFornecedor(string nome, string email, string telefone, string rua, string numero, string complemento, string bairro, string CEP, string cidade, string estado)
     {
         Fornecedor[] novosFornecedores = new Fornecedor[TodosFornecedores.Length + 1];
 
@@ -23,7 +23,7 @@ public class RepositorioFornecedor
             novosFornecedores[i] = TodosFornecedores[i];
         }
 
-        novosFornecedores[novosFornecedores.Length - 1] = new Fornecedor(nome, telefone, idFornecedor++, rua, numero, complemento, bairro, CEP, cidade, estado);
+        novosFornecedores[novosFornecedores.Length - 1] = new Fornecedor(nome, email, telefone, idFornecedor++, rua, numero, complemento, bairro, CEP, cidade, estado);
         TodosFornecedores = novosFornecedores;
     }
 
@@ -33,7 +33,7 @@ public class RepositorioFornecedor
         Console.WriteLine("\nFornecedores cadastrados:");
         for (i = 0; i < TodosFornecedores.Length; i++)
         {
-            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
+            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome} | Email: {TodosFornecedores[i].Email}");
             TodosFornecedores[i].ListarEndereço(); // APENAS PARA TESTAR OS ENDEREÇOS. REMOVER NA VERSÃO FINAL
         }
 
@@ -69,7 +69,8 @@ public class RepositorioFornecedor
         {
             if (TodosFornecedores[i].ID == id)
             {
-                Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
+                Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome} | Email: {TodosFornecedores[i].Email}");
+                TodosFornecedores[i].ListarEndereço();
                 Console.WriteLine("-------------------------------------------------------------------");
                 return;
             }
