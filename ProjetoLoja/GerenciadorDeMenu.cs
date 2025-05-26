@@ -303,6 +303,8 @@ public class GerenciadorDeMenus
                     }
                 case 4:
                     {
+                        Console.WriteLine("Escolha o fornecedor a ser consultado:");
+                        GerenciadorDeFornecedor.ListarFornecedores();
                         Console.WriteLine("Digite o ID do fornecedor: ");
                         int idFornecedor = int.Parse(Console.ReadLine());
                         GerenciadorDeFornecedor.ConsultarFornecedor(idFornecedor);
@@ -379,6 +381,8 @@ public class GerenciadorDeMenus
                     }
                 case 4:
                     {
+                        Console.WriteLine("Escolha o produto a ser consultado:");
+                        GerenciadorDeProduto.ListarProdutos();
                         Console.WriteLine("Digite o ID do produto: ");
                         int idProduto = int.Parse(Console.ReadLine());
                         GerenciadorDeProduto.ConsultarProduto(idProduto);
@@ -446,6 +450,8 @@ public class GerenciadorDeMenus
                     }
                 case 4:
                     {
+                        Console.WriteLine("Escolha a transportadora a ser consultada:");
+                        GerenciadorDeTransportadora.ListarTransportadoras();
                         Console.WriteLine("Digite o ID da transportadora: ");
                         int idTransportadora = int.Parse(Console.ReadLine());
                         GerenciadorDeTransportadora.ConsultarTransportadora(idTransportadora);
