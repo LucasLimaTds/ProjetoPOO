@@ -14,7 +14,7 @@ public class RepositorioFornecedor
         TodosFornecedores[0] = new Fornecedor("Fornecedor1", "55 54 999999999", idFornecedor++);
     }
 
-    public void CadastrarFornecedor(string nome, string telefone)
+    public void CadastrarFornecedor(string nome, string telefone, string rua, string numero, string complemento, string bairro, string CEP, string cidade, string estado)
     {
         Fornecedor[] novosFornecedores = new Fornecedor[TodosFornecedores.Length + 1];
 
@@ -23,17 +23,18 @@ public class RepositorioFornecedor
             novosFornecedores[i] = TodosFornecedores[i];
         }
 
-        novosFornecedores[novosFornecedores.Length - 1] = new Fornecedor(nome, telefone, idFornecedor++);
+        novosFornecedores[novosFornecedores.Length - 1] = new Fornecedor(nome, telefone, idFornecedor++, rua, numero, complemento, bairro, CEP, cidade, estado);
         TodosFornecedores = novosFornecedores;
     }
 
     public void ListarFornecedores()
     {
         int i;
-        Console.WriteLine("Fornecedores cadastrados:");
+        Console.WriteLine("\nFornecedores cadastrados:");
         for (i = 0; i < TodosFornecedores.Length; i++)
         {
-            Console.WriteLine("Fornecedor ID " + TodosFornecedores[i].ID + " | Nome: " + TodosFornecedores[i].Nome);
+            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
+            TodosFornecedores[i].ListarEndereço(); // APENAS PARA TESTAR OS ENDEREÇOS. REMOVER NA VERSÃO FINAL
         }
 
         Console.WriteLine("-------------------------------------------------------------------");
