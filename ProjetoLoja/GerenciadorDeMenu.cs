@@ -54,29 +54,39 @@ public class GerenciadorDeMenus
     }
     private void FazerLogin()
     {
-        Console.Write("Usuário: ");
-        string Usuario = Console.ReadLine();
+        Console.Write("Email do usuário: ");
+        string Email = Console.ReadLine();
 
         Console.Write("Senha: ");
         string Senha = Console.ReadLine();
 
-        if (GerenciadorDeUsuario.ValidarUsuario(Usuario, Senha) == 0)
+        if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha) == 0)
         {
             MenuAdmin(); //mostra as opções para usuarios admin
         }
-        else if (GerenciadorDeUsuario.ValidarUsuario(Usuario, Senha) == 1)
+        else if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha) == 1)
         {
             MenuCliente(); //mostra opcoes para clientes 
+        }
+        else
+        {
+            Console.WriteLine("Email ou senha incorretos!");
+            Console.WriteLine("-------------------------------------------------------------------");
+            Console.WriteLine("Pressione qualquer tecla para continuar");
+            Console.ReadKey();
         }
     }
 
     private void CriarUsuario()
     {
         Console.Write("Digite o nome do novo usuário: ");
-        string NovoNome = Console.ReadLine();
+        string novoNome = Console.ReadLine();
+
+        Console.Write("Digite o email do novo usuário: ");
+        string novoEmail = Console.ReadLine();
 
         Console.Write("Digita a senha: ");
-        string NovaSenha = Console.ReadLine();
+        string novaSenha = Console.ReadLine();
 
         string novaRua="";
         string novoNumero="";
@@ -88,7 +98,7 @@ public class GerenciadorDeMenus
 
         CadastroEndereco(ref novaRua, ref novoNumero, ref novoComplemento, ref novoBairro, ref novoCEP, ref novaCidade, ref novoEstado);
 
-        GerenciadorDeUsuario.CriarUsuario(NovoNome, NovaSenha, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado);
+        GerenciadorDeUsuario.CriarUsuario(novoNome, novoEmail, novaSenha, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado);
         GerenciadorDeUsuario.ListarUsuarios(); //só uma função pra mostrar os nomes dos usuarios, para testar o cadastro
         Console.WriteLine("Pressione qualquer tecla para continuar");
         Console.ReadKey();
