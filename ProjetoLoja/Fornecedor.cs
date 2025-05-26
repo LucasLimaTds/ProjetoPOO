@@ -18,10 +18,11 @@ public class Fornecedor : Endereco
         ID = id;
     }
 
-    public Fornecedor(string nome, string email, string telefone, int id, string rua, string numero, string complemento, string bairro, string cep, string cidade, string estado)
+    public Fornecedor(string nome, string email, string descricao, string telefone, int id, string rua, string numero, string complemento, string bairro, string cep, string cidade, string estado)
     {
         Nome = nome;
         Email = email;
+        Descricao = descricao;
         Telefone = telefone;
         ID = id;
         Rua = rua;
