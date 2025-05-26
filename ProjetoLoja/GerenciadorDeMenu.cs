@@ -204,7 +204,10 @@ public class GerenciadorDeMenus
                 case 4:
                     {
                         Console.WriteLine("Digite o ID do fornecedor: ");
-                        
+                        int idFornecedor = int.Parse(Console.ReadLine());
+                        GerenciadorDeFornecedor.ConsultarFornecedor(idFornecedor);
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
 
                         break;
                     }

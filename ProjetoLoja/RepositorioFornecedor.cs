@@ -47,7 +47,7 @@ public class RepositorioFornecedor
         {
             if (TodosFornecedores[j].ID == idRemocao)
             {
-                if ((j + 1)<TodosFornecedores.Length)
+                if ((j + 1) < TodosFornecedores.Length)
                 {
                     novosFornecedores[i] = TodosFornecedores[j + 1];
                     j++;
@@ -60,5 +60,21 @@ public class RepositorioFornecedor
             }
         }
         TodosFornecedores = novosFornecedores;
+    }
+
+    public void ConsultarFornecedor(int id)
+    {
+        for (int i = 0; i < TodosFornecedores.Length; i++)
+        {
+            if (TodosFornecedores[i].ID == id)
+            {
+                Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
+                Console.WriteLine("-------------------------------------------------------------------");
+                return;
+            }
+        }
+
+        Console.WriteLine("Fornecedor não encontrado!");
+        Console.WriteLine("-------------------------------------------------------------------");
     }
 }
