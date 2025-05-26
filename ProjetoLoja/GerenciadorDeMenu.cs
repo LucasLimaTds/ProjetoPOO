@@ -88,8 +88,26 @@ public class GerenciadorDeMenus
         Console.Write("Digite o telefone do novo usuário: ");
         string novoTelefone = Console.ReadLine();
 
-        Console.Write("Digita a senha: ");
-        string novaSenha = Console.ReadLine();
+        string novaSenha;
+        string confirmarSenha;
+
+        do
+        {
+            Console.Write("Digita a senha: ");
+            novaSenha = Console.ReadLine();
+
+            Console.Write("Confirmar senha: ");
+            confirmarSenha = Console.ReadLine();
+
+            if (novaSenha != confirmarSenha)
+            {
+                Console.WriteLine("As senhas não coincidem");
+                Console.WriteLine("Pressione qualquer tecla para tentar novamente");
+                Console.ReadKey();
+            }
+
+        } while (novaSenha != confirmarSenha);
+
 
         string novaRua="";
         string novoNumero="";
