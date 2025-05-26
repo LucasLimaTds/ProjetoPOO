@@ -78,15 +78,51 @@ public class GerenciadorDeMenus
         Console.Write("Digita a senha: ");
         string NovaSenha = Console.ReadLine();
 
-        GerenciadorDeUsuario.CriarUsuario(NovoNome, NovaSenha);
+        string novaRua="";
+        string novoNumero="";
+        string novoComplemento="";
+        string novoBairro="";
+        string novoCEP="";
+        string novaCidade="";
+        string novoEstado="";
+
+        CadastroEndereco(ref novaRua, ref novoNumero, ref novoComplemento, ref novoBairro, ref novoCEP, ref novaCidade, ref novoEstado);
+
+        GerenciadorDeUsuario.CriarUsuario(NovoNome, NovaSenha, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado);
         GerenciadorDeUsuario.ListarUsuarios(); //só uma função pra mostrar os nomes dos usuarios, para testar o cadastro
         Console.WriteLine("Pressione qualquer tecla para continuar");
         Console.ReadKey();
     }
 
+    private void CadastroEndereco(ref string novaRua, ref string novoNumero, ref string novoComplemento, ref string novoBairro, ref string novoCEP, ref string novaCidade, ref string novoEstado)
+    {
+        Console.WriteLine("Digite os dados do endereço:");
+
+        Console.Write("Rua: ");
+        novaRua=Console.ReadLine();
+
+        Console.Write("Número: ");
+        novoNumero=Console.ReadLine();
+
+        Console.Write("Complemento: ");
+        novoComplemento=Console.ReadLine();
+
+        Console.Write("Bairro: ");
+        novoBairro=Console.ReadLine();
+
+        Console.Write("CEP: ");
+        novoCEP=Console.ReadLine();
+
+        Console.Write("Cidade: ");
+        novaCidade=Console.ReadLine();
+
+        Console.Write("Estado: ");
+        novoEstado=Console.ReadLine();
+    }
+
     private void MenuAdmin()
     {
-        bool flagAdmin=true;
+        bool flagAdmin = true;
         while (flagAdmin)
         {
             Console.Clear();
@@ -112,34 +148,34 @@ public class GerenciadorDeMenus
                         /* o retorno das opcoes sera dado pelo loop, sem necessidade 
                         de realizar chamadas de funcoes nao necessarias*/
                         break;
-                }
+                    }
                 case 2:
                     {
                         //chama metodo de editar usuario
                         break;
-                }
+                    }
                 case 3:
                     {
                         MenuCadastroFornecedores();
                         break;
-                }
+                    }
                 case 4:
                     {
                         MenuCadastroProduto();
                         break;
-                }
+                    }
                 case 5:
                     {
                         MenuCadastroTransportadora();
                         break;
-                }
+                    }
                 case 0:
                     {
                         flagAdmin = false;
                         break;
-                }
+                    }
             }
-            
+
         }
     }
 

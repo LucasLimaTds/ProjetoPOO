@@ -40,7 +40,7 @@ public class RepositorioUsuario
         return 2;
     }
 
-    public void CriarUsuario(string nome, string senha)
+    public void CriarUsuario(string nome, string senha, string rua, string numero, string complemento, string bairro, string CEP, string cidade, string estado)
     {
         Usuario[] novosUsuarios = new Usuario[TodosUsuarios.Length + 1];
 
@@ -49,7 +49,7 @@ public class RepositorioUsuario
             novosUsuarios[i] = TodosUsuarios[i];
         }
 
-        novosUsuarios[novosUsuarios.Length - 1] = new Usuario(nome, senha, 1, idUsuario++); //sempre adicionando novos usuários com direitos de usuário comum, 
+        novosUsuarios[novosUsuarios.Length - 1] = new Usuario(nome, senha, 1, idUsuario++, rua, numero, complemento, bairro, CEP, cidade, estado); //sempre adicionando novos usuários com direitos de usuário comum, 
                                                                                      // depois um outro admin pode editar o usuario pra torna-lo admin
         TodosUsuarios = novosUsuarios;
     }
@@ -57,14 +57,15 @@ public class RepositorioUsuario
     public void ListarUsuarios()
     {
         int i;
-        Console.WriteLine("Usuarios cadastrados:");
+        Console.WriteLine("\nUsuarios cadastrados:");
         for (i = 0; i < TodosUsuarios.Length; i++)
         {
             if (TodosUsuarios[i].DireitosDeUsuario == 0)
             {
                 Console.Write("*Administrador | "); //para os admins saberem quem são os outros admins
             }
-            Console.WriteLine("Usuário ID " + TodosUsuarios[i].ID + " | Nome: " + TodosUsuarios[i].Nome);
+            Console.WriteLine($"Usuário ID: {TodosUsuarios[i].ID} | Nome: {TodosUsuarios[i].Nome}");
+            TodosUsuarios[i].ListarEndereço();  // APENAS PARA TESTAR OS ENDEREÇOS. REMOVER NA VERSÃO FINAL
         }
 
         Console.WriteLine("-------------------------------------------------------------------");
