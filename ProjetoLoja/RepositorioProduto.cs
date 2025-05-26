@@ -31,7 +31,7 @@ public class RepositorioProduto
         Console.WriteLine("Produtos cadastrados:");
         for (i = 0; i < TodosProdutos.Length; i++)
         {
-            Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome} | Preço: R$ {TodosProdutos[i].Valor} | Quantidade em estoque: {TodosProdutos[i].QuantidadeEmEstoque}");
+            Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome}");
         }
 
         Console.WriteLine("-------------------------------------------------------------------");

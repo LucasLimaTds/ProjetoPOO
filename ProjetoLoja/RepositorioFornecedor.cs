@@ -69,7 +69,7 @@ public class RepositorioFornecedor
         {
             if (TodosFornecedores[i].ID == id)
             {
-                Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome} | Email: {TodosFornecedores[i].Email} | Descrição: {TodosFornecedores[i].Descricao}");
+                Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
                 TodosFornecedores[i].ListarEndereço();
                 Console.WriteLine("-------------------------------------------------------------------");
                 return;
