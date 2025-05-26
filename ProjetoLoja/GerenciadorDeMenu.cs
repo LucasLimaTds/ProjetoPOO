@@ -342,6 +342,11 @@ public class GerenciadorDeMenus
                     }
                 case 4:
                     {
+                        Console.WriteLine("Digite o ID da transportadora: ");
+                        int idTransportadora = int.Parse(Console.ReadLine());
+                        GerenciadorDeTransportadora.ConsultarTrasnportadora(idTransportadora);
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
                         break;
                     }
                 case 0:

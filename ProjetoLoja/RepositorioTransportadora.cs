@@ -59,4 +59,20 @@ public class RepositorioTransportadora
         }
         TodasTransportadoras = novasTransportadoras;
     }
+
+    public void ConsultarTrasnportadora(int id)
+    {
+        for (int i = 0; i < TodasTransportadoras.Length; i++)
+        {
+            if (TodasTransportadoras[i].ID == id)
+            {
+                Console.WriteLine($"Trasnportadora ID: {TodasTransportadoras[i].ID} | Nome: {TodasTransportadoras[i].Nome} | Preço do km: R$ {TodasTransportadoras[i].PrecoPorKM}");
+                Console.WriteLine("-------------------------------------------------------------------");
+                return;
+            }
+        }
+
+        Console.WriteLine("Trasnportadora não encontrada!");
+        Console.WriteLine("-------------------------------------------------------------------");
+    }
 }
