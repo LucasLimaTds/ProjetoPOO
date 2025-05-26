@@ -273,6 +273,11 @@ public class GerenciadorDeMenus
                     }
                 case 4:
                     {
+                        Console.WriteLine("Digite o ID do produto: ");
+                        int idProduto = int.Parse(Console.ReadLine());
+                        GerenciadorDeProduto.ConsultarProduto(idProduto);
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
                         break;
                     }
                 case 0:

@@ -36,7 +36,7 @@ public class RepositorioProduto
 
         Console.WriteLine("-------------------------------------------------------------------");
     }
-    
+
     public void RemoverProduto(int idRemocao)
     {
         Produto[] novosProdutos = new Produto[TodosProdutos.Length - 1];
@@ -45,7 +45,7 @@ public class RepositorioProduto
         {
             if (TodosProdutos[j].ID == idRemocao)
             {
-                if ((j + 1)<TodosProdutos.Length)
+                if ((j + 1) < TodosProdutos.Length)
                 {
                     novosProdutos[i] = TodosProdutos[j + 1];
                     j++;
@@ -58,5 +58,21 @@ public class RepositorioProduto
             }
         }
         TodosProdutos = novosProdutos;
+    }
+    
+    public void ConsultarProduto(int id)
+    {
+        for (int i = 0; i < TodosProdutos.Length; i++)
+        {
+            if (TodosProdutos[i].ID == id)
+            {
+                Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome} | Valor do produto: R$ {TodosProdutos[i].Valor}");
+                Console.WriteLine("-------------------------------------------------------------------");
+                return;
+            }
+        }
+
+        Console.WriteLine("Produto não encontrado!");
+        Console.WriteLine("-------------------------------------------------------------------");
     }
 }
