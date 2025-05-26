@@ -63,20 +63,30 @@ public class RepositorioFornecedor
         TodosFornecedores = novosFornecedores;
     }
 
-    public void ConsultarFornecedor(int id)
+    public int ProcuraFornecedor(int id)
     {
         for (int i = 0; i < TodosFornecedores.Length; i++)
         {
             if (TodosFornecedores[i].ID == id)
             {
-                Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
-                TodosFornecedores[i].ListarEndereço();
-                Console.WriteLine("-------------------------------------------------------------------");
-                return;
+                return i;
             }
         }
-
         Console.WriteLine("Fornecedor não encontrado!");
         Console.WriteLine("-------------------------------------------------------------------");
+        return -1;
+    }
+
+    public void ConsultarFornecedor(int id)
+    {
+        int i;
+        i = ProcuraFornecedor(id);
+        if (i != -1)
+        {
+            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
+            TodosFornecedores[i].ListarEndereço();
+            Console.WriteLine("-------------------------------------------------------------------");
+        }
+
     }
 }

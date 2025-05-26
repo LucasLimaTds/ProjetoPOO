@@ -17,12 +17,13 @@ public class Produto
         ID = id;
     }
 
-    public Produto(string nome, double valor, int id, int quantidade)
+    public Produto(string nome, double valor, int id, int quantidade, Fornecedor fornecedor)
     {
         Nome = nome;
         Valor = valor;
         ID = id;
         QuantidadeEmEstoque = quantidade;
+        FornecedorDoProduto = fornecedor;
     }
 
 }

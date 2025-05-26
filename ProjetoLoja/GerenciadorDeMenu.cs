@@ -335,6 +335,7 @@ public class GerenciadorDeMenus
             int quantidade;
             int idRemocao;
             double valor;
+            int idfornecedor, indfornecedor;
 
             switch (OpcaoProduto)
             {
@@ -346,7 +347,11 @@ public class GerenciadorDeMenus
                         valor = double.Parse(Console.ReadLine());
                         Console.WriteLine("Insira a quantidade do produto: ");
                         quantidade = int.Parse(Console.ReadLine());
-                        GerenciadorDeProduto.CadastrarProduto(nome, valor, quantidade);
+                        Console.WriteLine("Escolha o fornecedor para o produto:");
+                        GerenciadorDeFornecedor.ListarFornecedores();
+                        idfornecedor = int.Parse(Console.ReadLine());
+                        indfornecedor = GerenciadorDeFornecedor.ProcuraFornecedor(idfornecedor);
+                        GerenciadorDeProduto.CadastrarProduto(nome, valor, quantidade, GerenciadorDeFornecedor.TodosFornecedores[indfornecedor]);
                         GerenciadorDeProduto.ListarProdutos();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");
