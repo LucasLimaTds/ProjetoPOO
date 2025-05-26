@@ -31,7 +31,7 @@ public class RepositorioTransportadora
         Console.WriteLine("Transportadoraes cadastrados:");
         for (i = 0; i < TodasTransportadoras.Length; i++)
         {
-            Console.WriteLine("Transportadora ID " + TodasTransportadoras[i].ID + " | Nome: " + TodasTransportadoras[i].Nome + " | Preço do Km: " + TodasTransportadoras[i].PrecoPorKM);
+            Console.WriteLine("Transportadora ID " + TodasTransportadoras[i].ID + " | Nome: " + TodasTransportadoras[i].Nome + " | Preço do Km: R$ " + TodasTransportadoras[i].PrecoPorKM);
         }
 
         Console.WriteLine("-------------------------------------------------------------------");

@@ -103,59 +103,64 @@ public class GerenciadorDeMenus
                         /* o retorno das opcoes sera dado pelo loop, sem necessidade 
                         de realizar chamadas de funcoes nao necessarias*/
                         break;
-                    }
+                }
                 case 2:
                     {
                         //chama metodo de editar usuario
                         break;
-                    }
+                }
                 case 3:
+                    {
+                        MenuCadastroFornecedores();
+                        break;
+                }
                 case 4:
+                    {
+                        MenuCadastroProduto();
+                        break;
+                }
                 case 5:
                     {
-                        MenuDeCadastros(OpcaoUsuario);
+                        MenuCadastroTransportadora();
                         break;
-                    }
+                }
                 case 0:
                     {
                         flag = false;
                         break;
-                    }
+                }
             }
             
         }
         MenuInicial();
     }
 
-    private void MenuDeCadastros(int OpcaoUsuario) //deve existir um jeito um pouco melhor de fazer, mas como os tres tipos de cadastros tem as mesmas opções, achei de tentar
-    //abstrair em um metodo só ao invés de tres metodos diferentes mas parecidos
+    private void OpcoesDoCadastro()
     {
-        if (OpcaoUsuario == 3)
-            Console.WriteLine("OPÇÕES DE CADASTRO DE FORNECEDORES:");
-
-        if (OpcaoUsuario == 4)
-            Console.WriteLine("OPÇÕES DE CADASTRO DE PRODUTOS:");
-
-        if (OpcaoUsuario == 5)
-            Console.WriteLine("OPÇÕES DE CADASTRO DE TRANSPORTADORAS:");
-
-
         Console.WriteLine("[1] - REALIZAR INCLUSÃO");
         Console.WriteLine("[2] - REALIZAR ALTERAÇÃO");
         Console.WriteLine("[3] - REALIZAR EXCLUSÃO");
         Console.WriteLine("[4] - CONSULTA CADASTRADOS");
-
-        int OpcaoCadastro;
-        OpcaoCadastro = int.Parse(Console.ReadLine());
-        String nome;
-        double valor;
-        int idRemocao;
-
-        switch (OpcaoCadastro)
+        Console.WriteLine("[0] - VOLTAR AO MENU");
+    }
+    
+    private void MenuCadastroFornecedores()
+    {
+        bool flagFornecedor = true;
+        while (flagFornecedor)
         {
-            case 1:
-                {
-                    if (OpcaoUsuario == 3)
+            Console.Clear();
+            Console.WriteLine("OPÇÕES DE CADASTRO DE FORNECEDORES:\n");
+
+            OpcoesDoCadastro();
+
+            int OpcaoFornecedor = int.Parse(Console.ReadLine());
+            String nome;
+            int idRemocao;
+
+            switch (OpcaoFornecedor)
+            {
+                case 1:
                     {
                         Console.WriteLine("Insira o nome do novo fornecedor: ");
                         nome = Console.ReadLine();
@@ -163,77 +168,171 @@ public class GerenciadorDeMenus
                         String telefoneFornecedor = Console.ReadLine();
                         GerenciadorDeFornecedor.CadastrarFornecedor(nome, telefoneFornecedor);
                         GerenciadorDeFornecedor.ListarFornecedores();
-                    }
 
-                    else if (OpcaoUsuario == 4)
-                    {
-                        Console.WriteLine("Insira o nome do novo produto: ");
-                        nome = Console.ReadLine();
-                        Console.WriteLine("Insira o valor do novo produto: ");
-                        valor = int.Parse((Console.ReadLine()));
-                        GerenciadorDeProduto.CadastrarProduto(nome, valor);
-                        GerenciadorDeProduto.ListarProdutos();
+                        Console.WriteLine("Inclusão realizada com sucesso!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        break;
                     }
-
-                    else
+                case 2:
                     {
-                        Console.WriteLine("Insira o nome da nova transportadora: ");
-                        nome = Console.ReadLine();
-                        Console.WriteLine("Insira o preço cobrado por Km: ");
-                        valor = int.Parse((Console.ReadLine()));
-                        GerenciadorDeTransportadora.CadastrarTransportadora(nome, valor);
-                        GerenciadorDeTransportadora.ListarTransportadoras();
+                        break;
                     }
-                    Console.WriteLine("Inclusão realizada com sucesso!");
-                    Console.WriteLine("Pressione qualquer tecla para continuar");
-                    Console.ReadKey();
-                    break;
-                }
-            case 2:
-                {
-                    break;
-                }
-            case 3:
-                {
-                    if (OpcaoUsuario == 3)
+                case 3:
                     {
                         Console.WriteLine("Escolha o fornecedor que deseja remover: ");
                         GerenciadorDeFornecedor.ListarFornecedores();
                         Console.WriteLine("Insira o ID do fornecedor a ser removido: ");
-                        idRemocao = int.Parse (Console.ReadLine());
+                        idRemocao = int.Parse(Console.ReadLine());
                         GerenciadorDeFornecedor.RemoverFornecedor(idRemocao);
                         GerenciadorDeFornecedor.ListarFornecedores();
+
+                        Console.WriteLine("Remoção realizada com sucesso!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        break;
+                    }
+                case 4:
+                    {
+                        break;
+                    }
+                case 0:
+                    {
+                        flagFornecedor = false;
+                        break;
                     }
 
-                    else if (OpcaoUsuario == 4)
+            }
+        }
+
+    }
+
+    private void MenuCadastroProduto()
+    {
+        bool flagPrduto = true;
+        while (flagPrduto)
+        {
+            Console.Clear();
+            Console.WriteLine("OPÇÕES DE CADASTRO DE PRODUTOS:\n");
+
+            OpcoesDoCadastro();
+
+            int OpcaoProduto=int.Parse(Console.ReadLine());
+            String nome;
+            int idRemocao;
+            double valor;
+
+            switch (OpcaoProduto)
+            {
+                case 1:
+                    {
+                        Console.WriteLine("Insira o nome do novo produto: ");
+                        nome = Console.ReadLine();
+                        Console.WriteLine("Insira o valor do novo produto: ");
+                        valor = double.Parse(Console.ReadLine());
+                        GerenciadorDeProduto.CadastrarProduto(nome, valor);
+                        GerenciadorDeProduto.ListarProdutos();
+
+                        Console.WriteLine("Inclusão realizada com sucesso!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        break;
+                    }
+                case 2:
+                    {
+                        break;
+                    }
+                case 3:
                     {
                         Console.WriteLine("Escolha o produto que deseja remover: ");
                         GerenciadorDeProduto.ListarProdutos();
                         Console.WriteLine("Insira o ID do produto a ser removido: ");
-                        idRemocao = int.Parse (Console.ReadLine());
+                        idRemocao = int.Parse(Console.ReadLine());
                         GerenciadorDeProduto.RemoverProduto(idRemocao);
                         GerenciadorDeProduto.ListarProdutos();
-                    }
 
-                    else
+                        Console.WriteLine("Remoção realizada com sucesso!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        break;
+                    }
+                case 4:
+                    {
+                        break;
+                    }
+                case 0:
+                    {
+                        flagPrduto = false;
+                        break;
+                    }
+            }
+        }
+        
+    }
+    
+    private void MenuCadastroTransportadora()
+    {
+        bool flagTransportadora = true;
+        while (flagTransportadora)
+        {
+            
+            Console.Clear();
+            Console.WriteLine("OPÇÕES DE CADASTRO DE TRANSPORTADORAS:\n");
+
+            OpcoesDoCadastro();
+
+            int OpcaoTransportadora=int.Parse(Console.ReadLine());
+            String nome;
+            int idRemocao;
+            double valor;
+
+            switch (OpcaoTransportadora)
+            {
+                case 1:
+                    {
+                        Console.WriteLine("Insira o nome da nova transportadora: ");
+                        nome = Console.ReadLine();
+                        Console.WriteLine("Insira o preço cobrado por Km: ");
+                        valor = double.Parse(Console.ReadLine());
+                        GerenciadorDeTransportadora.CadastrarTransportadora(nome, valor);
+                        GerenciadorDeTransportadora.ListarTransportadoras();
+
+                        Console.WriteLine("Inclusão realizada com sucesso!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        break;
+                    }
+                case 2:
+                    {
+                        break;
+                    }
+                case 3:
                     {
                         Console.WriteLine("Escolha a transportadora que deseja remover: ");
                         GerenciadorDeTransportadora.ListarTransportadoras();
-                        Console.WriteLine("Insira o ID do fornecedor a ser removido: ");
-                        idRemocao = int.Parse (Console.ReadLine());
+                        Console.WriteLine("Insira o ID da transportadora a ser removida: ");
+                        idRemocao = int.Parse(Console.ReadLine());
                         GerenciadorDeTransportadora.RemoverTransportadora(idRemocao);
                         GerenciadorDeTransportadora.ListarTransportadoras();
+
+                        Console.WriteLine("Remoção realizada com sucesso!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        break;
                     }
-                    Console.WriteLine("Remoção realizada com sucesso!");
-                    Console.WriteLine("Pressione qualquer tecla para continuar");
-                    Console.ReadKey();
-                    break;
-                }
-            case 4:
-                {
-                    break;
-                }
+                case 4:
+                    {
+                        break;
+                    }
+                case 0:
+                    {
+                        flagTransportadora = false;
+                        break;
+                    }
+
+            }
         }
+        
     }
 
     private void MenuCliente()
