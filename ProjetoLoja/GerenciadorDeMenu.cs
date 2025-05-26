@@ -448,7 +448,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Digite o ID da transportadora: ");
                         int idTransportadora = int.Parse(Console.ReadLine());
-                        GerenciadorDeTransportadora.ConsultarTrasnportadora(idTransportadora);
+                        GerenciadorDeTransportadora.ConsultarTransportadora(idTransportadora);
                         Console.WriteLine("Pressione qualquer tecla para continuar");
                         Console.ReadKey();
                         break;
