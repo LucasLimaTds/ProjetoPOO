@@ -85,6 +85,9 @@ public class GerenciadorDeMenus
         Console.Write("Digite o email do novo usuário: ");
         string novoEmail = Console.ReadLine();
 
+        Console.Write("Digite o telefone do novo usuário: ");
+        string novoTelefone = Console.ReadLine();
+
         Console.Write("Digita a senha: ");
         string novaSenha = Console.ReadLine();
 
@@ -98,7 +101,7 @@ public class GerenciadorDeMenus
 
         CadastroEndereco(ref novaRua, ref novoNumero, ref novoComplemento, ref novoBairro, ref novoCEP, ref novaCidade, ref novoEstado);
 
-        GerenciadorDeUsuario.CriarUsuario(novoNome, novoEmail, novaSenha, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado);
+        GerenciadorDeUsuario.CriarUsuario(novoNome, novoEmail, novoTelefone, novaSenha, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado);
         GerenciadorDeUsuario.ListarUsuarios(); //só uma função pra mostrar os nomes dos usuarios, para testar o cadastro
         Console.WriteLine("Pressione qualquer tecla para continuar");
         Console.ReadKey();
