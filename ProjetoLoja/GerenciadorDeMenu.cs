@@ -135,8 +135,7 @@ public class GerenciadorDeMenus
 
     private void MenuAdmin()
     {
-        bool flagAdmin = true;
-        while (flagAdmin)
+        while (true)
         {
             Console.Clear();
             Console.WriteLine("MENU DO ADMINISTRADOR\n");
@@ -184,8 +183,7 @@ public class GerenciadorDeMenus
                     }
                 case 0:
                     {
-                        flagAdmin = false;
-                        break;
+                        return;
                     }
             }
 
@@ -203,8 +201,7 @@ public class GerenciadorDeMenus
     
     private void MenuCadastroFornecedores()
     {
-        bool flagFornecedor = true;
-        while (flagFornecedor)
+        while (true)
         {
             Console.Clear();
             Console.WriteLine("OPÇÕES DE CADASTRO DE FORNECEDORES:\n");
@@ -279,8 +276,7 @@ public class GerenciadorDeMenus
                     }
                 case 0:
                     {
-                        flagFornecedor = false;
-                        break;
+                        return;
                     }
 
             }
@@ -290,8 +286,7 @@ public class GerenciadorDeMenus
 
     private void MenuCadastroProduto()
     {
-        bool flagPrduto = true;
-        while (flagPrduto)
+        while (true)
         {
             Console.Clear();
             Console.WriteLine("OPÇÕES DE CADASTRO DE PRODUTOS:\n");
@@ -351,8 +346,7 @@ public class GerenciadorDeMenus
                     }
                 case 0:
                     {
-                        flagPrduto = false;
-                        break;
+                        return;
                     }
             }
         }
@@ -361,8 +355,7 @@ public class GerenciadorDeMenus
     
     private void MenuCadastroTransportadora()
     {
-        bool flagTransportadora = true;
-        while (flagTransportadora)
+        while (true)
         {
             
             Console.Clear();
@@ -420,8 +413,7 @@ public class GerenciadorDeMenus
                     }
                 case 0:
                     {
-                        flagTransportadora = false;
-                        break;
+                        return;
                     }
 
             }
