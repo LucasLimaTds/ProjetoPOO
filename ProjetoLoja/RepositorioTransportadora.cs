@@ -7,13 +7,18 @@ public class RepositorioTransportadora
     public Transportadora[] TodasTransportadoras = new Transportadora[1];
     private int idTransportadora = 1;
 
-    public RepositorioTransportadora()
-    {
-        TodasTransportadoras[0] = new Transportadora("Transportadora1", 5, idTransportadora++);
-    }
+    // public RepositorioTransportadora()
+    // {
+    //     TodasTransportadoras[0] = new Transportadora("Transportadora1", 5, idTransportadora++);
+    // }
 
     public void CadastrarTransportadora(string nome, double valor)
     {
+        if (idTransportadora == 1)
+        {
+            TodasTransportadoras[0] = new Transportadora(nome, valor, idTransportadora++);
+            return;
+        }
         Transportadora[] novasTransportadoras = new Transportadora[TodasTransportadoras.Length + 1];
 
         for (int i = 0; i < TodasTransportadoras.Length; i++)
@@ -28,7 +33,7 @@ public class RepositorioTransportadora
     public void ListarTransportadoras()
     {
         int i;
-        Console.WriteLine("Transportadoraes cadastrados:");
+        Console.WriteLine("Transportadoras cadastradas:");
         for (i = 0; i < TodasTransportadoras.Length; i++)
         {
             Console.WriteLine($"Transportadora ID: {TodasTransportadoras[i].ID} | Nome: {TodasTransportadoras[i].Nome}");
@@ -78,11 +83,20 @@ public class RepositorioTransportadora
     {
         int i;
         i = ProcuraTransportadora(id);
-        if (i !=-1 )
+        if (i != -1)
         {
             Console.WriteLine($"Transportadora ID: {TodasTransportadoras[i].ID} | Nome: {TodasTransportadoras[i].Nome} | Preço do km: R$ {TodasTransportadoras[i].PrecoPorKM}");
             Console.WriteLine("-------------------------------------------------------------------");
         }
-        
+
+    }
+
+    public bool VerificaExistenciaTransprtadora()
+    {
+        if (idTransportadora > 1)
+        {
+            return true;
+        }
+        return false;
     }
 }

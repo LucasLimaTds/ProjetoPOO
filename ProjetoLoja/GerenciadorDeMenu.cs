@@ -481,32 +481,47 @@ public class GerenciadorDeMenus
                     }
                 case 2:
                     {
-                        Console.WriteLine("Escolha o produto que deseja editar:");
-                        GerenciadorDeProduto.ListarProdutos();
-                        int id = int.Parse(Console.ReadLine());
-                        int i = GerenciadorDeProduto.ProcuraProduto(id);
-                        if (i != -1)
+                        if (GerenciadorDeProduto.VerificaExistenciaProduto())
                         {
-                            AlterarProduto(i);
+                            Console.WriteLine("Escolha o produto que deseja editar:");
+                            GerenciadorDeProduto.ListarProdutos();
+                            int id = int.Parse(Console.ReadLine());
+                            int i = GerenciadorDeProduto.ProcuraProduto(id);
+                            if (i != -1)
+                            {
+                                AlterarProduto(i);
+                            }
+                            else
+                            {
+                                PressioneQualquerTecla();
+                            }
                         }
                         else
                         {
+                            Console.WriteLine("Não há produtos cadastrados!");
                             PressioneQualquerTecla();
                         }
                         break;
                     }
                 case 3:
                     {
-                        Console.WriteLine("Escolha o produto que deseja remover: ");
-                        GerenciadorDeProduto.ListarProdutos();
-                        Console.WriteLine("Insira o ID do produto a ser removido: ");
-                        idRemocao = int.Parse(Console.ReadLine());
-                        int i = GerenciadorDeProduto.ProcuraProduto(idRemocao);
-                        if (i != -1)
+                        if (GerenciadorDeProduto.VerificaExistenciaProduto())
                         {
-                        GerenciadorDeProduto.RemoverProduto(idRemocao);
-                        GerenciadorDeProduto.ListarProdutos();
-                        Console.WriteLine("Remoção realizada com sucesso!"); 
+                            Console.WriteLine("Escolha o produto que deseja remover: ");
+                            GerenciadorDeProduto.ListarProdutos();
+                            Console.WriteLine("Insira o ID do produto a ser removido: ");
+                            idRemocao = int.Parse(Console.ReadLine());
+                            int i = GerenciadorDeProduto.ProcuraProduto(idRemocao);
+                            if (i != -1)
+                            {
+                                GerenciadorDeProduto.RemoverProduto(idRemocao);
+                                GerenciadorDeProduto.ListarProdutos();
+                                Console.WriteLine("Remoção realizada com sucesso!");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Não há produtos cadastrados!");
                         }
                         PressioneQualquerTecla();
                         break;
@@ -639,44 +654,66 @@ public class GerenciadorDeMenus
                     }
                 case 2:
                     {
-                        Console.WriteLine("Escolha a transportadora que deseja editar");
-                        GerenciadorDeTransportadora.ListarTransportadoras();
-                        int id = int.Parse(Console.ReadLine());
-                        int i = GerenciadorDeTransportadora.ProcuraTransportadora(id);
-
-                        if (i != -1)
+                        if (GerenciadorDeTransportadora.VerificaExistenciaTransprtadora())
                         {
-                            AlteraTransportadora(i);
+                            Console.WriteLine("Escolha a transportadora que deseja editar");
+                            GerenciadorDeTransportadora.ListarTransportadoras();
+                            int id = int.Parse(Console.ReadLine());
+                            int i = GerenciadorDeTransportadora.ProcuraTransportadora(id);
+
+                            if (i != -1)
+                            {
+                                AlteraTransportadora(i);
+                            }
+                            else
+                            {
+                                PressioneQualquerTecla();
+                            }
                         }
                         else
                         {
+                            Console.WriteLine("Não há transportadoras cadastradas!");
                             PressioneQualquerTecla();
                         }
                         break;
                     }
                 case 3:
                     {
-                        Console.WriteLine("Escolha a transportadora que deseja remover: ");
-                        GerenciadorDeTransportadora.ListarTransportadoras();
-                        Console.WriteLine("Insira o ID da transportadora a ser removida: ");
-                        idRemocao = int.Parse(Console.ReadLine());
-                        int i = GerenciadorDeFornecedor.ProcuraFornecedor(idRemocao);
-                        if (i != -1)
+                        if (GerenciadorDeTransportadora.VerificaExistenciaTransprtadora())
                         {
-                        GerenciadorDeTransportadora.RemoverTransportadora(idRemocao);
-                        GerenciadorDeTransportadora.ListarTransportadoras();
-                        Console.WriteLine("Remoção realizada com sucesso!"); 
+                            Console.WriteLine("Escolha a transportadora que deseja remover: ");
+                            GerenciadorDeTransportadora.ListarTransportadoras();
+                            Console.WriteLine("Insira o ID da transportadora a ser removida: ");
+                            idRemocao = int.Parse(Console.ReadLine());
+                            int i = GerenciadorDeFornecedor.ProcuraFornecedor(idRemocao);
+                            if (i != -1)
+                            {
+                                GerenciadorDeTransportadora.RemoverTransportadora(idRemocao);
+                                GerenciadorDeTransportadora.ListarTransportadoras();
+                                Console.WriteLine("Remoção realizada com sucesso!"); 
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Não há transportadoras cadastradas!");
                         }
                         PressioneQualquerTecla();
                         break;
                     }
                 case 4:
                     {
-                        Console.WriteLine("Escolha a transportadora a ser consultada:");
-                        GerenciadorDeTransportadora.ListarTransportadoras();
-                        Console.WriteLine("Digite o ID da transportadora: ");
-                        int idTransportadora = int.Parse(Console.ReadLine());
-                        GerenciadorDeTransportadora.ConsultarTransportadora(idTransportadora);
+                        if (GerenciadorDeTransportadora.VerificaExistenciaTransprtadora())
+                        {
+                            Console.WriteLine("Escolha a transportadora a ser consultada:");
+                            GerenciadorDeTransportadora.ListarTransportadoras();
+                            Console.WriteLine("Digite o ID da transportadora: ");
+                            int idTransportadora = int.Parse(Console.ReadLine());
+                            GerenciadorDeTransportadora.ConsultarTransportadora(idTransportadora);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Não há transportadoras cadastradas!");
+                        }
                         PressioneQualquerTecla();
                         break;
                     }
