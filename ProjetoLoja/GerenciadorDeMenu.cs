@@ -286,6 +286,19 @@ public class GerenciadorDeMenus
                     }
                 case 2:
                     {
+                        Console.WriteLine("Escolha o fornecedor que deseja editar:");
+                        GerenciadorDeFornecedor.ListarFornecedores();
+                        int id = int.Parse(Console.ReadLine());
+                        int i = GerenciadorDeFornecedor.ProcuraFornecedor(id);
+                        if (i != -1)
+                        {
+                            AlterarFornecedor(i);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Pressione qualquer tecla para continuar");
+                            Console.ReadKey();
+                        }
                         break;
                     }
                 case 3:
@@ -324,6 +337,105 @@ public class GerenciadorDeMenus
 
     }
 
+    private void AlterarFornecedor(int i)
+    {
+        while (true)
+        {
+            Console.WriteLine("OPÇÕES DE ALTERAÇÃO DE FORNECEDOR:\n");
+
+            Console.WriteLine("[1] - ALTERAR NOME");
+            Console.WriteLine("[2] - ALTERAR DESCRIÇÃO");
+            Console.WriteLine("[3] - ALTERAR TELEFONE");
+            Console.WriteLine("[4] - ALTERAR EMAIL");
+            Console.WriteLine("[5] - ALTERAR ENDEREÇO");
+            Console.WriteLine("[0] - VOLTAR AO MENU");
+
+            int opcaoAlteracao=int.Parse(Console.ReadLine());
+            string novoNome;
+            string novaDescricao;
+            string novoTelefone;
+            string novoEmail;
+
+            string novaRua="";
+            string novoNumero="";
+            string novoComplemento="";
+            string novoBairro="";
+            string novoCEP="";
+            string novaCidade="";
+            string novoEstado="";
+
+            switch (opcaoAlteracao)
+            {
+                case 1:
+                    {
+                        Console.WriteLine("Insira o novo nome:");
+                        novoNome = Console.ReadLine();
+                        GerenciadorDeFornecedor.TodosFornecedores[i].Nome = novoNome;
+                        Console.WriteLine("Nome alterado!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    }
+                case 2:
+                    {
+                        Console.WriteLine("Insira a nova descrição:");
+                        novaDescricao = Console.ReadLine();
+                        GerenciadorDeFornecedor.TodosFornecedores[i].Descricao = novaDescricao;
+                        Console.WriteLine("Descrição alterada!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    }
+                case 3:
+                    {
+                        Console.WriteLine("Insira o novo telefone:");
+                        novoTelefone = Console.ReadLine();
+                        GerenciadorDeFornecedor.TodosFornecedores[i].Telefone = novoTelefone;
+                        Console.WriteLine("Telefone alterado!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    }
+                case 4:
+                    {
+                        Console.WriteLine("Insira o novo email:");
+                        novoEmail = Console.ReadLine();
+                        GerenciadorDeFornecedor.TodosFornecedores[i].Email = novoEmail;
+                        Console.WriteLine("Email alterado!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    }
+                case 5:
+                    {
+                        CadastroEndereco(ref novaRua, ref novoNumero, ref novoComplemento, ref novoBairro, ref novoCEP, ref novaCidade, ref novoEstado);
+
+                        GerenciadorDeFornecedor.TodosFornecedores[i].Rua = novaRua;
+                        GerenciadorDeFornecedor.TodosFornecedores[i].Numero = novoNumero;
+                        GerenciadorDeFornecedor.TodosFornecedores[i].Complemento = novoComplemento;
+                        GerenciadorDeFornecedor.TodosFornecedores[i].Bairro = novoBairro;
+                        GerenciadorDeFornecedor.TodosFornecedores[i].CEP = novoCEP;
+                        GerenciadorDeFornecedor.TodosFornecedores[i].Cidade = novaCidade;
+                        GerenciadorDeFornecedor.TodosFornecedores[i].Estado = novoEstado;
+
+                        Console.WriteLine("Endereço alterado!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    }
+                case 0:
+                    {
+                        return;
+                    }
+            }
+        }
+    }
+
     private void MenuCadastroProduto()
     {
         while (true)
@@ -333,7 +445,7 @@ public class GerenciadorDeMenus
 
             OpcoesDoCadastro();
 
-            int OpcaoProduto=int.Parse(Console.ReadLine());
+            int OpcaoProduto = int.Parse(Console.ReadLine());
             string nome;
             int quantidade;
             int idRemocao;
@@ -414,7 +526,7 @@ public class GerenciadorDeMenus
                     }
             }
         }
-        
+
     }
 
     private void AlterarProduto(int i)

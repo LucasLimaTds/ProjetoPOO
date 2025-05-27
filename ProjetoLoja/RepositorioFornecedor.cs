@@ -82,7 +82,7 @@ public class RepositorioFornecedor
         i = ProcuraFornecedor(id);
         if (i != -1)
         {
-            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome} | Email: {TodosFornecedores[i].Email} | Descrição: {TodosFornecedores[i].Descricao}");
+            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome} | Email: {TodosFornecedores[i].Email} | Telefone: {TodosFornecedores[i].Telefone} | Descrição: {TodosFornecedores[i].Descricao}");
             TodosFornecedores[i].ListarEndereço();
             Console.WriteLine("-------------------------------------------------------------------");
         }
