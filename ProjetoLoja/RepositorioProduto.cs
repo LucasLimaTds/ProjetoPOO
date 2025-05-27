@@ -90,6 +90,17 @@ public class RepositorioProduto
         }
     }
 
+    public void RemocaoDeFornecedor(int idRemocao, Fornecedor fornecedor)
+    {
+        for (int i = 0; i < TodosProdutos.Length; i++)
+        {
+            if (idRemocao == TodosProdutos[i].FornecedorDoProduto.ID)
+            {
+                TodosProdutos[i].FornecedorDoProduto = fornecedor;
+            }
+        }
+    }
+
     public bool VerificaExistenciaProduto()
     {
         if (idProduto > 1)

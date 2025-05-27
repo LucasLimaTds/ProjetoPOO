@@ -302,14 +302,21 @@ public class GerenciadorDeMenus
                             Console.WriteLine("Escolha o fornecedor que deseja editar:");
                             GerenciadorDeFornecedor.ListarFornecedores();
                             int id = int.Parse(Console.ReadLine());
-                            int i = GerenciadorDeFornecedor.ProcuraFornecedor(id);
-                            if (i != -1)
+                            if (id == 0)
                             {
-                                AlterarFornecedor(i);
+                                Console.WriteLine("Fornecedor padrão do sistema! Impossível alterar");
                             }
                             else
-                            {
-                                PressioneQualquerTecla();
+                            {                                
+                                int i = GerenciadorDeFornecedor.ProcuraFornecedor(id);
+                                if (i != -1)
+                                {
+                                    AlterarFornecedor(i);
+                                }
+                                else
+                                {
+                                    PressioneQualquerTecla();
+                                }
                             }
                         }
                         else
@@ -327,12 +334,20 @@ public class GerenciadorDeMenus
                             GerenciadorDeFornecedor.ListarFornecedores();
                             Console.WriteLine("Insira o ID do fornecedor a ser removido: ");
                             idRemocao = int.Parse(Console.ReadLine());
-                            int i = GerenciadorDeFornecedor.ProcuraFornecedor(idRemocao);
-                            if (i != -1)
+                            if (idRemocao == 0)
                             {
-                                GerenciadorDeFornecedor.RemoverFornecedor(idRemocao);
-                                GerenciadorDeFornecedor.ListarFornecedores();
-                                Console.WriteLine("Remoção realizada com sucesso!"); 
+                                Console.WriteLine("Fornecedor padrão do sistema! Impossível remover");
+                            }
+                            else
+                            {                                
+                                GerenciadorDeProduto.RemocaoDeFornecedor(idRemocao, GerenciadorDeFornecedor.TodosFornecedores[0]);
+                                int i = GerenciadorDeFornecedor.ProcuraFornecedor(idRemocao);
+                                if (i != -1)
+                                {
+                                    GerenciadorDeFornecedor.RemoverFornecedor(idRemocao);
+                                    GerenciadorDeFornecedor.ListarFornecedores();
+                                    Console.WriteLine("Remoção realizada com sucesso!"); 
+                                }
                             }
                         }
                         else
@@ -494,10 +509,13 @@ public class GerenciadorDeMenus
                         idfornecedor = int.Parse(Console.ReadLine());
 
                         indfornecedor = GerenciadorDeFornecedor.ProcuraFornecedor(idfornecedor);
-                        GerenciadorDeProduto.CadastrarProduto(nome, valor, quantidade, GerenciadorDeFornecedor.TodosFornecedores[indfornecedor]);
-                        GerenciadorDeProduto.ListarProdutos();
+                        if (indfornecedor != -1)
+                        {                            
+                            GerenciadorDeProduto.CadastrarProduto(nome, valor, quantidade, GerenciadorDeFornecedor.TodosFornecedores[indfornecedor]);
+                            GerenciadorDeProduto.ListarProdutos();
+                            Console.WriteLine("Inclusão realizada com sucesso!");
+                        }
 
-                        Console.WriteLine("Inclusão realizada com sucesso!");
                         PressioneQualquerTecla();
                         break;
                     }
@@ -630,8 +648,11 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Insira o ID do novo fornecedor:");
                         novo = int.Parse(Console.ReadLine());
                         ind = GerenciadorDeFornecedor.ProcuraFornecedor(novo);
-                        GerenciadorDeProduto.TodosProdutos[i].FornecedorDoProduto = GerenciadorDeFornecedor.TodosFornecedores[ind];
-                        Console.WriteLine("Fornecedor alterado!");
+                        if (ind != -1)
+                        {
+                            GerenciadorDeProduto.TodosProdutos[i].FornecedorDoProduto = GerenciadorDeFornecedor.TodosFornecedores[ind];
+                            Console.WriteLine("Fornecedor alterado!");  
+                        }
                         PressioneQualquerTecla();
                         Console.Clear();
                         break;
