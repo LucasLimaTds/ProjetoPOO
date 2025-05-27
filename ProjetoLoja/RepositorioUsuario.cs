@@ -6,7 +6,6 @@ public class RepositorioUsuario
 {
     public Usuario[] TodosUsuarios = new Usuario[1];
     private int idUsuario = 1;
-    //achei melhor criar uma variavel separada para o ID para não dar confusão quando um usuário for excluído, a sequencia se manter correta ja que se não ela depende do tamanho do vetor
 
     public RepositorioUsuario()
     {
@@ -69,7 +68,7 @@ public class RepositorioUsuario
                 Console.Write("*Administrador | "); //para os admins saberem quem são os outros admins
             }
             Console.WriteLine($"Usuário ID: {TodosUsuarios[i].ID} | Nome: {TodosUsuarios[i].Nome} | Email: {TodosUsuarios[i].Email} | Telefone: {TodosUsuarios[i].Telefone}");
-            TodosUsuarios[i].ListarEndereço();  // APENAS PARA TESTAR OS ENDEREÇOS. REMOVER NA VERSÃO FINAL
+            TodosUsuarios[i].ListarEndereço();
         }
 
         Console.WriteLine("-------------------------------------------------------------------");

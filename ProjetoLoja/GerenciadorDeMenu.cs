@@ -245,6 +245,10 @@ public class GerenciadorDeMenus
 
             int OpcaoUsuario = int.Parse(Console.ReadLine());
 
+            Console.WriteLine("SERÁ IMPLEMENTADO NA SEGUNDA PARTE");
+            PressioneQualquerTecla();
+            return;
+
             // CONTINUA
         }
     }
