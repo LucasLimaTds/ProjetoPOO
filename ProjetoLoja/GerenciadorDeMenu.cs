@@ -201,7 +201,8 @@ public class GerenciadorDeMenus
                     }
                 case 2:
                     {
-                        //chama metodo de editar usuario
+                        //chama metodo de cadastro de usuario
+                        MenuCadastroUsuarios();
                         break;
                     }
                 case 3:
@@ -236,6 +237,21 @@ public class GerenciadorDeMenus
         Console.WriteLine("[4] - CONSULTAR CADASTRADOS");
         Console.WriteLine("[0] - VOLTAR AO MENU");
     }
+
+    private void MenuCadastroUsuarios()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("OPÇÕES DE CADASTRO DE USUÁRIOS:\n");
+
+            OpcoesDoCadastro();
+
+            int OpcaoUsuario = int.Parse(Console.ReadLine());
+
+            // CONTINUA
+        }
+    }
     
     private void MenuCadastroFornecedores()
     {
@@ -250,13 +266,13 @@ public class GerenciadorDeMenus
             string nome;
             string email;
             string descricao;
-            string novaRua="";
-            string novoNumero="";
-            string novoComplemento="";
-            string novoBairro="";
-            string novoCEP="";
-            string novaCidade="";
-            string novoEstado="";
+            string novaRua = "";
+            string novoNumero = "";
+            string novoComplemento = "";
+            string novoBairro = "";
+            string novoCEP = "";
+            string novaCidade = "";
+            string novoEstado = "";
             int idRemocao;
 
             switch (OpcaoFornecedor)
@@ -268,7 +284,7 @@ public class GerenciadorDeMenus
 
                         Console.WriteLine("Insira o email do novo fornecedor: ");
                         email = Console.ReadLine();
-                        
+
                         Console.WriteLine("Insira a descrição do novo fornecedor: ");
                         descricao = Console.ReadLine();
 
