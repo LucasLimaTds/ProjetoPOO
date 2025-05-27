@@ -7,11 +7,11 @@ namespace ProjetoLoja;
 public class RepositorioFornecedor
 {
     public Fornecedor[] TodosFornecedores = new Fornecedor[1];
-    private int idFornecedor = 1;
+    private int idFornecedor = 0;
 
     public RepositorioFornecedor()
     {
-        TodosFornecedores[0] = new Fornecedor("Fornecedor1", "fornecedor1@gmail.com", "55 54 999999999", idFornecedor++);
+        TodosFornecedores[0] = new Fornecedor("Sem Fornecedor", "", "", idFornecedor++);
     }
 
     public void CadastrarFornecedor(string nome, string email, string descricao, string telefone, string rua, string numero, string complemento, string bairro, string CEP, string cidade, string estado)

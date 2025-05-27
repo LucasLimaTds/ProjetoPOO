@@ -7,13 +7,18 @@ public class RepositorioProduto
     public Produto[] TodosProdutos = new Produto[1];
     private int idProduto = 1;
 
-    public RepositorioProduto()
-    {
-        TodosProdutos[0] = new Produto("Produto1", 2, idProduto++);
-    }
+    // public RepositorioProduto()
+    // {
+    //     TodosProdutos[0] = new Produto("Produto1", 2, idProduto++);
+    // }
 
     public void CadastrarProduto(string nome, double valor, int quantidade, Fornecedor fornecedor)
     {
+        if (idProduto==1)
+        {
+            TodosProdutos[0] = new Produto(nome, valor, idProduto++, quantidade, fornecedor);
+            return;
+        }
         Produto[] novosProdutos = new Produto[TodosProdutos.Length + 1];
 
         for (int i = 0; i < TodosProdutos.Length; i++)
@@ -73,7 +78,7 @@ public class RepositorioProduto
         Console.WriteLine("-------------------------------------------------------------------");
         return -1;
     }
-    
+
     public void ConsultarProduto(int id)
     {
         int i;
@@ -83,5 +88,14 @@ public class RepositorioProduto
             Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome} | Preço: R$ {TodosProdutos[i].Valor} | Fornecedor: {TodosProdutos[i].FornecedorDoProduto.Nome}");
             Console.WriteLine("-------------------------------------------------------------------");
         }
+    }
+
+    public bool VerificaExistenciaProduto()
+    {
+        if (idProduto > 1)
+        {
+            return true; // Há produtos cadastrados
+        }
+        return false; // Não há produtos cadastrados
     }
 }

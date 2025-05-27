@@ -513,11 +513,18 @@ public class GerenciadorDeMenus
                     }
                 case 4:
                     {
-                        Console.WriteLine("Escolha o produto a ser consultado:");
-                        GerenciadorDeProduto.ListarProdutos();
-                        Console.WriteLine("Digite o ID do produto: ");
-                        int idProduto = int.Parse(Console.ReadLine());
-                        GerenciadorDeProduto.ConsultarProduto(idProduto);
+                        if (GerenciadorDeProduto.VerificaExistenciaProduto())
+                        {
+                            Console.WriteLine("Escolha o produto a ser consultado:");
+                            GerenciadorDeProduto.ListarProdutos();
+                            Console.WriteLine("Digite o ID do produto: ");
+                            int idProduto = int.Parse(Console.ReadLine());
+                            GerenciadorDeProduto.ConsultarProduto(idProduto);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Não há produtos cadastrados!");
+                        }
                         PressioneQualquerTecla();
                         break;
                     }
