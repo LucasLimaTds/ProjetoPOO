@@ -317,10 +317,13 @@ public class GerenciadorDeMenus
                         GerenciadorDeFornecedor.ListarFornecedores();
                         Console.WriteLine("Insira o ID do fornecedor a ser removido: ");
                         idRemocao = int.Parse(Console.ReadLine());
+                        int i = GerenciadorDeFornecedor.ProcuraFornecedor(idRemocao);
+                        if (i != -1)
+                        {
                         GerenciadorDeFornecedor.RemoverFornecedor(idRemocao);
                         GerenciadorDeFornecedor.ListarFornecedores();
-
-                        Console.WriteLine("Remoção realizada com sucesso!");
+                        Console.WriteLine("Remoção realizada com sucesso!"); 
+                        }
                         PressioneQualquerTecla();
                         break;
                     }
@@ -498,10 +501,13 @@ public class GerenciadorDeMenus
                         GerenciadorDeProduto.ListarProdutos();
                         Console.WriteLine("Insira o ID do produto a ser removido: ");
                         idRemocao = int.Parse(Console.ReadLine());
+                        int i = GerenciadorDeProduto.ProcuraProduto(idRemocao);
+                        if (i != -1)
+                        {
                         GerenciadorDeProduto.RemoverProduto(idRemocao);
                         GerenciadorDeProduto.ListarProdutos();
-
-                        Console.WriteLine("Remoção realizada com sucesso!");
+                        Console.WriteLine("Remoção realizada com sucesso!"); 
+                        }
                         PressioneQualquerTecla();
                         break;
                     }
@@ -647,10 +653,13 @@ public class GerenciadorDeMenus
                         GerenciadorDeTransportadora.ListarTransportadoras();
                         Console.WriteLine("Insira o ID da transportadora a ser removida: ");
                         idRemocao = int.Parse(Console.ReadLine());
+                        int i = GerenciadorDeFornecedor.ProcuraFornecedor(idRemocao);
+                        if (i != -1)
+                        {
                         GerenciadorDeTransportadora.RemoverTransportadora(idRemocao);
                         GerenciadorDeTransportadora.ListarTransportadoras();
-
-                        Console.WriteLine("Remoção realizada com sucesso!");
+                        Console.WriteLine("Remoção realizada com sucesso!"); 
+                        }
                         PressioneQualquerTecla();
                         break;
                     }
