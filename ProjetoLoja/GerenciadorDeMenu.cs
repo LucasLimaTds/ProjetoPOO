@@ -297,43 +297,65 @@ public class GerenciadorDeMenus
                     }
                 case 2:
                     {
-                        Console.WriteLine("Escolha o fornecedor que deseja editar:");
-                        GerenciadorDeFornecedor.ListarFornecedores();
-                        int id = int.Parse(Console.ReadLine());
-                        int i = GerenciadorDeFornecedor.ProcuraFornecedor(id);
-                        if (i != -1)
+                        if (GerenciadorDeFornecedor.VerificaExistenciaFornecedor())
                         {
-                            AlterarFornecedor(i);
+                            Console.WriteLine("Escolha o fornecedor que deseja editar:");
+                            GerenciadorDeFornecedor.ListarFornecedores();
+                            int id = int.Parse(Console.ReadLine());
+                            int i = GerenciadorDeFornecedor.ProcuraFornecedor(id);
+                            if (i != -1)
+                            {
+                                AlterarFornecedor(i);
+                            }
+                            else
+                            {
+                                PressioneQualquerTecla();
+                            }
                         }
                         else
                         {
+                            Console.WriteLine("Não há fornecedores cadastrados!");
                             PressioneQualquerTecla();
                         }
                         break;
                     }
                 case 3:
                     {
-                        Console.WriteLine("Escolha o fornecedor que deseja remover: ");
-                        GerenciadorDeFornecedor.ListarFornecedores();
-                        Console.WriteLine("Insira o ID do fornecedor a ser removido: ");
-                        idRemocao = int.Parse(Console.ReadLine());
-                        int i = GerenciadorDeFornecedor.ProcuraFornecedor(idRemocao);
-                        if (i != -1)
+                        if (GerenciadorDeFornecedor.VerificaExistenciaFornecedor())
                         {
-                        GerenciadorDeFornecedor.RemoverFornecedor(idRemocao);
-                        GerenciadorDeFornecedor.ListarFornecedores();
-                        Console.WriteLine("Remoção realizada com sucesso!"); 
+                            Console.WriteLine("Escolha o fornecedor que deseja remover: ");
+                            GerenciadorDeFornecedor.ListarFornecedores();
+                            Console.WriteLine("Insira o ID do fornecedor a ser removido: ");
+                            idRemocao = int.Parse(Console.ReadLine());
+                            int i = GerenciadorDeFornecedor.ProcuraFornecedor(idRemocao);
+                            if (i != -1)
+                            {
+                                GerenciadorDeFornecedor.RemoverFornecedor(idRemocao);
+                                GerenciadorDeFornecedor.ListarFornecedores();
+                                Console.WriteLine("Remoção realizada com sucesso!"); 
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Não há fornecedores cadastrados!");
                         }
                         PressioneQualquerTecla();
                         break;
                     }
                 case 4:
                     {
-                        Console.WriteLine("Escolha o fornecedor a ser consultado:");
-                        GerenciadorDeFornecedor.ListarFornecedores();
-                        Console.WriteLine("Digite o ID do fornecedor: ");
-                        int idFornecedor = int.Parse(Console.ReadLine());
-                        GerenciadorDeFornecedor.ConsultarFornecedor(idFornecedor);
+                        if (GerenciadorDeFornecedor.VerificaExistenciaFornecedor())
+                        {
+                            Console.WriteLine("Escolha o fornecedor a ser consultado:");
+                            GerenciadorDeFornecedor.ListarFornecedores();
+                            Console.WriteLine("Digite o ID do fornecedor: ");
+                            int idFornecedor = int.Parse(Console.ReadLine());
+                            GerenciadorDeFornecedor.ConsultarFornecedor(idFornecedor);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Não há fornecedores cadastrados!");
+                        }
                         PressioneQualquerTecla();
 
                         break;

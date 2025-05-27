@@ -18,7 +18,7 @@ public class RepositorioFornecedor
     {
         Fornecedor[] novosFornecedores = new Fornecedor[TodosFornecedores.Length + 1];
 
-        for (int i = 0; i < TodosFornecedores.Length; i++)
+        for (int i = 1; i < TodosFornecedores.Length; i++)
         {
             novosFornecedores[i] = TodosFornecedores[i];
         }
@@ -31,7 +31,7 @@ public class RepositorioFornecedor
     {
         int i;
         Console.WriteLine("\nFornecedores cadastrados:");
-        for (i = 0; i < TodosFornecedores.Length; i++)
+        for (i = 1; i < TodosFornecedores.Length; i++)
         {
             Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
         }
@@ -86,5 +86,15 @@ public class RepositorioFornecedor
             TodosFornecedores[i].ListarEndereço();
             Console.WriteLine("-------------------------------------------------------------------");
         }
+    }
+
+    public bool VerificaExistenciaFornecedor()
+    {
+        if (idFornecedor > 1)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
