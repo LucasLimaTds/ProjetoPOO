@@ -346,13 +346,17 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira o nome do novo produto: ");
                         nome = Console.ReadLine();
+
                         Console.WriteLine("Insira o valor do novo produto: ");
                         valor = double.Parse(Console.ReadLine());
+
                         Console.WriteLine("Insira a quantidade do produto: ");
                         quantidade = int.Parse(Console.ReadLine());
+
                         Console.WriteLine("Escolha o fornecedor para o produto:");
                         GerenciadorDeFornecedor.ListarFornecedores();
                         idfornecedor = int.Parse(Console.ReadLine());
+
                         indfornecedor = GerenciadorDeFornecedor.ProcuraFornecedor(idfornecedor);
                         GerenciadorDeProduto.CadastrarProduto(nome, valor, quantidade, GerenciadorDeFornecedor.TodosFornecedores[indfornecedor]);
                         GerenciadorDeProduto.ListarProdutos();
@@ -367,7 +371,16 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Escolha o produto que deseja editar:");
                         GerenciadorDeProduto.ListarProdutos();
                         int id = int.Parse(Console.ReadLine());
-                        AlterarProduto(id);
+                        int i = GerenciadorDeProduto.ProcuraProduto(id);
+                        if (i != -1)
+                        {
+                            AlterarProduto(i);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Pressione qualquer tecla para continuar");
+                            Console.ReadKey();
+                        }
                         break;
                     }
                 case 3:
@@ -404,7 +417,7 @@ public class GerenciadorDeMenus
         
     }
 
-    private void AlterarProduto(int id)
+    private void AlterarProduto(int i)
     {
         while (true)
         {
@@ -417,32 +430,42 @@ public class GerenciadorDeMenus
             Console.WriteLine("[0] - VOLTAR AO MENU");
 
             int opcaoAlteracao=int.Parse(Console.ReadLine());
-            String novoNome;
+            string novoNome;
             double novoValor;
             int novo, ind;
-            int i = GerenciadorDeProduto.ProcuraProduto(id);
-
             switch (opcaoAlteracao)
             {
                 case 1:
                     {
-                        Console.WriteLine("Insira o nome alterado:");
+                        Console.WriteLine("Insira o novo nome:");
                         novoNome = Console.ReadLine();
                         GerenciadorDeProduto.TodosProdutos[i].Nome = novoNome;
+                        Console.WriteLine("Nome alterado!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     }
                 case 2:
                     {
-                        Console.WriteLine("Insira o valor alterado:");
+                        Console.WriteLine("Insira o novo valor:");
                         novoValor = double.Parse(Console.ReadLine());
                         GerenciadorDeProduto.TodosProdutos[i].Valor = novoValor;
+                        Console.WriteLine("Valor alterado!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     }
                 case 3:
                     {
-                        Console.WriteLine("Insira a quantidade em estoque alterada:");
+                        Console.WriteLine("Insira a nova quantidade em estoque:");
                         novo = int.Parse(Console.ReadLine());
                         GerenciadorDeProduto.TodosProdutos[i].QuantidadeEmEstoque = novo;
+                        Console.WriteLine("Quantidade alterada!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     }
                 case 4:
@@ -453,6 +476,10 @@ public class GerenciadorDeMenus
                         novo = int.Parse(Console.ReadLine());
                         ind = GerenciadorDeFornecedor.ProcuraFornecedor(novo);
                         GerenciadorDeProduto.TodosProdutos[i].FornecedorDoProduto = GerenciadorDeFornecedor.TodosFornecedores[ind];
+                        Console.WriteLine("Fornecedor alterado!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     }
                 case 0:
@@ -496,6 +523,20 @@ public class GerenciadorDeMenus
                     }
                 case 2:
                     {
+                        Console.WriteLine("Escolha a transportadora que deseja editar");
+                        GerenciadorDeTransportadora.ListarTransportadoras();
+                        int id = int.Parse(Console.ReadLine());
+                        int i = GerenciadorDeTransportadora.ProcuraTransportadora(id);
+
+                        if (i != -1)
+                        {
+                            AlteraTransportadora(i);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Pressione qualquer tecla para continuar");
+                            Console.ReadKey();
+                        }
                         break;
                     }
                 case 3:
@@ -531,6 +572,51 @@ public class GerenciadorDeMenus
             }
         }
 
+    }
+
+    private void AlteraTransportadora(int i)
+    {
+        while (true)
+        {
+            Console.WriteLine("OPÇÕES DE ALTERAÇÃO DE TRANSPORTADORA:\n");
+
+            Console.WriteLine("[1] - ALTERAR NOME");
+            Console.WriteLine("[2] - ALTERAR VALOR POR KM");
+            Console.WriteLine("[0] - VOLTAR AO MENU");
+
+            int opcaoAlteracao=int.Parse(Console.ReadLine());
+            string novoNome;
+            double novoValor;
+            switch (opcaoAlteracao)
+            {
+                case 1:
+                    {
+                        Console.WriteLine("Insira o novo nome:");
+                        novoNome = Console.ReadLine();
+                        GerenciadorDeTransportadora.TodasTransportadoras[i].Nome = novoNome;
+                        Console.WriteLine("Nome alterado!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    }
+                case 2:
+                    {
+                        Console.WriteLine("Insira o novo valor por km:");
+                        novoValor = double.Parse(Console.ReadLine());
+                        GerenciadorDeTransportadora.TodasTransportadoras[i].PrecoPorKM = novoValor;
+                        Console.WriteLine("Valor alterado!");
+                        Console.WriteLine("Pressione qualquer tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    }
+                case 0:
+                    {
+                        return;
+                    }
+            }
+        }
     }
 
     private void MenuCliente()

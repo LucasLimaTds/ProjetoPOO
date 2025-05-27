@@ -31,7 +31,7 @@ public class RepositorioTransportadora
         Console.WriteLine("Transportadoraes cadastrados:");
         for (i = 0; i < TodasTransportadoras.Length; i++)
         {
-            Console.WriteLine("Transportadora ID " + TodasTransportadoras[i].ID + " | Nome: " + TodasTransportadoras[i].Nome);
+            Console.WriteLine($"Transportadora ID: {TodasTransportadoras[i].ID} | Nome: {TodasTransportadoras[i].Nome}");
         }
 
         Console.WriteLine("-------------------------------------------------------------------");
@@ -60,19 +60,29 @@ public class RepositorioTransportadora
         TodasTransportadoras = novasTransportadoras;
     }
 
-    public void ConsultarTransportadora(int id)
+    public int ProcuraTransportadora(int id)
     {
         for (int i = 0; i < TodasTransportadoras.Length; i++)
         {
             if (TodasTransportadoras[i].ID == id)
             {
-                Console.WriteLine($"Transportadora ID: {TodasTransportadoras[i].ID} | Nome: {TodasTransportadoras[i].Nome} | Preço do km: R$ {TodasTransportadoras[i].PrecoPorKM}");
-                Console.WriteLine("-------------------------------------------------------------------");
-                return;
+                return i;
             }
         }
-
         Console.WriteLine("Transportadora não encontrada!");
         Console.WriteLine("-------------------------------------------------------------------");
+        return -1;
+    }
+
+    public void ConsultarTransportadora(int id)
+    {
+        int i;
+        i = ProcuraTransportadora(id);
+        if (i !=-1 )
+        {
+            Console.WriteLine($"Transportadora ID: {TodasTransportadoras[i].ID} | Nome: {TodasTransportadoras[i].Nome} | Preço do km: R$ {TodasTransportadoras[i].PrecoPorKM}");
+            Console.WriteLine("-------------------------------------------------------------------");
+        }
+        
     }
 }

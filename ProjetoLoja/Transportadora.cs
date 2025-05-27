@@ -2,7 +2,7 @@ using System;
 
 namespace ProjetoLoja;
 
-public class Transportadora : Endereco
+public class Transportadora
 {
     public string Nome { get; set; }
     public int ID { get; set; }

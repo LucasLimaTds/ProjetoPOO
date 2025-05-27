@@ -80,7 +80,7 @@ public class RepositorioProduto
         i = ProcuraProduto(id);
         if (i != -1)
         {
-            Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome}");
+            Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome} | Preço: {TodosProdutos[i].Valor}");
             Console.WriteLine("-------------------------------------------------------------------");
         }
     }

@@ -33,8 +33,7 @@ public class RepositorioFornecedor
         Console.WriteLine("\nFornecedores cadastrados:");
         for (i = 0; i < TodosFornecedores.Length; i++)
         {
-            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome} | Email: {TodosFornecedores[i].Email} | Descrição: {TodosFornecedores[i].Descricao}");
-            TodosFornecedores[i].ListarEndereço(); // APENAS PARA TESTAR OS ENDEREÇOS. REMOVER NA VERSÃO FINAL
+            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
         }
 
         Console.WriteLine("-------------------------------------------------------------------");
@@ -83,7 +82,7 @@ public class RepositorioFornecedor
         i = ProcuraFornecedor(id);
         if (i != -1)
         {
-            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
+            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome} | Email: {TodosFornecedores[i].Email} | Descrição: {TodosFornecedores[i].Descricao}");
             TodosFornecedores[i].ListarEndereço();
             Console.WriteLine("-------------------------------------------------------------------");
         }
