@@ -73,8 +73,7 @@ public class GerenciadorDeMenus
         {
             Console.WriteLine("Email ou senha incorretos!");
             Console.WriteLine("-------------------------------------------------------------------");
-            Console.WriteLine("Pressione qualquer tecla para continuar");
-            Console.ReadKey();
+            PressioneQualquerTecla();
         }
     }
 
@@ -94,8 +93,7 @@ public class GerenciadorDeMenus
             if (!testeEmail)
             {
                 Console.WriteLine("Endereço de email já existente!");
-                Console.WriteLine("Pressione qualquer tecla para tentar novamente");
-                Console.ReadKey();
+                PressioneQualquerTecla();
             }
 
         } while (!testeEmail);
@@ -141,8 +139,7 @@ public class GerenciadorDeMenus
 
         GerenciadorDeUsuario.CriarUsuario(novoNome, novoEmail, novoTelefone, novaSenha, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado);
         GerenciadorDeUsuario.ListarUsuarios(); //só uma função pra mostrar os nomes dos usuarios, para testar o cadastro
-        Console.WriteLine("Pressione qualquer tecla para continuar");
-        Console.ReadKey();
+        PressioneQualquerTecla();
     }
 
     private void CadastroEndereco(ref string novaRua, ref string novoNumero, ref string novoComplemento, ref string novoBairro, ref string novoCEP, ref string novaCidade, ref string novoEstado)
@@ -193,8 +190,7 @@ public class GerenciadorDeMenus
                 case 1:
                     {
                         GerenciadorDeUsuario.ListarUsuarios();
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         /* o retorno das opcoes sera dado pelo loop, sem necessidade 
                         de realizar chamadas de funcoes nao necessarias*/
                         break;
@@ -296,8 +292,7 @@ public class GerenciadorDeMenus
                         GerenciadorDeFornecedor.ListarFornecedores();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 2:
@@ -312,8 +307,7 @@ public class GerenciadorDeMenus
                         }
                         else
                         {
-                            Console.WriteLine("Pressione qualquer tecla para continuar");
-                            Console.ReadKey();
+                            PressioneQualquerTecla();
                         }
                         break;
                     }
@@ -327,8 +321,7 @@ public class GerenciadorDeMenus
                         GerenciadorDeFornecedor.ListarFornecedores();
 
                         Console.WriteLine("Remoção realizada com sucesso!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 4:
@@ -338,8 +331,7 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Digite o ID do fornecedor: ");
                         int idFornecedor = int.Parse(Console.ReadLine());
                         GerenciadorDeFornecedor.ConsultarFornecedor(idFornecedor);
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
 
                         break;
                     }
@@ -357,6 +349,7 @@ public class GerenciadorDeMenus
     {
         while (true)
         {
+            Console.Clear();
             Console.WriteLine("OPÇÕES DE ALTERAÇÃO DE FORNECEDOR:\n");
 
             Console.WriteLine("[1] - ALTERAR NOME");
@@ -388,9 +381,7 @@ public class GerenciadorDeMenus
                         novoNome = Console.ReadLine();
                         GerenciadorDeFornecedor.TodosFornecedores[i].Nome = novoNome;
                         Console.WriteLine("Nome alterado!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
-                        Console.Clear();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 2:
@@ -399,9 +390,7 @@ public class GerenciadorDeMenus
                         novaDescricao = Console.ReadLine();
                         GerenciadorDeFornecedor.TodosFornecedores[i].Descricao = novaDescricao;
                         Console.WriteLine("Descrição alterada!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
-                        Console.Clear();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 3:
@@ -410,9 +399,7 @@ public class GerenciadorDeMenus
                         novoTelefone = Console.ReadLine();
                         GerenciadorDeFornecedor.TodosFornecedores[i].Telefone = novoTelefone;
                         Console.WriteLine("Telefone alterado!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
-                        Console.Clear();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 4:
@@ -421,9 +408,7 @@ public class GerenciadorDeMenus
                         novoEmail = Console.ReadLine();
                         GerenciadorDeFornecedor.TodosFornecedores[i].Email = novoEmail;
                         Console.WriteLine("Email alterado!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
-                        Console.Clear();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 5:
@@ -439,9 +424,7 @@ public class GerenciadorDeMenus
                         GerenciadorDeFornecedor.TodosFornecedores[i].Estado = novoEstado;
 
                         Console.WriteLine("Endereço alterado!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
-                        Console.Clear();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 0:
@@ -490,8 +473,7 @@ public class GerenciadorDeMenus
                         GerenciadorDeProduto.ListarProdutos();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 2:
@@ -506,8 +488,7 @@ public class GerenciadorDeMenus
                         }
                         else
                         {
-                            Console.WriteLine("Pressione qualquer tecla para continuar");
-                            Console.ReadKey();
+                            PressioneQualquerTecla();
                         }
                         break;
                     }
@@ -521,8 +502,7 @@ public class GerenciadorDeMenus
                         GerenciadorDeProduto.ListarProdutos();
 
                         Console.WriteLine("Remoção realizada com sucesso!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 4:
@@ -532,8 +512,7 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Digite o ID do produto: ");
                         int idProduto = int.Parse(Console.ReadLine());
                         GerenciadorDeProduto.ConsultarProduto(idProduto);
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 0:
@@ -549,6 +528,7 @@ public class GerenciadorDeMenus
     {
         while (true)
         {
+            Console.Clear();
             Console.WriteLine("OPÇÕES DE ALTERAÇÃO DE PRODUTO:\n");
 
             Console.WriteLine("[1] - ALTERAR NOME");
@@ -569,8 +549,7 @@ public class GerenciadorDeMenus
                         novoNome = Console.ReadLine();
                         GerenciadorDeProduto.TodosProdutos[i].Nome = novoNome;
                         Console.WriteLine("Nome alterado!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         Console.Clear();
                         break;
                     }
@@ -580,8 +559,7 @@ public class GerenciadorDeMenus
                         novoValor = double.Parse(Console.ReadLine());
                         GerenciadorDeProduto.TodosProdutos[i].Valor = novoValor;
                         Console.WriteLine("Valor alterado!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         Console.Clear();
                         break;
                     }
@@ -591,8 +569,7 @@ public class GerenciadorDeMenus
                         novo = int.Parse(Console.ReadLine());
                         GerenciadorDeProduto.TodosProdutos[i].QuantidadeEmEstoque = novo;
                         Console.WriteLine("Quantidade alterada!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         Console.Clear();
                         break;
                     }
@@ -605,8 +582,7 @@ public class GerenciadorDeMenus
                         ind = GerenciadorDeFornecedor.ProcuraFornecedor(novo);
                         GerenciadorDeProduto.TodosProdutos[i].FornecedorDoProduto = GerenciadorDeFornecedor.TodosFornecedores[ind];
                         Console.WriteLine("Fornecedor alterado!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         Console.Clear();
                         break;
                     }
@@ -645,8 +621,7 @@ public class GerenciadorDeMenus
                         GerenciadorDeTransportadora.ListarTransportadoras();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 2:
@@ -662,8 +637,7 @@ public class GerenciadorDeMenus
                         }
                         else
                         {
-                            Console.WriteLine("Pressione qualquer tecla para continuar");
-                            Console.ReadKey();
+                            PressioneQualquerTecla();
                         }
                         break;
                     }
@@ -677,8 +651,7 @@ public class GerenciadorDeMenus
                         GerenciadorDeTransportadora.ListarTransportadoras();
 
                         Console.WriteLine("Remoção realizada com sucesso!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 4:
@@ -688,8 +661,7 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Digite o ID da transportadora: ");
                         int idTransportadora = int.Parse(Console.ReadLine());
                         GerenciadorDeTransportadora.ConsultarTransportadora(idTransportadora);
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 0:
@@ -706,6 +678,7 @@ public class GerenciadorDeMenus
     {
         while (true)
         {
+            Console.Clear();
             Console.WriteLine("OPÇÕES DE ALTERAÇÃO DE TRANSPORTADORA:\n");
 
             Console.WriteLine("[1] - ALTERAR NOME");
@@ -723,8 +696,7 @@ public class GerenciadorDeMenus
                         novoNome = Console.ReadLine();
                         GerenciadorDeTransportadora.TodasTransportadoras[i].Nome = novoNome;
                         Console.WriteLine("Nome alterado!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         Console.Clear();
                         break;
                     }
@@ -734,8 +706,7 @@ public class GerenciadorDeMenus
                         novoValor = double.Parse(Console.ReadLine());
                         GerenciadorDeTransportadora.TodasTransportadoras[i].PrecoPorKM = novoValor;
                         Console.WriteLine("Valor alterado!");
-                        Console.WriteLine("Pressione qualquer tecla para continuar");
-                        Console.ReadKey();
+                        PressioneQualquerTecla();
                         Console.Clear();
                         break;
                     }
@@ -745,6 +716,12 @@ public class GerenciadorDeMenus
                     }
             }
         }
+    }
+
+    private void PressioneQualquerTecla()
+    {
+        Console.WriteLine("Pressione qualquer tecla para continuar");
+        Console.ReadKey();
     }
 
     private void MenuCliente()
