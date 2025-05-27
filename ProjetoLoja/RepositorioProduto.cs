@@ -76,17 +76,12 @@ public class RepositorioProduto
     
     public void ConsultarProduto(int id)
     {
-        for (int i = 0; i < TodosProdutos.Length; i++)
+        int i;
+        i = ProcuraProduto(id);
+        if (i != -1)
         {
-            if (TodosProdutos[i].ID == id)
-            {
-                Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome} | Valor do produto: R$ {TodosProdutos[i].Valor} | Fornecedor do produto: {TodosProdutos[i].FornecedorDoProduto.Nome}");
-                Console.WriteLine("-------------------------------------------------------------------");
-                return;
-            }
+            Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome}");
+            Console.WriteLine("-------------------------------------------------------------------");
         }
-
-        Console.WriteLine("Produto não encontrado!");
-        Console.WriteLine("-------------------------------------------------------------------");
     }
 }

@@ -87,6 +87,5 @@ public class RepositorioFornecedor
             TodosFornecedores[i].ListarEndereço();
             Console.WriteLine("-------------------------------------------------------------------");
         }
-
     }
 }
