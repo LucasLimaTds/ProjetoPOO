@@ -59,6 +59,20 @@ public class RepositorioProduto
         }
         TodosProdutos = novosProdutos;
     }
+
+    public int ProcuraProduto(int id)
+    {
+        for (int i = 0; i < TodosProdutos.Length; i++)
+        {
+            if (TodosProdutos[i].ID == id)
+            {
+                return i;
+            }
+        }
+        Console.WriteLine("Produto não encontrado!");
+        Console.WriteLine("-------------------------------------------------------------------");
+        return -1;
+    }
     
     public void ConsultarProduto(int id)
     {

@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Security.Principal;
 using ProjetoLoja;
 
@@ -363,6 +364,10 @@ public class GerenciadorDeMenus
                     }
                 case 2:
                     {
+                        Console.WriteLine("Escolha o produto que deseja editar:");
+                        GerenciadorDeProduto.ListarProdutos();
+                        int id = int.Parse(Console.ReadLine());
+                        AlterarProduto(id);
                         break;
                     }
                 case 3:
@@ -398,18 +403,77 @@ public class GerenciadorDeMenus
         }
         
     }
+
+    private void AlterarProduto(int id)
+    {
+        while (true)
+        {
+            Console.WriteLine("OPÇÕES DE ALTERAÇÃO DE PRODUTO:\n");
+
+            Console.WriteLine("[1] - ALTERAR NOME");
+            Console.WriteLine("[2] - ALTERAR VALOR");
+            Console.WriteLine("[3] - ALTERAR QUANTIDADE EM ESTOQUE");
+            Console.WriteLine("[4] - ALTERAR FORNECEDOR");
+            Console.WriteLine("[0] - VOLTAR AO MENU");
+
+            int opcaoAlteracao=int.Parse(Console.ReadLine());
+            String novoNome;
+            double novoValor;
+            int novo, ind;
+            int i = GerenciadorDeProduto.ProcuraProduto(id);
+
+            switch (opcaoAlteracao)
+            {
+                case 1:
+                    {
+                        Console.WriteLine("Insira o nome alterado:");
+                        novoNome = Console.ReadLine();
+                        GerenciadorDeProduto.TodosProdutos[i].Nome = novoNome;
+                        break;
+                    }
+                case 2:
+                    {
+                        Console.WriteLine("Insira o valor alterado:");
+                        novoValor = double.Parse(Console.ReadLine());
+                        GerenciadorDeProduto.TodosProdutos[i].Valor = novoValor;
+                        break;
+                    }
+                case 3:
+                    {
+                        Console.WriteLine("Insira a quantidade em estoque alterada:");
+                        novo = int.Parse(Console.ReadLine());
+                        GerenciadorDeProduto.TodosProdutos[i].QuantidadeEmEstoque = novo;
+                        break;
+                    }
+                case 4:
+                    {
+                        Console.WriteLine("Escolha o novo fornecedor:");
+                        GerenciadorDeFornecedor.ListarFornecedores();
+                        Console.WriteLine("Insira o ID do novo fornecedor:");
+                        novo = int.Parse(Console.ReadLine());
+                        ind = GerenciadorDeFornecedor.ProcuraFornecedor(novo);
+                        GerenciadorDeProduto.TodosProdutos[i].FornecedorDoProduto = GerenciadorDeFornecedor.TodosFornecedores[ind];
+                        break;
+                    }
+                case 0:
+                    {
+                        return;
+                    }
+            }
+        }        
+    }
     
     private void MenuCadastroTransportadora()
     {
         while (true)
         {
-            
+
             Console.Clear();
             Console.WriteLine("OPÇÕES DE CADASTRO DE TRANSPORTADORAS:\n");
 
             OpcoesDoCadastro();
 
-            int OpcaoTransportadora=int.Parse(Console.ReadLine());
+            int OpcaoTransportadora = int.Parse(Console.ReadLine());
             string nome;
             int idRemocao;
             double valor;
@@ -466,7 +530,7 @@ public class GerenciadorDeMenus
 
             }
         }
-        
+
     }
 
     private void MenuCliente()
