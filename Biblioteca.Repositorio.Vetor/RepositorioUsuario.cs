@@ -4,7 +4,7 @@ namespace ProjetoLoja;
 
 public class RepositorioUsuario
 {
-    public Usuario[] TodosUsuarios = new Usuario[1];
+    private Usuario[] TodosUsuarios = new Usuario[1];
     private int idUsuario = 1;
 
     public RepositorioUsuario()
@@ -43,7 +43,7 @@ public class RepositorioUsuario
         return true;
     }
 
-    public void CriarUsuario(string nome, string email, string telefone, string senha, string rua, string numero, string complemento, string bairro, string CEP, string cidade, string estado)
+    public void CriarUsuario(Usuario NovoUsuario)
     {
         Usuario[] novosUsuarios = new Usuario[TodosUsuarios.Length + 1];
 
@@ -52,8 +52,10 @@ public class RepositorioUsuario
             novosUsuarios[i] = TodosUsuarios[i];
         }
 
-        novosUsuarios[novosUsuarios.Length - 1] = new Usuario(nome, email, telefone, senha, 1, idUsuario++, rua, numero, complemento, bairro, CEP, cidade, estado); //sempre adicionando novos usuários com direitos de usuário comum, 
-                                                                                                                                                                    // depois um outro admin pode editar o usuario pra torna-lo admin
+        NovoUsuario.ID = idUsuario++;
+
+        novosUsuarios[novosUsuarios.Length - 1] = NovoUsuario;  
+                                                                                                                                                                    
         TodosUsuarios = novosUsuarios;
     }
 

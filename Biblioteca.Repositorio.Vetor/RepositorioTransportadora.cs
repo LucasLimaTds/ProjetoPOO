@@ -7,16 +7,12 @@ public class RepositorioTransportadora
     public Transportadora[] TodasTransportadoras = new Transportadora[1];
     private int idTransportadora = 1;
 
-    // public RepositorioTransportadora()
-    // {
-    //     TodasTransportadoras[0] = new Transportadora("Transportadora1", 5, idTransportadora++);
-    // }
-
-    public void CadastrarTransportadora(string nome, double valor)
+    public void CadastrarTransportadora(Transportadora NovaTransportadora)
     {
         if (idTransportadora == 1)
         {
-            TodasTransportadoras[0] = new Transportadora(nome, valor, idTransportadora++);
+            NovaTransportadora.ID = idTransportadora++;
+            TodasTransportadoras[0] = NovaTransportadora;
             return;
         }
         Transportadora[] novasTransportadoras = new Transportadora[TodasTransportadoras.Length + 1];
@@ -26,7 +22,8 @@ public class RepositorioTransportadora
             novasTransportadoras[i] = TodasTransportadoras[i];
         }
 
-        novasTransportadoras[novasTransportadoras.Length - 1] = new Transportadora(nome, valor, idTransportadora++);
+        NovaTransportadora.ID = idTransportadora++;
+        novasTransportadoras[novasTransportadoras.Length - 1] = NovaTransportadora;
         TodasTransportadoras = novasTransportadoras;
     }
 

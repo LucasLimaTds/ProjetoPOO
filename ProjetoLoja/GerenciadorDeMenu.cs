@@ -137,8 +137,9 @@ public class GerenciadorDeMenus
 
         CadastroEndereco(ref novaRua, ref novoNumero, ref novoComplemento, ref novoBairro, ref novoCEP, ref novaCidade, ref novoEstado);
 
-        GerenciadorDeUsuario.CriarUsuario(novoNome, novoEmail, novoTelefone, novaSenha, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado);
-        GerenciadorDeUsuario.ListarUsuarios(); //só uma função pra mostrar os nomes dos usuarios, para testar o cadastro
+       
+        GerenciadorDeUsuario.CriarUsuario(new Usuario(novoNome, novoEmail, novoTelefone, novaSenha, 1, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado));
+        GerenciadorDeUsuario.ListarUsuarios();
         PressioneQualquerTecla();
     }
 
@@ -191,13 +192,10 @@ public class GerenciadorDeMenus
                     {
                         GerenciadorDeUsuario.ListarUsuarios();
                         PressioneQualquerTecla();
-                        /* o retorno das opcoes sera dado pelo loop, sem necessidade 
-                        de realizar chamadas de funcoes nao necessarias*/
                         break;
                     }
                 case 2:
                     {
-                        //chama metodo de cadastro de usuario
                         MenuCadastroUsuarios();
                         break;
                     }
@@ -292,7 +290,7 @@ public class GerenciadorDeMenus
                         string telefoneFornecedor = Console.ReadLine();
 
                         CadastroEndereco(ref novaRua, ref novoNumero, ref novoComplemento, ref novoBairro, ref novoCEP, ref novaCidade, ref novoEstado);
-                        GerenciadorDeFornecedor.CadastrarFornecedor(nome, email, descricao, telefoneFornecedor, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado);
+                        GerenciadorDeFornecedor.CadastrarFornecedor(new Fornecedor(nome, email, descricao, telefoneFornecedor, novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado));
                         GerenciadorDeFornecedor.ListarFornecedores();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");
@@ -515,7 +513,7 @@ public class GerenciadorDeMenus
                         indfornecedor = GerenciadorDeFornecedor.ProcuraFornecedor(idfornecedor);
                         if (indfornecedor != -1)
                         {                            
-                            GerenciadorDeProduto.CadastrarProduto(nome, valor, quantidade, GerenciadorDeFornecedor.TodosFornecedores[indfornecedor]);
+                            GerenciadorDeProduto.CadastrarProduto(new Produto(nome, valor, quantidade, GerenciadorDeFornecedor.TodosFornecedores[indfornecedor]));
                             GerenciadorDeProduto.ListarProdutos();
                             Console.WriteLine("Inclusão realizada com sucesso!");
                         }
@@ -692,7 +690,7 @@ public class GerenciadorDeMenus
                         nome = Console.ReadLine();
                         Console.WriteLine("Insira o preço cobrado por Km: ");
                         valor = double.Parse(Console.ReadLine());
-                        GerenciadorDeTransportadora.CadastrarTransportadora(nome, valor);
+                        GerenciadorDeTransportadora.CadastrarTransportadora(new Transportadora(nome, valor));
                         GerenciadorDeTransportadora.ListarTransportadoras();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");

@@ -14,7 +14,7 @@ public class RepositorioFornecedor
         TodosFornecedores[0] = new Fornecedor("Sem Fornecedor", "", "", idFornecedor++);
     }
 
-    public void CadastrarFornecedor(string nome, string email, string descricao, string telefone, string rua, string numero, string complemento, string bairro, string CEP, string cidade, string estado)
+    public void CadastrarFornecedor(Fornecedor NovoFornecedor)
     {
         Fornecedor[] novosFornecedores = new Fornecedor[TodosFornecedores.Length + 1];
 
@@ -23,7 +23,8 @@ public class RepositorioFornecedor
             novosFornecedores[i] = TodosFornecedores[i];
         }
 
-        novosFornecedores[novosFornecedores.Length - 1] = new Fornecedor(nome, email, descricao, telefone, idFornecedor++, rua, numero, complemento, bairro, CEP, cidade, estado);
+        NovoFornecedor.ID = idFornecedor++;
+        novosFornecedores[novosFornecedores.Length - 1] = NovoFornecedor;
         TodosFornecedores = novosFornecedores;
     }
 

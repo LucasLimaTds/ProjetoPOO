@@ -8,11 +8,10 @@ public class Transportadora
     public int ID { get; set; }
     public double PrecoPorKM { get; set; }
     
-    public Transportadora(string nome, double precokm, int id)
+    public Transportadora(string nome, double precokm)
     {
         Nome = nome;
         PrecoPorKM = precokm;
-        ID = id;
     }
    
 }

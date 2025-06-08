@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bilbioteca.Base\Bilbioteca.Base.csproj" />
+  </ItemGroup>
+
 </Project>

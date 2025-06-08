@@ -7,16 +7,13 @@ public class RepositorioProduto
     public Produto[] TodosProdutos = new Produto[1];
     private int idProduto = 1;
 
-    // public RepositorioProduto()
-    // {
-    //     TodosProdutos[0] = new Produto("Produto1", 2, idProduto++);
-    // }
-
-    public void CadastrarProduto(string nome, double valor, int quantidade, Fornecedor fornecedor)
+    public void CadastrarProduto(Produto NovoProduto)
     {
         if (idProduto==1)
         {
-            TodosProdutos[0] = new Produto(nome, valor, idProduto++, quantidade, fornecedor);
+
+            NovoProduto.ID = idProduto++;
+            TodosProdutos[0] = NovoProduto;
             return;
         }
         Produto[] novosProdutos = new Produto[TodosProdutos.Length + 1];
@@ -26,7 +23,8 @@ public class RepositorioProduto
             novosProdutos[i] = TodosProdutos[i];
         }
 
-        novosProdutos[novosProdutos.Length - 1] = new Produto(nome, valor, idProduto++, quantidade, fornecedor);
+        NovoProduto.ID = idProduto++;
+        novosProdutos[novosProdutos.Length - 1] = NovoProduto;
         TodosProdutos = novosProdutos;
     }
 

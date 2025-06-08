@@ -9,19 +9,11 @@ public class Produto
     public int QuantidadeEmEstoque { get; set; }
     public int ID{ get; set; }
     public Fornecedor FornecedorDoProduto;
-    
-    // public Produto(string nome, double valor, int id)
-    // {
-    //     Nome = nome;
-    //     Valor = valor;
-    //     ID = id;
-    // }
 
-    public Produto(string nome, double valor, int id, int quantidade, Fornecedor fornecedor)
+    public Produto(string nome, double valor, int quantidade, Fornecedor fornecedor)
     {
         Nome = nome;
         Valor = valor;
-        ID = id;
         QuantidadeEmEstoque = quantidade;
         FornecedorDoProduto = fornecedor;
     }
