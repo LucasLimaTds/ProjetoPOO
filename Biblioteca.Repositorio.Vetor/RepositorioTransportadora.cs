@@ -4,7 +4,7 @@ namespace ProjetoLoja;
 
 public class RepositorioTransportadora
 {
-    public Transportadora[] TodasTransportadoras = new Transportadora[1];
+    private Transportadora[] TodasTransportadoras = new Transportadora[1];
     private int idTransportadora = 1;
 
     public void CadastrarTransportadora(Transportadora NovaTransportadora)
@@ -95,5 +95,14 @@ public class RepositorioTransportadora
             return true;
         }
         return false;
+    }
+
+    public void AlteraNome(string novoNome, int i)
+    {
+        TodasTransportadoras[i].Nome = novoNome;
+    }
+    public void AlteraPrecoPorKm(double novoPreco, int i)
+    {
+        TodasTransportadoras[i].PrecoPorKM = novoPreco;
     }
 }

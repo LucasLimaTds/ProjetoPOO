@@ -786,7 +786,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira o novo nome:");
                         novoNome = Console.ReadLine();
-                        GerenciadorDeTransportadora.TodasTransportadoras[i].Nome = novoNome;
+                        GerenciadorDeTransportadora.AlteraNome(novoNome, i);
                         Console.WriteLine("Nome alterado!");
                         PressioneQualquerTecla();
                         Console.Clear();
@@ -796,7 +796,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira o novo valor por km:");
                         novoValor = double.Parse(Console.ReadLine());
-                        GerenciadorDeTransportadora.TodasTransportadoras[i].PrecoPorKM = novoValor;
+                        GerenciadorDeTransportadora.AlteraPrecoPorKm(novoValor, i);
                         Console.WriteLine("Valor alterado!");
                         PressioneQualquerTecla();
                         Console.Clear();
