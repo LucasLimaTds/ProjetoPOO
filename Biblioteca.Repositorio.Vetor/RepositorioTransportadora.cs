@@ -62,33 +62,32 @@ public class RepositorioTransportadora
         TodasTransportadoras = novasTransportadoras;
     }
 
-    public int ProcuraTransportadora(int id)
+    public Transportadora ProcuraTransportadora(int id)
     {
         for (int i = 0; i < TodasTransportadoras.Length; i++)
         {
             if (TodasTransportadoras[i].ID == id)
             {
-                return i;
+                return TodasTransportadoras[i];
             }
         }
         Console.WriteLine("Transportadora não encontrada!");
         Console.WriteLine("-------------------------------------------------------------------");
-        return -1;
+        return null;
     }
 
     public void ConsultarTransportadora(int id)
     {
-        int i;
-        i = ProcuraTransportadora(id);
-        if (i != -1)
+        Transportadora Transportadora = ProcuraTransportadora(id);
+        if (Transportadora != null)
         {
-            Console.WriteLine($"Transportadora ID: {TodasTransportadoras[i].ID} | Nome: {TodasTransportadoras[i].Nome} | Preço do km: R$ {TodasTransportadoras[i].PrecoPorKM}");
+            Console.WriteLine($"Transportadora ID: {Transportadora.ID} | Nome: {Transportadora.Nome} | Preço do km: R$ {Transportadora.PrecoPorKM}");
             Console.WriteLine("-------------------------------------------------------------------");
         }
 
     }
 
-    public bool VerificaExistenciaTransprtadora()
+    public bool VerificaExistenciaTransportadora()
     {
         if (idTransportadora > 1)
         {
@@ -97,12 +96,12 @@ public class RepositorioTransportadora
         return false;
     }
 
-    public void AlteraNome(string novoNome, int i)
+    public void AlteraNome(string novoNome, Transportadora TransportadoraEditar)
     {
-        TodasTransportadoras[i].Nome = novoNome;
+        TransportadoraEditar.Nome = novoNome;
     }
-    public void AlteraPrecoPorKm(double novoPreco, int i)
+    public void AlteraPrecoPorKm(double novoPreco, Transportadora TransportadoraEditar)
     {
-        TodasTransportadoras[i].PrecoPorKM = novoPreco;
+        TransportadoraEditar.PrecoPorKM = novoPreco;
     }
 }

@@ -63,28 +63,27 @@ public class RepositorioFornecedor
         TodosFornecedores = novosFornecedores;
     }
 
-    public int ProcuraFornecedor(int id)
+    public Fornecedor ProcuraFornecedor(int id)
     {
         for (int i = 0; i < TodosFornecedores.Length; i++)
         {
             if (TodosFornecedores[i].ID == id)
             {
-                return i;
+                return TodosFornecedores[i];
             }
         }
         Console.WriteLine("Fornecedor não encontrado!");
         Console.WriteLine("-------------------------------------------------------------------");
-        return -1;
+        return null;
     }
 
     public void ConsultarFornecedor(int id)
     {
-        int i;
-        i = ProcuraFornecedor(id);
-        if (i != -1)
+        Fornecedor Fornecedor = ProcuraFornecedor(id);
+        if (Fornecedor != null)
         {
-            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome} | Email: {TodosFornecedores[i].Email} | Telefone: {TodosFornecedores[i].Telefone} | Descrição: {TodosFornecedores[i].Descricao}");
-            TodosFornecedores[i].ListarEndereço();
+            Console.WriteLine($"Fornecedor ID: {Fornecedor.ID} | Nome: {Fornecedor.Nome} | Email: {Fornecedor.Email} | Telefone: {Fornecedor.Telefone} | Descrição: {Fornecedor.Descricao}");
+            Fornecedor.ListarEndereço();
             Console.WriteLine("-------------------------------------------------------------------");
         }
     }
@@ -99,37 +98,32 @@ public class RepositorioFornecedor
         return false;
     }
 
-    public void AlterarNome(string novoNome, int i)
+    public void AlterarNome(string novoNome, Fornecedor FornecedorEditar)
     {
-        TodosFornecedores[i].Nome = novoNome;
+        FornecedorEditar.Nome = novoNome;
     }
 
-    public void AlterarDescricao(string novaDescricao, int i)
+    public void AlterarDescricao(string novaDescricao, Fornecedor FornecedorEditar)
     {
-        TodosFornecedores[i].Descricao = novaDescricao;
+        FornecedorEditar.Descricao = novaDescricao;
     }
 
-    public void AlterarTelefone(string novoTelefone, int i)
+    public void AlterarTelefone(string novoTelefone, Fornecedor FornecedorEditar)
     {
-        TodosFornecedores[i].Telefone = novoTelefone;
+        FornecedorEditar.Telefone = novoTelefone;
     }
-    public void AlterarEmail(string novoEmail, int i)
+    public void AlterarEmail(string novoEmail, Fornecedor FornecedorEditar)
     {
-        TodosFornecedores[i].Email = novoEmail;
+        FornecedorEditar.Email = novoEmail;
     }
-    public void AlterarEndereco(string novaRua, string novoNumero, string novoComplemento, string novoBairro, string novoCEP, string novaCidade, string novoEstado, int i)
+    public void AlterarEndereco(string novaRua, string novoNumero, string novoComplemento, string novoBairro, string novoCEP, string novaCidade, string novoEstado, Fornecedor FornecedorEditar)
     {
-        TodosFornecedores[i].Rua = novaRua;
-        TodosFornecedores[i].Numero = novoNumero;
-        TodosFornecedores[i].Complemento = novoComplemento;
-        TodosFornecedores[i].Bairro = novoBairro;
-        TodosFornecedores[i].CEP = novoCEP;
-        TodosFornecedores[i].Cidade = novaCidade;
-        TodosFornecedores[i].Estado = novoEstado;
-    }
-
-    public Fornecedor RetornaFornecedor(int id)
-    {
-        return TodosFornecedores[id];
+        FornecedorEditar.Rua = novaRua;
+        FornecedorEditar.Numero = novoNumero;
+        FornecedorEditar.Complemento = novoComplemento;
+        FornecedorEditar.Bairro = novoBairro;
+        FornecedorEditar.CEP = novoCEP;
+        FornecedorEditar.Cidade = novaCidade;
+        FornecedorEditar.Estado = novoEstado;
     }
 }
