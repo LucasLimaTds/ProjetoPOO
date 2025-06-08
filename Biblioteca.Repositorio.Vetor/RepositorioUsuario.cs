@@ -67,7 +67,7 @@ public class RepositorioUsuario
         {
             if (TodosUsuarios[i].DireitosDeUsuario == 0)
             {
-                Console.Write("*Administrador | "); //para os admins saberem quem são os outros admins
+                Console.Write("*Administrador | ");
             }
             Console.WriteLine($"Usuário ID: {TodosUsuarios[i].ID} | Nome: {TodosUsuarios[i].Nome} | Email: {TodosUsuarios[i].Email} | Telefone: {TodosUsuarios[i].Telefone}");
             TodosUsuarios[i].ListarEndereço();
