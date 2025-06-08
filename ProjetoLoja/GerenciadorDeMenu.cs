@@ -604,14 +604,14 @@ public class GerenciadorDeMenus
             int opcaoAlteracao=int.Parse(Console.ReadLine());
             string novoNome;
             double novoValor;
-            int novo, ind;
+            int novaQnt, ind, novoId;
             switch (opcaoAlteracao)
             {
                 case 1:
                     {
                         Console.WriteLine("Insira o novo nome:");
                         novoNome = Console.ReadLine();
-                        GerenciadorDeProduto.TodosProdutos[i].Nome = novoNome;
+                        GerenciadorDeProduto.AlteraNome(novoNome, i);
                         Console.WriteLine("Nome alterado!");
                         PressioneQualquerTecla();
                         Console.Clear();
@@ -621,7 +621,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira o novo valor:");
                         novoValor = double.Parse(Console.ReadLine());
-                        GerenciadorDeProduto.TodosProdutos[i].Valor = novoValor;
+                        GerenciadorDeProduto.AlterarValor(novoValor, i);
                         Console.WriteLine("Valor alterado!");
                         PressioneQualquerTecla();
                         Console.Clear();
@@ -630,8 +630,8 @@ public class GerenciadorDeMenus
                 case 3:
                     {
                         Console.WriteLine("Insira a nova quantidade em estoque:");
-                        novo = int.Parse(Console.ReadLine());
-                        GerenciadorDeProduto.TodosProdutos[i].QuantidadeEmEstoque = novo;
+                        novaQnt = int.Parse(Console.ReadLine());
+                        GerenciadorDeProduto.AlterarEstoque(novaQnt, i);
                         Console.WriteLine("Quantidade alterada!");
                         PressioneQualquerTecla();
                         Console.Clear();
@@ -642,11 +642,11 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Escolha o novo fornecedor:");
                         GerenciadorDeFornecedor.ListarFornecedores();
                         Console.WriteLine("Insira o ID do novo fornecedor:");
-                        novo = int.Parse(Console.ReadLine());
-                        ind = GerenciadorDeFornecedor.ProcuraFornecedor(novo);
+                        novoId = int.Parse(Console.ReadLine());
+                        ind = GerenciadorDeFornecedor.ProcuraFornecedor(novoId);
                         if (ind != -1)
                         {
-                            GerenciadorDeProduto.TodosProdutos[i].FornecedorDoProduto = GerenciadorDeFornecedor.RetornaFornecedor(ind);
+                            GerenciadorDeProduto.AlterarFornecedor(GerenciadorDeFornecedor.RetornaFornecedor(ind), i);
                             Console.WriteLine("Fornecedor alterado!");  
                         }
                         PressioneQualquerTecla();

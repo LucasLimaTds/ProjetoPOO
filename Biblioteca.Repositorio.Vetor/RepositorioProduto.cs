@@ -4,12 +4,12 @@ namespace ProjetoLoja;
 
 public class RepositorioProduto
 {
-    public Produto[] TodosProdutos = new Produto[1];
+    private Produto[] TodosProdutos = new Produto[1];
     private int idProduto = 1;
 
     public void CadastrarProduto(Produto NovoProduto)
     {
-        if (idProduto==1)
+        if (idProduto == 1)
         {
 
             NovoProduto.ID = idProduto++;
@@ -106,5 +106,22 @@ public class RepositorioProduto
             return true; // Há produtos cadastrados
         }
         return false; // Não há produtos cadastrados
+    }
+
+    public void AlteraNome(string novoNome, int i)
+    {
+        TodosProdutos[i].Nome = novoNome;
+    }
+    public void AlterarValor(double novoValor, int i)
+    {
+        TodosProdutos[i].Valor = novoValor;
+    }
+    public void AlterarEstoque(int novaQnt, int i)
+    {
+        TodosProdutos[i].QuantidadeEmEstoque = novaQnt;
+    }
+    public void AlterarFornecedor(Fornecedor fornecedor, int i)
+    {
+        TodosProdutos[i].FornecedorDoProduto = fornecedor;
     }
 }
