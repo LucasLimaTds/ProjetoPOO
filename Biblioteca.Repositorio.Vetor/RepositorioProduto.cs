@@ -63,27 +63,26 @@ public class RepositorioProduto
         TodosProdutos = novosProdutos;
     }
 
-    public int ProcuraProduto(int id)
+    public Produto ProcuraProduto(int id)
     {
         for (int i = 0; i < TodosProdutos.Length; i++)
         {
             if (TodosProdutos[i].ID == id)
             {
-                return i;
+                return TodosProdutos[i];
             }
         }
         Console.WriteLine("Produto não encontrado!");
         Console.WriteLine("-------------------------------------------------------------------");
-        return -1;
+        return null;
     }
 
     public void ConsultarProduto(int id)
     {
-        int i;
-        i = ProcuraProduto(id);
-        if (i != -1)
+        Produto Produto = ProcuraProduto(id);
+        if (Produto != null)
         {
-            Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome} | Preço: R$ {TodosProdutos[i].Valor} | Fornecedor: {TodosProdutos[i].FornecedorDoProduto.Nome}");
+            Console.WriteLine($"Produto ID: {Produto.ID} | Nome: {Produto.Nome} | Preço: R$ {Produto.Valor} | Fornecedor: {Produto.FornecedorDoProduto.Nome}");
             Console.WriteLine("-------------------------------------------------------------------");
         }
     }
@@ -108,20 +107,20 @@ public class RepositorioProduto
         return false; // Não há produtos cadastrados
     }
 
-    public void AlteraNome(string novoNome, int i)
+    public void AlteraNome(string novoNome, Produto ProdutoAlterado)
     {
-        TodosProdutos[i].Nome = novoNome;
+        ProdutoAlterado.Nome = novoNome;
     }
-    public void AlterarValor(double novoValor, int i)
+    public void AlterarValor(double novoValor, Produto ProdutoAlterado)
     {
-        TodosProdutos[i].Valor = novoValor;
+        ProdutoAlterado.Valor = novoValor;
     }
-    public void AlterarEstoque(int novaQnt, int i)
+    public void AlterarEstoque(int novaQnt, Produto ProdutoAlterado)
     {
-        TodosProdutos[i].QuantidadeEmEstoque = novaQnt;
+        ProdutoAlterado.QuantidadeEmEstoque = novaQnt;
     }
-    public void AlterarFornecedor(Fornecedor fornecedor, int i)
+    public void AlterarFornecedor(Fornecedor fornecedor, Produto ProdutoAlterado)
     {
-        TodosProdutos[i].FornecedorDoProduto = fornecedor;
+        ProdutoAlterado.FornecedorDoProduto = fornecedor;
     }
 }

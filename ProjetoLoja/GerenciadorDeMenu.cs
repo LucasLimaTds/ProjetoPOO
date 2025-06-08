@@ -522,10 +522,10 @@ public class GerenciadorDeMenus
                             Console.WriteLine("Escolha o produto que deseja editar:");
                             GerenciadorDeProduto.ListarProdutos();
                             int id = int.Parse(Console.ReadLine());
-                            int i = GerenciadorDeProduto.ProcuraProduto(id);
-                            if (i != -1)
+                            Produto ProdutoEditar = GerenciadorDeProduto.ProcuraProduto(id);
+                            if (ProdutoEditar != null)
                             {
-                                AlterarProduto(i);
+                                AlterarProduto(ProdutoEditar);
                             }
                             else
                             {
@@ -547,8 +547,8 @@ public class GerenciadorDeMenus
                             GerenciadorDeProduto.ListarProdutos();
                             Console.WriteLine("Insira o ID do produto a ser removido: ");
                             idRemocao = int.Parse(Console.ReadLine());
-                            int i = GerenciadorDeProduto.ProcuraProduto(idRemocao);
-                            if (i != -1)
+                            Produto ProdutoRemover = GerenciadorDeProduto.ProcuraProduto(idRemocao);
+                            if (ProdutoRemover != null)
                             {
                                 GerenciadorDeProduto.RemoverProduto(idRemocao);
                                 GerenciadorDeProduto.ListarProdutos();
@@ -588,7 +588,7 @@ public class GerenciadorDeMenus
 
     }
 
-    private void AlterarProduto(int i)
+    private void AlterarProduto(Produto ProdutoAlterado)
     {
         while (true)
         {
@@ -611,7 +611,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira o novo nome:");
                         novoNome = Console.ReadLine();
-                        GerenciadorDeProduto.AlteraNome(novoNome, i);
+                        GerenciadorDeProduto.AlteraNome(novoNome, ProdutoAlterado);
                         Console.WriteLine("Nome alterado!");
                         PressioneQualquerTecla();
                         Console.Clear();
@@ -621,7 +621,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira o novo valor:");
                         novoValor = double.Parse(Console.ReadLine());
-                        GerenciadorDeProduto.AlterarValor(novoValor, i);
+                        GerenciadorDeProduto.AlterarValor(novoValor, ProdutoAlterado);
                         Console.WriteLine("Valor alterado!");
                         PressioneQualquerTecla();
                         Console.Clear();
@@ -631,7 +631,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira a nova quantidade em estoque:");
                         novaQnt = int.Parse(Console.ReadLine());
-                        GerenciadorDeProduto.AlterarEstoque(novaQnt, i);
+                        GerenciadorDeProduto.AlterarEstoque(novaQnt, ProdutoAlterado);
                         Console.WriteLine("Quantidade alterada!");
                         PressioneQualquerTecla();
                         Console.Clear();
@@ -646,7 +646,7 @@ public class GerenciadorDeMenus
                         ind = GerenciadorDeFornecedor.ProcuraFornecedor(novoId);
                         if (ind != -1)
                         {
-                            GerenciadorDeProduto.AlterarFornecedor(GerenciadorDeFornecedor.RetornaFornecedor(ind), i);
+                            GerenciadorDeProduto.AlterarFornecedor(GerenciadorDeFornecedor.RetornaFornecedor(ind), ProdutoAlterado);
                             Console.WriteLine("Fornecedor alterado!");  
                         }
                         PressioneQualquerTecla();
