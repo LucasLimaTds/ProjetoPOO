@@ -341,8 +341,8 @@ public class GerenciadorDeMenus
                                 Console.WriteLine("Fornecedor padrão do sistema! Impossível remover");
                             }
                             else
-                            {                                
-                                GerenciadorDeProduto.RemocaoDeFornecedor(idRemocao, GerenciadorDeFornecedor.TodosFornecedores[0]);
+                            {   
+                                GerenciadorDeProduto.RemocaoDeFornecedor(idRemocao, GerenciadorDeFornecedor.RetornaFornecedor(0));
                                 int i = GerenciadorDeFornecedor.ProcuraFornecedor(idRemocao);
                                 if (i != -1)
                                 {
@@ -421,7 +421,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira o novo nome:");
                         novoNome = Console.ReadLine();
-                        GerenciadorDeFornecedor.TodosFornecedores[i].Nome = novoNome;
+                        GerenciadorDeFornecedor.AlterarNome(novoNome, i);
                         Console.WriteLine("Nome alterado!");
                         PressioneQualquerTecla();
                         break;
@@ -430,7 +430,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira a nova descrição:");
                         novaDescricao = Console.ReadLine();
-                        GerenciadorDeFornecedor.TodosFornecedores[i].Descricao = novaDescricao;
+                        GerenciadorDeFornecedor.AlterarDescricao(novaDescricao, i);
                         Console.WriteLine("Descrição alterada!");
                         PressioneQualquerTecla();
                         break;
@@ -439,7 +439,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira o novo telefone:");
                         novoTelefone = Console.ReadLine();
-                        GerenciadorDeFornecedor.TodosFornecedores[i].Telefone = novoTelefone;
+                        GerenciadorDeFornecedor.AlterarTelefone(novoTelefone, i);
                         Console.WriteLine("Telefone alterado!");
                         PressioneQualquerTecla();
                         break;
@@ -448,7 +448,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira o novo email:");
                         novoEmail = Console.ReadLine();
-                        GerenciadorDeFornecedor.TodosFornecedores[i].Email = novoEmail;
+                        GerenciadorDeFornecedor.AlterarEmail(novoEmail, i);
                         Console.WriteLine("Email alterado!");
                         PressioneQualquerTecla();
                         break;
@@ -457,13 +457,7 @@ public class GerenciadorDeMenus
                     {
                         CadastroEndereco(ref novaRua, ref novoNumero, ref novoComplemento, ref novoBairro, ref novoCEP, ref novaCidade, ref novoEstado);
 
-                        GerenciadorDeFornecedor.TodosFornecedores[i].Rua = novaRua;
-                        GerenciadorDeFornecedor.TodosFornecedores[i].Numero = novoNumero;
-                        GerenciadorDeFornecedor.TodosFornecedores[i].Complemento = novoComplemento;
-                        GerenciadorDeFornecedor.TodosFornecedores[i].Bairro = novoBairro;
-                        GerenciadorDeFornecedor.TodosFornecedores[i].CEP = novoCEP;
-                        GerenciadorDeFornecedor.TodosFornecedores[i].Cidade = novaCidade;
-                        GerenciadorDeFornecedor.TodosFornecedores[i].Estado = novoEstado;
+                        GerenciadorDeFornecedor.AlterarEndereco(novaRua, novoNumero, novoComplemento, novoBairro, novoCEP, novaCidade, novoEstado, i);
 
                         Console.WriteLine("Endereço alterado!");
                         PressioneQualquerTecla();
@@ -513,7 +507,7 @@ public class GerenciadorDeMenus
                         indfornecedor = GerenciadorDeFornecedor.ProcuraFornecedor(idfornecedor);
                         if (indfornecedor != -1)
                         {                            
-                            GerenciadorDeProduto.CadastrarProduto(new Produto(nome, valor, quantidade, GerenciadorDeFornecedor.TodosFornecedores[indfornecedor]));
+                            GerenciadorDeProduto.CadastrarProduto(new Produto(nome, valor, quantidade, GerenciadorDeFornecedor.RetornaFornecedor(indfornecedor)));
                             GerenciadorDeProduto.ListarProdutos();
                             Console.WriteLine("Inclusão realizada com sucesso!");
                         }
@@ -652,7 +646,7 @@ public class GerenciadorDeMenus
                         ind = GerenciadorDeFornecedor.ProcuraFornecedor(novo);
                         if (ind != -1)
                         {
-                            GerenciadorDeProduto.TodosProdutos[i].FornecedorDoProduto = GerenciadorDeFornecedor.TodosFornecedores[ind];
+                            GerenciadorDeProduto.TodosProdutos[i].FornecedorDoProduto = GerenciadorDeFornecedor.RetornaFornecedor(ind);
                             Console.WriteLine("Fornecedor alterado!");  
                         }
                         PressioneQualquerTecla();

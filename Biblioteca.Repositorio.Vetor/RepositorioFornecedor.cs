@@ -6,7 +6,7 @@ namespace ProjetoLoja;
 
 public class RepositorioFornecedor
 {
-    public Fornecedor[] TodosFornecedores = new Fornecedor[1];
+    private Fornecedor[] TodosFornecedores = new Fornecedor[1];
     private int idFornecedor = 0;
 
     public RepositorioFornecedor()
@@ -97,5 +97,39 @@ public class RepositorioFornecedor
         }
 
         return false;
+    }
+
+    public void AlterarNome(string novoNome, int i)
+    {
+        TodosFornecedores[i].Nome = novoNome;
+    }
+
+    public void AlterarDescricao(string novaDescricao, int i)
+    {
+        TodosFornecedores[i].Descricao = novaDescricao;
+    }
+
+    public void AlterarTelefone(string novoTelefone, int i)
+    {
+        TodosFornecedores[i].Telefone = novoTelefone;
+    }
+    public void AlterarEmail(string novoEmail, int i)
+    {
+        TodosFornecedores[i].Email = novoEmail;
+    }
+    public void AlterarEndereco(string novaRua, string novoNumero, string novoComplemento, string novoBairro, string novoCEP, string novaCidade, string novoEstado, int i)
+    {
+        TodosFornecedores[i].Rua = novaRua;
+        TodosFornecedores[i].Numero = novoNumero;
+        TodosFornecedores[i].Complemento = novoComplemento;
+        TodosFornecedores[i].Bairro = novoBairro;
+        TodosFornecedores[i].CEP = novoCEP;
+        TodosFornecedores[i].Cidade = novaCidade;
+        TodosFornecedores[i].Estado = novoEstado;
+    }
+
+    public Fornecedor RetornaFornecedor(int id)
+    {
+        return TodosFornecedores[id];
     }
 }
