@@ -20,19 +20,19 @@ public class Usuario : Endereco
         ID = id;
     }
 
-    public Usuario(string nome, string email, string telefone, string senha, int direito, string rua, string numero, string complemento, string bairro, string cep, string cidade, string estado)
+    public Usuario(string nome, string email, string telefone, string senha, int direito, string[] endereco)
     {
         Nome = nome;
         Email = email;
         Telefone = telefone;
         Senha = senha;
         DireitosDeUsuario = direito;
-        Rua = rua;
-        Numero = numero;
-        Complemento = complemento;
-        Bairro = bairro;
-        CEP = cep;
-        Cidade = cidade;
-        Estado = estado;
+        Rua = endereco[0];
+        Numero = endereco[1];
+        Complemento = endereco[2];
+        Bairro = endereco[3];
+        CEP = endereco[4];
+        Cidade = endereco[5];
+        Estado = endereco[6];
     }
 }

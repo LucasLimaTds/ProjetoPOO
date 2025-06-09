@@ -18,19 +18,19 @@ public class Fornecedor : Endereco
         ID = id;
     }
 
-    public Fornecedor(string nome, string email, string descricao, string telefone, string rua, string numero, string complemento, string bairro, string cep, string cidade, string estado)
+    public Fornecedor(string nome, string email, string descricao, string telefone, string[] endereco)
     {
         Nome = nome;
         Email = email;
         Descricao = descricao;
         Telefone = telefone;
-        Rua = rua;
-        Numero = numero;
-        Complemento = complemento;
-        Bairro = bairro;
-        CEP = cep;
-        Cidade = cidade;
-        Estado = estado;
+        Rua = endereco[0];
+        Numero = endereco[1];
+        Complemento = endereco[2];
+        Bairro = endereco[3];
+        CEP = endereco[4];
+        Cidade = endereco[5];
+        Estado = endereco[6];
     }
     
 

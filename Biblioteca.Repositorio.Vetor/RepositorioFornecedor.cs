@@ -116,14 +116,14 @@ public class RepositorioFornecedor
     {
         FornecedorEditar.Email = novoEmail;
     }
-    public void AlterarEndereco(string novaRua, string novoNumero, string novoComplemento, string novoBairro, string novoCEP, string novaCidade, string novoEstado, Fornecedor FornecedorEditar)
+    public void AlterarEndereco(string[] endereco, Fornecedor FornecedorEditar)
     {
-        FornecedorEditar.Rua = novaRua;
-        FornecedorEditar.Numero = novoNumero;
-        FornecedorEditar.Complemento = novoComplemento;
-        FornecedorEditar.Bairro = novoBairro;
-        FornecedorEditar.CEP = novoCEP;
-        FornecedorEditar.Cidade = novaCidade;
-        FornecedorEditar.Estado = novoEstado;
+        FornecedorEditar.Rua = endereco[0];
+        FornecedorEditar.Numero = endereco[1];
+        FornecedorEditar.Complemento = endereco[2];
+        FornecedorEditar.Bairro = endereco[3];
+        FornecedorEditar.CEP = endereco[4];
+        FornecedorEditar.Cidade = endereco[5];
+        FornecedorEditar.Estado = endereco[6];
     }
 }
