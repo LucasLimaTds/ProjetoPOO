@@ -17,4 +17,9 @@ public abstract class Endereco
         Console.WriteLine("Endereço:");
         Console.WriteLine($"Rua: {Rua} | Número: {Numero} | Complemento: {Complemento} | Bairro: {Bairro} | CEP: {CEP} | Cidade: {Cidade} | Estado: {Estado}\n");
     }
+
+//     public override string ToString() será implementado
+//     {
+//         return $"Rua: {Rua} | Número: {Numero} | Complemento: {Complemento} | Bairro: {Bairro} | CEP: {CEP} | Cidade: {Cidade} | Estado: {Estado}\n";
+//     }
 }
