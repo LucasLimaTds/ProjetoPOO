@@ -83,7 +83,7 @@ public class RepositorioFornecedor
         if (Fornecedor != null)
         {
             Console.WriteLine($"Fornecedor ID: {Fornecedor.ID} | Nome: {Fornecedor.Nome} | Email: {Fornecedor.Email} | Telefone: {Fornecedor.Telefone} | Descrição: {Fornecedor.Descricao}");
-            Fornecedor.ListarEndereço();
+            //Fornecedor.ListarEndereço();
             Console.WriteLine("-------------------------------------------------------------------");
         }
     }
@@ -116,14 +116,14 @@ public class RepositorioFornecedor
     {
         FornecedorEditar.Email = novoEmail;
     }
-    public void AlterarEndereco(string[] endereco, Fornecedor FornecedorEditar)
+    public void AlterarEndereco(Endereco endereco, Fornecedor FornecedorEditar)
     {
-        FornecedorEditar.Rua = endereco[0];
-        FornecedorEditar.Numero = endereco[1];
-        FornecedorEditar.Complemento = endereco[2];
-        FornecedorEditar.Bairro = endereco[3];
-        FornecedorEditar.CEP = endereco[4];
-        FornecedorEditar.Cidade = endereco[5];
-        FornecedorEditar.Estado = endereco[6];
+        FornecedorEditar.Rua = endereco.Rua;
+        FornecedorEditar.Numero = endereco.Numero;
+        FornecedorEditar.Complemento = endereco.Complemento;
+        FornecedorEditar.Bairro = endereco.Bairro;
+        FornecedorEditar.CEP = endereco.CEP;
+        FornecedorEditar.Cidade = endereco.Cidade;
+        FornecedorEditar.Estado = endereco.Estado;
     }
 }

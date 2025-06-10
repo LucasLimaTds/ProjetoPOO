@@ -124,40 +124,38 @@ public class GerenciadorDeMenus
                 testeSenha = true;
             }
 
-        } while (!testeSenha);
-
-        string[] endereco = CadastroEndereco();
+        } while (!testeSenha);        
        
-        GerenciadorDeUsuario.CriarUsuario(new Usuario(novoNome, novoEmail, novoTelefone, novaSenha, 1, endereco));
+        GerenciadorDeUsuario.CriarUsuario(new Usuario(novoNome, novoEmail, novoTelefone, novaSenha, 1, CadastroEndereco()));
         GerenciadorDeUsuario.ListarUsuarios();
         PressioneQualquerTecla();
     }
 
-    private string[] CadastroEndereco()
+    private Endereco CadastroEndereco()
     {
-        string[] endereco = new string[7];
+        Endereco endereco = new Endereco();
         Console.WriteLine("Digite os dados do endereço:");
 
         Console.Write("Rua: ");
-        endereco[0] = Console.ReadLine();
+        endereco.Rua = Console.ReadLine();
 
         Console.Write("Número: ");
-        endereco[1] = Console.ReadLine();
+        endereco.Numero = Console.ReadLine();
 
         Console.Write("Complemento: ");
-        endereco[2] = Console.ReadLine();
+        endereco.Complemento = Console.ReadLine();
 
         Console.Write("Bairro: ");
-        endereco[3] = Console.ReadLine();
+        endereco.Bairro = Console.ReadLine();
 
         Console.Write("CEP: ");
-        endereco[4] = Console.ReadLine();
+        endereco.CEP = Console.ReadLine();
 
         Console.Write("Cidade: ");
-        endereco[5] = Console.ReadLine();
+        endereco.Cidade = Console.ReadLine();
 
         Console.Write("Estado: ");
-        endereco[6] = Console.ReadLine();
+        endereco.Estado = Console.ReadLine();
 
         return endereco;
     }
@@ -276,8 +274,7 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Insira o telefone do novo fornecedor: ");
                         string telefoneFornecedor = Console.ReadLine();
 
-                        endereco = CadastroEndereco();
-                        GerenciadorDeFornecedor.CadastrarFornecedor(new Fornecedor(nome, email, descricao, telefoneFornecedor, endereco));
+                        GerenciadorDeFornecedor.CadastrarFornecedor(new Fornecedor(nome, email, descricao, telefoneFornecedor, CadastroEndereco()));
                         GerenciadorDeFornecedor.ListarFornecedores();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");
@@ -436,9 +433,7 @@ public class GerenciadorDeMenus
                     }
                 case 5:
                     {
-                        endereco = CadastroEndereco();
-
-                        GerenciadorDeFornecedor.AlterarEndereco(endereco, FornecedorEditar);
+                        GerenciadorDeFornecedor.AlterarEndereco(CadastroEndereco(), FornecedorEditar);
 
                         Console.WriteLine("Endereço alterado!");
                         PressioneQualquerTecla();

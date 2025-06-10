@@ -70,7 +70,7 @@ public class RepositorioUsuario
                 Console.Write("*Administrador | ");
             }
             Console.WriteLine($"Usuário ID: {TodosUsuarios[i].ID} | Nome: {TodosUsuarios[i].Nome} | Email: {TodosUsuarios[i].Email} | Telefone: {TodosUsuarios[i].Telefone}");
-            TodosUsuarios[i].ListarEndereço();
+            //TodosUsuarios[i].ListarEndereço();
         }
 
         Console.WriteLine("-------------------------------------------------------------------");
