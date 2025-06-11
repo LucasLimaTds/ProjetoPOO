@@ -10,13 +10,7 @@ public class Fornecedor
     public string Email { get; set; }
     public int ID { get; set; }
 
-    public string Rua { get; set; }
-    public string Numero { get; set; }
-    public string Complemento { get; set; }
-    public string Bairro { get; set; }
-    public string CEP { get; set; }
-    public string Cidade { get; set; }
-    public string Estado { get; set; }
+    private Endereco EnderecoDoFornecedor;
     
     public Fornecedor(string nome, string email, string telefone, int id)
     {
@@ -32,13 +26,7 @@ public class Fornecedor
         Email = email;
         Descricao = descricao;
         Telefone = telefone;
-        Rua = endereco.Rua;
-        Numero = endereco.Numero;
-        Complemento = endereco.Complemento;
-        Bairro = endereco.Bairro;
-        CEP = endereco.CEP;
-        Cidade = endereco.Cidade;
-        Estado = endereco.Estado;
+        EnderecoDoFornecedor = endereco;
     }
     
 
