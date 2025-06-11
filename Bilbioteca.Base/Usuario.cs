@@ -11,7 +11,7 @@ public class Usuario
     public int DireitosDeUsuario { get; set; }
     public int ID { get; set; }
 
-    private Endereco EnderecoDoUsuario;
+    public Endereco EnderecoDoUsuario;
 
     public Usuario(string nome, string email, string senha, int direito, int id)
     {

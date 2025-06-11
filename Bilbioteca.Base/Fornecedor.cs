@@ -10,7 +10,7 @@ public class Fornecedor
     public string Email { get; set; }
     public int ID { get; set; }
 
-    private Endereco EnderecoDoFornecedor;
+    public Endereco EnderecoDoFornecedor;
     
     public Fornecedor(string nome, string email, string telefone, int id)
     {
