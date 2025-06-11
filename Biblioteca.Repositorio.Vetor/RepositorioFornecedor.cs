@@ -72,8 +72,6 @@ public class RepositorioFornecedor
                 return TodosFornecedores[i];
             }
         }
-        Console.WriteLine("Fornecedor não encontrado!");
-        Console.WriteLine("-------------------------------------------------------------------");
         return null;
     }
 

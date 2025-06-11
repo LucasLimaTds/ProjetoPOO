@@ -301,6 +301,8 @@ public class GerenciadorDeMenus
                                 }
                                 else
                                 {
+                                    Console.WriteLine("Fornecedor não encontrado!");
+                                    Console.WriteLine("-------------------------------------------------------------------");
                                     PressioneQualquerTecla();
                                 }
                             }
@@ -325,14 +327,19 @@ public class GerenciadorDeMenus
                                 Console.WriteLine("Fornecedor padrão do sistema! Impossível remover");
                             }
                             else
-                            {   
+                            {
                                 GerenciadorDeProduto.RemocaoDeFornecedor(idRemocao, GerenciadorDeFornecedor.ProcuraFornecedor(0));
                                 Fornecedor FornecedorRemocao = GerenciadorDeFornecedor.ProcuraFornecedor(idRemocao);
                                 if (FornecedorRemocao != null)
                                 {
                                     GerenciadorDeFornecedor.RemoverFornecedor(idRemocao);
                                     GerenciadorDeFornecedor.ListarFornecedores();
-                                    Console.WriteLine("Remoção realizada com sucesso!"); 
+                                    Console.WriteLine("Remoção realizada com sucesso!");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Fornecedor não encontrado!");
+                                    Console.WriteLine("-------------------------------------------------------------------");
                                 }
                             }
                         }
@@ -482,10 +489,15 @@ public class GerenciadorDeMenus
 
                         Fornecedor FornecedorDoProduto = GerenciadorDeFornecedor.ProcuraFornecedor(idfornecedor);
                         if (FornecedorDoProduto != null)
-                        {                            
+                        {
                             GerenciadorDeProduto.CadastrarProduto(new Produto(nome, valor, quantidade, FornecedorDoProduto));
                             GerenciadorDeProduto.ListarProdutos();
                             Console.WriteLine("Inclusão realizada com sucesso!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Fornecedor não encontrado!");
+                            Console.WriteLine("-------------------------------------------------------------------");
                         }
 
                         PressioneQualquerTecla();
@@ -623,7 +635,12 @@ public class GerenciadorDeMenus
                         if (FornecedorAlterado != null)
                         {
                             GerenciadorDeProduto.AlterarFornecedor(FornecedorAlterado, ProdutoAlterado);
-                            Console.WriteLine("Fornecedor alterado!");  
+                            Console.WriteLine("Fornecedor alterado!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Fornecedor não encontrado!");
+                            Console.WriteLine("-------------------------------------------------------------------");
                         }
                         PressioneQualquerTecla();
                         Console.Clear();
