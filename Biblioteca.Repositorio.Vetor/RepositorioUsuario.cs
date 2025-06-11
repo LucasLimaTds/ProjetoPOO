@@ -10,6 +10,7 @@ public class RepositorioUsuario
     public RepositorioUsuario()
     {
         TodosUsuarios[0] = new Usuario("AdminMaster", "adminmaster@ucs.br", "Admin", 0, idUsuario++);
+        // admin não possui endereço instanciado. Pode ocorrrer excessão na escrita do endereço
     }
 
     public int ValidarUsuario(string email, string senha)
