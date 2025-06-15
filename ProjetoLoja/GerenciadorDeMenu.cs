@@ -571,7 +571,8 @@ public class GerenciadorDeMenus
                             ExibirListaProdutos();
                             Console.WriteLine("Digite o ID do produto: ");
                             int idProduto = int.Parse(Console.ReadLine());
-                            GerenciadorDeProduto.ConsultarProduto(idProduto);
+                            Console.WriteLine(GerenciadorDeProduto.ConsultarProduto(idProduto));
+                            Console.WriteLine("-------------------------------------------------------------------");
                         }
                         else
                         {
@@ -766,7 +767,8 @@ public class GerenciadorDeMenus
                             ExibirListaTransportadoras();
                             Console.WriteLine("Digite o ID da transportadora: ");
                             int idTransportadora = int.Parse(Console.ReadLine());
-                            GerenciadorDeTransportadora.ConsultarTransportadora(idTransportadora);
+                            Console.WriteLine(GerenciadorDeTransportadora.ConsultarTransportadora(idTransportadora));
+                            Console.WriteLine("-------------------------------------------------------------------");
                         }
                         else
                         {

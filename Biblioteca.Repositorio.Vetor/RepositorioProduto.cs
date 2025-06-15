@@ -70,14 +70,14 @@ public class RepositorioProduto
         return null;
     }
 
-    public void ConsultarProduto(int id)
+    public String ConsultarProduto(int id)
     {
         Produto Produto = ProcuraProduto(id);
         if (Produto != null)
         {
-            Console.WriteLine($"Produto ID: {Produto.ID} | Nome: {Produto.Nome} | Preço: R$ {Produto.Valor} | Fornecedor: {Produto.FornecedorDoProduto.Nome}");
-            Console.WriteLine("-------------------------------------------------------------------");
+            return $"Produto ID: {Produto.ID} | Nome: {Produto.Nome} | Preço: R$ {Produto.Valor} | Fornecedor: {Produto.FornecedorDoProduto.Nome}";
         }
+        return "Produto não encontrado!";
     }
 
     public void RemocaoDeFornecedor(int idRemocao, Fornecedor fornecedor)

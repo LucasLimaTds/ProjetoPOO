@@ -69,14 +69,14 @@ public class RepositorioTransportadora
         return null;
     }
 
-    public void ConsultarTransportadora(int id)
+    public String ConsultarTransportadora(int id)
     {
         Transportadora Transportadora = ProcuraTransportadora(id);
         if (Transportadora != null)
         {
-            Console.WriteLine($"Transportadora ID: {Transportadora.ID} | Nome: {Transportadora.Nome} | Preço do km: R$ {Transportadora.PrecoPorKM}");
-            Console.WriteLine("-------------------------------------------------------------------");
+            return $"Transportadora ID: {Transportadora.ID} | Nome: {Transportadora.Nome} | Preço do km: R$ {Transportadora.PrecoPorKM}";
         }
+        return "Transportadora não encontrada!";
 
     }
 
