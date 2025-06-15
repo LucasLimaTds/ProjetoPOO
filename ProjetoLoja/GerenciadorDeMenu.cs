@@ -560,6 +560,8 @@ public class GerenciadorDeMenus
                             else
                             {
                                 Console.WriteLine("Produto não encontrado!");
+                                Console.WriteLine("-------------------------------------------------------------------");
+
                             }
                         }
                         else
