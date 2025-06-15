@@ -704,7 +704,7 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Insira o preço cobrado por Km: ");
                         valor = double.Parse(Console.ReadLine());
                         GerenciadorDeTransportadora.CadastrarTransportadora(new Transportadora(nome, valor));
-                        GerenciadorDeTransportadora.ListarTransportadoras();
+                        ExibirListaTransportadoras();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");
                         PressioneQualquerTecla();
@@ -715,7 +715,7 @@ public class GerenciadorDeMenus
                         if (GerenciadorDeTransportadora.VerificaExistenciaTransportadora())
                         {
                             Console.WriteLine("Escolha a transportadora que deseja editar");
-                            GerenciadorDeTransportadora.ListarTransportadoras();
+                            ExibirListaTransportadoras();
                             int id = int.Parse(Console.ReadLine());
                             Transportadora TransportadoraEditada = GerenciadorDeTransportadora.ProcuraTransportadora(id);
 
@@ -740,14 +740,14 @@ public class GerenciadorDeMenus
                         if (GerenciadorDeTransportadora.VerificaExistenciaTransportadora())
                         {
                             Console.WriteLine("Escolha a transportadora que deseja remover: ");
-                            GerenciadorDeTransportadora.ListarTransportadoras();
+                            ExibirListaTransportadoras();
                             Console.WriteLine("Insira o ID da transportadora a ser removida: ");
                             idRemocao = int.Parse(Console.ReadLine());
                             Transportadora TransportadoraRemover = GerenciadorDeTransportadora.ProcuraTransportadora(idRemocao);
                             if (TransportadoraRemover != null)
                             {
                                 GerenciadorDeTransportadora.RemoverTransportadora(idRemocao);
-                                GerenciadorDeTransportadora.ListarTransportadoras();
+                                ExibirListaTransportadoras();
                                 Console.WriteLine("Remoção realizada com sucesso!"); 
                             }
                         }
@@ -763,7 +763,7 @@ public class GerenciadorDeMenus
                         if (GerenciadorDeTransportadora.VerificaExistenciaTransportadora())
                         {
                             Console.WriteLine("Escolha a transportadora a ser consultada:");
-                            GerenciadorDeTransportadora.ListarTransportadoras();
+                            ExibirListaTransportadoras();
                             Console.WriteLine("Digite o ID da transportadora: ");
                             int idTransportadora = int.Parse(Console.ReadLine());
                             GerenciadorDeTransportadora.ConsultarTransportadora(idTransportadora);
@@ -785,6 +785,19 @@ public class GerenciadorDeMenus
 
     }
 
+    private void ExibirListaTransportadoras()
+    {
+        Transportadora[] TodasTransportadoras = GerenciadorDeTransportadora.ListarTransportadoras();
+        int i;
+        Console.WriteLine("Transportadoras cadastradas:");
+        for (i = 0; i < TodasTransportadoras.Length; i++)
+        {
+            Console.WriteLine($"Transportadora ID: {TodasTransportadoras[i].ID} | Nome: {TodasTransportadoras[i].Nome}");
+        }
+
+        Console.WriteLine("-------------------------------------------------------------------");
+    }
+
     private void AlteraTransportadora(Transportadora TransportadoraEditar)
     {
         while (true)
@@ -796,7 +809,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("[2] - ALTERAR VALOR POR KM");
             Console.WriteLine("[0] - VOLTAR AO MENU");
 
-            int opcaoAlteracao=int.Parse(Console.ReadLine());
+            int opcaoAlteracao = int.Parse(Console.ReadLine());
             string novoNome;
             double novoValor;
             switch (opcaoAlteracao)

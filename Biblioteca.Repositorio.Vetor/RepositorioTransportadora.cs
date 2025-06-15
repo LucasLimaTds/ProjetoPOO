@@ -27,16 +27,9 @@ public class RepositorioTransportadora
         TodasTransportadoras = novasTransportadoras;
     }
 
-    public void ListarTransportadoras()
+    public Transportadora[] ListarTransportadoras()
     {
-        int i;
-        Console.WriteLine("Transportadoras cadastradas:");
-        for (i = 0; i < TodasTransportadoras.Length; i++)
-        {
-            Console.WriteLine($"Transportadora ID: {TodasTransportadoras[i].ID} | Nome: {TodasTransportadoras[i].Nome}");
-        }
-
-        Console.WriteLine("-------------------------------------------------------------------");
+        return TodasTransportadoras;
     }
 
     public void RemoverTransportadora(int idRemocao)
