@@ -530,6 +530,8 @@ public class GerenciadorDeMenus
                             }
                             else
                             {
+                                Console.WriteLine("Produto não encontrado!");
+                                Console.WriteLine("-------------------------------------------------------------------");
                                 PressioneQualquerTecla();
                             }
                         }
@@ -554,6 +556,10 @@ public class GerenciadorDeMenus
                                 GerenciadorDeProduto.RemoverProduto(idRemocao);
                                 ExibirListaProdutos();
                                 Console.WriteLine("Remoção realizada com sucesso!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Produto não encontrado!");
                             }
                         }
                         else
@@ -725,7 +731,9 @@ public class GerenciadorDeMenus
                                 AlteraTransportadora(TransportadoraEditada);
                             }
                             else
-                            {
+                            {                                
+                                Console.WriteLine("Transportadora não encontrada!");
+                                Console.WriteLine("-------------------------------------------------------------------");
                                 PressioneQualquerTecla();
                             }
                         }
@@ -749,7 +757,12 @@ public class GerenciadorDeMenus
                             {
                                 GerenciadorDeTransportadora.RemoverTransportadora(idRemocao);
                                 ExibirListaTransportadoras();
-                                Console.WriteLine("Remoção realizada com sucesso!"); 
+                                Console.WriteLine("Remoção realizada com sucesso!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Transportadora não encontrada!");
+                                Console.WriteLine("-------------------------------------------------------------------");
                             }
                         }
                         else

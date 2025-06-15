@@ -64,8 +64,6 @@ public class RepositorioTransportadora
                 return TodasTransportadoras[i];
             }
         }
-        Console.WriteLine("Transportadora não encontrada!");
-        Console.WriteLine("-------------------------------------------------------------------");
         return null;
     }
 

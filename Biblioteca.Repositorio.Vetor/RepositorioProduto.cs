@@ -65,8 +65,6 @@ public class RepositorioProduto
                 return TodosProdutos[i];
             }
         }
-        Console.WriteLine("Produto não encontrado!");
-        Console.WriteLine("-------------------------------------------------------------------");
         return null;
     }
 
