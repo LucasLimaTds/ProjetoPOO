@@ -3,7 +3,7 @@ using Biblioteca.Repositorios.Interfaces;
 
 namespace Biblioteca.Repositorio.Vetor;
 
-public class RepositorioBase<T> : IRepositorioBase<T> where T : IRepositorioBase<T>
+public abstract class RepositorioBase<T> : IRepositorioBase<T> where T : IRepositorioBase<T>
 {
     int IRepositorioBase<T>.ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     //muito ruim assim? Existe modo melhor de fazer? Tem que ter o ID pra poder fazer a pesquisa de remocao
@@ -25,18 +25,18 @@ public class RepositorioBase<T> : IRepositorioBase<T> where T : IRepositorioBase
         Vetor = NovoVetor;
     }
 
-    public T[] Lista(T[] Vetor) //Ajustar na GerenciadorDeMenus pra percorrer o vetor e escrever
+    public T[] Listar(T[] Vetor) //Ajustar na GerenciadorDeMenus pra percorrer o vetor e escrever
     {
         return Vetor;
     }
 
-    public void Remover(int IdRemocao, T[] Vetor)
+    public void Remover(int Id, T[] Vetor)
     {
         T[] NovoVetor = new T[Vetor.Length - 1];
         int j = 0;
         for (int i = 0; j < Vetor.Length; i++, j++)
         {
-            if (Vetor[j].ID == IdRemocao)
+            if (Vetor[j].ID == Id)
             {
                 if ((j + 1) < Vetor.Length)
                 {
