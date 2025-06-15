@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Repositorio.Veto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Repositorio.Lista", "Biblioteca.Repositorio.Lista\Biblioteca.Repositorio.Lista.csproj", "{CAC046A9-D4F9-4D47-8106-548730343DF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Repositorios.Interfaces", "Biblioteca.Repositorios.Interfaces\Biblioteca.Repositorios.Interfaces.csproj", "{6CEC7F85-A821-42DF-9659-08DD48479311}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{CAC046A9-D4F9-4D47-8106-548730343DF0}.Release|x64.Build.0 = Release|Any CPU
 		{CAC046A9-D4F9-4D47-8106-548730343DF0}.Release|x86.ActiveCfg = Release|Any CPU
 		{CAC046A9-D4F9-4D47-8106-548730343DF0}.Release|x86.Build.0 = Release|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Debug|x64.Build.0 = Debug|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Debug|x86.Build.0 = Debug|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Release|x64.ActiveCfg = Release|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Release|x64.Build.0 = Release|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Release|x86.ActiveCfg = Release|Any CPU
+		{6CEC7F85-A821-42DF-9659-08DD48479311}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
