@@ -28,16 +28,9 @@ public class RepositorioFornecedor
         TodosFornecedores = novosFornecedores;
     }
 
-    public void ListarFornecedores()
+    public Fornecedor[] ListarFornecedores()
     {
-        int i;
-        Console.WriteLine("\nFornecedores cadastrados:");
-        for (i = 0; i < TodosFornecedores.Length; i++)
-        {
-            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
-        }
-
-        Console.WriteLine("-------------------------------------------------------------------");
+        return TodosFornecedores;
     }
 
     public void RemoverFornecedor(int idRemocao)
