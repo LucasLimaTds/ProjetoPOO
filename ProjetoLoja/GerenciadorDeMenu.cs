@@ -504,7 +504,7 @@ public class GerenciadorDeMenus
                         if (FornecedorDoProduto != null)
                         {
                             GerenciadorDeProduto.CadastrarProduto(new Produto(nome, valor, quantidade, FornecedorDoProduto));
-                            GerenciadorDeProduto.ListarProdutos();
+                            ExibirListaProdutos();
                             Console.WriteLine("Inclusão realizada com sucesso!");
                         }
                         else
@@ -521,7 +521,7 @@ public class GerenciadorDeMenus
                         if (GerenciadorDeProduto.VerificaExistenciaProduto())
                         {
                             Console.WriteLine("Escolha o produto que deseja editar:");
-                            GerenciadorDeProduto.ListarProdutos();
+                            ExibirListaProdutos();
                             int id = int.Parse(Console.ReadLine());
                             Produto ProdutoEditar = GerenciadorDeProduto.ProcuraProduto(id);
                             if (ProdutoEditar != null)
@@ -545,14 +545,14 @@ public class GerenciadorDeMenus
                         if (GerenciadorDeProduto.VerificaExistenciaProduto())
                         {
                             Console.WriteLine("Escolha o produto que deseja remover: ");
-                            GerenciadorDeProduto.ListarProdutos();
+                            ExibirListaProdutos();
                             Console.WriteLine("Insira o ID do produto a ser removido: ");
                             idRemocao = int.Parse(Console.ReadLine());
                             Produto ProdutoRemover = GerenciadorDeProduto.ProcuraProduto(idRemocao);
                             if (ProdutoRemover != null)
                             {
                                 GerenciadorDeProduto.RemoverProduto(idRemocao);
-                                GerenciadorDeProduto.ListarProdutos();
+                                ExibirListaProdutos();
                                 Console.WriteLine("Remoção realizada com sucesso!");
                             }
                         }
@@ -568,7 +568,7 @@ public class GerenciadorDeMenus
                         if (GerenciadorDeProduto.VerificaExistenciaProduto())
                         {
                             Console.WriteLine("Escolha o produto a ser consultado:");
-                            GerenciadorDeProduto.ListarProdutos();
+                            ExibirListaProdutos();
                             Console.WriteLine("Digite o ID do produto: ");
                             int idProduto = int.Parse(Console.ReadLine());
                             GerenciadorDeProduto.ConsultarProduto(idProduto);
@@ -589,6 +589,19 @@ public class GerenciadorDeMenus
 
     }
 
+    private void ExibirListaProdutos()
+    {
+        Produto[] TodosProdutos = GerenciadorDeProduto.ListarProdutos();
+        int i;
+        Console.WriteLine("Produtos cadastrados:");
+        for (i = 0; i < TodosProdutos.Length; i++)
+        {
+            Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome}");
+        }
+
+        Console.WriteLine("-------------------------------------------------------------------");
+    }
+
     private void AlterarProduto(Produto ProdutoAlterado)
     {
         while (true)
@@ -602,7 +615,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("[4] - ALTERAR FORNECEDOR");
             Console.WriteLine("[0] - VOLTAR AO MENU");
 
-            int opcaoAlteracao=int.Parse(Console.ReadLine());
+            int opcaoAlteracao = int.Parse(Console.ReadLine());
             string novoNome;
             double novoValor;
             int novaQnt, novoId;
@@ -664,7 +677,7 @@ public class GerenciadorDeMenus
                         return;
                     }
             }
-        }        
+        }
     }
     
     private void MenuCadastroTransportadora()

@@ -28,16 +28,9 @@ public class RepositorioProduto
         TodosProdutos = novosProdutos;
     }
 
-    public void ListarProdutos()
+    public Produto[] ListarProdutos()
     {
-        int i;
-        Console.WriteLine("Produtos cadastrados:");
-        for (i = 0; i < TodosProdutos.Length; i++)
-        {
-            Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome}");
-        }
-
-        Console.WriteLine("-------------------------------------------------------------------");
+        return TodosProdutos;
     }
 
     public void RemoverProduto(int idRemocao)
