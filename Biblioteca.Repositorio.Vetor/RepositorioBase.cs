@@ -6,7 +6,7 @@ namespace Biblioteca.Repositorio.Vetor;
 public abstract class RepositorioBase<T> : IRepositorioBase<T> where T : IRepositorioBase<T>
 {
     int IRepositorioBase<T>.ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    //muito ruim assim? Existe modo melhor de fazer? Tem que ter o ID pra poder fazer a pesquisa de remocao
+    //muito ruim assim? Existe modo melhor de fazer? Tem que ter o ID pra poder fazer a pesquisa de remocao e consulta
 
     public void Cadastra(T NovoCadastro, T[] Vetor)
     {
@@ -21,7 +21,9 @@ public abstract class RepositorioBase<T> : IRepositorioBase<T> where T : IReposi
         {
             NovoVetor[i] = Vetor[i];
         }
-        //Trocar o lugar do id dos repositórios para as classes bases, para que o objeto já venha pronto
+        
+        //Ver questão dos Ids, já que eles são atribuídos na hora de cadastrar
+        NovoVetor[NovoVetor.Length - 1] = NovoCadastro;
         Vetor = NovoVetor;
     }
 
@@ -70,6 +72,6 @@ public abstract class RepositorioBase<T> : IRepositorioBase<T> where T : IReposi
     {
         T ObjConsulta = Procura(Id, Vetor);
         return "";
-        //vale a pena manter isso dentro da interface base, já que sempre vai ter que ser override?
+        //vale a pena manter isso dentro da interface base, já que sempre vai ter que ser override nos repositorios?
     }
 }
