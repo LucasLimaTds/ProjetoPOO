@@ -391,6 +391,20 @@ public class GerenciadorDeMenus
         Console.WriteLine("-------------------------------------------------------------------");
     }
 
+    //PENSAR EM IMPLEMENTAR DESSA FORMA A LISTAGEM DE CADASTRADOS:
+    // private void ExibirCadastrados(IList<T> vetor) //recebe direto o vetor/lista genérico
+    // {
+    //     IList<T> TodosFornecedores = dados;
+    //     int i;
+    //     Console.WriteLine("\nCadastrados:");
+    //     for (i = 0; i < dados.Length; i++)
+    //     {
+    //         Console.WriteLine($"ID: {dados[i].ID} | Nome: {dados[i].Nome}");
+    //     }
+
+    //     Console.WriteLine("-------------------------------------------------------------------");
+    // }
+
     private void AlterarFornecedor(Fornecedor FornecedorEditar)
     {
         while (true)
