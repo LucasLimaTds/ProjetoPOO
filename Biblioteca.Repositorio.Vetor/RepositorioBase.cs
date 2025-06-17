@@ -27,7 +27,7 @@ public abstract class RepositorioBase<T> : IRepositorioBase<T> where T : IReposi
         Vetor = NovoVetor;
     }
 
-    public T[] Listar(T[] Vetor) //Ajustar na GerenciadorDeMenus pra percorrer o vetor e escrever
+    public T[] Listar(T[] Vetor)
     {
         return Vetor;
     }
