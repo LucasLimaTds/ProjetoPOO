@@ -72,7 +72,7 @@ public class RepositorioFornecedor
     {
         Fornecedor Fornecedor = ProcuraFornecedor(id);
         if (Fornecedor != null)
-        {
+        { 
             Console.WriteLine($"Fornecedor ID: {Fornecedor.ID} | Nome: {Fornecedor.Nome} | Email: {Fornecedor.Email} | Telefone: {Fornecedor.Telefone} | Descrição: {Fornecedor.Descricao}");
             Fornecedor.EnderecoDoFornecedor.ListarEndereço();
             Console.WriteLine("-------------------------------------------------------------------");
