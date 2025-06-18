@@ -1,10 +1,12 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using Biblioteca.Repositorio.Vetor;
+using Biblioteca.Repositorios.Interfaces;
 
 namespace ProjetoLoja;
 
-public class RepositorioFornecedor
+public class RepositorioFornecedor : RepositorioBase<Fornecedor>, IRepositorioFornecedor
 {
     private Fornecedor[] TodosFornecedores = new Fornecedor[1];
     private int idFornecedor = 0;
@@ -14,68 +16,19 @@ public class RepositorioFornecedor
         TodosFornecedores[0] = new Fornecedor("Sem Fornecedor", "", "", idFornecedor++);
     }
 
-    protected int ObterId()
+    protected override int ObterId()
     {
         return idFornecedor++;
     }
 
-    public void CadastrarFornecedor(Fornecedor NovoFornecedor)
-    {
-        Fornecedor[] novosFornecedores = new Fornecedor[TodosFornecedores.Length + 1];
-
-        for (int i = 0; i < TodosFornecedores.Length; i++)
-        {
-            novosFornecedores[i] = TodosFornecedores[i];
-        }
-
-        NovoFornecedor.ID = idFornecedor++;
-        novosFornecedores[novosFornecedores.Length - 1] = NovoFornecedor;
-        TodosFornecedores = novosFornecedores;
-    }
-
-    public Fornecedor[] ListarFornecedores()
+    protected override IList<Fornecedor> ObterDados()
     {
         return TodosFornecedores;
     }
 
-    public void RemoverFornecedor(int idRemocao)
-    {
-        Fornecedor[] novosFornecedores = new Fornecedor[TodosFornecedores.Length - 1];
-        int j = 0;
-        for (int i = 0; j < TodosFornecedores.Length; i++, j++)
-        {
-            if (TodosFornecedores[j].ID == idRemocao)
-            {
-                if ((j + 1) < TodosFornecedores.Length)
-                {
-                    novosFornecedores[i] = TodosFornecedores[j + 1];
-                    j++;
-                }
-                else break;
-            }
-            else
-            {
-                novosFornecedores[i] = TodosFornecedores[j];
-            }
-        }
-        TodosFornecedores = novosFornecedores;
-    }
-
-    public Fornecedor ProcuraFornecedor(int id)
-    {
-        for (int i = 0; i < TodosFornecedores.Length; i++)
-        {
-            if (TodosFornecedores[i].ID == id)
-            {
-                return TodosFornecedores[i];
-            }
-        }
-        return null;
-    }
-
     public String ConsultarFornecedor(int id)
     {
-        Fornecedor Fornecedor = ProcuraFornecedor(id);
+        Fornecedor Fornecedor = Procura(id, TodosFornecedores);
         if (Fornecedor.ID == 0)
         {
             return $"Fornecedor ID: {Fornecedor.ID} | Nome: {Fornecedor.Nome} | Email: {Fornecedor.Email} | Telefone: {Fornecedor.Telefone} | Descrição: {Fornecedor.Descricao}";

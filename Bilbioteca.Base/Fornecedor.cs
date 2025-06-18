@@ -1,8 +1,9 @@
 using System;
+using Bilbioteca.Base;
 
 namespace ProjetoLoja;
 
-public class Fornecedor
+public class Fornecedor : IObjetoComId
 {
     public string Nome { get; set; }
     public string Descricao { get; set; }
@@ -11,7 +12,7 @@ public class Fornecedor
     public int ID { get; set; }
 
     public Endereco EnderecoDoFornecedor;
-    
+
     public Fornecedor(string nome, string email, string telefone, int id)
     {
         Nome = nome;
@@ -27,6 +28,11 @@ public class Fornecedor
         Descricao = descricao;
         Telefone = telefone;
         EnderecoDoFornecedor = endereco;
+    }
+
+    public override string ToString()
+    {
+        return $"ID: {ID} | Nome: {Nome}";
     }
     
 

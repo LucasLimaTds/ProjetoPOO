@@ -2,12 +2,11 @@ using System;
 
 namespace Biblioteca.Repositorios.Interfaces;
 
-public interface IRepositorioBase<T>
+public interface IRepositorioBase<T> where T : class
 {
-    int ID { get; set; }
-    void Cadastra(T NovoCadastro, T[] Vetor);
-    IList<T> Listar(T[] Vetor);
+    void Cadastrar(T NovoCadastro, T[] Vetor);
+    IList<T> Listar();
     void Remover(int Id, T[] Vetor);
     T Procura(int Id, T[] Vetor);
-    String Consulta(int Id, T[] Vetor);
+    // String Consulta(int Id, T[] Vetor); //IMPLEMENTAR CASO PRECISE DEPOIS
 }

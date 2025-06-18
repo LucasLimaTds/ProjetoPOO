@@ -381,10 +381,15 @@ public class GerenciadorDeMenus
 
     private void ExibirListaFornecedores()
     {
-        Fornecedor[] TodosFornecedores = GerenciadorDeFornecedor.ListarFornecedores();
+        IList<Fornecedor> TodosFornecedores = GerenciadorDeFornecedor.Listar();
         int i;
         Console.WriteLine("\nFornecedores cadastrados:");
-        for (i = 0; i < TodosFornecedores.Length; i++)
+
+        foreach (var item in TodosFornecedores)
+        {
+            
+        }
+        for (i = 0; i < TodosFornecedores.Count; i++)
         {
             Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
         }

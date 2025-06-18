@@ -1,16 +1,18 @@
 using System;
 using Biblioteca.Repositorios.Interfaces;
+using Bilbioteca.Base;
 
 namespace Biblioteca.Repositorio.Vetor;
 
-public abstract class RepositorioBase<T> : IRepositorioBase<T> where T : IRepositorioBase<T>
+public abstract class RepositorioBase<T> : IRepositorioBase<T> 
+    where T : class, IObjetoComId
 {
-    int IRepositorioBase<T>.ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    //muito ruim assim? Existe modo melhor de fazer? Tem que ter o ID pra poder fazer a pesquisa de remocao e consulta
-
     protected abstract int ObterId();
+    protected abstract IList<T> ObterDados();
 
-    public void Cadastra(T NovoCadastro, T[] Vetor)
+    private T[] Valores = new T[1];
+
+    public void Cadastrar(T NovoCadastro, T[] Vetor)
     {
         if (Vetor[0] == null)
         {
@@ -29,9 +31,9 @@ public abstract class RepositorioBase<T> : IRepositorioBase<T> where T : IReposi
         Vetor = NovoVetor;
     }
 
-    public IList<T> Listar(T[] Vetor)
+    public IList<T> Listar()
     {
-        return Vetor;
+        return ObterDados();
     }
 
     public void Remover(int Id, T[] Vetor)
@@ -66,14 +68,13 @@ public abstract class RepositorioBase<T> : IRepositorioBase<T> where T : IReposi
                 return Vetor[i];
             }
         }
-        return Vetor[0]; //Só pra não ficar dando erro
-        //return null; //erro Tipo T pode não ser nullable
+        return null;
     }
 
-    public String Consulta(int Id, T[] Vetor)
-    {
-        T ObjConsulta = Procura(Id, Vetor);
-        return "";
-        //vale a pena manter isso dentro da interface base, já que sempre vai ter que ser override nos repositorios?
-    }
+    // public String Consulta(int Id, T[] Vetor) //IMPLEMENTAR CASO PRECISE DEPOIS
+    // {
+    //     T ObjConsulta = Procura(Id, Vetor);
+    //     return "";
+    //     //vale a pena manter isso dentro da interface base, já que sempre vai ter que ser override nos repositorios?
+    // }
 }
