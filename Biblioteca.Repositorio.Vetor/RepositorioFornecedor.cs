@@ -68,15 +68,18 @@ public class RepositorioFornecedor
         return null;
     }
 
-    public void ConsultarFornecedor(int id)
+    public String ConsultarFornecedor(int id)
     {
         Fornecedor Fornecedor = ProcuraFornecedor(id);
-        if (Fornecedor != null)
-        { 
-            Console.WriteLine($"Fornecedor ID: {Fornecedor.ID} | Nome: {Fornecedor.Nome} | Email: {Fornecedor.Email} | Telefone: {Fornecedor.Telefone} | Descrição: {Fornecedor.Descricao}");
-            Fornecedor.EnderecoDoFornecedor.ListarEndereço();
-            Console.WriteLine("-------------------------------------------------------------------");
+        if (Fornecedor.ID == 0)
+        {
+            return $"Fornecedor ID: {Fornecedor.ID} | Nome: {Fornecedor.Nome} | Email: {Fornecedor.Email} | Telefone: {Fornecedor.Telefone} | Descrição: {Fornecedor.Descricao}";
         }
+        if (Fornecedor != null)
+        {
+            return $"Fornecedor ID: {Fornecedor.ID} | Nome: {Fornecedor.Nome} | Email: {Fornecedor.Email} | Telefone: {Fornecedor.Telefone} | Descrição: {Fornecedor.Descricao}\nEndereço:  Rua: {Fornecedor.EnderecoDoFornecedor.Rua} | Número: {Fornecedor.EnderecoDoFornecedor.Numero} | Complemento: {Fornecedor.EnderecoDoFornecedor.Complemento} | Bairro: {Fornecedor.EnderecoDoFornecedor.Bairro} | CEP: {Fornecedor.EnderecoDoFornecedor.CEP} | Cidade: {Fornecedor.EnderecoDoFornecedor.Cidade} | Estado: {Fornecedor.EnderecoDoFornecedor.Estado}\n";
+        }
+        return "Não há fornecedores cadastrados!";
     }
 
     public bool VerificaExistenciaFornecedor()

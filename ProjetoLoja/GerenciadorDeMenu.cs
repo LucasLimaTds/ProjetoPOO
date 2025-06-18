@@ -358,7 +358,8 @@ public class GerenciadorDeMenus
                             ExibirListaFornecedores();
                             Console.WriteLine("Digite o ID do fornecedor: ");
                             int idFornecedor = int.Parse(Console.ReadLine());
-                            GerenciadorDeFornecedor.ConsultarFornecedor(idFornecedor);
+                            Console.WriteLine(GerenciadorDeFornecedor.ConsultarFornecedor(idFornecedor));
+                            Console.WriteLine("-------------------------------------------------------------------");
                         }
                         else
                         {
