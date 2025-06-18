@@ -14,6 +14,11 @@ public class RepositorioFornecedor
         TodosFornecedores[0] = new Fornecedor("Sem Fornecedor", "", "", idFornecedor++);
     }
 
+    protected int ObterId()
+    {
+        return idFornecedor++;
+    }
+
     public void CadastrarFornecedor(Fornecedor NovoFornecedor)
     {
         Fornecedor[] novosFornecedores = new Fornecedor[TodosFornecedores.Length + 1];

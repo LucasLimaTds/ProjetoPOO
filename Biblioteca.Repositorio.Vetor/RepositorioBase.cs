@@ -8,6 +8,8 @@ public abstract class RepositorioBase<T> : IRepositorioBase<T> where T : IReposi
     int IRepositorioBase<T>.ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     //muito ruim assim? Existe modo melhor de fazer? Tem que ter o ID pra poder fazer a pesquisa de remocao e consulta
 
+    protected abstract int ObterId();
+
     public void Cadastra(T NovoCadastro, T[] Vetor)
     {
         if (Vetor[0] == null)
@@ -21,8 +23,8 @@ public abstract class RepositorioBase<T> : IRepositorioBase<T> where T : IReposi
         {
             NovoVetor[i] = Vetor[i];
         }
-        
-        //Ver questão dos Ids, já que eles são atribuídos na hora de cadastrar
+
+        NovoCadastro.ID = ObterId();
         NovoVetor[NovoVetor.Length - 1] = NovoCadastro;
         Vetor = NovoVetor;
     }
