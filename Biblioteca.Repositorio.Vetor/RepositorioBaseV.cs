@@ -4,7 +4,7 @@ using Bilbioteca.Base;
 
 namespace Biblioteca.Repositorio.Vetor;
 
-public abstract class RepositorioBase<T> : IRepositorioBase<T> 
+public abstract class RepositorioBaseV<T> : IRepositorioBase<T> 
     where T : class, IObjetoComId
 {
     protected abstract int ObterId();

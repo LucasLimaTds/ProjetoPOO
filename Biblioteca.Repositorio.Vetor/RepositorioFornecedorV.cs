@@ -6,11 +6,11 @@ using Biblioteca.Repositorios.Interfaces;
 
 namespace ProjetoLoja;
 
-public class RepositorioFornecedor : RepositorioBase<Fornecedor>, IRepositorioFornecedor
+public class RepositorioFornecedorV : RepositorioBaseV<Fornecedor>, IRepositorioFornecedor
 {
     private int idFornecedor = 0;
 
-    public RepositorioFornecedor()
+    public RepositorioFornecedorV()
     {
         Valores[0] = new Fornecedor("Sem Fornecedor", "", "", idFornecedor++);
     }

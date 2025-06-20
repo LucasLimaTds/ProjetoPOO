@@ -6,11 +6,11 @@ using Biblioteca.Repositorios.Interfaces;
 
 namespace ProjetoLoja;
 
-public class RepositorioUsuario : RepositorioBase<Usuario>, IRepositorioUsuario
+public class RepositorioUsuarioV : RepositorioBaseV<Usuario>, IRepositorioUsuario
 {
     private int idUsuario = 1;
 
-    public RepositorioUsuario()
+    public RepositorioUsuarioV()
     {
         Valores[0] = new Usuario("AdminMaster", "adminmaster@ucs.br", "Admin", 0, idUsuario++);
     }

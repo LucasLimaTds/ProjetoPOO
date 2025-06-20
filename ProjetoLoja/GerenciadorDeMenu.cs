@@ -2,16 +2,19 @@ using System;
 using System.ComponentModel;
 using System.Security.Principal;
 using ProjetoLoja;
+using Biblioteca.Repositorio.Vetor;
+using Biblioteca.Repositorios.Interfaces;
+
 
 namespace ProjetoLoja;
 
 public class GerenciadorDeMenus//<T> where T : class
 {
 
-    private RepositorioUsuario GerenciadorDeUsuario = new RepositorioUsuario();
-    private RepositorioFornecedor GerenciadorDeFornecedor = new RepositorioFornecedor();
-    private RepositorioProduto GerenciadorDeProduto = new RepositorioProduto();
-    private RepositorioTransportadora GerenciadorDeTransportadora = new RepositorioTransportadora();
+    private IRepositorioUsuario GerenciadorDeUsuario = new RepositorioUsuarioV();
+    private IRepositorioFornecedor GerenciadorDeFornecedor = new RepositorioFornecedorV();
+    private IRepositorioProduto GerenciadorDeProduto = new RepositorioProdutoV();
+    private IRepositorioTransportadora GerenciadorDeTransportadora = new RepositorioTransportadoraV();
 
     public GerenciadorDeMenus()
     {

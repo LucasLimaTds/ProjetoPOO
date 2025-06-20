@@ -6,7 +6,7 @@ using Biblioteca.Repositorios.Interfaces;
 
 namespace ProjetoLoja;
 
-public class RepositorioProduto : RepositorioBase<Produto>, IRepositorioProduto
+public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProduto
 {
     private int idProduto = 1;
 
