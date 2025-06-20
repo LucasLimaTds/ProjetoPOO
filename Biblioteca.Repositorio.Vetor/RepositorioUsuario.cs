@@ -1,26 +1,34 @@
 using System;
+using System.ComponentModel;
+using System.Globalization;
+using Biblioteca.Repositorio.Vetor;
+using Biblioteca.Repositorios.Interfaces;
 
 namespace ProjetoLoja;
 
-public class RepositorioUsuario
+public class RepositorioUsuario : RepositorioBase<Usuario>, IRepositorioUsuario
 {
-    private Usuario[] TodosUsuarios = new Usuario[1];
     private int idUsuario = 1;
 
     public RepositorioUsuario()
     {
-        TodosUsuarios[0] = new Usuario("AdminMaster", "adminmaster@ucs.br", "Admin", 0, idUsuario++);
+        Valores[0] = new Usuario("AdminMaster", "adminmaster@ucs.br", "Admin", 0, idUsuario++);
+    }
+
+    protected override int ObterId()
+    {
+        return idUsuario++;
     }
 
     public int ValidarUsuario(string email, string senha)
     {
-        for (int i = 0; i < TodosUsuarios.Length; i++)
+        for (int i = 0; i < Valores.Length; i++)
         {
-            if (email == TodosUsuarios[i].Email)
+            if (email == Valores[i].Email)
             {
-                if (senha == TodosUsuarios[i].Senha)
+                if (senha == Valores[i].Senha)
                 {
-                    return TodosUsuarios[i].DireitosDeUsuario;
+                    return Valores[i].DireitosDeUsuario;
                 }
                 else
                 {
@@ -33,47 +41,13 @@ public class RepositorioUsuario
 
     public bool VerificaEmailExistente(string email)
     {
-        for (int i = 0; i < TodosUsuarios.Length; i++)
+        for (int i = 0; i < Valores.Length; i++)
         {
-            if (email == TodosUsuarios[i].Email)
+            if (email == Valores[i].Email)
             {
                 return false;
             }
         }
         return true;
-    }
-
-    public void CriarUsuario(Usuario NovoUsuario)
-    {
-        Usuario[] novosUsuarios = new Usuario[TodosUsuarios.Length + 1];
-
-        for (int i = 0; i < TodosUsuarios.Length; i++)
-        {
-            novosUsuarios[i] = TodosUsuarios[i];
-        }
-
-        NovoUsuario.ID = idUsuario++;
-
-        novosUsuarios[novosUsuarios.Length - 1] = NovoUsuario;  
-                                                                                                                                                                    
-        TodosUsuarios = novosUsuarios;
-    }
-
-    public void ListarUsuarios()
-    {
-        int i;
-        Console.WriteLine("\nUsuarios cadastrados:");
-        for (i = 0; i < TodosUsuarios.Length; i++)
-        {
-            if (TodosUsuarios[i].DireitosDeUsuario == 0)
-            {
-                Console.Write("*Administrador | ");
-            }
-            Console.WriteLine($"Usuário ID: {TodosUsuarios[i].ID} | Nome: {TodosUsuarios[i].Nome} | Email: {TodosUsuarios[i].Email} | Telefone: {TodosUsuarios[i].Telefone}");
-            TodosUsuarios[i].EnderecoDoUsuario.ListarEndereço();
-            // TodosUsuarios[i].EnderecoDoUsuario.ToString();
-        }
-
-        Console.WriteLine("-------------------------------------------------------------------");
     }
 }

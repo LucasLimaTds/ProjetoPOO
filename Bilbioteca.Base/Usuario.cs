@@ -7,7 +7,7 @@ public class Usuario : IObjetoComId
 {
     public string Nome { get; set; }
     public string Email { get; set; }
-    public string Telefone{ get; set; }
+    public string Telefone { get; set; }
     public string Senha { get; set; }
     public int DireitosDeUsuario { get; set; }
     public int ID { get; set; }
@@ -31,5 +31,10 @@ public class Usuario : IObjetoComId
         Senha = senha;
         DireitosDeUsuario = direito;
         EnderecoDoUsuario = endereco;
+    }
+    
+    public override string ToString()
+    {
+        return $"ID: {ID} | Nome: {Nome}";
     }
 }

@@ -22,13 +22,12 @@ public class RepositorioTransportadora : RepositorioBase<Transportadora>, IRepos
         {
             return $"Transportadora ID: {Transportadora.ID} | Nome: {Transportadora.Nome} | Preço do km: R$ {Transportadora.PrecoPorKM}";
         }
-        return "daqui entTransportadora não encontrada!";
+        return "Transportadora não encontrada!";
 
     }
 
     public bool VerificaExistenciaTransportadora()
     {
-        Console.WriteLine("id trasnportadora: " + idTransportadora);
         if (idTransportadora > 1)
         {
             return true;

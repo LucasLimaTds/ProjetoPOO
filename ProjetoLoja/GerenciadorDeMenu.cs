@@ -125,8 +125,8 @@ public class GerenciadorDeMenus//<T> where T : class
 
         } while (!testeSenha);        
        
-        GerenciadorDeUsuario.CriarUsuario(new Usuario(novoNome, novoEmail, novoTelefone, novaSenha, 1, CadastroEndereco()));
-        GerenciadorDeUsuario.ListarUsuarios();
+        GerenciadorDeUsuario.Cadastrar(new Usuario(novoNome, novoEmail, novoTelefone, novaSenha, 1, CadastroEndereco()));
+        ExibirListaUsuarios();
         PressioneQualquerTecla();
     }
 
@@ -180,7 +180,7 @@ public class GerenciadorDeMenus//<T> where T : class
             {
                 case 1:
                     {
-                        GerenciadorDeUsuario.ListarUsuarios();
+                        ExibirListaUsuarios();
                         PressioneQualquerTecla();
                         break;
                     }
@@ -211,6 +211,18 @@ public class GerenciadorDeMenus//<T> where T : class
             }
 
         }
+    }
+
+    private void ExibirListaUsuarios()
+    {
+        IList<Usuario> TodosUsuarios = GerenciadorDeUsuario.Listar();
+        Console.WriteLine("\nUsuários cadastrados:");
+
+        foreach (var item in TodosUsuarios)
+        {
+            Console.WriteLine(item.ToString);
+        }
+        Console.WriteLine("-------------------------------------------------------------------");
     }
 
     private void OpcoesDoCadastro()
@@ -386,13 +398,8 @@ public class GerenciadorDeMenus//<T> where T : class
 
         foreach (var item in TodosFornecedores)
         {
-            
+            Console.WriteLine(item.ToString);
         }
-        for (i = 0; i < TodosFornecedores.Count; i++)
-        {
-            Console.WriteLine($"Fornecedor ID: {TodosFornecedores[i].ID} | Nome: {TodosFornecedores[i].Nome}");
-        }
-
         Console.WriteLine("-------------------------------------------------------------------");
     }
 
@@ -619,9 +626,9 @@ public class GerenciadorDeMenus//<T> where T : class
         IList<Produto> TodosProdutos = GerenciadorDeProduto.Listar();
         int i;
         Console.WriteLine("Produtos cadastrados:");
-        for (i = 0; i < TodosProdutos.Count; i++)
+        foreach (var item in TodosProdutos)
         {
-            Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome}");
+            Console.WriteLine(item.ToString);
         }
 
         Console.WriteLine("-------------------------------------------------------------------");
@@ -757,7 +764,6 @@ public class GerenciadorDeMenus//<T> where T : class
                         }
                         else
                         {
-                            Console.WriteLine("Veio do gerenciador");
                             Console.WriteLine("Não há transportadoras cadastradas!");
                             PressioneQualquerTecla();
                         }
@@ -824,9 +830,9 @@ public class GerenciadorDeMenus//<T> where T : class
         IList<Transportadora> TodasTransportadoras = GerenciadorDeTransportadora.Listar();
         int i;
         Console.WriteLine("Transportadoras cadastradas:");
-        for (i = 0; i < TodasTransportadoras.Count; i++)
+        foreach (var item in TodasTransportadoras)
         {
-            Console.WriteLine($"Transportadora ID: {TodasTransportadoras[i].ID} | Nome: {TodasTransportadoras[i].Nome}");
+            Console.WriteLine(item.ToString);
         }
 
         Console.WriteLine("-------------------------------------------------------------------");

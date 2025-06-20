@@ -16,6 +16,7 @@ public abstract class RepositorioBase<T> : IRepositorioBase<T>
         if (Valores[0] == null)
         {
             Valores[0] = NovoCadastro;
+            NovoCadastro.ID = ObterId();
             return;
         }
         T[] NovoVetor = new T[Valores.Length + 1];
