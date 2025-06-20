@@ -5,7 +5,7 @@ using ProjetoLoja;
 
 namespace ProjetoLoja;
 
-public class GerenciadorDeMenus
+public class GerenciadorDeMenus<T> where T : class
 {
 
     private RepositorioUsuario GerenciadorDeUsuario = new RepositorioUsuario();
@@ -76,7 +76,6 @@ public class GerenciadorDeMenus
             PressioneQualquerTecla();
         }
     }
-
     private void CriarUsuario()
     {
         Console.Write("Digite o nome do novo usuário: ");
@@ -328,7 +327,7 @@ public class GerenciadorDeMenus
                             }
                             else
                             {
-                                GerenciadorDeProduto.Remover(idRemocao);
+                                GerenciadorDeProduto.RemocaoDeFornecedor(idRemocao, GerenciadorDeFornecedor.Procura(0));
                                 Fornecedor FornecedorRemocao = GerenciadorDeFornecedor.Procura(idRemocao);
                                 if (FornecedorRemocao != null)
                                 {
@@ -398,15 +397,15 @@ public class GerenciadorDeMenus
     }
 
     //PENSAR EM IMPLEMENTAR DESSA FORMA A LISTAGEM DE CADASTRADOS:
-    // private void ExibirCadastrados(IList<T> valores) //recebe direto o vetor/lista genérico
-    // {
-    //     Console.WriteLine("\nCadastrados:");
-    //     foreach (var item in valores)
-    //     {
-    //        Console.WriteLine($"ID: {item.ID} | Nome: {item.Nome}");
-    //     }
-    //     Console.WriteLine("-------------------------------------------------------------------");
-    // }
+    private void ExibirCadastrados(IList<T> valores) //recebe direto o vetor/lista genérico
+    {
+        Console.WriteLine("\nCadastrados:");
+        foreach (var item in valores)
+        {
+           Console.WriteLine(item.ToString);
+        }
+        Console.WriteLine("-------------------------------------------------------------------");
+    }
 
     private void AlterarFornecedor(Fornecedor FornecedorEditar)
     {

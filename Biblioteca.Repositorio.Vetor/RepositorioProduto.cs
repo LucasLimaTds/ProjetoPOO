@@ -24,6 +24,16 @@ public class RepositorioProduto : RepositorioBase<Produto>, IRepositorioProduto
         }
         return "Produto não encontrado!";
     }
+    public void RemocaoDeFornecedor(int idRemocao, Fornecedor fornecedor)
+    {
+        for (int i = 0; i < Valores.Length; i++)
+        {
+            if (idRemocao == Valores[i].FornecedorDoProduto.ID)
+            {
+                Valores[i].FornecedorDoProduto = fornecedor;
+            }
+        }
+    }
 
     public bool VerificaExistenciaProduto()
     {
