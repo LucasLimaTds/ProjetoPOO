@@ -274,7 +274,7 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Insira o telefone do novo fornecedor: ");
                         string telefoneFornecedor = Console.ReadLine();
 
-                        GerenciadorDeFornecedor.CadastrarFornecedor(new Fornecedor(nome, email, descricao, telefoneFornecedor, CadastroEndereco()));
+                        GerenciadorDeFornecedor.Cadastrar(new Fornecedor(nome, email, descricao, telefoneFornecedor, CadastroEndereco()));
                         ExibirListaFornecedores();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");
@@ -294,7 +294,7 @@ public class GerenciadorDeMenus
                             }
                             else
                             {                                
-                                Fornecedor FornecedorEditar = GerenciadorDeFornecedor.ProcuraFornecedor(id);
+                                Fornecedor FornecedorEditar = GerenciadorDeFornecedor.Procura(id);
                                 if (FornecedorEditar != null)
                                 {
                                     AlterarFornecedor(FornecedorEditar);
@@ -328,11 +328,11 @@ public class GerenciadorDeMenus
                             }
                             else
                             {
-                                GerenciadorDeProduto.RemocaoDeFornecedor(idRemocao, GerenciadorDeFornecedor.ProcuraFornecedor(0));
-                                Fornecedor FornecedorRemocao = GerenciadorDeFornecedor.ProcuraFornecedor(idRemocao);
+                                GerenciadorDeProduto.RemocaoDeFornecedor(idRemocao, GerenciadorDeFornecedor.Procura(0));
+                                Fornecedor FornecedorRemocao = GerenciadorDeFornecedor.Procura(idRemocao);
                                 if (FornecedorRemocao != null)
                                 {
-                                    GerenciadorDeFornecedor.RemoverFornecedor(idRemocao);
+                                    GerenciadorDeFornecedor.Remover(idRemocao);
                                     ExibirListaFornecedores();
                                     Console.WriteLine("Remoção realizada com sucesso!");
                                 }
@@ -520,7 +520,7 @@ public class GerenciadorDeMenus
                         ExibirListaFornecedores();
                         idfornecedor = int.Parse(Console.ReadLine());
 
-                        Fornecedor FornecedorDoProduto = GerenciadorDeFornecedor.ProcuraFornecedor(idfornecedor);
+                        Fornecedor FornecedorDoProduto = GerenciadorDeFornecedor.Procura(idfornecedor);
                         if (FornecedorDoProduto != null)
                         {
                             GerenciadorDeProduto.CadastrarProduto(new Produto(nome, valor, quantidade, FornecedorDoProduto));
@@ -686,7 +686,7 @@ public class GerenciadorDeMenus
                         ExibirListaFornecedores();
                         Console.WriteLine("Insira o ID do novo fornecedor:");
                         novoId = int.Parse(Console.ReadLine());
-                        Fornecedor FornecedorAlterado = GerenciadorDeFornecedor.ProcuraFornecedor(novoId);
+                        Fornecedor FornecedorAlterado = GerenciadorDeFornecedor.Procura(novoId);
                         if (FornecedorAlterado != null)
                         {
                             GerenciadorDeProduto.AlterarFornecedor(FornecedorAlterado, ProdutoAlterado);

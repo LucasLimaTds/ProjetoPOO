@@ -8,64 +8,63 @@ public abstract class RepositorioBase<T> : IRepositorioBase<T>
     where T : class, IObjetoComId
 {
     protected abstract int ObterId();
-    protected abstract IList<T> ObterDados();
 
-    private T[] Valores = new T[1];
+    protected T[] Valores = new T[1];
 
-    public void Cadastrar(T NovoCadastro, T[] Vetor)
+    public void Cadastrar(T NovoCadastro)
     {
-        if (Vetor[0] == null)
+        if (Valores[0] == null)
         {
-            Vetor[0] = NovoCadastro;
+            Valores[0] = NovoCadastro;
             return;
         }
-        T[] NovoVetor = new T[Vetor.Length + 1];
+        T[] NovoVetor = new T[Valores.Length + 1];
 
-        for (int i = 0; i < Vetor.Length; i++)
+        for (int i = 0; i < Valores.Length; i++)
         {
-            NovoVetor[i] = Vetor[i];
+            NovoVetor[i] = Valores[i];
         }
 
         NovoCadastro.ID = ObterId();
         NovoVetor[NovoVetor.Length - 1] = NovoCadastro;
-        Vetor = NovoVetor;
+        Valores = NovoVetor;
     }
 
     public IList<T> Listar()
     {
-        return ObterDados();
+        return Valores;
     }
 
-    public void Remover(int Id, T[] Vetor)
+    public void Remover(int Id)
     {
-        T[] NovoVetor = new T[Vetor.Length - 1];
+        T[] NovoVetor = new T[Valores.Length - 1];
         int j = 0;
-        for (int i = 0; j < Vetor.Length; i++, j++)
+        for (int i = 0; j < Valores.Length; i++, j++)
         {
-            if (Vetor[j].ID == Id)
+            if (Valores[j].ID == Id)
             {
-                if ((j + 1) < Vetor.Length)
+                if ((j + 1) < Valores.Length)
                 {
-                    NovoVetor[i] = Vetor[j + 1];
+                    NovoVetor[i] = Valores[j + 1];
                     j++;
                 }
                 else break;
             }
             else
             {
-                NovoVetor[i] = Vetor[j];
+                NovoVetor[i] = Valores[j];
             }
         }
-        Vetor = NovoVetor;
+        Valores = NovoVetor;
     }
 
-    public T Procura(int Id, T[] Vetor)
+    public T Procura(int Id)
     {
-        for (int i = 0; i < Vetor.Length; i++)
+        for (int i = 0; i < Valores.Length; i++)
         {
-            if (Vetor[i].ID == Id)
+            if (Valores[i].ID == Id)
             {
-                return Vetor[i];
+                return Valores[i];
             }
         }
         return null;

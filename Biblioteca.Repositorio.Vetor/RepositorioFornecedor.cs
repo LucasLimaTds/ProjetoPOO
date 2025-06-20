@@ -8,12 +8,11 @@ namespace ProjetoLoja;
 
 public class RepositorioFornecedor : RepositorioBase<Fornecedor>, IRepositorioFornecedor
 {
-    private Fornecedor[] TodosFornecedores = new Fornecedor[1];
     private int idFornecedor = 0;
 
     public RepositorioFornecedor()
     {
-        TodosFornecedores[0] = new Fornecedor("Sem Fornecedor", "", "", idFornecedor++);
+        Valores[0] = new Fornecedor("Sem Fornecedor", "", "", idFornecedor++);
     }
 
     protected override int ObterId()
@@ -21,14 +20,9 @@ public class RepositorioFornecedor : RepositorioBase<Fornecedor>, IRepositorioFo
         return idFornecedor++;
     }
 
-    protected override IList<Fornecedor> ObterDados()
-    {
-        return TodosFornecedores;
-    }
-
     public String ConsultarFornecedor(int id)
     {
-        Fornecedor Fornecedor = Procura(id, TodosFornecedores);
+        Fornecedor Fornecedor = Procura(id);
         if (Fornecedor.ID == 0)
         {
             return $"Fornecedor ID: {Fornecedor.ID} | Nome: {Fornecedor.Nome} | Email: {Fornecedor.Email} | Telefone: {Fornecedor.Telefone} | Descrição: {Fornecedor.Descricao}";
