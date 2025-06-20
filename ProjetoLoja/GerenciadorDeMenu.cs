@@ -11,13 +11,17 @@ namespace ProjetoLoja;
 public class GerenciadorDeMenus//<T> where T : class
 {
 
-    private IRepositorioUsuario GerenciadorDeUsuario = new RepositorioUsuarioV();
-    private IRepositorioFornecedor GerenciadorDeFornecedor = new RepositorioFornecedorV();
-    private IRepositorioProduto GerenciadorDeProduto = new RepositorioProdutoV();
-    private IRepositorioTransportadora GerenciadorDeTransportadora = new RepositorioTransportadoraV();
-
-    public GerenciadorDeMenus()
+    private IRepositorioUsuario GerenciadorDeUsuario;
+    private IRepositorioFornecedor GerenciadorDeFornecedor;
+    private IRepositorioProduto GerenciadorDeProduto;
+    private IRepositorioTransportadora GerenciadorDeTransportadora;
+    
+    public GerenciadorDeMenus(IRepositorioUsuario GU, IRepositorioFornecedor GF, IRepositorioProduto GP, IRepositorioTransportadora GT)
     {
+        GerenciadorDeUsuario = GU;
+        GerenciadorDeFornecedor = GF;
+        GerenciadorDeProduto = GP;
+        GerenciadorDeTransportadora = GT;
         MenuInicial();
     }
 
