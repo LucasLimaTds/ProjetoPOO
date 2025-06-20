@@ -1,92 +1,28 @@
 using System;
+using System.ComponentModel;
+using System.Globalization;
+using Biblioteca.Repositorio.Vetor;
+using Biblioteca.Repositorios.Interfaces;
 
 namespace ProjetoLoja;
 
-public class RepositorioProduto
+public class RepositorioProduto : RepositorioBase<Produto>, IRepositorioProduto
 {
-    private Produto[] TodosProdutos = new Produto[1];
     private int idProduto = 1;
 
-    public void CadastrarProduto(Produto NovoProduto)
+    protected override int ObterId()
     {
-        if (idProduto == 1)
-        {
-
-            NovoProduto.ID = idProduto++;
-            TodosProdutos[0] = NovoProduto;
-            return;
-        }
-        Produto[] novosProdutos = new Produto[TodosProdutos.Length + 1];
-
-        for (int i = 0; i < TodosProdutos.Length; i++)
-        {
-            novosProdutos[i] = TodosProdutos[i];
-        }
-
-        NovoProduto.ID = idProduto++;
-        novosProdutos[novosProdutos.Length - 1] = NovoProduto;
-        TodosProdutos = novosProdutos;
-    }
-
-    public Produto[] ListarProdutos()
-    {
-        return TodosProdutos;
-    }
-
-    public void RemoverProduto(int idRemocao)
-    {
-        Produto[] novosProdutos = new Produto[TodosProdutos.Length - 1];
-        int j = 0;
-        for (int i = 0; j < TodosProdutos.Length; i++, j++)
-        {
-            if (TodosProdutos[j].ID == idRemocao)
-            {
-                if ((j + 1) < TodosProdutos.Length)
-                {
-                    novosProdutos[i] = TodosProdutos[j + 1];
-                    j++;
-                }
-                else break;
-            }
-            else
-            {
-                novosProdutos[i] = TodosProdutos[j];
-            }
-        }
-        TodosProdutos = novosProdutos;
-    }
-
-    public Produto ProcuraProduto(int id)
-    {
-        for (int i = 0; i < TodosProdutos.Length; i++)
-        {
-            if (TodosProdutos[i].ID == id)
-            {
-                return TodosProdutos[i];
-            }
-        }
-        return null;
+        return idProduto++;
     }
 
     public String ConsultarProduto(int id)
     {
-        Produto Produto = ProcuraProduto(id);
+        Produto Produto = Procura(id);
         if (Produto != null)
         {
             return $"Produto ID: {Produto.ID} | Nome: {Produto.Nome} | Preço: R$ {Produto.Valor} | Fornecedor: {Produto.FornecedorDoProduto.Nome}";
         }
         return "Produto não encontrado!";
-    }
-
-    public void RemocaoDeFornecedor(int idRemocao, Fornecedor fornecedor)
-    {
-        for (int i = 0; i < TodosProdutos.Length; i++)
-        {
-            if (idRemocao == TodosProdutos[i].FornecedorDoProduto.ID)
-            {
-                TodosProdutos[i].FornecedorDoProduto = fornecedor;
-            }
-        }
     }
 
     public bool VerificaExistenciaProduto()

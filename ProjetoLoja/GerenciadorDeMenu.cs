@@ -328,7 +328,7 @@ public class GerenciadorDeMenus
                             }
                             else
                             {
-                                GerenciadorDeProduto.RemocaoDeFornecedor(idRemocao, GerenciadorDeFornecedor.Procura(0));
+                                GerenciadorDeProduto.Remover(idRemocao);
                                 Fornecedor FornecedorRemocao = GerenciadorDeFornecedor.Procura(idRemocao);
                                 if (FornecedorRemocao != null)
                                 {
@@ -398,16 +398,13 @@ public class GerenciadorDeMenus
     }
 
     //PENSAR EM IMPLEMENTAR DESSA FORMA A LISTAGEM DE CADASTRADOS:
-    // private void ExibirCadastrados(IList<T> vetor) //recebe direto o vetor/lista genérico
+    // private void ExibirCadastrados(IList<T> valores) //recebe direto o vetor/lista genérico
     // {
-    //     IList<T> TodosFornecedores = dados;
-    //     int i;
     //     Console.WriteLine("\nCadastrados:");
-    //     for (i = 0; i < dados.Length; i++)
+    //     foreach (var item in valores)
     //     {
-    //         Console.WriteLine($"ID: {dados[i].ID} | Nome: {dados[i].Nome}");
+    //        Console.WriteLine($"ID: {item.ID} | Nome: {item.Nome}");
     //     }
-
     //     Console.WriteLine("-------------------------------------------------------------------");
     // }
 
@@ -523,7 +520,7 @@ public class GerenciadorDeMenus
                         Fornecedor FornecedorDoProduto = GerenciadorDeFornecedor.Procura(idfornecedor);
                         if (FornecedorDoProduto != null)
                         {
-                            GerenciadorDeProduto.CadastrarProduto(new Produto(nome, valor, quantidade, FornecedorDoProduto));
+                            GerenciadorDeProduto.Cadastrar(new Produto(nome, valor, quantidade, FornecedorDoProduto));
                             ExibirListaProdutos();
                             Console.WriteLine("Inclusão realizada com sucesso!");
                         }
@@ -543,7 +540,7 @@ public class GerenciadorDeMenus
                             Console.WriteLine("Escolha o produto que deseja editar:");
                             ExibirListaProdutos();
                             int id = int.Parse(Console.ReadLine());
-                            Produto ProdutoEditar = GerenciadorDeProduto.ProcuraProduto(id);
+                            Produto ProdutoEditar = GerenciadorDeProduto.Procura(id);
                             if (ProdutoEditar != null)
                             {
                                 AlterarProduto(ProdutoEditar);
@@ -570,10 +567,10 @@ public class GerenciadorDeMenus
                             ExibirListaProdutos();
                             Console.WriteLine("Insira o ID do produto a ser removido: ");
                             idRemocao = int.Parse(Console.ReadLine());
-                            Produto ProdutoRemover = GerenciadorDeProduto.ProcuraProduto(idRemocao);
+                            Produto ProdutoRemover = GerenciadorDeProduto.Procura(idRemocao);
                             if (ProdutoRemover != null)
                             {
-                                GerenciadorDeProduto.RemoverProduto(idRemocao);
+                                GerenciadorDeProduto.Remover(idRemocao);
                                 ExibirListaProdutos();
                                 Console.WriteLine("Remoção realizada com sucesso!");
                             }
@@ -620,10 +617,10 @@ public class GerenciadorDeMenus
 
     private void ExibirListaProdutos()
     {
-        Produto[] TodosProdutos = GerenciadorDeProduto.ListarProdutos();
+        IList<Produto> TodosProdutos = GerenciadorDeProduto.Listar();
         int i;
         Console.WriteLine("Produtos cadastrados:");
-        for (i = 0; i < TodosProdutos.Length; i++)
+        for (i = 0; i < TodosProdutos.Count; i++)
         {
             Console.WriteLine($"Produto ID: {TodosProdutos[i].ID} | Nome: {TodosProdutos[i].Nome}");
         }
