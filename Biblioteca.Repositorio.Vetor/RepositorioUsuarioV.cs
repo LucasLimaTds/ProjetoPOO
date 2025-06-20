@@ -12,7 +12,7 @@ public class RepositorioUsuarioV : RepositorioBaseV<Usuario>, IRepositorioUsuari
 
     public RepositorioUsuarioV()
     {
-        Valores[0] = new Usuario("AdminMaster", "adminmaster@ucs.br", "Admin", 0, idUsuario++);
+        Valores[0] = new Usuario("AdminMaster", "1", "Admin", 0, idUsuario++);
     }
 
     protected override int ObterId()
