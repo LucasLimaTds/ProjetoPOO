@@ -728,7 +728,7 @@ public class GerenciadorDeMenus<T> where T : class
                         nome = Console.ReadLine();
                         Console.WriteLine("Insira o preço cobrado por Km: ");
                         valor = double.Parse(Console.ReadLine());
-                        GerenciadorDeTransportadora.CadastrarTransportadora(new Transportadora(nome, valor));
+                        GerenciadorDeTransportadora.Cadastrar(new Transportadora(nome, valor));
                         ExibirListaTransportadoras();
 
                         Console.WriteLine("Inclusão realizada com sucesso!");
@@ -742,7 +742,7 @@ public class GerenciadorDeMenus<T> where T : class
                             Console.WriteLine("Escolha a transportadora que deseja editar");
                             ExibirListaTransportadoras();
                             int id = int.Parse(Console.ReadLine());
-                            Transportadora TransportadoraEditada = GerenciadorDeTransportadora.ProcuraTransportadora(id);
+                            Transportadora TransportadoraEditada = GerenciadorDeTransportadora.Procura(id);
 
                             if (TransportadoraEditada != null)
                             {
@@ -770,10 +770,10 @@ public class GerenciadorDeMenus<T> where T : class
                             ExibirListaTransportadoras();
                             Console.WriteLine("Insira o ID da transportadora a ser removida: ");
                             idRemocao = int.Parse(Console.ReadLine());
-                            Transportadora TransportadoraRemover = GerenciadorDeTransportadora.ProcuraTransportadora(idRemocao);
+                            Transportadora TransportadoraRemover = GerenciadorDeTransportadora.Procura(idRemocao);
                             if (TransportadoraRemover != null)
                             {
-                                GerenciadorDeTransportadora.RemoverTransportadora(idRemocao);
+                                GerenciadorDeTransportadora.Remover(idRemocao);
                                 ExibirListaTransportadoras();
                                 Console.WriteLine("Remoção realizada com sucesso!");
                             }
@@ -820,10 +820,10 @@ public class GerenciadorDeMenus<T> where T : class
 
     private void ExibirListaTransportadoras()
     {
-        Transportadora[] TodasTransportadoras = GerenciadorDeTransportadora.ListarTransportadoras();
+        IList<Transportadora> TodasTransportadoras = GerenciadorDeTransportadora.Listar();
         int i;
         Console.WriteLine("Transportadoras cadastradas:");
-        for (i = 0; i < TodasTransportadoras.Length; i++)
+        for (i = 0; i < TodasTransportadoras.Count; i++)
         {
             Console.WriteLine($"Transportadora ID: {TodasTransportadoras[i].ID} | Nome: {TodasTransportadoras[i].Nome}");
         }

@@ -1,8 +1,9 @@
 using System;
+using Bilbioteca.Base;
 
 namespace ProjetoLoja;
 
-public class Usuario
+public class Usuario : IObjetoComId
 {
     public string Nome { get; set; }
     public string Email { get; set; }
