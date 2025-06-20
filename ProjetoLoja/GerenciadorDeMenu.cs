@@ -220,7 +220,7 @@ public class GerenciadorDeMenus//<T> where T : class
 
         foreach (var item in TodosUsuarios)
         {
-            Console.WriteLine(item.ToString);
+            Console.WriteLine(item.ToString());
         }
         Console.WriteLine("-------------------------------------------------------------------");
     }
@@ -398,7 +398,7 @@ public class GerenciadorDeMenus//<T> where T : class
 
         foreach (var item in TodosFornecedores)
         {
-            Console.WriteLine(item.ToString);
+            Console.WriteLine(item.ToString());
         }
         Console.WriteLine("-------------------------------------------------------------------");
     }
@@ -409,7 +409,7 @@ public class GerenciadorDeMenus//<T> where T : class
     //     Console.WriteLine("\nCadastrados:");
     //     foreach (var item in valores)
     //     {
-    //        Console.WriteLine(item.ToString);
+    //        Console.WriteLine(item.ToString());
     //     }
     //     Console.WriteLine("-------------------------------------------------------------------");
     // }
@@ -628,7 +628,7 @@ public class GerenciadorDeMenus//<T> where T : class
         Console.WriteLine("Produtos cadastrados:");
         foreach (var item in TodosProdutos)
         {
-            Console.WriteLine(item.ToString);
+            Console.WriteLine(item.ToString());
         }
 
         Console.WriteLine("-------------------------------------------------------------------");
@@ -832,7 +832,7 @@ public class GerenciadorDeMenus//<T> where T : class
         Console.WriteLine("Transportadoras cadastradas:");
         foreach (var item in TodasTransportadoras)
         {
-            Console.WriteLine(item.ToString);
+            Console.WriteLine(item.ToString());
         }
 
         Console.WriteLine("-------------------------------------------------------------------");
