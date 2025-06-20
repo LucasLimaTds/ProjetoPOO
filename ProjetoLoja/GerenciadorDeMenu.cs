@@ -5,7 +5,7 @@ using ProjetoLoja;
 
 namespace ProjetoLoja;
 
-public class GerenciadorDeMenus<T> where T : class
+public class GerenciadorDeMenus//<T> where T : class
 {
 
     private RepositorioUsuario GerenciadorDeUsuario = new RepositorioUsuario();
@@ -397,15 +397,15 @@ public class GerenciadorDeMenus<T> where T : class
     }
 
     //PENSAR EM IMPLEMENTAR DESSA FORMA A LISTAGEM DE CADASTRADOS:
-    private void ExibirCadastrados(IList<T> valores) //recebe direto o vetor/lista genérico
-    {
-        Console.WriteLine("\nCadastrados:");
-        foreach (var item in valores)
-        {
-           Console.WriteLine(item.ToString);
-        }
-        Console.WriteLine("-------------------------------------------------------------------");
-    }
+    // private void ExibirCadastrados(IList<T> valores) //recebe direto o vetor/lista genérico
+    // {
+    //     Console.WriteLine("\nCadastrados:");
+    //     foreach (var item in valores)
+    //     {
+    //        Console.WriteLine(item.ToString);
+    //     }
+    //     Console.WriteLine("-------------------------------------------------------------------");
+    // }
 
     private void AlterarFornecedor(Fornecedor FornecedorEditar)
     {
@@ -757,6 +757,7 @@ public class GerenciadorDeMenus<T> where T : class
                         }
                         else
                         {
+                            Console.WriteLine("Veio do gerenciador");
                             Console.WriteLine("Não há transportadoras cadastradas!");
                             PressioneQualquerTecla();
                         }
