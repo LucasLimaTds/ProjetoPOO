@@ -12,7 +12,7 @@ public class RepositorioUsuarioV : RepositorioBaseV<Usuario>, IRepositorioUsuari
 
     public RepositorioUsuarioV()
     {
-        Valores[0] = new Usuario("AdminMaster", "1", "Admin", 0, idUsuario++);
+        Valores[0] = new Usuario("1", "Admin", 0, idUsuario++);
     }
 
     protected override int ObterId()
@@ -49,5 +49,15 @@ public class RepositorioUsuarioV : RepositorioBaseV<Usuario>, IRepositorioUsuari
             }
         }
         return true;
+    }
+
+    public void AlterarEmail(String novoEmail, Usuario usuario)
+    {
+        usuario.Email = novoEmail;
+    }
+    
+    public void AlterarSenha (String novoSenha, Usuario usuario)
+    {
+        usuario.Senha = novoSenha;
     }
 }

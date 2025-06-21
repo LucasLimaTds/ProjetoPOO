@@ -9,11 +9,11 @@ int o = int.Parse(Console.ReadLine());
 
 if (o == 1)
 {
-    GerenciadorDeMenus gerenciadorDeMenus = new GerenciadorDeMenus(new RepositorioUsuarioV(), new RepositorioFornecedorV(), new RepositorioProdutoV(), new RepositorioTransportadoraV());
+    GerenciadorDeMenus gerenciadorDeMenus = new GerenciadorDeMenus(new RepositorioUsuarioV(), new RepositorioFornecedorV(), new RepositorioProdutoV(), new RepositorioTransportadoraV(), new RepositorioClienteV());
 }
 else
 {
-    GerenciadorDeMenus gerenciadorDeMenus = new GerenciadorDeMenus(new RepositorioUsuarioL(), new RepositorioFornecedorL(), new RepositorioProdutoL(), new RepositorioTransportadoraL());
+    GerenciadorDeMenus gerenciadorDeMenus = new GerenciadorDeMenus(new RepositorioUsuarioL(), new RepositorioFornecedorL(), new RepositorioProdutoL(), new RepositorioTransportadoraL(), new RepositorioClienteL());
 }
 
 

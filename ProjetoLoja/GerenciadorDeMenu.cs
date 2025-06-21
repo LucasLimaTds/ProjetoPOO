@@ -4,24 +4,27 @@ using System.Security.Principal;
 using ProjetoLoja;
 using Biblioteca.Repositorio.Vetor;
 using Biblioteca.Repositorios.Interfaces;
+using Bilbioteca.Base;
 
 
 namespace ProjetoLoja;
 
-public class GerenciadorDeMenus//<T> where T : class
+public class GerenciadorDeMenus //<T> where T : class
 {
 
     private IRepositorioUsuario GerenciadorDeUsuario;
     private IRepositorioFornecedor GerenciadorDeFornecedor;
     private IRepositorioProduto GerenciadorDeProduto;
     private IRepositorioTransportadora GerenciadorDeTransportadora;
+    private IRepositorioCliente GerenciadorDeCliente;
     
-    public GerenciadorDeMenus(IRepositorioUsuario GU, IRepositorioFornecedor GF, IRepositorioProduto GP, IRepositorioTransportadora GT)
+    public GerenciadorDeMenus(IRepositorioUsuario GU, IRepositorioFornecedor GF, IRepositorioProduto GP, IRepositorioTransportadora GT, IRepositorioCliente GC)
     {
         GerenciadorDeUsuario = GU;
         GerenciadorDeFornecedor = GF;
         GerenciadorDeProduto = GP;
         GerenciadorDeTransportadora = GT;
+        GerenciadorDeCliente = GC;
         MenuInicial();
     }
 
@@ -84,10 +87,18 @@ public class GerenciadorDeMenus//<T> where T : class
         }
     }
     private void CriarUsuario()
-    {
-        Console.Write("Digite o nome do novo usuário: ");
+    {               
+        GerenciadorDeUsuario.Cadastrar(ValidarNovoUsuario(1));
+        Console.Write("Digite o nome do novo cliente: ");
         string novoNome = Console.ReadLine();
+        Console.Write("Digite o telefone do novo cliente: ");
+        string novoTelefone = Console.ReadLine();
+        GerenciadorDeCliente.Cadastrar(new Cliente(novoTelefone, novoNome, CadastroEndereco()));
+        PressioneQualquerTecla();
+    }
 
+    private Usuario ValidarNovoUsuario(int direito)
+    {
         string novoEmail;
         bool testeEmail;
         do
@@ -103,9 +114,6 @@ public class GerenciadorDeMenus//<T> where T : class
             }
 
         } while (!testeEmail);
-        
-        Console.Write("Digite o telefone do novo usuário: ");
-        string novoTelefone = Console.ReadLine();
 
         string novaSenha;
         string confirmarSenha;
@@ -130,11 +138,8 @@ public class GerenciadorDeMenus//<T> where T : class
                 testeSenha = true;
             }
 
-        } while (!testeSenha);        
-       
-        GerenciadorDeUsuario.Cadastrar(new Usuario(novoNome, novoEmail, novoTelefone, novaSenha, 1, CadastroEndereco()));
-        ExibirListaUsuarios();
-        PressioneQualquerTecla();
+        } while (!testeSenha);
+        return new Usuario(novoEmail, novaSenha, direito);
     }
 
     private Endereco CadastroEndereco()
@@ -173,11 +178,10 @@ public class GerenciadorDeMenus//<T> where T : class
             Console.Clear();
             Console.WriteLine("MENU DO ADMINISTRADOR\n");
 
-            Console.WriteLine("[1] - LISTAR USUÁRIOS");
-            Console.WriteLine("[2] - EDITAR USUÁRIOS");
-            Console.WriteLine("[3] - CADASTRO DE FORNECEDORES");
-            Console.WriteLine("[4] - CADASTRO DE PRODUTOS");
-            Console.WriteLine("[5] - CADASTRO DE TRANSPORTADORAS");
+            Console.WriteLine("[1] - CADASTRO DE USUÁRIOS");
+            Console.WriteLine("[2] - CADASTRO DE FORNECEDORES");
+            Console.WriteLine("[3] - CADASTRO DE PRODUTOS");
+            Console.WriteLine("[4] - CADASTRO DE TRANSPORTADORAS");
             Console.WriteLine("[0] - FAZER LOGOUT");
 
             int OpcaoUsuario;
@@ -187,26 +191,20 @@ public class GerenciadorDeMenus//<T> where T : class
             {
                 case 1:
                     {
-                        ExibirListaUsuarios();
-                        PressioneQualquerTecla();
+                        MenuCadastroUsuarios();
                         break;
                     }
                 case 2:
                     {
-                        MenuCadastroUsuarios();
+                        MenuCadastroFornecedores();
                         break;
                     }
                 case 3:
                     {
-                        MenuCadastroFornecedores();
-                        break;
-                    }
-                case 4:
-                    {
                         MenuCadastroProduto();
                         break;
                     }
-                case 5:
+                case 4:
                     {
                         MenuCadastroTransportadora();
                         break;
@@ -241,6 +239,14 @@ public class GerenciadorDeMenus//<T> where T : class
         Console.WriteLine("[0] - VOLTAR AO MENU");
     }
 
+    private void OpcoesDoCadastroDeUsuarios()
+    {
+        Console.WriteLine("[1] - REALIZAR INCLUSÃO DE ADMIN");
+        Console.WriteLine("[2] - REALIZAR ALTERAÇÃO");
+        Console.WriteLine("[3] - CONSULTAR CADASTRADOS");
+        Console.WriteLine("[0] - VOLTAR AO MENU");
+    }
+
     private void MenuCadastroUsuarios()
     {
         while (true)
@@ -248,15 +254,80 @@ public class GerenciadorDeMenus//<T> where T : class
             Console.Clear();
             Console.WriteLine("OPÇÕES DE CADASTRO DE USUÁRIOS:\n");
 
-            OpcoesDoCadastro();
+            OpcoesDoCadastroDeUsuarios();
 
             int OpcaoUsuario = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("SERÁ IMPLEMENTADO NA SEGUNDA PARTE");
-            PressioneQualquerTecla();
-            return;
+            switch (OpcaoUsuario)
+            {
+                case 1:
+                    {
+                        GerenciadorDeUsuario.Cadastrar(ValidarNovoUsuario(0));
+                        break;
+                    }
+                case 2:
+                    {
+                        Console.WriteLine("Escolha o usuário que deseja editar:");
+                        ExibirListaUsuarios();
+                        int id = int.Parse(Console.ReadLine());
+                        Usuario UsuarioEditar = GerenciadorDeUsuario.Procura(id);
+                        if (UsuarioEditar != null)
+                        {
+                            AlterarUsuario(UsuarioEditar);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Usuario não encontrado!");
+                            Console.WriteLine("-------------------------------------------------------------------");
+                            PressioneQualquerTecla();
+                        }
 
-            // CONTINUA
+                        break;
+                    }
+                case 3:
+                    {
+                        ExibirListaUsuarios();
+                        break;
+                    }
+
+            }
+        }
+    }
+
+    private void AlterarUsuario(Usuario UsuarioEditar)
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("OPÇÕES DE ALTERAÇÃO DE USUÁRIO:\n");
+
+            Console.WriteLine("[1] - ALTERAR EMAIL");
+            Console.WriteLine("[2] - ALTERAR SENHA");
+            int opcaoAlteracao = int.Parse(Console.ReadLine());
+            string novoEmail;
+            string novaSenha;
+
+            switch (opcaoAlteracao)
+            {
+                case 1:
+                    {
+                        Console.WriteLine("Insira o novo email:");
+                        novoEmail = Console.ReadLine();
+                        GerenciadorDeUsuario.AlterarEmail(novoEmail, UsuarioEditar);
+                        Console.WriteLine("Email alterado!");
+                        PressioneQualquerTecla();
+                        break;
+                    }
+                case 2:
+                    {
+                        Console.WriteLine("Insira a nova senha:");
+                        novaSenha = Console.ReadLine();
+                        GerenciadorDeUsuario.AlterarEmail(novaSenha, UsuarioEditar);                        
+                        Console.WriteLine("Senha alterada!");
+                        PressioneQualquerTecla();
+                        break;
+                    }
+            }
         }
     }
     
@@ -311,7 +382,7 @@ public class GerenciadorDeMenus//<T> where T : class
                                 Console.WriteLine("Fornecedor padrão do sistema! Impossível alterar");
                             }
                             else
-                            {                                
+                            {
                                 Fornecedor FornecedorEditar = GerenciadorDeFornecedor.Procura(id);
                                 if (FornecedorEditar != null)
                                 {

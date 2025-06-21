@@ -5,36 +5,28 @@ namespace ProjetoLoja;
 
 public class Usuario : IObjetoComId
 {
-    public string Nome { get; set; }
     public string Email { get; set; }
-    public string Telefone { get; set; }
     public string Senha { get; set; }
     public int DireitosDeUsuario { get; set; }
     public int ID { get; set; }
 
-    public Endereco EnderecoDoUsuario;
-
-    public Usuario(string nome, string email, string senha, int direito, int id)
+    public Usuario(string email, string senha, int direito)
     {
-        Nome = nome;
+        Email = email;
+        Senha = senha;
+        DireitosDeUsuario = direito;
+    }
+
+    public Usuario(string email, string senha, int direito, int id)
+    {
         Email = email;
         Senha = senha;
         DireitosDeUsuario = direito;
         ID = id;
     }
-
-    public Usuario(string nome, string email, string telefone, string senha, int direito, Endereco endereco)
-    {
-        Nome = nome;
-        Email = email;
-        Telefone = telefone;
-        Senha = senha;
-        DireitosDeUsuario = direito;
-        EnderecoDoUsuario = endereco;
-    }
     
     public override string ToString()
     {
-        return $"ID: {ID} | Nome: {Nome}";
+        return $"ID: {ID} | Email: {Email}";
     }
 }

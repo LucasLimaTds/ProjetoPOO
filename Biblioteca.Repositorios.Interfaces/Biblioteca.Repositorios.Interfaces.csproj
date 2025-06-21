@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bilbioteca.Base\Bilbioteca.Base.csproj" />
+    <ProjectReference Include="..\ProjetoLoja\ProjetoLoja.csproj" />
   </ItemGroup>
 
 </Project>

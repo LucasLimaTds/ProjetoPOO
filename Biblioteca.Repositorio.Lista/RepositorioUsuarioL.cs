@@ -11,7 +11,7 @@ public class RepositorioUsuarioL : RepositorioBaseL<Usuario>, IRepositorioUsuari
 
     public RepositorioUsuarioL()
     {
-        Valores[0] = new Usuario("AdminMaster", "adminmaster@ucs.br", "Admin", 0, idUsuario++);
+        Valores[0] = new Usuario("adminmaster@ucs.br", "Admin", 0, idUsuario++);
     }
 
     protected override int ObterId()
@@ -48,5 +48,15 @@ public class RepositorioUsuarioL : RepositorioBaseL<Usuario>, IRepositorioUsuari
             }
         }
         return true;
+    }
+
+    public void AlterarEmail(String novoEmail, Usuario usuario)
+    {
+        usuario.Email = novoEmail;
+    }
+    
+    public void AlterarSenha (String novoSenha, Usuario usuario)
+    {
+        usuario.Senha = novoSenha;
     }
 }
