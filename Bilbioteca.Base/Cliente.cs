@@ -10,10 +10,11 @@ public class Cliente : IObjetoComId
     public Endereco EnderecoDoCliente { get; set; }
     public String Telefone;
     public String Nome;
-    public Cliente(String telefone, String nome, Endereco endereco)
+    public Cliente(String telefone, String nome, Endereco endereco, Usuario usuario)
     {
         Telefone = telefone;
         Nome = Nome;
         EnderecoDoCliente = endereco;
+        UsuarioDoCliente = usuario;
     }  
 }

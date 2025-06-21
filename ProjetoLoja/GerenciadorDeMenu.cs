@@ -52,7 +52,7 @@ public class GerenciadorDeMenus //<T> where T : class
                     }
                 case 2:
                     {
-                        CriarUsuario();
+                        CriarCliente();
                         break;
                     }
                 case 0:
@@ -86,14 +86,13 @@ public class GerenciadorDeMenus //<T> where T : class
             PressioneQualquerTecla();
         }
     }
-    private void CriarUsuario()
+    private void CriarCliente()
     {               
-        GerenciadorDeUsuario.Cadastrar(ValidarNovoUsuario(1));
         Console.Write("Digite o nome do novo cliente: ");
         string novoNome = Console.ReadLine();
         Console.Write("Digite o telefone do novo cliente: ");
         string novoTelefone = Console.ReadLine();
-        GerenciadorDeCliente.Cadastrar(new Cliente(novoTelefone, novoNome, CadastroEndereco()));
+        GerenciadorDeCliente.Cadastrar(new Cliente(novoTelefone, novoNome, CadastroEndereco(),ValidarNovoUsuario(1)));
         PressioneQualquerTecla();
     }
 
