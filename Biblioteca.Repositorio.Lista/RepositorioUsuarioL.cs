@@ -11,7 +11,7 @@ public class RepositorioUsuarioL : RepositorioBaseL<Usuario>, IRepositorioUsuari
 
     public RepositorioUsuarioL()
     {
-        Valores[0] = new Usuario("adminmaster@ucs.br", "Admin", 0, idUsuario++);
+        Cadastrar(new Usuario("1", "Admin", 0, idUsuario++)); 
     }
 
     protected override int ObterId()

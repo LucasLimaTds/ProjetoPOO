@@ -3,8 +3,8 @@ using Biblioteca.Repositorios.Interfaces;
 using ProjetoLoja;
 
 Console.WriteLine("Insira a opção de inicialização:");
-Console.WriteLine("[1] - Armazenamento em Vetor");
-Console.WriteLine("[2] - Armazenamento em Lista");
+Console.WriteLine("[1] - ARMAZENAMENTO EM VETOR");
+Console.WriteLine("[2] - ARMAZENAMENTO EM LISTA");
 int o = int.Parse(Console.ReadLine());
 
 if (o == 1)

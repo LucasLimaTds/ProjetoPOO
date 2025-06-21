@@ -8,7 +8,7 @@ public abstract class RepositorioBaseL<T> : IRepositorioBase<T>
     where T : class, IObjetoComId
 {
     protected abstract int ObterId();
-    protected List<T> Valores;
+    protected List<T> Valores = new List<T>();
 
     public void Cadastrar(T NovoCadastro)
     {
