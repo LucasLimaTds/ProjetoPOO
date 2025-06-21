@@ -92,7 +92,8 @@ public class GerenciadorDeMenus //<T> where T : class
         string novoNome = Console.ReadLine();
         Console.Write("Digite o telefone do novo cliente: ");
         string novoTelefone = Console.ReadLine();
-        GerenciadorDeCliente.Cadastrar(new Cliente(novoTelefone, novoNome, CadastroEndereco(),ValidarNovoUsuario(1)));
+        GerenciadorDeUsuario.Cadastrar(ValidarNovoUsuario(1));
+        GerenciadorDeCliente.Cadastrar(new Cliente(novoTelefone, novoNome, CadastroEndereco(),GerenciadorDeUsuario.RetornaUltimo()));
         PressioneQualquerTecla();
     }
 
@@ -262,6 +263,8 @@ public class GerenciadorDeMenus //<T> where T : class
                 case 1:
                     {
                         GerenciadorDeUsuario.Cadastrar(ValidarNovoUsuario(0));
+                        Console.WriteLine("Usuário cadastrado com sucesso!");
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 2:
@@ -286,7 +289,12 @@ public class GerenciadorDeMenus //<T> where T : class
                 case 3:
                     {
                         ExibirListaUsuarios();
+                        PressioneQualquerTecla();
                         break;
+                    }
+                case 0:
+                    {
+                        return;
                     }
 
             }
@@ -302,6 +310,7 @@ public class GerenciadorDeMenus //<T> where T : class
 
             Console.WriteLine("[1] - ALTERAR EMAIL");
             Console.WriteLine("[2] - ALTERAR SENHA");
+            Console.WriteLine("[0] - VOLTAR AO MENU");
             int opcaoAlteracao = int.Parse(Console.ReadLine());
             string novoEmail;
             string novaSenha;
@@ -321,10 +330,14 @@ public class GerenciadorDeMenus //<T> where T : class
                     {
                         Console.WriteLine("Insira a nova senha:");
                         novaSenha = Console.ReadLine();
-                        GerenciadorDeUsuario.AlterarEmail(novaSenha, UsuarioEditar);                        
+                        GerenciadorDeUsuario.AlterarEmail(novaSenha, UsuarioEditar);
                         Console.WriteLine("Senha alterada!");
                         PressioneQualquerTecla();
                         break;
+                    }
+                case 0:
+                    {
+                        return;
                     }
             }
         }

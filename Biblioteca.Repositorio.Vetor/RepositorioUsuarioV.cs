@@ -51,6 +51,11 @@ public class RepositorioUsuarioV : RepositorioBaseV<Usuario>, IRepositorioUsuari
         return true;
     }
 
+    public Usuario RetornaUltimo()
+    {
+        return Valores[Valores.Length - 1];
+    } 
+
     public void AlterarEmail(String novoEmail, Usuario usuario)
     {
         usuario.Email = novoEmail;

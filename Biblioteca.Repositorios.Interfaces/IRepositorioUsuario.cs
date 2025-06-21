@@ -9,4 +9,5 @@ public interface IRepositorioUsuario : IRepositorioBase<Usuario>
     bool VerificaEmailExistente(string email);
     void AlterarEmail(String novoEmail, Usuario usuario);
     void AlterarSenha(String senha, Usuario usuario);
+    Usuario RetornaUltimo();
 }
