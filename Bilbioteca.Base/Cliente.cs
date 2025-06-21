@@ -1,7 +1,7 @@
 using System;
-using ProjetoLoja;
+using Bilbioteca.Base;
 
-namespace Bilbioteca.Base;
+namespace ProjetoLoja;
 
 public class Cliente : IObjetoComId
 {

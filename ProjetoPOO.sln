@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoLoja", "ProjetoLoja\ProjetoLoja.csproj", "{5E4AF785-E7DC-4530-9144-EC255DE2C69D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bilbioteca.Base", "Bilbioteca.Base\Bilbioteca.Base.csproj", "{9D81C3EB-CC05-4AF1-B6DA-935FCE2D9AB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Base", "Bilbioteca.Base\Biblioteca.Base.csproj", "{9D81C3EB-CC05-4AF1-B6DA-935FCE2D9AB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Repositorio.Vetor", "Biblioteca.Repositorio.Vetor\Biblioteca.Repositorio.Vetor.csproj", "{D1FE3A59-B6E2-427B-92D3-1CFDAA51D07A}"
 EndProject

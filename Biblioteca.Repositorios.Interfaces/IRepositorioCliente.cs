@@ -1,5 +1,4 @@
 using System;
-using Bilbioteca.Base;
 using ProjetoLoja;
 
 namespace Biblioteca.Repositorios.Interfaces;
