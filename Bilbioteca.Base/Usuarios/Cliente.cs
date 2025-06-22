@@ -1,4 +1,5 @@
 using System;
+using Biblioteca.Base.EstruturaDaLoja;
 using Bilbioteca.Base;
 
 namespace ProjetoLoja;
@@ -10,6 +11,7 @@ public class Cliente : IObjetoComId
     public Endereco EnderecoDoCliente { get; set; }
     public String Telefone;
     public String Nome;
+    public IList<Pedido> PedidosDoCliente { get; set; }
     public Cliente(String telefone, String nome, Endereco endereco, Usuario usuario)
     {
         Telefone = telefone;
