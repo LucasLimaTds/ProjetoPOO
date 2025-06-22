@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Biblioteca.Repositorios.Interfaces\Biblioteca.Repositorios.Interfaces.csproj" />
-    <ProjectReference Include="..\Bilbioteca.Base\Bilbioteca.Base.csproj" />
+    <ProjectReference Include="..\Bilbioteca.Base\Biblioteca.Base.csproj" />
   </ItemGroup>
 
 </Project>
