@@ -1076,6 +1076,13 @@ public class GerenciadorDeMenus //<T> where T : class
 
             NovoPedido.TransportadoraPedido = TransportadoraSelecionada;
 
+            foreach (var descricaopedido in NovoPedido.ListaDeItens)
+            {
+                Console.WriteLine(descricaopedido.ToString());
+            }
+            Console.WriteLine("-------------------------------------------------------------------");
+            PressioneQualquerTecla();
+
             return;
         }
     }

@@ -10,6 +10,9 @@ public class PedidoItem : IObjetoComId
     public int Quantidade { get; set; }
     public double PrecoTotal { get; set; }
     public Produto ProdutoPedido { get; set; }
-    
-    
+
+    public override string ToString()
+    {
+        return $"Produto: {ProdutoPedido.Nome} | Quantidade: {Quantidade} | Valor uniário: {ProdutoPedido.Valor} | Valor total: {PrecoTotal}";
+    }
 }
