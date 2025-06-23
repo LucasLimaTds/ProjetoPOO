@@ -1065,7 +1065,7 @@ public class GerenciadorDeMenus //<T> where T : class
             IList<Transportadora> SelecionarTRansportadora = GerenciadorDeTransportadora.Listar();
             foreach (var transportadora in SelecionarTRansportadora)
             {
-                Console.WriteLine(transportadora.ToString);
+                Console.WriteLine(transportadora.ToString());
             }
             Console.WriteLine("-------------------------------------------------------------------");
 

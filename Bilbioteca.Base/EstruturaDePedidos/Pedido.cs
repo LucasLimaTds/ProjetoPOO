@@ -14,4 +14,9 @@ public class Pedido : IObjetoComId
     public double PrecoFrete { get; set; }
     public Transportadora TransportadoraPedido { get; set; }
     public IList<PedidoItem> ListaDeItens { get; set; }
+
+    public Pedido()
+    {
+        ListaDeItens = new List<PedidoItem>(); // só consegui fazer uncionar assim. Não sei se é o melhor jeito
+    }
 }
