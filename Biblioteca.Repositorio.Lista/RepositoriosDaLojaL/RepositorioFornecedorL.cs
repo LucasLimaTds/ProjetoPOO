@@ -10,7 +10,7 @@ public class RepositorioFornecedorL : RepositorioBaseL<Fornecedor>, IRepositorio
 
     public RepositorioFornecedorL()
     {
-        Cadastrar(new Fornecedor("Sem Fornecedor", "", "", idFornecedor++));
+        Cadastrar(new Fornecedor("Sem Fornecedor", "", "", idFornecedor));
     }
 
     protected override int ObterId()
