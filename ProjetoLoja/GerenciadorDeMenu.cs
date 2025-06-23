@@ -997,12 +997,12 @@ public class GerenciadorDeMenus //<T> where T : class
             {
                 case 1:
                     {
-                        // CARRINHO DE COMPRAS
+                        CarrinhoDeCompras();
                         break;
                     }
                 case 2:
                     {
-                        // CONSULTAR PEDIDOS
+                        ConsultarPedidos();
                         break;
                     }
                 case 3:
@@ -1016,6 +1016,16 @@ public class GerenciadorDeMenus //<T> where T : class
                     }
             }
         }
+    }
+
+    private void CarrinhoDeCompras()
+    {
+        
+    }
+
+    private void ConsultarPedidos()
+    {
+
     }
 
     private void ConsultarProdutos()
@@ -1075,7 +1085,9 @@ public class GerenciadorDeMenus //<T> where T : class
             Transportadora TransportadoraSelecionada = GerenciadorDeTransportadora.Procura(IdTransportadoraSelecionada);
 
             NovoPedido.TransportadoraPedido = TransportadoraSelecionada;
+            NovoPedido.DataHoraPedido = DateTime.Now;
 
+            Console.WriteLine("\nResumo do seu carrinho:");
             foreach (var descricaopedido in NovoPedido.ListaDeItens)
             {
                 Console.WriteLine(descricaopedido.ToString());
