@@ -11,5 +11,5 @@ public interface IRepositorioProduto : IRepositorioBase<Produto>
     void AlteraNome(string novoNome, Produto ProdutoAlterado);
     void AlterarValor(double novoValor, Produto ProdutoAlterado);
     void AlterarEstoque(int novaQnt, Produto ProdutoAlterado);
-    void AlterarFornecedor(Fornecedor fornecedor, Produto ProdutoAlterado);   
+    void AlterarFornecedor(Fornecedor fornecedor, Produto ProdutoAlterado);
 }

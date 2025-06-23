@@ -17,7 +17,7 @@ public class Transportadora : IObjetoComId
     
     public override string ToString()
     {
-        return $"ID: {ID} | Nome: {Nome}";
+        return $"ID: {ID} | Nome: {Nome} | Preço por km: {PrecoPorKM}";
     }
    
 }

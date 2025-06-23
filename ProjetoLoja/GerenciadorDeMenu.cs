@@ -5,6 +5,7 @@ using ProjetoLoja;
 using Biblioteca.Repositorio.Vetor;
 using Biblioteca.Repositorios.Interfaces;
 using Bilbioteca.Base;
+using Biblioteca.Base.EstruturaDaLoja;
 
 
 namespace ProjetoLoja;
@@ -17,7 +18,7 @@ public class GerenciadorDeMenus //<T> where T : class
     private IRepositorioProduto GerenciadorDeProduto;
     private IRepositorioTransportadora GerenciadorDeTransportadora;
     private IRepositorioCliente GerenciadorDeCliente;
-    
+
     public GerenciadorDeMenus(IRepositorioUsuario GU, IRepositorioFornecedor GF, IRepositorioProduto GP, IRepositorioTransportadora GT, IRepositorioCliente GC)
     {
         GerenciadorDeUsuario = GU;
@@ -29,10 +30,10 @@ public class GerenciadorDeMenus //<T> where T : class
     }
 
     private void MenuInicial()
-    {        
+    {
         while (true)
         {
-            
+
             Console.Clear();
             Console.WriteLine("MENU INICIAL\n");
 
@@ -87,13 +88,13 @@ public class GerenciadorDeMenus //<T> where T : class
         }
     }
     private void CriarCliente()
-    {               
+    {
         GerenciadorDeUsuario.Cadastrar(ValidarNovoUsuario(1));
         Console.Write("Digite o nome do novo cliente: ");
         string novoNome = Console.ReadLine();
         Console.Write("Digite o telefone do novo cliente: ");
         string novoTelefone = Console.ReadLine();
-        GerenciadorDeCliente.Cadastrar(new Cliente(novoTelefone, novoNome, CadastroEndereco(),GerenciadorDeUsuario.RetornaUltimo()));
+        GerenciadorDeCliente.Cadastrar(new Cliente(novoTelefone, novoNome, CadastroEndereco(), GerenciadorDeUsuario.RetornaUltimo()));
         PressioneQualquerTecla();
     }
 
@@ -342,7 +343,7 @@ public class GerenciadorDeMenus //<T> where T : class
             }
         }
     }
-    
+
     private void MenuCadastroFornecedores()
     {
         while (true)
@@ -801,7 +802,7 @@ public class GerenciadorDeMenus //<T> where T : class
             }
         }
     }
-    
+
     private void MenuCadastroTransportadora()
     {
         while (true)
@@ -846,7 +847,7 @@ public class GerenciadorDeMenus //<T> where T : class
                                 AlteraTransportadora(TransportadoraEditada);
                             }
                             else
-                            {                                
+                            {
                                 Console.WriteLine("Transportadora não encontrada!");
                                 Console.WriteLine("-------------------------------------------------------------------");
                                 PressioneQualquerTecla();
@@ -980,6 +981,102 @@ public class GerenciadorDeMenus //<T> where T : class
 
     private void MenuCliente()
     {
-        //aqui terá os menus das opções de clientes
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("MENU DE CLIENTES\n");
+
+            Console.WriteLine("[1] - CARRINHO DE COMPRAS");
+            Console.WriteLine("[2] - CONSULTAR PEDIDOS");
+            Console.WriteLine("[3] - CONSULTAR PRODUTOS");
+            Console.WriteLine("[0] - FAZER LOGOUT");
+
+            int OpcaoCliente = int.Parse(Console.ReadLine());
+
+            switch (OpcaoCliente)
+            {
+                case 1:
+                    {
+                        // CARRINHO DE COMPRAS
+                        break;
+                    }
+                case 2:
+                    {
+                        // CONSULTAR PEDIDOS
+                        break;
+                    }
+                case 3:
+                    {
+                        ConsultarProdutos();
+                        break;
+                    }
+                case 0:
+                    {
+                        return;
+                    }
+            }
+        }
+    }
+
+    private void ConsultarProdutos()
+    {
+        while (true)
+        {
+            Pedido NovoPedido = new Pedido();
+            int OpcaoCarrinho;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("CONSULTA DE PRODUTOS\n");
+                Console.WriteLine("Digite a palavra-chave do produto que deseja consultar:");
+                string ProdutoConsultado = Console.ReadLine();
+
+                IList<Produto> ProdustosFiltrados = GerenciadorDeProduto.Listar().Where(p => p.Nome.Contains(ProdutoConsultado, StringComparison.OrdinalIgnoreCase)).ToArray();
+
+                foreach (var produto in ProdustosFiltrados)
+                {
+                    Console.WriteLine(produto.ToString());
+                }
+                Console.WriteLine("-------------------------------------------------------------------");
+
+                Console.WriteLine("Digite o ID do produto que deseja adicionar ao carrinho:");
+                int IdProdutoSelecionado = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Digite a quantidade que deseja adicionar ao carrinho:");
+                int QntProdutoSelecionado = int.Parse(Console.ReadLine());
+
+                Produto ProdutoPedido = GerenciadorDeProduto.Procura(IdProdutoSelecionado);
+
+                PedidoItem NovoItem = new PedidoItem();
+
+                NovoItem.ProdutoPedido = ProdutoPedido;
+                NovoItem.PrecoTotal = ProdutoPedido.Valor * QntProdutoSelecionado;
+                NovoItem.Quantidade = QntProdutoSelecionado;
+
+                NovoPedido.ListaDeItens.Add(NovoItem);
+
+                Console.WriteLine("[1] - ADICIONAR MAIS ITENS AO CARRINHO");
+                Console.WriteLine("[2] - FINALIZAR CARRINHO");
+                OpcaoCarrinho = int.Parse(Console.ReadLine());
+            } while (OpcaoCarrinho == 1);
+
+            Console.WriteLine("Selecione a transportadora:");
+            IList<Transportadora> SelecionarTRansportadora = GerenciadorDeTransportadora.Listar();
+            foreach (var transportadora in SelecionarTRansportadora)
+            {
+                Console.WriteLine(transportadora.ToString);
+            }
+            Console.WriteLine("-------------------------------------------------------------------");
+
+            Console.WriteLine("Digite o ID da transportadora que deseja utilizar:");
+            int IdTransportadoraSelecionada = int.Parse(Console.ReadLine());
+
+            Transportadora TransportadoraSelecionada = GerenciadorDeTransportadora.Procura(IdTransportadoraSelecionada);
+
+            NovoPedido.TransportadoraPedido = TransportadoraSelecionada;
+
+            return;
+        }
     }
 }
