@@ -23,6 +23,6 @@ public class Pedido : IObjetoComId
 
     public override string ToString()
     {
-        return $"Número: {ID} | Situação: {Situacao} | Data e hora do pedido: {DataHoraEntrega} | Transportadora: {TransportadoraPedido} | Preço do frete: {PrecoFrete}";
+        return $"Número: {ID} | Situação: {Situacao}";
     }
 }

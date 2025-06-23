@@ -1025,7 +1025,9 @@ public class GerenciadorDeMenus //<T> where T : class
 
     private void ConsultarPedidos()
     {
-
+        
+        Console.WriteLine("Digite o número do pedido que deseja consultar:");
+        int Npedido = int.Parse(Console.ReadLine());
     }
 
     private void ConsultarProdutos()
