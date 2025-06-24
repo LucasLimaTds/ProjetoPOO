@@ -1028,9 +1028,15 @@ public class GerenciadorDeMenus //<T> where T : class
 
     private void ConsultarPedidos(Cliente ClienteAtual)
     {
-        
+        Console.Clear();
+        foreach (var pedido in ClienteAtual.PedidosDoCliente)
+        {
+            Console.WriteLine(pedido.ToString());
+        }
+        Console.WriteLine("-------------------------------------------------------------------");
         Console.WriteLine("Digite o número do pedido que deseja consultar:");
         int Npedido = int.Parse(Console.ReadLine());
+        
     }
 
     private void ConsultarProdutos(ref Cliente ClienteAtual)
