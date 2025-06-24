@@ -9,14 +9,15 @@ public class Cliente : IObjetoComId
     public int ID { get; set; }
     public Usuario UsuarioDoCliente { get; set; }
     public Endereco EnderecoDoCliente { get; set; }
-    public String Telefone;
-    public String Nome;
+    public string Telefone;
+    public string Nome;
     public IList<Pedido> PedidosDoCliente { get; set; }
-    public Cliente(String telefone, String nome, Endereco endereco, Usuario usuario)
+    public Cliente(string telefone, string nome, Endereco endereco, Usuario usuario)
     {
         Telefone = telefone;
-        Nome = Nome;
+        Nome = nome;
         EnderecoDoCliente = endereco;
         UsuarioDoCliente = usuario;
+        PedidosDoCliente = new List<Pedido>();
     }  
 }

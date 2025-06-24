@@ -14,4 +14,16 @@ public class RepositorioClienteV : RepositorioBaseV<Cliente>, IRepositorioClient
     {
         return idCliente++;
     }
+
+    public Cliente ProcuraCliente(Usuario usuario)
+    {
+        for (int i = 0; i < Valores.Length; i++)
+        {
+            if (Valores[i].UsuarioDoCliente == usuario)
+            {
+                return Valores[i];
+            }
+        }
+        return null;
+    }
 }

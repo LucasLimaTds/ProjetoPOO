@@ -72,13 +72,15 @@ public class GerenciadorDeMenus //<T> where T : class
         Console.Write("Senha: ");
         string Senha = Console.ReadLine();
 
-        if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha) == 0)
+        Usuario UsuarioAtual = null;
+
+        if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha, ref UsuarioAtual) == 0)
         {
             MenuAdmin(); //mostra as opções para usuarios admin
         }
-        else if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha) == 1)
+        else if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha, ref UsuarioAtual) == 1)
         {
-            MenuCliente(); //mostra opcoes para clientes 
+            MenuCliente(ref UsuarioAtual); //mostra opcoes para clientes 
         }
         else
         {
@@ -979,8 +981,9 @@ public class GerenciadorDeMenus //<T> where T : class
         Console.ReadKey();
     }
 
-    private void MenuCliente()
+    private void MenuCliente(ref Usuario UsuarioAtual)
     {
+        Cliente ClienteAtual = GerenciadorDeCliente.ProcuraCliente(UsuarioAtual);
         while (true)
         {
             Console.Clear();
@@ -997,17 +1000,17 @@ public class GerenciadorDeMenus //<T> where T : class
             {
                 case 1:
                     {
-                        CarrinhoDeCompras();
+                        CarrinhoDeCompras(ref ClienteAtual);
                         break;
                     }
                 case 2:
                     {
-                        ConsultarPedidos();
+                        ConsultarPedidos(ClienteAtual);
                         break;
                     }
                 case 3:
                     {
-                        ConsultarProdutos();
+                        ConsultarProdutos(ref ClienteAtual);
                         break;
                     }
                 case 0:
@@ -1018,19 +1021,19 @@ public class GerenciadorDeMenus //<T> where T : class
         }
     }
 
-    private void CarrinhoDeCompras()
+    private void CarrinhoDeCompras(ref Cliente ClienteAtual)
     {
         
     }
 
-    private void ConsultarPedidos()
+    private void ConsultarPedidos(Cliente ClienteAtual)
     {
         
         Console.WriteLine("Digite o número do pedido que deseja consultar:");
         int Npedido = int.Parse(Console.ReadLine());
     }
 
-    private void ConsultarProdutos()
+    private void ConsultarProdutos(ref Cliente ClienteAtual)
     {
         while (true)
         {
@@ -1096,6 +1099,8 @@ public class GerenciadorDeMenus //<T> where T : class
             }
             Console.WriteLine("-------------------------------------------------------------------");
             PressioneQualquerTecla();
+
+            ClienteAtual.PedidosDoCliente.Add(NovoPedido);
 
             return;
         }
