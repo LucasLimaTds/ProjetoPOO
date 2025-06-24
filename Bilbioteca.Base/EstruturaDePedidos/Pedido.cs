@@ -6,8 +6,7 @@ namespace Biblioteca.Base.EstruturaDaLoja;
 
 public class Pedido : IObjetoComId
 {
-    public int ID { get; set; }
-    public int NumeroPedido { get; set; }
+    public int ID { get; set; } // Número do pedido
     public DateTime DataHoraPedido { get; set; }
     public DateTime DataHoraEntrega { get; set; }
     public string Situacao { get; set; } // Aberto, finalizado

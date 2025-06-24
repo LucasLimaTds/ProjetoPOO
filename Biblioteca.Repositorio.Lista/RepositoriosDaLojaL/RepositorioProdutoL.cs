@@ -42,6 +42,11 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
         return false;
     }
 
+    public IList<Produto> Filtro(String ProdutoConsultado)
+    {
+        return Listar().Where(p => p.Nome.Contains(ProdutoConsultado, StringComparison.OrdinalIgnoreCase) || p.ID.ToString().Contains(ProdutoConsultado)).ToArray();
+    }
+
     public void AlteraNome(string novoNome, Produto ProdutoAlterado)
     {
         ProdutoAlterado.Nome = novoNome;

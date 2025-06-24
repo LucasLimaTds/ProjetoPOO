@@ -19,6 +19,7 @@ public class GerenciadorDeMenus //<T> where T : class
     private IRepositorioTransportadora GerenciadorDeTransportadora;
     private IRepositorioCliente GerenciadorDeCliente;
 
+
     public GerenciadorDeMenus(IRepositorioUsuario GU, IRepositorioFornecedor GF, IRepositorioProduto GP, IRepositorioTransportadora GT, IRepositorioCliente GC)
     {
         GerenciadorDeUsuario = GU;
@@ -1050,10 +1051,10 @@ public class GerenciadorDeMenus //<T> where T : class
             {
                 Console.Clear();
                 Console.WriteLine("CONSULTA DE PRODUTOS\n");
-                Console.WriteLine("Digite a palavra-chave do produto que deseja consultar:");
+                Console.WriteLine("Digite a palavra-chave ou o código do produto que deseja consultar:");
                 string ProdutoConsultado = Console.ReadLine();
 
-                IList<Produto> ProdustosFiltrados = GerenciadorDeProduto.Listar().Where(p => p.Nome.Contains(ProdutoConsultado, StringComparison.OrdinalIgnoreCase)).ToArray();
+                IList<Produto> ProdustosFiltrados = GerenciadorDeProduto.Filtro(ProdutoConsultado);
 
                 foreach (var produto in ProdustosFiltrados)
                 {
@@ -1069,11 +1070,7 @@ public class GerenciadorDeMenus //<T> where T : class
 
                 Produto ProdutoPedido = GerenciadorDeProduto.Procura(IdProdutoSelecionado);
 
-                PedidoItem NovoItem = new PedidoItem();
-
-                NovoItem.ProdutoPedido = ProdutoPedido;
-                NovoItem.PrecoTotal = ProdutoPedido.Valor * QntProdutoSelecionado;
-                NovoItem.Quantidade = QntProdutoSelecionado;
+                PedidoItem NovoItem = new PedidoItem(QntProdutoSelecionado,ProdutoPedido.Valor * QntProdutoSelecionado, ProdutoPedido);
 
                 NovoPedido.ListaDeItens.Add(NovoItem);
 
@@ -1099,9 +1096,9 @@ public class GerenciadorDeMenus //<T> where T : class
             NovoPedido.DataHoraPedido = DateTime.Now;
 
             Console.WriteLine("\nResumo do seu carrinho:");
-            foreach (var descricaopedido in NovoPedido.ListaDeItens)
+            foreach (var descricaoPedido in NovoPedido.ListaDeItens)
             {
-                Console.WriteLine(descricaopedido.ToString());
+                Console.WriteLine(descricaoPedido.ToString());
             }
             Console.WriteLine("-------------------------------------------------------------------");
             PressioneQualquerTecla();
