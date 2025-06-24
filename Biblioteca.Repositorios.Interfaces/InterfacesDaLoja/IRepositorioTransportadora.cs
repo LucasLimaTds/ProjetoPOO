@@ -5,7 +5,7 @@ namespace Biblioteca.Repositorios.Interfaces;
 
 public interface IRepositorioTransportadora : IRepositorioBase<Transportadora>
 {
-    String ConsultarTransportadora(int id);
+    string ConsultarTransportadora(int id);
     bool VerificaExistenciaTransportadora();
     void AlteraNome(string novoNome, Transportadora TransportadoraEditar);
     void AlteraPrecoPorKm(double novoPreco, Transportadora TransportadoraEditar);

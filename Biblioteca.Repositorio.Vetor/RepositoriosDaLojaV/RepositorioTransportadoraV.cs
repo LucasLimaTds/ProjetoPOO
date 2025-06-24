@@ -15,7 +15,7 @@ public class RepositorioTransportadoraV : RepositorioBaseV<Transportadora>, IRep
         return idTransportadora++;
     }
 
-    public String ConsultarTransportadora(int id)
+    public string ConsultarTransportadora(int id)
     {
         Transportadora Transportadora = Procura(id);
         if (Transportadora != null)

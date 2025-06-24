@@ -9,6 +9,6 @@ public class RepositorioPedidoV : RepositorioBaseV<Pedido>
 
     protected override int ObterId()
     {
-        return IdPedido;
+        return IdPedido++;
     }
 }

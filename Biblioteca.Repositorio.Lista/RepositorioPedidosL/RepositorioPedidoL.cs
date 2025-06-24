@@ -9,6 +9,6 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>
 
     protected override int ObterId()
     {
-        return IdPedido;
+        return IdPedido++;
     }
 }
