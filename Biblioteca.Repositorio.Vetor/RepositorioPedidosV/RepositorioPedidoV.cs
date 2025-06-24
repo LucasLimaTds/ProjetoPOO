@@ -5,7 +5,7 @@ namespace Biblioteca.Repositorio.Vetor.RepositorioPedidosV;
 
 public class RepositorioPedidoV : RepositorioBaseV<Pedido>
 {
-    private int IdPedido;
+    private int IdPedido = 1;
 
     protected override int ObterId()
     {
