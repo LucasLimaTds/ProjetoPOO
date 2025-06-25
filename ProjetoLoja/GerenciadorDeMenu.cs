@@ -249,9 +249,9 @@ public class GerenciadorDeMenus //<T> where T : class
     private void OpcoesDoCadastroDeUsuarios()
     {
         Console.WriteLine("[1] - REALIZAR INCLUSÃO DE ADMIN");
-        Console.WriteLine("[2] - REALIZAR ALTERAÇÃO");
-        Console.WriteLine("[3] - CONSULTAR CADASTRADOS");
-
+        Console.WriteLine("[2] - REALIZAR ALTERAÇÃO DE USUÁRIO");
+        Console.WriteLine("[3] - CONSULTAR USUÁRIOS CADASTRADOS");
+        Console.WriteLine("[4] - ACESSAR PEDIDOS DE CLIENTES");
         Console.WriteLine("[0] - VOLTAR AO MENU");
     }
 
@@ -298,6 +298,11 @@ public class GerenciadorDeMenus //<T> where T : class
                     {
                         ExibirListaUsuarios();
                         PressioneQualquerTecla();
+                        break;
+                    }
+                case 4:
+                    {
+                        AcessarPedidos();
                         break;
                     }
                 case 0:
@@ -349,6 +354,23 @@ public class GerenciadorDeMenus //<T> where T : class
                     }
             }
         }
+    }
+
+    private void AcessarPedidos() 
+    {
+        // Console.WriteLine("[1] - Editar pedido");
+        // Console.WriteLine("[1] - Consultar pedido");
+        // int OpcaoDoUsuario = int.Parse(Console.ReadLine());
+
+        // switch (OpcaoDoUsuario)
+        // {
+        //     case1:
+        // {
+        //     break;
+        // }
+            
+
+        // }
     }
 
     private void MenuCadastroFornecedores()
