@@ -1043,6 +1043,7 @@ public class GerenciadorDeMenus //<T> where T : class
         {
             Console.WriteLine(item.ToString());
         }
+        PressioneQualquerTecla();
     }
 
     private Pedido CriarPedido(Cliente ClienteAtual)

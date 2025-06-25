@@ -4,6 +4,7 @@ using Biblioteca.Repositorio.Vetor.RepositorioPedidosV;
 using Biblioteca.Repositorios.Interfaces;
 using ProjetoLoja;
 
+Console.Clear();
 Console.WriteLine("Insira a opção de inicialização:");
 Console.WriteLine("[1] - ARMAZENAMENTO EM VETOR");
 Console.WriteLine("[2] - ARMAZENAMENTO EM LISTA");
