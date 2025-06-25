@@ -12,11 +12,12 @@ public class Pedido : IObjetoComId
     public string Situacao { get; set; } // Aberto, finalizado
     public double PrecoFrete { get; set; }
     public Transportadora TransportadoraPedido { get; set; }
-    public IList<PedidoItem> ListaDeItens { get; set; }
+    public IList<PedidoItem> Itens { get; set; }
+    public Cliente ClienteDoPedido { get; set; }
 
     public Pedido()
     {
-        ListaDeItens = new List<PedidoItem>(); // só consegui fazer uncionar assim. Não sei se é o melhor jeito
+        Itens = new List<PedidoItem>();
         Situacao = "Aberto";
     }
 

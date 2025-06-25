@@ -19,7 +19,7 @@ public class RepositorioUsuarioL : RepositorioBaseL<Usuario>, IRepositorioUsuari
         return idUsuario++;
     }
 
-    public int ValidarUsuario(string email, string senha, ref Usuario usuario)
+    public int ValidarUsuario(string email, string senha, Usuario usuario)
     {
         for (int i = 0; i < Valores.Count; i++)
         {

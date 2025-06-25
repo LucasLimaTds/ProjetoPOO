@@ -1,9 +1,11 @@
 using System;
 using Biblioteca.Base.EstruturaDaLoja;
+using Biblioteca.Repositorios.Interfaces.InterfacesPedidos;
+using ProjetoLoja;
 
 namespace Biblioteca.Repositorio.Lista.RepositorioPedidosL;
 
-public class RepositorioPedidoL : RepositorioBaseL<Pedido>
+public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
 {
     private int IdPedido = 1;
 
@@ -20,5 +22,18 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>
     protected override int ObterId()
     {
         return IdPedido++;
+    }
+
+    public IList<Pedido> FiltroCliente(Cliente clienteAtual)
+    {
+        IList<Pedido> PedidosDoCliente = new List<Pedido>();
+        for (int i = 0; i < Valores.Count; i++)
+        {
+            if (Valores[i].ClienteDoPedido == clienteAtual)
+            {
+                PedidosDoCliente.Add(Valores[i]);
+            }
+        }
+        return PedidosDoCliente;
     }
 }

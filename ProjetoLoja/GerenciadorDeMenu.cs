@@ -6,6 +6,7 @@ using Biblioteca.Repositorio.Vetor;
 using Biblioteca.Repositorios.Interfaces;
 using Bilbioteca.Base;
 using Biblioteca.Base.EstruturaDaLoja;
+using Biblioteca.Repositorios.Interfaces.InterfacesPedidos;
 
 
 namespace ProjetoLoja;
@@ -18,15 +19,17 @@ public class GerenciadorDeMenus //<T> where T : class
     private IRepositorioProduto GerenciadorDeProduto;
     private IRepositorioTransportadora GerenciadorDeTransportadora;
     private IRepositorioCliente GerenciadorDeCliente;
+    private IRepositorioPedido GerenciadorDePedido;
 
 
-    public GerenciadorDeMenus(IRepositorioUsuario GU, IRepositorioFornecedor GF, IRepositorioProduto GP, IRepositorioTransportadora GT, IRepositorioCliente GC)
+    public GerenciadorDeMenus(IRepositorioUsuario GU, IRepositorioFornecedor GF, IRepositorioProduto GP, IRepositorioTransportadora GT, IRepositorioCliente GC, IRepositorioPedido GPE)
     {
         GerenciadorDeUsuario = GU;
         GerenciadorDeFornecedor = GF;
         GerenciadorDeProduto = GP;
         GerenciadorDeTransportadora = GT;
         GerenciadorDeCliente = GC;
+        GerenciadorDePedido = GPE;
         MenuInicial();
     }
 
@@ -75,13 +78,13 @@ public class GerenciadorDeMenus //<T> where T : class
 
         Usuario UsuarioAtual = null;
 
-        if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha, ref UsuarioAtual) == 0)
+        if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha, UsuarioAtual) == 0)
         {
             MenuAdmin(); //mostra as opções para usuarios admin
         }
-        else if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha, ref UsuarioAtual) == 1)
+        else if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha, UsuarioAtual) == 1)
         {
-            MenuCliente(ref UsuarioAtual); //mostra opcoes para clientes 
+            MenuCliente(UsuarioAtual); //mostra opcoes para clientes 
         }
         else
         {
@@ -248,6 +251,7 @@ public class GerenciadorDeMenus //<T> where T : class
         Console.WriteLine("[1] - REALIZAR INCLUSÃO DE ADMIN");
         Console.WriteLine("[2] - REALIZAR ALTERAÇÃO");
         Console.WriteLine("[3] - CONSULTAR CADASTRADOS");
+
         Console.WriteLine("[0] - VOLTAR AO MENU");
     }
 
@@ -982,7 +986,7 @@ public class GerenciadorDeMenus //<T> where T : class
         Console.ReadKey();
     }
 
-    private void MenuCliente(ref Usuario UsuarioAtual)
+    private void MenuCliente(Usuario UsuarioAtual)
     {
         Cliente ClienteAtual = GerenciadorDeCliente.ProcuraCliente(UsuarioAtual);
         while (true)
@@ -992,7 +996,6 @@ public class GerenciadorDeMenus //<T> where T : class
 
             Console.WriteLine("[1] - CARRINHO DE COMPRAS");
             Console.WriteLine("[2] - CONSULTAR PEDIDOS");
-            Console.WriteLine("[3] - CONSULTAR PRODUTOS");
             Console.WriteLine("[0] - FAZER LOGOUT");
 
             int OpcaoCliente = int.Parse(Console.ReadLine());
@@ -1001,17 +1004,12 @@ public class GerenciadorDeMenus //<T> where T : class
             {
                 case 1:
                     {
-                        CarrinhoDeCompras(ref ClienteAtual);
+                        CarrinhoDeCompras(ClienteAtual);
                         break;
                     }
                 case 2:
                     {
                         ConsultarPedidos(ClienteAtual);
-                        break;
-                    }
-                case 3:
-                    {
-                        ConsultarProdutos(ref ClienteAtual);
                         break;
                     }
                 case 0:
@@ -1022,29 +1020,37 @@ public class GerenciadorDeMenus //<T> where T : class
         }
     }
 
-    private void CarrinhoDeCompras(ref Cliente ClienteAtual)
+    private void CarrinhoDeCompras(Cliente ClienteAtual)
     {
-        
+        //SEPARADO EM DOIS MÉTODOS PRA CASO QUEIRA EDITAR O PEDIDO ANTES DE ENVIAR
+        Pedido NovoPedido = CriarPedido(ClienteAtual);
+        GerenciadorDePedido.Cadastrar(NovoPedido);
     }
 
     private void ConsultarPedidos(Cliente ClienteAtual)
     {
         Console.Clear();
-        foreach (var pedido in ClienteAtual.PedidosDoCliente)
+        IList<Pedido> PedidosDoCliente = GerenciadorDePedido.FiltroCliente(ClienteAtual);
+        foreach (var pedido in PedidosDoCliente)
         {
             Console.WriteLine(pedido.ToString());
         }
         Console.WriteLine("-------------------------------------------------------------------");
         Console.WriteLine("Digite o número do pedido que deseja consultar:");
         int Npedido = int.Parse(Console.ReadLine());
-        
+        Pedido PedidoConsultado = GerenciadorDePedido.Procura(Npedido);
+        foreach (var item in PedidoConsultado.Itens)
+        {
+            Console.WriteLine(item.ToString());
+        }
     }
 
-    private void ConsultarProdutos(ref Cliente ClienteAtual)
+    private Pedido CriarPedido(Cliente ClienteAtual)
     {
         while (true)
         {
             Pedido NovoPedido = new Pedido();
+            NovoPedido.ClienteDoPedido = ClienteAtual;
             int OpcaoCarrinho;
 
             do
@@ -1072,7 +1078,7 @@ public class GerenciadorDeMenus //<T> where T : class
 
                 PedidoItem NovoItem = new PedidoItem(QntProdutoSelecionado,ProdutoPedido.Valor * QntProdutoSelecionado, ProdutoPedido);
 
-                NovoPedido.ListaDeItens.Add(NovoItem);
+                NovoPedido.Itens.Add(NovoItem);
 
                 Console.WriteLine("[1] - ADICIONAR MAIS ITENS AO CARRINHO");
                 Console.WriteLine("[2] - FINALIZAR CARRINHO");
@@ -1096,16 +1102,14 @@ public class GerenciadorDeMenus //<T> where T : class
             NovoPedido.DataHoraPedido = DateTime.Now;
 
             Console.WriteLine("\nResumo do seu carrinho:");
-            foreach (var descricaoPedido in NovoPedido.ListaDeItens)
+            foreach (var descricaoPedido in NovoPedido.Itens)
             {
                 Console.WriteLine(descricaoPedido.ToString());
             }
             Console.WriteLine("-------------------------------------------------------------------");
             PressioneQualquerTecla();
 
-            ClienteAtual.PedidosDoCliente.Add(NovoPedido);
-
-            return;
+            return NovoPedido;
         }
     }
 }
