@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using Biblioteca.Repositorio.Vetor;
 using Biblioteca.Repositorios.Interfaces;
+using System.Text.Json;
 
 namespace ProjetoLoja;
 
@@ -43,7 +44,7 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
         }
         return false; // Não há produtos cadastrados
     }
-    
+
     public IList<Produto> FiltroNomeProduto(String ProdutoConsultado)
     {
         return Listar().Where(p => p.Nome.Contains(ProdutoConsultado, StringComparison.OrdinalIgnoreCase) || p.ID.ToString().Contains(ProdutoConsultado)).ToArray();
@@ -64,5 +65,20 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
     public void AlterarFornecedor(Fornecedor fornecedor, Produto ProdutoAlterado)
     {
         ProdutoAlterado.FornecedorDoProduto = fornecedor;
+    }
+
+    public void SalvaProdutos()
+    {
+        String SalvaJson = JsonSerializer.Serialize(Valores);
+        File.WriteAllText("dados_produtos.json", SalvaJson);
+    }
+
+    public void CarregaProdutos()
+    {
+        String CarregaJson = File.ReadAllText("dados_produtos.json");
+        Produto[] produtos = new Produto[1];
+        if (CarregaJson != null)
+        produtos = JsonSerializer.Deserialize<Produto[]>(CarregaJson);
+        Valores = produtos;
     }
 }

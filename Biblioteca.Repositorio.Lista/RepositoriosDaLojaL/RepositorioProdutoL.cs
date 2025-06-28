@@ -1,6 +1,7 @@
 using System;
 using Biblioteca.Repositorios.Interfaces;
 using ProjetoLoja;
+using System.Text.Json;
 
 namespace Biblioteca.Repositorio.Lista;
 
@@ -62,5 +63,20 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
     public void AlterarFornecedor(Fornecedor fornecedor, Produto ProdutoAlterado)
     {
         ProdutoAlterado.FornecedorDoProduto = fornecedor;
+    }
+
+    public void SalvaProdutos()
+    {
+        String SalvaJson = JsonSerializer.Serialize(Valores);
+        File.WriteAllText("dados_produtos.json", SalvaJson);
+    }
+
+    public void CarregaProdutos()
+    {
+        String CarregaJson = File.ReadAllText("dados_produtos.json");
+        List<Produto> produtos = new List<Produto>();
+        if (CarregaJson != null)
+        produtos = JsonSerializer.Deserialize<List<Produto>>(CarregaJson);
+        Valores = produtos;
     }
 }

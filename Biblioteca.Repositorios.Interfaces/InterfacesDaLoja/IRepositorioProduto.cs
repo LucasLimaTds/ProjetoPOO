@@ -13,4 +13,6 @@ public interface IRepositorioProduto : IRepositorioBase<Produto>
     void AlterarEstoque(int novaQnt, Produto ProdutoAlterado);
     void AlterarFornecedor(Fornecedor fornecedor, Produto ProdutoAlterado);
     IList<Produto> FiltroNomeProduto(String ProdutoConsultado);
+    void SalvaProdutos();
+    void CarregaProdutos();
 }
