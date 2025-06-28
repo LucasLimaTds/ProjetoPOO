@@ -25,13 +25,13 @@ public class GerenciadorDeMenus //<T> where T : class
 
     public GerenciadorDeMenus(IRepositorioUsuario GU, IRepositorioFornecedor GF, IRepositorioProduto GP, IRepositorioTransportadora GT, IRepositorioCliente GC, IRepositorioPedido GPE)
     {
-        CarregaDados();
         GerenciadorDeUsuario = GU;
         GerenciadorDeFornecedor = GF;
         GerenciadorDeProduto = GP;
         GerenciadorDeTransportadora = GT;
         GerenciadorDeCliente = GC;
         GerenciadorDePedido = GPE;
+        //CarregaDados();
         MenuInicial();
     }
 
@@ -64,7 +64,7 @@ public class GerenciadorDeMenus //<T> where T : class
                     }
                 case 0:
                     {
-                        SalvaDados();
+                        //SalvaDados();
                         Environment.Exit(0);
                         break;
                     }
@@ -1184,7 +1184,9 @@ public class GerenciadorDeMenus //<T> where T : class
 
     void CarregaDados()
     {
-        GerenciadorDeProduto.CarregaProdutos();  
+        GerenciadorDeProduto.CarregaProdutos();
+        Console.WriteLine("Dados carregados");
+        PressioneQualquerTecla();
 
         //String CarregaJson = File.ReadAllText("dados_usuarios.json");
         // if (CarregaJson != null)

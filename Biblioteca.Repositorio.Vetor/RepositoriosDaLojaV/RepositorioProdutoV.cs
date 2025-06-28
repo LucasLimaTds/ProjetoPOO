@@ -76,9 +76,7 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
     public void CarregaProdutos()
     {
         String CarregaJson = File.ReadAllText("dados_produtos.json");
-        Produto[] produtos = new Produto[1];
         if (CarregaJson != null)
-        produtos = JsonSerializer.Deserialize<Produto[]>(CarregaJson);
-        Valores = produtos;
+        Valores = JsonSerializer.Deserialize<Produto[]>(CarregaJson);
     }
 }

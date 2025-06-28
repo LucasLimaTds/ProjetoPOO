@@ -11,6 +11,11 @@ public class Produto : IObjetoComId
     public int ID { get; set; }
     public Fornecedor FornecedorDoProduto;
 
+    public Produto()
+    {
+        
+    }
+
     public Produto(string nome, double valor, int quantidade, Fornecedor fornecedor)
     {
         Nome = nome;

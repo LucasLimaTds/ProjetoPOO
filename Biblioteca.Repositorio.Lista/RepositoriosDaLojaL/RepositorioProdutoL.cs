@@ -69,14 +69,32 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
     {
         String SalvaJson = JsonSerializer.Serialize(Valores);
         File.WriteAllText("dados_produtos.json", SalvaJson);
+        SalvaJson = JsonSerializer.Serialize(idProduto);
+        File.WriteAllText("id_produto.json", SalvaJson);
     }
 
     public void CarregaProdutos()
     {
-        String CarregaJson = File.ReadAllText("dados_produtos.json");
-        List<Produto> produtos = new List<Produto>();
-        if (CarregaJson != null)
-        produtos = JsonSerializer.Deserialize<List<Produto>>(CarregaJson);
-        Valores = produtos;
+        if (!File.Exists("dados_produtos.json"))
+        {
+            File.WriteAllText("dados_produtos.json", "[]");
+        }
+        else
+        {
+            String CarregaJson = File.ReadAllText("dados_produtos.json");
+            if (CarregaJson != null)
+            Valores = JsonSerializer.Deserialize<List<Produto>>(CarregaJson);
+        }
+
+        // if (!File.Exists("id_produto.json"))
+        // {
+        //     File.WriteAllText("id_produto.json", "1");
+        // }
+        // else
+        // {
+        //     String CarregaId = File.ReadAllText("id_produto.json");
+        //     if (CarregaId != null)
+        //     idProduto = JsonSerializer.Deserialize<int>(CarregaId);
+        // }
     }
 }
