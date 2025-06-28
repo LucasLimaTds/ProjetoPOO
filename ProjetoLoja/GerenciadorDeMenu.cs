@@ -356,21 +356,31 @@ public class GerenciadorDeMenus //<T> where T : class
         }
     }
 
-    private void AcessarPedidos() 
+    private void AcessarPedidos()
     {
-        // Console.WriteLine("[1] - Editar pedido");
-        // Console.WriteLine("[1] - Consultar pedido");
-        // int OpcaoDoUsuario = int.Parse(Console.ReadLine());
+        Console.WriteLine("[1] - EDITAR PEDIDO");
+        Console.WriteLine("[2] - CONSULTAR PEDIDO");
+        Console.WriteLine("[0] - VOLTAR AO MENU");
+        int OpcaoDoUsuario = int.Parse(Console.ReadLine());
 
-        // switch (OpcaoDoUsuario)
-        // {
-        //     case1:
-        // {
-        //     break;
-        // }
-            
+        switch (OpcaoDoUsuario)
+        {
+            case 1:
+                {
+                    Console.WriteLine("Escolha o pedido a ser editado:");
 
-        // }
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 0:
+                {
+                    return;
+                }
+
+        }
     }
 
     private void MenuCadastroFornecedores()
@@ -1061,6 +1071,7 @@ public class GerenciadorDeMenus //<T> where T : class
         Console.WriteLine("Digite o número do pedido que deseja consultar:");
         int Npedido = int.Parse(Console.ReadLine());
         Pedido PedidoConsultado = GerenciadorDePedido.Procura(Npedido);
+        Console.WriteLine(PedidoConsultado.DetalhesPedido());
         foreach (var item in PedidoConsultado.Itens)
         {
             Console.WriteLine(item.ToString());

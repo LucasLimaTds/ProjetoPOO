@@ -25,4 +25,9 @@ public class Pedido : IObjetoComId
     {
         return $"Número: {ID} | Situação: {Situacao}";
     }
+
+    public string DetalhesPedido()
+    {
+        return $"Pedido Número: {ID} | Situação: {Situacao} | Transportadora: {TransportadoraPedido} ";
+    }
 }

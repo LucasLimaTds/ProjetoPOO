@@ -9,6 +9,11 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
 {
     private int IdPedido = 1;
 
+    protected override int ObterId()
+    {
+        return IdPedido++;
+    }
+
     public string ConsultarPedido(int Id)
     {
         Pedido pedido = Procura(Id);
@@ -17,11 +22,6 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
             return $"Número: {pedido.ID} | Situação: {pedido.Situacao} | Transportadora: {pedido.TransportadoraPedido} | Itens: ";
         }
         return "Pedido não encontrado";
-    }
-
-    protected override int ObterId()
-    {
-        return IdPedido++;
     }
 
     public IList<Pedido> FiltroCliente(Cliente clienteAtual)
