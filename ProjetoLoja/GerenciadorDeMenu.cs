@@ -358,29 +358,62 @@ public class GerenciadorDeMenus //<T> where T : class
 
     private void AcessarPedidos()
     {
-        Console.WriteLine("[1] - EDITAR PEDIDO");
-        Console.WriteLine("[2] - CONSULTAR PEDIDO");
-        Console.WriteLine("[0] - VOLTAR AO MENU");
-        int OpcaoDoUsuario = int.Parse(Console.ReadLine());
-
-        switch (OpcaoDoUsuario)
+        
+        Console.Clear();
+        int consultaPedido = 1;
+        do
         {
-            case 1:
-                {
-                    Console.WriteLine("Escolha o pedido a ser editado:");
+            Console.WriteLine("CONSULTAR PEDIDOS:");
+            Console.WriteLine("[1] - POR NÚMERO");
+            Console.WriteLine("[2] - POR DATA DE REALIZACAO"); //FILTRO POR DATA AINDA NAO FUNCIONA
+            int opcaoUsuario = int.Parse(Console.ReadLine());
 
-                    break;
-                }
-            case 2:
+            if (opcaoUsuario == 2)
+            {
+                Console.WriteLine("Digite a data de realização a ser consultada");
+                DateTime dataConsulta = DateTime.Parse(Console.ReadLine());
+                IList<Pedido> pedidosFiltrados = GerenciadorDePedido.FiltroDataRealizacao(dataConsulta);
+                foreach (var pedido in pedidosFiltrados)
                 {
-                    break;
+                    Console.WriteLine(pedido.ToString());
                 }
-            case 0:
-                {
-                    return;
-                }
+            }
 
+            Console.WriteLine("Digite o número do pedido que deseja consultar:");
+            int Npedido = int.Parse(Console.ReadLine());
+            Pedido PedidoConsultado = GerenciadorDePedido.Procura(Npedido);
+            Console.WriteLine(PedidoConsultado.DetalhesPedido());
+            foreach (var item in PedidoConsultado.Itens)
+            {
+                Console.WriteLine(item.ToString()); //AQUI EXIBIR EM MESTRE DETALHE
+            }
+            Console.WriteLine("-------------------------------------------------------------------");
+
+            Console.WriteLine("[1] - CONSULTAR NOVO PEDIDO");
+            Console.WriteLine("[2] - EDITAR O PEDIDO CONSULTADO");
+            Console.WriteLine("[0] - VOLTAR AO MENU");
+            consultaPedido = int.Parse(Console.ReadLine());
+
+            if (consultaPedido == 2)
+            {
+                EditarPedido(PedidoConsultado);
+            }                    
         }
+        while (consultaPedido == 1);
+    }
+
+    private void EditarPedido(Pedido PedidoConsultado)
+    {
+        Console.WriteLine("Escolha a nova situação do pedido:");
+        Console.WriteLine("[1] - Em trânsito");
+        Console.WriteLine("[2] - Entregue");
+        Console.WriteLine("[3] - Cancelado");
+
+        int opcaoSituacao = int.Parse(Console.ReadLine());
+        GerenciadorDePedido.AlterarSituacao(opcaoSituacao, PedidoConsultado);
+        Console.WriteLine("Situação atualizada!");
+        PressioneQualquerTecla();
+        Console.Clear();
     }
 
     private void MenuCadastroFornecedores()
@@ -754,7 +787,6 @@ public class GerenciadorDeMenus //<T> where T : class
     private void ExibirListaProdutos()
     {
         IList<Produto> TodosProdutos = GerenciadorDeProduto.Listar();
-        int i;
         Console.WriteLine("Produtos cadastrados:");
         foreach (var item in TodosProdutos)
         {
@@ -1094,7 +1126,7 @@ public class GerenciadorDeMenus //<T> where T : class
                 Console.WriteLine("Digite a palavra-chave ou o código do produto que deseja consultar:");
                 string ProdutoConsultado = Console.ReadLine();
 
-                IList<Produto> ProdustosFiltrados = GerenciadorDeProduto.Filtro(ProdutoConsultado);
+                IList<Produto> ProdustosFiltrados = GerenciadorDeProduto.FiltroNomeProduto(ProdutoConsultado);
 
                 foreach (var produto in ProdustosFiltrados)
                 {

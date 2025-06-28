@@ -9,6 +9,7 @@ public class Pedido : IObjetoComId
     public int ID { get; set; } // Número do pedido
     public DateTime DataHoraPedido { get; set; }
     public DateTime DataHoraEntrega { get; set; }
+    public DateTime DataHoraCancelamento { get; set; }
     public string Situacao { get; set; } // Aberto, finalizado
     public double PrecoFrete { get; set; }
     public Transportadora TransportadoraPedido { get; set; }
@@ -26,7 +27,7 @@ public class Pedido : IObjetoComId
         return $"Número: {ID} | Situação: {Situacao}";
     }
 
-    public string DetalhesPedido()
+    public string DetalhesPedido() //Lista detalhes da mesma forma que no repositório
     {
         return $"Pedido Número: {ID} | Situação: {Situacao} | Transportadora: {TransportadoraPedido} ";
     }

@@ -44,7 +44,7 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
         return false; // Não há produtos cadastrados
     }
     
-    public IList<Produto> Filtro(String ProdutoConsultado)
+    public IList<Produto> FiltroNomeProduto(String ProdutoConsultado)
     {
         return Listar().Where(p => p.Nome.Contains(ProdutoConsultado, StringComparison.OrdinalIgnoreCase) || p.ID.ToString().Contains(ProdutoConsultado)).ToArray();
     }
