@@ -1090,8 +1090,14 @@ public class GerenciadorDeMenus //<T> where T : class
     private void CarrinhoDeCompras(Cliente ClienteAtual)
     {
         //SEPARADO EM DOIS MÉTODOS PRA CASO QUEIRA EDITAR O PEDIDO ANTES DE ENVIAR
-        Pedido NovoPedido = CriarPedido(ClienteAtual);
+        Pedido NovoPedido = new Pedido();
+        CriarPedido(ClienteAtual, ref NovoPedido);
+        // lógica de edição do carrinho
         GerenciadorDePedido.Cadastrar(NovoPedido);
+        for (int i = 0; i < NovoPedido.Itens.Count; i++)
+        {
+            NovoPedido.Itens[i].ProdutoPedido.QuantidadeEmEstoque -= NovoPedido.Itens[i].Quantidade;
+        }
     }
 
     private void ConsultarPedidos(Cliente ClienteAtual)
@@ -1114,11 +1120,10 @@ public class GerenciadorDeMenus //<T> where T : class
         PressioneQualquerTecla();
     }
 
-    private Pedido CriarPedido(Cliente ClienteAtual)
+    private void CriarPedido(Cliente ClienteAtual, ref Pedido NovoPedido)
     {
         while (true)
         {
-            Pedido NovoPedido = new Pedido();
             NovoPedido.ClienteDoPedido = ClienteAtual;
             int OpcaoCarrinho;
 
@@ -1140,10 +1145,10 @@ public class GerenciadorDeMenus //<T> where T : class
                 Console.WriteLine("Digite o ID do produto que deseja adicionar ao carrinho:");
                 int IdProdutoSelecionado = int.Parse(Console.ReadLine());
 
+                Produto ProdutoPedido = GerenciadorDeProduto.Procura(IdProdutoSelecionado);
+                
                 Console.WriteLine("Digite a quantidade que deseja adicionar ao carrinho:");
                 int QntProdutoSelecionado = int.Parse(Console.ReadLine());
-
-                Produto ProdutoPedido = GerenciadorDeProduto.Procura(IdProdutoSelecionado);
 
                 PedidoItem NovoItem = new PedidoItem(QntProdutoSelecionado, ProdutoPedido.Valor * QntProdutoSelecionado, ProdutoPedido);
 
@@ -1168,17 +1173,25 @@ public class GerenciadorDeMenus //<T> where T : class
             Transportadora TransportadoraSelecionada = GerenciadorDeTransportadora.Procura(IdTransportadoraSelecionada);
 
             NovoPedido.TransportadoraPedido = TransportadoraSelecionada;
+            Console.WriteLine("Digite a quilometragem:");
+            double kms = double.Parse(Console.ReadLine());
+            NovoPedido.PrecoFrete = kms * TransportadoraSelecionada.PrecoPorKM;
+            NovoPedido.PrecoTotal = NovoPedido.PrecoFrete;
+            for (int i = 0; i < NovoPedido.Itens.Count; i++)
+            {
+                NovoPedido.PrecoTotal += NovoPedido.Itens[i].PrecoTotal;
+            }
+
             NovoPedido.DataHoraPedido = DateTime.Now;
 
             Console.WriteLine("\nResumo do seu carrinho:");
+            Console.WriteLine(NovoPedido.DetalhesPedido);
             foreach (var descricaoPedido in NovoPedido.Itens)
             {
                 Console.WriteLine(descricaoPedido.ToString());
             }
             Console.WriteLine("-------------------------------------------------------------------");
             PressioneQualquerTecla();
-
-            return NovoPedido;
         }
     }
 
