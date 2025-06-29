@@ -11,7 +11,12 @@ public class Fornecedor : IObjetoComId
     public string Email { get; set; }
     public int ID { get; set; }
 
-    public Endereco EnderecoDoFornecedor;
+    public Endereco EnderecoDoFornecedor { get; set; }
+
+    public Fornecedor()
+    {
+        
+    }
 
     public Fornecedor(string nome, string email, string telefone, int id)
     {

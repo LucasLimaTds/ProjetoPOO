@@ -9,7 +9,7 @@ public class Produto : IObjetoComId
     public double Valor { get; set; }
     public int QuantidadeEmEstoque { get; set; }
     public int ID { get; set; }
-    public Fornecedor FornecedorDoProduto;
+    public Fornecedor FornecedorDoProduto { get; set; }
 
     public Produto()
     {

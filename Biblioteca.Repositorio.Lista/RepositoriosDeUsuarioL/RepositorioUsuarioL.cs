@@ -2,6 +2,7 @@ using System;
 using Biblioteca.Repositorios.Interfaces;
 using Bilbioteca.Base;
 using ProjetoLoja;
+using System.Text.Json;
 
 namespace Biblioteca.Repositorio.Lista;
 
@@ -11,7 +12,7 @@ public class RepositorioUsuarioL : RepositorioBaseL<Usuario>, IRepositorioUsuari
 
     public RepositorioUsuarioL()
     {
-        Cadastrar(new Usuario("1", "Admin", 0, idUsuario++)); 
+        Cadastrar(new Usuario("1", "Admin", 0, idUsuario++));
     }
 
     protected override int ObterId()
@@ -53,16 +54,49 @@ public class RepositorioUsuarioL : RepositorioBaseL<Usuario>, IRepositorioUsuari
 
     public Usuario RetornaUltimo()
     {
-        return Valores[Valores.Count-1];
+        return Valores[Valores.Count - 1];
     }
 
     public void AlterarEmail(String novoEmail, Usuario usuario)
     {
         usuario.Email = novoEmail;
     }
-    
-    public void AlterarSenha (String novoSenha, Usuario usuario)
+
+    public void AlterarSenha(String novoSenha, Usuario usuario)
     {
         usuario.Senha = novoSenha;
+    }
+    
+    public void SalvaUsuarios()
+    {
+        String SalvaJson = JsonSerializer.Serialize(Valores);
+        File.WriteAllText("dados_usuarios.json", SalvaJson);
+        SalvaJson = JsonSerializer.Serialize(idUsuario);
+        File.WriteAllText("id_usuario.json", SalvaJson);
+    }
+
+    public void CarregaUsuarios()
+    {
+        if (!File.Exists("dados_usuarios.json"))
+        {
+            File.WriteAllText("dados_usuarios.json", null);
+        }
+        else
+        {
+            String CarregaJson = File.ReadAllText("dados_usuarios.json");
+            if (CarregaJson != null)
+            Valores = JsonSerializer.Deserialize<List<Usuario>>(CarregaJson);
+        }
+
+        if (!File.Exists("id_usuario.json"))
+        {
+            File.WriteAllText("id_usuario.json", null);
+        }
+        else
+        {
+            String CarregaId = File.ReadAllText("id_usuario.json");
+            if (CarregaId != null)
+            idUsuario = JsonSerializer.Deserialize<int>(CarregaId);
+        }
     }
 }

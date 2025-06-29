@@ -67,16 +67,36 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
         ProdutoAlterado.FornecedorDoProduto = fornecedor;
     }
 
-    public void SalvaProdutos()
+   public void SalvaProdutos()
     {
         String SalvaJson = JsonSerializer.Serialize(Valores);
         File.WriteAllText("dados_produtos.json", SalvaJson);
+        SalvaJson = JsonSerializer.Serialize(idProduto);
+        File.WriteAllText("id_produto.json", SalvaJson);
     }
 
     public void CarregaProdutos()
     {
-        String CarregaJson = File.ReadAllText("dados_produtos.json");
-        if (CarregaJson != null)
-        Valores = JsonSerializer.Deserialize<Produto[]>(CarregaJson);
+        if (!File.Exists("dados_produtos.json"))
+        {
+            File.WriteAllText("dados_produtos.json", null);
+        }
+        else
+        {
+            String CarregaJson = File.ReadAllText("dados_produtos.json");
+            if (CarregaJson != null)
+            Valores = JsonSerializer.Deserialize<Produto[]>(CarregaJson);
+        }
+
+        if (!File.Exists("id_produto.json"))
+        {
+            File.WriteAllText("id_produto.json", null);
+        }
+        else
+        {
+            String CarregaId = File.ReadAllText("id_produto.json");
+            if (CarregaId != null)
+            idProduto = JsonSerializer.Deserialize<int>(CarregaId);
+        }
     }
 }

@@ -10,4 +10,6 @@ public interface IRepositorioUsuario : IRepositorioBase<Usuario>
     void AlterarEmail(String novoEmail, Usuario usuario);
     void AlterarSenha(String senha, Usuario usuario);
     Usuario RetornaUltimo();
+    void SalvaUsuarios();
+    void CarregaUsuarios();
 }

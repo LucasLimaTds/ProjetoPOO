@@ -31,7 +31,7 @@ public class GerenciadorDeMenus //<T> where T : class
         GerenciadorDeTransportadora = GT;
         GerenciadorDeCliente = GC;
         GerenciadorDePedido = GPE;
-        //CarregaDados();
+        CarregaDados();
         MenuInicial();
     }
 
@@ -64,7 +64,7 @@ public class GerenciadorDeMenus //<T> where T : class
                     }
                 case 0:
                     {
-                        //SalvaDados();
+                        SalvaDados();
                         Environment.Exit(0);
                         break;
                     }
@@ -361,7 +361,6 @@ public class GerenciadorDeMenus //<T> where T : class
 
     private void AcessarPedidos()
     {
-
         Console.Clear();
         int consultaPedido = 1;
         do
@@ -385,6 +384,7 @@ public class GerenciadorDeMenus //<T> where T : class
             Console.WriteLine("Digite o número do pedido que deseja consultar:");
             int Npedido = int.Parse(Console.ReadLine());
             Pedido PedidoConsultado = GerenciadorDePedido.Procura(Npedido);
+            Console.WriteLine("-------------------------------------------------------------------");
             Console.WriteLine(PedidoConsultado.DetalhesPedido());
             foreach (var item in PedidoConsultado.Itens)
             {
@@ -1187,37 +1187,15 @@ public class GerenciadorDeMenus //<T> where T : class
         GerenciadorDeProduto.CarregaProdutos();
         Console.WriteLine("Dados carregados");
         PressioneQualquerTecla();
-
-        //String CarregaJson = File.ReadAllText("dados_usuarios.json");
-        // if (CarregaJson != null)
-        // GerenciadorDeUsuario = JsonSerializer.Deserialize<IRepositorioUsuario>(CarregaJson);
-        // CarregaJson = File.ReadAllText("dados_fornecedores.json");
-        // if (CarregaJson != null)
-        // GerenciadorDeFornecedor = JsonSerializer.Deserialize<IRepositorioFornecedor>(CarregaJson);
-        // CarregaJson = File.ReadAllText("dados_transportadoras.json");
-        // if (CarregaJson != null)
-        // GerenciadorDeTransportadora = JsonSerializer.Deserialize<IRepositorioTransportadora>(CarregaJson);
-        // CarregaJson = File.ReadAllText("dados_clientes.json");
-        // if (CarregaJson != null)
-        // GerenciadorDeCliente = JsonSerializer.Deserialize<IRepositorioCliente>(CarregaJson);
-        // CarregaJson = File.ReadAllText("dados_pedidos.json");
-        // if (CarregaJson != null)
-        // GerenciadorDePedido = JsonSerializer.Deserialize<IRepositorioPedido>(CarregaJson);
     }
 
     void SalvaDados()
     {
+        GerenciadorDeUsuario.SalvaUsuarios();
         GerenciadorDeProduto.SalvaProdutos();
-        // String SalvaJson;
-        // SalvaJson = JsonSerializer.Serialize(GerenciadorDeUsuario);
-        // File.WriteAllText("dados_usuarios.json", SalvaJson);
-        // SalvaJson = JsonSerializer.Serialize(GerenciadorDeFornecedor);
-        // File.WriteAllText("dados_fornecedores.json", SalvaJson);
-        // SalvaJson = JsonSerializer.Serialize(GerenciadorDeTransportadora);
-        // File.WriteAllText("dados_transportadoras.json", SalvaJson);
-        // SalvaJson = JsonSerializer.Serialize(GerenciadorDeCliente);
-        // File.WriteAllText("dados_clientes.json", SalvaJson);
-        // SalvaJson = JsonSerializer.Serialize(GerenciadorDePedido);
-        // File.WriteAllText("dados_pedidos.json", SalvaJson);
+        // GerenciadorDeFornecedor.SalvaFornecedores();
+        // GerenciadorDeTransportadora.SalvaTransportadoras();
+        // GerenciadorDeCliente.SalvaClientes();
+        // GerenciadorDePedido.SalvaPedidos();
     }
 }

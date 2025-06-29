@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using Biblioteca.Repositorio.Vetor;
 using Biblioteca.Repositorios.Interfaces;
+using System.Text.Json;
 
 namespace ProjetoLoja;
 
@@ -55,15 +56,48 @@ public class RepositorioUsuarioV : RepositorioBaseV<Usuario>, IRepositorioUsuari
     public Usuario RetornaUltimo()
     {
         return Valores[Valores.Length - 1];
-    } 
+    }
 
     public void AlterarEmail(String novoEmail, Usuario usuario)
     {
         usuario.Email = novoEmail;
     }
-    
-    public void AlterarSenha (String novoSenha, Usuario usuario)
+
+    public void AlterarSenha(String novoSenha, Usuario usuario)
     {
         usuario.Senha = novoSenha;
+    }
+    
+    public void SalvaUsuarios()
+    {
+        String SalvaJson = JsonSerializer.Serialize(Valores);
+        File.WriteAllText("dados_usuarios.json", SalvaJson);
+        SalvaJson = JsonSerializer.Serialize(idUsuario);
+        File.WriteAllText("id_usuario.json", SalvaJson);
+    }
+
+    public void CarregaUsuarios()
+    {
+        if (!File.Exists("dados_usuarios.json"))
+        {
+            File.WriteAllText("dados_usuarios.json", null);
+        }
+        else
+        {
+            String CarregaJson = File.ReadAllText("dados_usuarios.json");
+            if (CarregaJson != null)
+            Valores = JsonSerializer.Deserialize<Usuario[]>(CarregaJson);
+        }
+
+        if (!File.Exists("id_usuario.json"))
+        {
+            File.WriteAllText("id_usuario.json", null);
+        }
+        else
+        {
+            String CarregaId = File.ReadAllText("id_usuario.json");
+            if (CarregaId != null)
+            idUsuario = JsonSerializer.Deserialize<int>(CarregaId);
+        }
     }
 }

@@ -20,6 +20,6 @@ public class PedidoItem : IObjetoComId
 
     public override string ToString()
     {
-        return $"Produto: {ProdutoPedido.Nome} | Quantidade: {Quantidade} | Valor uniário: {ProdutoPedido.Valor} | Valor total: {PrecoTotal}";
+        return $"| Produto: {ProdutoPedido.Nome} | Quantidade: {Quantidade} | Valor uniário: {ProdutoPedido.Valor} | Valor total: {PrecoTotal}";
     }
 }
