@@ -1146,7 +1146,7 @@ public class GerenciadorDeMenus //<T> where T : class
                 int IdProdutoSelecionado = int.Parse(Console.ReadLine());
 
                 Produto ProdutoPedido = GerenciadorDeProduto.Procura(IdProdutoSelecionado);
-                
+
                 Console.WriteLine("Digite a quantidade que deseja adicionar ao carrinho:");
                 int QntProdutoSelecionado = int.Parse(Console.ReadLine());
 
@@ -1185,21 +1185,21 @@ public class GerenciadorDeMenus //<T> where T : class
             NovoPedido.DataHoraPedido = DateTime.Now;
 
             Console.WriteLine("\nResumo do seu carrinho:");
-            Console.WriteLine(NovoPedido.DetalhesPedido);
+            Console.WriteLine(NovoPedido.DetalhesPedido());
             foreach (var descricaoPedido in NovoPedido.Itens)
             {
                 Console.WriteLine(descricaoPedido.ToString());
             }
             Console.WriteLine("-------------------------------------------------------------------");
             PressioneQualquerTecla();
+            return;
         }
     }
 
     void CarregaDados()
     {
+        GerenciadorDeUsuario.CarregaUsuarios();
         GerenciadorDeProduto.CarregaProdutos();
-        Console.WriteLine("Dados carregados");
-        PressioneQualquerTecla();
     }
 
     void SalvaDados()
