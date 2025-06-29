@@ -12,9 +12,8 @@ using System.Text.Json;
 
 namespace ProjetoLoja;
 
-public class GerenciadorDeMenus //<T> where T : class
+public class GerenciadorDeMenus
 {
-
     private IRepositorioUsuario GerenciadorDeUsuario;
     private IRepositorioFornecedor GerenciadorDeFornecedor;
     private IRepositorioProduto GerenciadorDeProduto;
@@ -559,26 +558,13 @@ public class GerenciadorDeMenus //<T> where T : class
     private void ExibirListaFornecedores()
     {
         IList<Fornecedor> TodosFornecedores = GerenciadorDeFornecedor.Listar();
-        int i;
         Console.WriteLine("\nFornecedores cadastrados:");
-
         foreach (var item in TodosFornecedores)
         {
             Console.WriteLine(item.ToString());
         }
         Console.WriteLine("-------------------------------------------------------------------");
     }
-
-    //PENSAR EM IMPLEMENTAR DESSA FORMA A LISTAGEM DE CADASTRADOS:
-    // private void ExibirCadastrados(IList<T> valores) //recebe direto o vetor/lista genérico
-    // {
-    //     Console.WriteLine("\nCadastrados:");
-    //     foreach (var item in valores)
-    //     {
-    //        Console.WriteLine(item.ToString());
-    //     }
-    //     Console.WriteLine("-------------------------------------------------------------------");
-    // }
 
     private void AlterarFornecedor(Fornecedor FornecedorEditar)
     {
