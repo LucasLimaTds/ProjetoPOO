@@ -47,7 +47,7 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
 
     public IList<Produto> FiltroNomeProduto(String ProdutoConsultado)
     {
-        return Listar().Where(p => p.Nome.Contains(ProdutoConsultado, StringComparison.OrdinalIgnoreCase) || p.ID.ToString().Contains(ProdutoConsultado)).ToArray();
+        return Valores.Where(p => p.Nome.Contains(ProdutoConsultado, StringComparison.OrdinalIgnoreCase) || p.ID.ToString().Contains(ProdutoConsultado)).ToArray();
     }
 
     public void AlteraNome(string novoNome, Produto ProdutoAlterado)

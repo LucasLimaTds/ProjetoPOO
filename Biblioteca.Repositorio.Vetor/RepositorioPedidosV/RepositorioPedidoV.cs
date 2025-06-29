@@ -26,29 +26,13 @@ public class RepositorioPedidoV : RepositorioBaseV<Pedido>, IRepositorioPedido
     }
 
     public IList<Pedido> FiltroCliente(Cliente clienteAtual)
-    {
-        IList<Pedido> PedidosDoCliente = new List<Pedido>();
-        for (int i = 0; i < Valores.Length; i++)
-        {
-            if (Valores[i].ClienteDoPedido == clienteAtual)
-            {
-                PedidosDoCliente.Add(Valores[i]);
-            }
-        }
-        return PedidosDoCliente;
+    {        
+        return Valores.Where(p => p.ClienteDoPedido==clienteAtual).ToArray();
     }
 
     public IList<Pedido> FiltroDataRealizacao(DateTime dataConsultada)
     {
-        IList<Pedido> PedidosDoCliente = new List<Pedido>();
-        for (int i = 0; i < Valores.Length; i++)
-        {
-            if (Valores[i].DataHoraPedido == dataConsultada)
-            {
-                PedidosDoCliente.Add(Valores[i]);
-            }
-        }
-        return PedidosDoCliente;
+        return Valores.Where(p => p.DataHoraPedido.Date==dataConsultada.Date).ToArray();
     }
 
     public void AlterarSituacao(int opcaoStatus, Pedido pedidoConsultado)

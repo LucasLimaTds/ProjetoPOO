@@ -368,7 +368,7 @@ public class GerenciadorDeMenus //<T> where T : class
         {
             Console.WriteLine("CONSULTAR PEDIDOS:");
             Console.WriteLine("[1] - POR NÚMERO");
-            Console.WriteLine("[2] - POR DATA DE REALIZACAO"); //FILTRO POR DATA AINDA NAO FUNCIONA
+            Console.WriteLine("[2] - POR DATA DE REALIZACAO");
             int opcaoUsuario = int.Parse(Console.ReadLine());
 
             if (opcaoUsuario == 2)
