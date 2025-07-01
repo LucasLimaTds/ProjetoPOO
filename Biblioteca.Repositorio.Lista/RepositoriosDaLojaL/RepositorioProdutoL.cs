@@ -43,7 +43,7 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
         return false;
     }
 
-    public IList<Produto> FiltroNomeProduto(String ProdutoConsultado)
+    public IList<Produto> FiltroNomeProduto(string ProdutoConsultado)
     {
         return Valores.Where(p => p.Nome.Contains(ProdutoConsultado, StringComparison.OrdinalIgnoreCase) || p.ID.ToString().Contains(ProdutoConsultado)).ToArray();
     }
@@ -67,7 +67,7 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
 
     public void SalvaProdutos()
     {
-        String SalvaJson = JsonSerializer.Serialize(Valores);
+        string SalvaJson = JsonSerializer.Serialize(Valores);
         File.WriteAllText("dados_produtos.json", SalvaJson);
         SalvaJson = JsonSerializer.Serialize(idProduto);
         File.WriteAllText("id_produto.json", SalvaJson);
@@ -81,7 +81,7 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
         }
         else
         {
-            String CarregaJson = File.ReadAllText("dados_produtos.json");
+            string CarregaJson = File.ReadAllText("dados_produtos.json");
             if (CarregaJson != null)
             Valores = JsonSerializer.Deserialize<List<Produto>>(CarregaJson);
         }
@@ -92,7 +92,7 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
         }
         else
         {
-            String CarregaId = File.ReadAllText("id_produto.json");
+            string CarregaId = File.ReadAllText("id_produto.json");
             if (CarregaId != null)
             idProduto = JsonSerializer.Deserialize<int>(CarregaId);
         }

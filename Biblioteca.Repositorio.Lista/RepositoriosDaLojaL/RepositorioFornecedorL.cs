@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using Biblioteca.Repositorios.Interfaces;
 using ProjetoLoja;
 
@@ -63,5 +64,40 @@ public class RepositorioFornecedorL : RepositorioBaseL<Fornecedor>, IRepositorio
     public void AlterarEndereco(Endereco endereco, Fornecedor FornecedorEditar)
     {
         FornecedorEditar.EnderecoDoFornecedor = endereco;
+    }
+    public void SalvaFornecedores()
+    {
+        string SalvaJson = JsonSerializer.Serialize(Valores);
+        File.WriteAllText("dados_fornecedores.json", SalvaJson);
+        SalvaJson = JsonSerializer.Serialize(idFornecedor);
+        File.WriteAllText("id_fornecedor.json", SalvaJson);
+    }
+    public void CarregaFornecedores()
+    {
+        if (!File.Exists("dados_fornecedores.json"))
+        {
+            File.WriteAllText("dados_fornecedores.json", null);
+        }
+        else
+        {
+            string CarregaJson = File.ReadAllText("dados_fornecedores.json");
+            if (CarregaJson != null)
+            {
+                Valores = JsonSerializer.Deserialize<List<Fornecedor>>(CarregaJson);
+            }
+        }
+
+        if (!File.Exists("id_fornecedor.json"))
+        {
+            File.WriteAllText("id_fornecedor.json", null);
+        }
+        else
+        {
+            string CarregaJson = File.ReadAllText("id_fornecedor.json");
+            if (CarregaJson != null)
+            {
+                idFornecedor = JsonSerializer.Deserialize<int>(CarregaJson);
+            }
+        }
     }
 }
