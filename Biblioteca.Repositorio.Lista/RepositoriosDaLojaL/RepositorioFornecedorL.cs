@@ -19,7 +19,7 @@ public class RepositorioFornecedorL : RepositorioBaseL<Fornecedor>, IRepositorio
         return idFornecedor++;
     }
 
-    public String ConsultarFornecedor(int id)
+    public string ConsultarFornecedor(int id)
     {
         Fornecedor Fornecedor = Procura(id);
         if (Fornecedor.ID == 0)

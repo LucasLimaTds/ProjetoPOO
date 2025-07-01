@@ -14,7 +14,7 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
         return idProduto++;
     }
 
-    public String ConsultarProduto(int id)
+    public string ConsultarProduto(int id)
     {
         Produto Produto = Procura(id);
         if (Produto != null)
