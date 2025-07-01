@@ -83,7 +83,9 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
         {
             string CarregaJson = File.ReadAllText("dados_produtos.json");
             if (CarregaJson != null)
-            Valores = JsonSerializer.Deserialize<List<Produto>>(CarregaJson);
+            {
+                Valores = JsonSerializer.Deserialize<List<Produto>>(CarregaJson);
+            }
         }
 
         if (!File.Exists("id_produto.json"))
@@ -94,7 +96,9 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
         {
             string CarregaId = File.ReadAllText("id_produto.json");
             if (CarregaId != null)
-            idProduto = JsonSerializer.Deserialize<int>(CarregaId);
+            {
+                idProduto = JsonSerializer.Deserialize<int>(CarregaId);
+            }
         }
     }
 }

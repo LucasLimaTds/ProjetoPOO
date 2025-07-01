@@ -49,7 +49,7 @@ public class RepositorioTransportadoraV : RepositorioBaseV<Transportadora>, IRep
         string SalvaJson = JsonSerializer.Serialize(Valores);
         File.WriteAllText("dados_transportadoras.json", SalvaJson);
         SalvaJson = JsonSerializer.Serialize(idTransportadora);
-        File.WriteAllText("id_transportadora", SalvaJson);
+        File.WriteAllText("id_transportadora.json", SalvaJson);
     }
     public void CarregaTransportadoras()
     {
@@ -72,7 +72,7 @@ public class RepositorioTransportadoraV : RepositorioBaseV<Transportadora>, IRep
         }
         else
         {
-            string CarregaJson = File.ReadAllText("id_transportadora");
+            string CarregaJson = File.ReadAllText("id_transportadora.json");
             if (CarregaJson != null)
             {
                 idTransportadora = JsonSerializer.Deserialize<int>(CarregaJson);

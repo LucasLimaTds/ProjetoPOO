@@ -85,7 +85,9 @@ public class RepositorioUsuarioL : RepositorioBaseL<Usuario>, IRepositorioUsuari
         {
             string CarregaJson = File.ReadAllText("dados_usuarios.json");
             if (CarregaJson != null)
-            Valores = JsonSerializer.Deserialize<List<Usuario>>(CarregaJson);
+            {
+                Valores = JsonSerializer.Deserialize<List<Usuario>>(CarregaJson);
+            }
         }
 
         if (!File.Exists("id_usuario.json"))
@@ -96,7 +98,9 @@ public class RepositorioUsuarioL : RepositorioBaseL<Usuario>, IRepositorioUsuari
         {
             string CarregaId = File.ReadAllText("id_usuario.json");
             if (CarregaId != null)
-            idUsuario = JsonSerializer.Deserialize<int>(CarregaId);
+            {
+                idUsuario = JsonSerializer.Deserialize<int>(CarregaId);
+            }
         }
     }
 }

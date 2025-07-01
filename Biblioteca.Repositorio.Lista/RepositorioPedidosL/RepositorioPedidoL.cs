@@ -58,7 +58,7 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
         string SalvaJson = JsonSerializer.Serialize(Valores);
         File.WriteAllText("dados_pedidos.json", SalvaJson);
         SalvaJson = JsonSerializer.Serialize(IdPedido);
-        File.WriteAllText("id_pedido", SalvaJson);
+        File.WriteAllText("id_pedido.json", SalvaJson);
     }
     public void CarregaPedidos()
     {
