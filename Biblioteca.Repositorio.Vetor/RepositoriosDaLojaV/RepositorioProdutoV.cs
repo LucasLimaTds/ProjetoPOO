@@ -16,7 +16,7 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
         return idProduto++;
     }
 
-    public String ConsultarProduto(int id)
+    public string ConsultarProduto(int id)
     {
         Produto Produto = Procura(id);
         if (Produto != null)
@@ -45,7 +45,7 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
         return false; // Não há produtos cadastrados
     }
 
-    public IList<Produto> FiltroNomeProduto(String ProdutoConsultado)
+    public IList<Produto> FiltroNomeProduto(string ProdutoConsultado)
     {
         return Valores.Where(p => p.Nome.Contains(ProdutoConsultado, StringComparison.OrdinalIgnoreCase) || p.ID.ToString().Contains(ProdutoConsultado)).ToArray();
     }
@@ -69,7 +69,7 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
 
    public void SalvaProdutos()
     {
-        String SalvaJson = JsonSerializer.Serialize(Valores);
+        string SalvaJson = JsonSerializer.Serialize(Valores);
         File.WriteAllText("dados_produtos.json", SalvaJson);
         SalvaJson = JsonSerializer.Serialize(idProduto);
         File.WriteAllText("id_produto.json", SalvaJson);
@@ -83,9 +83,11 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
         }
         else
         {
-            String CarregaJson = File.ReadAllText("dados_produtos.json");
+            string CarregaJson = File.ReadAllText("dados_produtos.json");
             if (CarregaJson != null)
-            Valores = JsonSerializer.Deserialize<Produto[]>(CarregaJson);
+            {
+                Valores = JsonSerializer.Deserialize<Produto[]>(CarregaJson);                
+            }
         }
 
         if (!File.Exists("id_produto.json"))
@@ -94,9 +96,11 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
         }
         else
         {
-            String CarregaId = File.ReadAllText("id_produto.json");
+            string CarregaId = File.ReadAllText("id_produto.json");
             if (CarregaId != null)
-            idProduto = JsonSerializer.Deserialize<int>(CarregaId);
+            {
+                idProduto = JsonSerializer.Deserialize<int>(CarregaId);
+            }
         }
     }
 }

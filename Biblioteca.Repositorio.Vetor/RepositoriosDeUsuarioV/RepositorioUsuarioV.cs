@@ -58,19 +58,19 @@ public class RepositorioUsuarioV : RepositorioBaseV<Usuario>, IRepositorioUsuari
         return Valores[Valores.Length - 1];
     }
 
-    public void AlterarEmail(String novoEmail, Usuario usuario)
+    public void AlterarEmail(string novoEmail, Usuario usuario)
     {
         usuario.Email = novoEmail;
     }
 
-    public void AlterarSenha(String novoSenha, Usuario usuario)
+    public void AlterarSenha(string novoSenha, Usuario usuario)
     {
         usuario.Senha = novoSenha;
     }
     
     public void SalvaUsuarios()
     {
-        String SalvaJson = JsonSerializer.Serialize(Valores);
+        string SalvaJson = JsonSerializer.Serialize(Valores);
         File.WriteAllText("dados_usuarios.json", SalvaJson);
         SalvaJson = JsonSerializer.Serialize(idUsuario);
         File.WriteAllText("id_usuario.json", SalvaJson);
@@ -84,7 +84,7 @@ public class RepositorioUsuarioV : RepositorioBaseV<Usuario>, IRepositorioUsuari
         }
         else
         {
-            String CarregaJson = File.ReadAllText("dados_usuarios.json");
+            string CarregaJson = File.ReadAllText("dados_usuarios.json");
             if (CarregaJson != null)
             Valores = JsonSerializer.Deserialize<Usuario[]>(CarregaJson);
         }
@@ -95,7 +95,7 @@ public class RepositorioUsuarioV : RepositorioBaseV<Usuario>, IRepositorioUsuari
         }
         else
         {
-            String CarregaId = File.ReadAllText("id_usuario.json");
+            string CarregaId = File.ReadAllText("id_usuario.json");
             if (CarregaId != null)
             idUsuario = JsonSerializer.Deserialize<int>(CarregaId);
         }

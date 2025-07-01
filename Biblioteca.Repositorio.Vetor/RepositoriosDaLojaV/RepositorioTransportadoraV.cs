@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Text.Json;
 using Biblioteca.Repositorio.Vetor;
 using Biblioteca.Repositorios.Interfaces;
 
@@ -42,5 +43,40 @@ public class RepositorioTransportadoraV : RepositorioBaseV<Transportadora>, IRep
     public void AlteraPrecoPorKm(double novoPreco, Transportadora TransportadoraEditar)
     {
         TransportadoraEditar.PrecoPorKM = novoPreco;
+    }
+    public void SalvaTransportadoras()
+    {
+        string SalvaJson = JsonSerializer.Serialize(Valores);
+        File.WriteAllText("dados_transportadoras.json", SalvaJson);
+        SalvaJson = JsonSerializer.Serialize(idTransportadora);
+        File.WriteAllText("id_transportadora", SalvaJson);
+    }
+    public void CarregaTransportadoras()
+    {
+        if (!File.Exists("dados_transportadores.json"))
+        {
+            File.WriteAllText("dados_transportadoras.json", null);
+        }
+        else
+        {
+            string CarregaJson = File.ReadAllText("dados_transportadoras.json");
+            if (CarregaJson != null)
+            {
+                Valores = JsonSerializer.Deserialize<Transportadora[]>(CarregaJson);
+            }
+        }
+
+        if (!File.Exists("id_transportadora.json"))
+        {
+            File.WriteAllText("id_transportadora.json", null);
+        }
+        else
+        {
+            string CarregaJson = File.ReadAllText("id_transportadora");
+            if (CarregaJson != null)
+            {
+                idTransportadora = JsonSerializer.Deserialize<int>(CarregaJson);
+            }
+        }
     }
 }

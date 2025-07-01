@@ -9,4 +9,6 @@ public interface IRepositorioTransportadora : IRepositorioBase<Transportadora>
     bool VerificaExistenciaTransportadora();
     void AlteraNome(string novoNome, Transportadora TransportadoraEditar);
     void AlteraPrecoPorKm(double novoPreco, Transportadora TransportadoraEditar);
+    void SalvaTransportadoras();
+    void CarregaTransportadoras();
 }

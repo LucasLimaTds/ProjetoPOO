@@ -1186,15 +1186,19 @@ public class GerenciadorDeMenus
     {
         GerenciadorDeUsuario.CarregaUsuarios();
         GerenciadorDeProduto.CarregaProdutos();
+        GerenciadorDeFornecedor.CarregaFornecedores();
+        GerenciadorDeTransportadora.CarregaTransportadoras();
+        GerenciadorDeCliente.CarregaClientes();
+        GerenciadorDePedido.CarregaPedidos();
     }
 
     void SalvaDados()
     {
         GerenciadorDeUsuario.SalvaUsuarios();
         GerenciadorDeProduto.SalvaProdutos();
-        // GerenciadorDeFornecedor.SalvaFornecedores();
-        // GerenciadorDeTransportadora.SalvaTransportadoras();
-        // GerenciadorDeCliente.SalvaClientes();
-        // GerenciadorDePedido.SalvaPedidos();
+        GerenciadorDeFornecedor.SalvaFornecedores();
+        GerenciadorDeTransportadora.SalvaTransportadoras();
+        GerenciadorDeCliente.SalvaClientes();
+        GerenciadorDePedido.SalvaPedidos();
     }
 }

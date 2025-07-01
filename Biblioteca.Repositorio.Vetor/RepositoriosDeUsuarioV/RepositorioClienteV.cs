@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Text.Json;
 using Biblioteca.Repositorio.Vetor;
 using Biblioteca.Repositorios.Interfaces;
 using Bilbioteca.Base;
@@ -25,5 +26,40 @@ public class RepositorioClienteV : RepositorioBaseV<Cliente>, IRepositorioClient
             }
         }
         return null;
+    }
+    public void SalvaClientes()
+    {
+        string SalvaJson = JsonSerializer.Serialize(Valores);
+        File.WriteAllText("dados_clientes.json", SalvaJson);
+        SalvaJson = JsonSerializer.Serialize(idCliente);
+        File.WriteAllText("id_cliente.json", SalvaJson);
+    }
+    public void CarregaClientes()
+    {
+        if (!File.Exists("dados_clientes.json"))
+        {
+            File.WriteAllText("dados_clientes.json", null);
+        }
+        else
+        {
+            string CarregaJson = File.ReadAllText("dados_clientes.json");
+            if (CarregaJson != null)
+            {
+                Valores = JsonSerializer.Deserialize<Cliente[]>(CarregaJson);
+            }
+        }
+
+        if (!File.Exists("id_cliente.json"))
+        {
+            File.WriteAllText("id_cliente.json", null);
+        }
+        else
+        {
+            string CarregaJson = File.ReadAllText("id_cliente.json");
+            if (CarregaJson != null)
+            {
+                idCliente = JsonSerializer.Deserialize<int>(CarregaJson);
+            }
+        }
     }
 }
