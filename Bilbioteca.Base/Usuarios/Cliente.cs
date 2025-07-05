@@ -11,6 +11,10 @@ public class Cliente : IObjetoComId
     public Endereco EnderecoDoCliente { get; set; }
     public string Telefone;
     public string Nome;
+    public Cliente()
+    {
+        
+    }
     public Cliente(string telefone, string nome, Endereco endereco, Usuario usuario)
     {
         Telefone = telefone;

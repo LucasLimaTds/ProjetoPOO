@@ -383,14 +383,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("Digite o número do pedido que deseja consultar:");
             int Npedido = int.Parse(Console.ReadLine());
             Pedido PedidoConsultado = GerenciadorDePedido.Procura(Npedido);
-            Console.WriteLine("-------------------------------------------------------------------");
-            Console.WriteLine(PedidoConsultado.DetalhesPedido());
-            foreach (var item in PedidoConsultado.Itens)
-            {
-                Console.WriteLine(item.ToString()); //AQUI EXIBIR EM MESTRE DETALHE
-            }
-            Console.WriteLine("-------------------------------------------------------------------");
-
+            EscreveDetalhesPedido(PedidoConsultado);
             Console.WriteLine("[1] - CONSULTAR NOVO PEDIDO");
             Console.WriteLine("[2] - EDITAR O PEDIDO CONSULTADO");
             Console.WriteLine("[0] - VOLTAR AO MENU");
@@ -1080,7 +1073,7 @@ public class GerenciadorDeMenus
         CriarPedido(ClienteAtual, ref NovoPedido);
         // lógica de edição do carrinho
         GerenciadorDePedido.Cadastrar(NovoPedido);
-        for (int i = 0; i < NovoPedido.Itens.Count; i++)
+        for (int i = 0; i < NovoPedido.Itens.Count; i++) //Decrementa estoque dos produtos do pedido
         {
             NovoPedido.Itens[i].ProdutoPedido.QuantidadeEmEstoque -= NovoPedido.Itens[i].Quantidade;
         }
@@ -1097,12 +1090,7 @@ public class GerenciadorDeMenus
         Console.WriteLine("-------------------------------------------------------------------");
         Console.WriteLine("Digite o número do pedido que deseja consultar:");
         int Npedido = int.Parse(Console.ReadLine());
-        Pedido PedidoConsultado = GerenciadorDePedido.Procura(Npedido);
-        Console.WriteLine(PedidoConsultado.DetalhesPedido());
-        foreach (var item in PedidoConsultado.Itens)
-        {
-            Console.WriteLine(item.ToString());
-        }
+        EscreveDetalhesPedido(GerenciadorDePedido.Procura(Npedido));
         PressioneQualquerTecla();
     }
 
@@ -1171,15 +1159,21 @@ public class GerenciadorDeMenus
             NovoPedido.DataHoraPedido = DateTime.Now;
 
             Console.WriteLine("\nResumo do seu carrinho:");
-            Console.WriteLine(NovoPedido.DetalhesPedido());
-            foreach (var descricaoPedido in NovoPedido.Itens)
-            {
-                Console.WriteLine(descricaoPedido.ToString());
-            }
-            Console.WriteLine("-------------------------------------------------------------------");
+            EscreveDetalhesPedido(NovoPedido);
             PressioneQualquerTecla();
             return;
         }
+    }
+
+    void EscreveDetalhesPedido(Pedido PedidoConsultado)
+    {
+        Console.WriteLine(PedidoConsultado.DetalhesPedido());
+        Console.WriteLine("-------------------------------------------------------------------");
+        foreach (var descricaoPedido in PedidoConsultado.Itens)
+        {
+            Console.WriteLine(descricaoPedido.ToString());
+        }
+        Console.WriteLine("-------------------------------------------------------------------");
     }
 
     void CarregaDados()

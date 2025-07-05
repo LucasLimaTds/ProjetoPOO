@@ -11,6 +11,10 @@ public class PedidoItem : IObjetoComId
     public double PrecoTotal { get; set; }
     public Produto ProdutoPedido { get; set; }
 
+    public PedidoItem()
+    {
+        
+    }
     public PedidoItem(int quant, double preco, Produto produtoPedido)
     {
         Quantidade = quant;

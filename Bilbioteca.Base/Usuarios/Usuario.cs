@@ -10,6 +10,11 @@ public class Usuario : IObjetoComId
     public int DireitosDeUsuario { get; set; }
     public int ID { get; set; }
 
+    public Usuario()
+    {
+        
+    }
+    
     public Usuario(string email, string senha, int direito)
     {
         Email = email;
