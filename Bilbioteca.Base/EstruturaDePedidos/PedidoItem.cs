@@ -1,4 +1,5 @@
 using System;
+using Biblioteca.Excecoes;
 using Bilbioteca.Base;
 using ProjetoLoja;
 
@@ -17,6 +18,14 @@ public class PedidoItem : IObjetoComId
     }
     public PedidoItem(int quant, double preco, Produto produtoPedido)
     {
+        if (produtoPedido.QuantidadeEmEstoque == 0)
+        {
+            throw new ExcecaoEstoqueZero("Não há produtos " + produtoPedido.Nome + " em estoque!");
+        }
+        if (quant > produtoPedido.QuantidadeEmEstoque)
+        {
+            throw new ExcecaoLimiteEstoqueAlcancado("Quantidade inserida maior que a quantidade em estoque!");
+        }
         Quantidade = quant;
         PrecoTotal = preco;
         ProdutoPedido = produtoPedido;

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Repositorio.List
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Repositorios.Interfaces", "Biblioteca.Repositorios.Interfaces\Biblioteca.Repositorios.Interfaces.csproj", "{6CEC7F85-A821-42DF-9659-08DD48479311}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Excecoes", "Biblioteca.Excecoes\Biblioteca.Excecoes.csproj", "{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{6CEC7F85-A821-42DF-9659-08DD48479311}.Release|x64.Build.0 = Release|Any CPU
 		{6CEC7F85-A821-42DF-9659-08DD48479311}.Release|x86.ActiveCfg = Release|Any CPU
 		{6CEC7F85-A821-42DF-9659-08DD48479311}.Release|x86.Build.0 = Release|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Debug|x64.Build.0 = Debug|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Debug|x86.Build.0 = Debug|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Release|x64.ActiveCfg = Release|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Release|x64.Build.0 = Release|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Release|x86.ActiveCfg = Release|Any CPU
+		{A28D71E7-CEB4-4AB8-BD75-C13AB11D7962}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

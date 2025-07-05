@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Biblioteca.Excecoes\Biblioteca.Excecoes.csproj" />
-  </ItemGroup>
-
 </Project>

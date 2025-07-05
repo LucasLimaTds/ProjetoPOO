@@ -10,6 +10,7 @@ using Biblioteca.Repositorios.Interfaces.InterfacesPedidos;
 using System.Text.Json;
 using System.Net.Http.Headers;
 using Microsoft.VisualBasic;
+using Biblioteca.Excecoes;
 
 
 namespace ProjetoLoja;
@@ -1137,6 +1138,7 @@ public class GerenciadorDeMenus
         {
             NovoPedido.ClienteDoPedido = ClienteAtual;
             int OpcaoCarrinho;
+            int confirma = 1;
 
             do
             {
@@ -1174,16 +1176,41 @@ public class GerenciadorDeMenus
 
                 Console.WriteLine("Digite a quantidade que deseja adicionar ao carrinho:");
                 int QntProdutoSelecionado = int.Parse(Console.ReadLine());
+                PedidoItem NovoItem = new PedidoItem();
+                try
+                {
+                    NovoItem = new PedidoItem(QntProdutoSelecionado, ProdutoPedido.Valor * QntProdutoSelecionado, ProdutoPedido);
+                }
+                catch (ExcecaoEstoqueZero ez)
+                {
+                    Console.WriteLine(ez.Message);
+                    Console.WriteLine("Escolha um novo produto.");
+                    PressioneQualquerTecla();
+                    confirma = 2;
+                }
+                catch (ExcecaoLimiteEstoqueAlcancado la)
+                {
+                    Console.WriteLine(la.Message);
+                    Console.WriteLine("No momento há somente " + ProdutoPedido.QuantidadeEmEstoque + " itens em estoque.\nDeseja adicionar todos ao carrinho?");
+                    Console.WriteLine("[1] - SIM");
+                    Console.WriteLine("[2] - NÃO");
+                    int adiciona = int.Parse(Console.ReadLine());
+                    if (adiciona == 1)
+                        NovoItem = new PedidoItem(ProdutoPedido.QuantidadeEmEstoque, ProdutoPedido.Valor * ProdutoPedido.QuantidadeEmEstoque, ProdutoPedido);
+                    else break;
+                }
 
-                PedidoItem NovoItem = new PedidoItem(QntProdutoSelecionado, ProdutoPedido.Valor * QntProdutoSelecionado, ProdutoPedido);
-                Console.WriteLine("Total do item " + NovoItem.ProdutoPedido.Nome + ": R$" + NovoItem.PrecoTotal + "\n" + "Confirmar inclusão?");
-                Console.WriteLine("[1] - SIM");
-                Console.WriteLine("[2] - NÃO");
-                int confirma = int.Parse(Console.ReadLine());
+                if (confirma != 2)
+                {
+                    Console.WriteLine("Total do item " + NovoItem.ProdutoPedido.Nome + ": R$" + NovoItem.PrecoTotal + "\n" + "Confirmar inclusão?");
+                    Console.WriteLine("[1] - SIM");
+                    Console.WriteLine("[2] - NÃO");
+                    confirma = int.Parse(Console.ReadLine());                    
+                }
 
                 if (confirma == 1 || NovoPedido.Itens.Count != 0) //assim eu posso cancelar a adição mas fechar o carrinho em seguida
                 {
-                    if (confirma==1)
+                    if (confirma == 1)
                         NovoPedido.Itens.Add(NovoItem);
 
                     Console.WriteLine("[1] - ADICIONAR MAIS ITENS AO CARRINHO");
@@ -1194,6 +1221,7 @@ public class GerenciadorDeMenus
                 else
                 {
                     OpcaoCarrinho = 1;
+                    confirma = 1;
                 }
                 
             } while (OpcaoCarrinho == 1);
