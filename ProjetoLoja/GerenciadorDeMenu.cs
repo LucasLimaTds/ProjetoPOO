@@ -9,6 +9,7 @@ using Biblioteca.Base.EstruturaDaLoja;
 using Biblioteca.Repositorios.Interfaces.InterfacesPedidos;
 using System.Text.Json;
 using System.Net.Http.Headers;
+using Microsoft.VisualBasic;
 
 
 namespace ProjetoLoja;
@@ -366,20 +367,30 @@ public class GerenciadorDeMenus
         do
         {
             Console.WriteLine("CONSULTAR PEDIDOS:");
-            Console.WriteLine("[1] - POR NÚMERO");
-            Console.WriteLine("[2] - POR DATA DE REALIZACAO");
+            Console.WriteLine("[1] - LISTAR TODOS");
+            Console.WriteLine("[2] - POR NÚMERO");
+            Console.WriteLine("[3] - POR DATA DE REALIZACAO");
             int opcaoUsuario = int.Parse(Console.ReadLine());
 
-            if (opcaoUsuario == 2)
+            if (opcaoUsuario == 1)
             {
-                Console.WriteLine("Digite a data de realização a ser consultada");
-                DateTime dataConsulta = DateTime.Parse(Console.ReadLine());
-                IList<Pedido> pedidosFiltrados = GerenciadorDePedido.FiltroDataRealizacao(dataConsulta);
-                foreach (var pedido in pedidosFiltrados)
+                foreach (var pedido in GerenciadorDePedido.Listar())
                 {
                     Console.WriteLine(pedido.ToString());
                 }
+                opcaoUsuario = 0;
             }
+
+            if (opcaoUsuario == 3)
+                {
+                    Console.WriteLine("Digite a data de realização a ser consultada");
+                    DateTime dataConsulta = DateTime.Parse(Console.ReadLine());
+                    IList<Pedido> pedidosFiltrados = GerenciadorDePedido.FiltroDataRealizacao(dataConsulta);
+                    foreach (var pedido in pedidosFiltrados)
+                    {
+                        Console.WriteLine(pedido.ToString());
+                    }
+                }
 
             Console.WriteLine("Digite o número do pedido que deseja consultar:");
             int Npedido = int.Parse(Console.ReadLine());
@@ -1083,15 +1094,40 @@ public class GerenciadorDeMenus
     private void ConsultarPedidos(Cliente ClienteAtual)
     {
         Console.Clear();
-        IList<Pedido> PedidosDoCliente = GerenciadorDePedido.FiltroCliente(ClienteAtual);
-        foreach (var pedido in PedidosDoCliente)
+        Console.WriteLine("Escolha a opção de consulta:");
+        Console.WriteLine("[1] - POR NÚMERO");
+        Console.WriteLine("[2] - POR INTERVALO DE DATAS");
+        int opcaoUsuario = int.Parse(Console.ReadLine());
+
+        if (opcaoUsuario == 2)
         {
-            Console.WriteLine(pedido.ToString());
+            Console.WriteLine("Digite a data inicial e final do filtro");
+            Console.Write("Data inicial: ");
+            DateTime dataInicial = DateTime.Parse(Console.ReadLine());
+            Console.Write ("Data final: ");
+            DateTime dataFinal = DateTime.Parse(Console.ReadLine());
+            IList<Pedido> PedidosDoClientePorData = GerenciadorDePedido.FiltroIntervaloDatas(dataInicial, dataFinal, ClienteAtual);
+            foreach (var pedido in PedidosDoClientePorData)
+            {
+                Console.WriteLine(pedido.ToString());
+            }
+            Console.WriteLine("-------------------------------------------------------------------");
         }
-        Console.WriteLine("-------------------------------------------------------------------");
-        Console.WriteLine("Digite o número do pedido que deseja consultar:");
-        int Npedido = int.Parse(Console.ReadLine());
-        EscreveDetalhesPedido(GerenciadorDePedido.Procura(Npedido));
+
+        Pedido pedidoConsultado;
+        do
+        {
+            Console.WriteLine("Digite o número do pedido que deseja consultar:");
+            int Npedido = int.Parse(Console.ReadLine());
+            pedidoConsultado = GerenciadorDePedido.ProcuraComCliente(Npedido, ClienteAtual);
+            if (pedidoConsultado == null)
+            {
+                Console.WriteLine("Número de pedido inválido! Tente novamente.");
+            }
+        }
+        while (pedidoConsultado == null);
+
+        EscreveDetalhesPedido(pedidoConsultado);
         PressioneQualquerTecla();
     }
 
@@ -1145,9 +1181,11 @@ public class GerenciadorDeMenus
                 Console.WriteLine("[2] - NÃO");
                 int confirma = int.Parse(Console.ReadLine());
 
-                if (confirma == 1)
+                if (confirma == 1 || NovoPedido.Itens.Count != 0) //assim eu posso cancelar a adição mas fechar o carrinho em seguida
                 {
-                    NovoPedido.Itens.Add(NovoItem);
+                    if (confirma==1)
+                        NovoPedido.Itens.Add(NovoItem);
+
                     Console.WriteLine("[1] - ADICIONAR MAIS ITENS AO CARRINHO");
                     Console.WriteLine("[2] - FINALIZAR CARRINHO");
                     OpcaoCarrinho = int.Parse(Console.ReadLine());

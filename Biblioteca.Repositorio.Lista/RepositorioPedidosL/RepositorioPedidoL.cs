@@ -30,10 +30,26 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
         return Valores.Where(p => p.ClienteDoPedido == clienteAtual).ToArray();
     }
 
-
     public IList<Pedido> FiltroDataRealizacao(DateTime dataConsultada)
     {
         return Valores.Where(p => p.DataHoraPedido.Date == dataConsultada.Date).ToArray();
+    }
+
+    public IList<Pedido> FiltroIntervaloDatas(DateTime dataInicial, DateTime dataFinal, Cliente clienteAtual)
+    {
+        return Valores.Where(p => p.DataHoraPedido.Date >= dataInicial.Date && p.DataHoraPedido.Date<=dataFinal && p.ClienteDoPedido==clienteAtual).ToArray();
+    }
+
+    public Pedido ProcuraComCliente(int Id, Cliente clienteAtual)
+    {
+        for (int i = 0; i < Valores.Count; i++)
+        {
+            if (Valores[i].ID == Id && Valores[i].ClienteDoPedido == clienteAtual)
+            {
+                return Valores[i];
+            }
+        }
+        return null;
     }
 
     public void AlterarSituacao(int opcaoStatus, Pedido pedidoConsultado)
