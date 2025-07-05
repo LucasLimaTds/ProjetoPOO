@@ -52,7 +52,7 @@ public class RepositorioTransportadoraL : RepositorioBaseL<Transportadora>, IRep
     }
     public void CarregaTransportadoras()
     {
-        if (!File.Exists("dados_transportadores.json"))
+        if (!File.Exists("dados_transportadoras.json"))
         {
             File.WriteAllText("dados_transportadoras.json", null);
         }

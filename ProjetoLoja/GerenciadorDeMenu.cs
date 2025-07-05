@@ -8,6 +8,7 @@ using Bilbioteca.Base;
 using Biblioteca.Base.EstruturaDaLoja;
 using Biblioteca.Repositorios.Interfaces.InterfacesPedidos;
 using System.Text.Json;
+using System.Net.Http.Headers;
 
 
 namespace ProjetoLoja;
@@ -1105,32 +1106,58 @@ public class GerenciadorDeMenus
             {
                 Console.Clear();
                 Console.WriteLine("CONSULTA DE PRODUTOS\n");
-                Console.WriteLine("Digite a palavra-chave ou o código do produto que deseja consultar:");
-                string ProdutoConsultado = Console.ReadLine();
+                IList<Produto> ProdutosFiltrados;
+                do //vai repetir até a lista não retornar vazia
+                {
+                    Console.WriteLine("Digite a palavra-chave ou o código do produto que deseja consultar:");
+                    string ProdutoConsultado = Console.ReadLine();
 
-                IList<Produto> ProdustosFiltrados = GerenciadorDeProduto.FiltroNomeProduto(ProdutoConsultado);
+                    ProdutosFiltrados = GerenciadorDeProduto.FiltroNomeProduto(ProdutoConsultado);
+                    if (ProdutosFiltrados.Count == 0)
+                        Console.WriteLine("Nenhum item corresponde a sua consulta! Tente novamente.");
 
-                foreach (var produto in ProdustosFiltrados)
+                }
+                while (ProdutosFiltrados.Count == 0);
+
+                foreach (var produto in ProdutosFiltrados)
                 {
                     Console.WriteLine(produto.ToString());
                 }
                 Console.WriteLine("-------------------------------------------------------------------");
 
-                Console.WriteLine("Digite o ID do produto que deseja adicionar ao carrinho:");
-                int IdProdutoSelecionado = int.Parse(Console.ReadLine());
-
-                Produto ProdutoPedido = GerenciadorDeProduto.Procura(IdProdutoSelecionado);
+                Produto ProdutoPedido;
+                do
+                {
+                    Console.WriteLine("Digite o ID do produto que deseja adicionar ao carrinho:");
+                    int IdProdutoSelecionado = int.Parse(Console.ReadLine());
+                    ProdutoPedido = GerenciadorDeProduto.Procura(IdProdutoSelecionado);
+                    if (ProdutoPedido == null)
+                        Console.WriteLine("Não há produtos com o código digitado! Tente novamente.");
+                }
+                while (ProdutoPedido == null);
 
                 Console.WriteLine("Digite a quantidade que deseja adicionar ao carrinho:");
                 int QntProdutoSelecionado = int.Parse(Console.ReadLine());
 
                 PedidoItem NovoItem = new PedidoItem(QntProdutoSelecionado, ProdutoPedido.Valor * QntProdutoSelecionado, ProdutoPedido);
+                Console.WriteLine("Total do item " + NovoItem.ProdutoPedido.Nome + ": R$" + NovoItem.PrecoTotal + "\n" + "Confirmar inclusão?");
+                Console.WriteLine("[1] - SIM");
+                Console.WriteLine("[2] - NÃO");
+                int confirma = int.Parse(Console.ReadLine());
 
-                NovoPedido.Itens.Add(NovoItem);
+                if (confirma == 1)
+                {
+                    NovoPedido.Itens.Add(NovoItem);
+                    Console.WriteLine("[1] - ADICIONAR MAIS ITENS AO CARRINHO");
+                    Console.WriteLine("[2] - FINALIZAR CARRINHO");
+                    OpcaoCarrinho = int.Parse(Console.ReadLine());
+                }
 
-                Console.WriteLine("[1] - ADICIONAR MAIS ITENS AO CARRINHO");
-                Console.WriteLine("[2] - FINALIZAR CARRINHO");
-                OpcaoCarrinho = int.Parse(Console.ReadLine());
+                else
+                {
+                    OpcaoCarrinho = 1;
+                }
+                
             } while (OpcaoCarrinho == 1);
 
             Console.WriteLine("Selecione a transportadora:");
@@ -1167,13 +1194,14 @@ public class GerenciadorDeMenus
 
     void EscreveDetalhesPedido(Pedido PedidoConsultado)
     {
+        Console.WriteLine("------------------------------------------------------------------------------------");
         Console.WriteLine(PedidoConsultado.DetalhesPedido());
-        Console.WriteLine("-------------------------------------------------------------------");
+        Console.WriteLine("------------------------------------------------------------------------------------");
         foreach (var descricaoPedido in PedidoConsultado.Itens)
         {
             Console.WriteLine(descricaoPedido.ToString());
         }
-        Console.WriteLine("-------------------------------------------------------------------");
+        Console.WriteLine("------------------------------------------------------------------------------------");
     }
 
     void CarregaDados()

@@ -30,6 +30,7 @@ public abstract class RepositorioBaseL<T> : IRepositorioBase<T>
                 return Valores[i];
             }
         }
+        Console.WriteLine("retorna null");
         return null;
     }
 
