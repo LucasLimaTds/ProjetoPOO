@@ -6,11 +6,11 @@ namespace Biblioteca.Base.EstruturaDaLoja;
 
 public class Pedido : IObjetoComId
 {
-    public int ID { get; set; } // Número do pedido
+    public int ID { get; set; }
     public DateTime DataHoraPedido { get; set; }
     public DateTime DataHoraEntrega { get; set; }
     public DateTime DataHoraCancelamento { get; set; }
-    public string Situacao { get; set; } // Aberto, finalizado
+    public string Situacao { get; set; }
     public double PrecoFrete { get; set; }
     public double PrecoTotal { get; set; }
     public Transportadora TransportadoraPedido { get; set; }
