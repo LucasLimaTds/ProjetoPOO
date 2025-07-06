@@ -1438,7 +1438,7 @@ public class GerenciadorDeMenus
                 }
             }
             while (kms == -1);
-            
+
             NovoPedido.PrecoFrete = kms * TransportadoraSelecionada.PrecoPorKM;
             NovoPedido.PrecoTotal = NovoPedido.PrecoFrete;
             for (int i = 0; i < NovoPedido.Itens.Count; i++)
@@ -1547,9 +1547,13 @@ public class GerenciadorDeMenus
                 ValorSelecionado = -1;
                 Flag = false;
             }
-            if (LimiteMenor == -1 && LimiteMaior == -1)
+            if (LimiteMenor == -1 && LimiteMaior == -1 && Flag)
             {
-                continue; // Está verificando o ID de um objeto.
+                // Está verificando os ID's dos objetos
+                if (ValorSelecionado == -1)
+                {
+                    ValorSelecionado = -2;
+                }
             }
             else if ((ValorSelecionado > LimiteMaior || ValorSelecionado < LimiteMenor) && Flag)
             {
