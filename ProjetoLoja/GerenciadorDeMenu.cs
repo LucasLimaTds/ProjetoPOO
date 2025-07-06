@@ -11,6 +11,7 @@ using System.Text.Json;
 using System.Net.Http.Headers;
 using Microsoft.VisualBasic;
 using Biblioteca.Excecoes;
+using System.Linq.Expressions;
 
 
 namespace ProjetoLoja;
@@ -25,6 +26,10 @@ public class GerenciadorDeMenus
     private IRepositorioPedido GerenciadorDePedido;
 
 
+    public GerenciadorDeMenus()
+    {
+        
+    }
     public GerenciadorDeMenus(IRepositorioUsuario GU, IRepositorioFornecedor GF, IRepositorioProduto GP, IRepositorioTransportadora GT, IRepositorioCliente GC, IRepositorioPedido GPE)
     {
         GerenciadorDeUsuario = GU;
@@ -49,8 +54,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("[2] - CRIAR USUÁRIO");
             Console.WriteLine("[0] - FINALIZAR O PROGRAMA");
 
-            int OpcaoUsuario;
-            OpcaoUsuario = int.Parse(Console.ReadLine());
+            int OpcaoUsuario = LerInteiro(0, 2);
 
             switch (OpcaoUsuario)
             {
@@ -197,7 +201,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("[0] - FAZER LOGOUT");
 
             int OpcaoUsuario;
-            OpcaoUsuario = int.Parse(Console.ReadLine());
+            OpcaoUsuario = LerInteiro(0, 4);
 
             switch (OpcaoUsuario)
             {
@@ -269,7 +273,7 @@ public class GerenciadorDeMenus
 
             OpcoesDoCadastroDeUsuarios();
 
-            int OpcaoUsuario = int.Parse(Console.ReadLine());
+            int OpcaoUsuario = LerInteiro(0, 4);
 
             switch (OpcaoUsuario)
             {
@@ -329,7 +333,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("[1] - ALTERAR EMAIL");
             Console.WriteLine("[2] - ALTERAR SENHA");
             Console.WriteLine("[0] - VOLTAR AO MENU");
-            int opcaoAlteracao = int.Parse(Console.ReadLine());
+            int opcaoAlteracao = LerInteiro(0, 2);
             string novoEmail;
             string novaSenha;
 
@@ -371,7 +375,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("[1] - LISTAR TODOS");
             Console.WriteLine("[2] - POR NÚMERO");
             Console.WriteLine("[3] - POR DATA DE REALIZACAO");
-            int opcaoUsuario = int.Parse(Console.ReadLine());
+            int opcaoUsuario = LerInteiro(1, 3);
 
             if (opcaoUsuario == 1)
             {
@@ -383,28 +387,37 @@ public class GerenciadorDeMenus
             }
 
             if (opcaoUsuario == 3)
+            {
+                Console.WriteLine("Digite a data de realização a ser consultada");
+                DateTime dataConsulta = DateTime.Parse(Console.ReadLine());
+                IList<Pedido> pedidosFiltrados = GerenciadorDePedido.FiltroDataRealizacao(dataConsulta);
+                foreach (var pedido in pedidosFiltrados)
                 {
-                    Console.WriteLine("Digite a data de realização a ser consultada");
-                    DateTime dataConsulta = DateTime.Parse(Console.ReadLine());
-                    IList<Pedido> pedidosFiltrados = GerenciadorDePedido.FiltroDataRealizacao(dataConsulta);
-                    foreach (var pedido in pedidosFiltrados)
-                    {
-                        Console.WriteLine(pedido.ToString());
-                    }
+                    Console.WriteLine(pedido.ToString());
                 }
+            }
 
             Console.WriteLine("Digite o número do pedido que deseja consultar:");
             int Npedido = int.Parse(Console.ReadLine());
             Pedido PedidoConsultado = GerenciadorDePedido.Procura(Npedido);
-            EscreveDetalhesPedido(PedidoConsultado);
-            Console.WriteLine("[1] - CONSULTAR NOVO PEDIDO");
-            Console.WriteLine("[2] - EDITAR O PEDIDO CONSULTADO");
-            Console.WriteLine("[0] - VOLTAR AO MENU");
-            consultaPedido = int.Parse(Console.ReadLine());
-
-            if (consultaPedido == 2)
+            if (PedidoConsultado != null)
             {
-                EditarPedido(PedidoConsultado);
+                EscreveDetalhesPedido(PedidoConsultado);
+                Console.WriteLine("[1] - CONSULTAR NOVO PEDIDO");
+                Console.WriteLine("[2] - EDITAR O PEDIDO CONSULTADO");
+                Console.WriteLine("[0] - VOLTAR AO MENU");
+                consultaPedido = LerInteiro(0, 2);
+
+                if (consultaPedido == 2)
+                {
+                    EditarPedido(PedidoConsultado);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Pedido não encontrado!");
+                Console.WriteLine("-------------------------------------------------------------------");
+                PressioneQualquerTecla();
             }
         }
         while (consultaPedido == 1);
@@ -417,7 +430,7 @@ public class GerenciadorDeMenus
         Console.WriteLine("[2] - Entregue");
         Console.WriteLine("[3] - Cancelado");
 
-        int opcaoSituacao = int.Parse(Console.ReadLine());
+        int opcaoSituacao = LerInteiro(1, 3);
         GerenciadorDePedido.AlterarSituacao(opcaoSituacao, PedidoConsultado);
         Console.WriteLine("Situação atualizada!");
         PressioneQualquerTecla();
@@ -433,7 +446,7 @@ public class GerenciadorDeMenus
 
             OpcoesDoCadastro();
 
-            int OpcaoFornecedor = int.Parse(Console.ReadLine());
+            int OpcaoFornecedor = LerInteiro(0, 4);
             string nome;
             string email;
             string descricao;
@@ -586,7 +599,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("[5] - ALTERAR ENDEREÇO");
             Console.WriteLine("[0] - VOLTAR AO MENU");
 
-            int opcaoAlteracao = int.Parse(Console.ReadLine());
+            int opcaoAlteracao = LerInteiro(0, 5);
             string novoNome;
             string novaDescricao;
             string novoTelefone;
@@ -657,7 +670,7 @@ public class GerenciadorDeMenus
 
             OpcoesDoCadastro();
 
-            int OpcaoProduto = int.Parse(Console.ReadLine());
+            int OpcaoProduto = LerInteiro(0, 4);
             string nome;
             int quantidade;
             int idRemocao;
@@ -804,7 +817,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("[4] - ALTERAR FORNECEDOR");
             Console.WriteLine("[0] - VOLTAR AO MENU");
 
-            int opcaoAlteracao = int.Parse(Console.ReadLine());
+            int opcaoAlteracao = LerInteiro(0, 4);
             string novoNome;
             double novoValor;
             int novaQnt, novoId;
@@ -879,7 +892,7 @@ public class GerenciadorDeMenus
 
             OpcoesDoCadastro();
 
-            int OpcaoTransportadora = int.Parse(Console.ReadLine());
+            int OpcaoTransportadora = LerInteiro(0, 4);
             string nome;
             int idRemocao;
             double valor;
@@ -1006,7 +1019,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("[2] - ALTERAR VALOR POR KM");
             Console.WriteLine("[0] - VOLTAR AO MENU");
 
-            int opcaoAlteracao = int.Parse(Console.ReadLine());
+            int opcaoAlteracao = LerInteiro(0, 2);
             string novoNome;
             double novoValor;
             switch (opcaoAlteracao)
@@ -1057,7 +1070,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("[2] - CONSULTAR PEDIDOS");
             Console.WriteLine("[0] - FAZER LOGOUT");
 
-            int OpcaoCliente = int.Parse(Console.ReadLine());
+            int OpcaoCliente = LerInteiro(0, 2);
 
             switch (OpcaoCliente)
             {
@@ -1085,10 +1098,16 @@ public class GerenciadorDeMenus
         Pedido NovoPedido = new Pedido();
         CriarPedido(ClienteAtual, ref NovoPedido);
         // lógica de edição do carrinho
-        GerenciadorDePedido.Cadastrar(NovoPedido);
-        for (int i = 0; i < NovoPedido.Itens.Count; i++) //Decrementa estoque dos produtos do pedido
+        if (NovoPedido.Itens.Count != 0)
         {
-            NovoPedido.Itens[i].ProdutoPedido.QuantidadeEmEstoque -= NovoPedido.Itens[i].Quantidade;
+            GerenciadorDePedido.Cadastrar(NovoPedido);
+            for (int i = 0; i < NovoPedido.Itens.Count; i++) //Decrementa estoque dos produtos do pedido
+            {
+                NovoPedido.Itens[i].ProdutoPedido.QuantidadeEmEstoque -= NovoPedido.Itens[i].Quantidade;
+            }
+            Console.WriteLine("\nResumo do seu carrinho:");
+            EscreveDetalhesPedido(NovoPedido);
+            PressioneQualquerTecla();
         }
     }
 
@@ -1098,14 +1117,14 @@ public class GerenciadorDeMenus
         Console.WriteLine("Escolha a opção de consulta:");
         Console.WriteLine("[1] - POR NÚMERO");
         Console.WriteLine("[2] - POR INTERVALO DE DATAS");
-        int opcaoUsuario = int.Parse(Console.ReadLine());
+        int opcaoUsuario = LerInteiro(1, 2);
 
         if (opcaoUsuario == 2)
         {
             Console.WriteLine("Digite a data inicial e final do filtro");
             Console.Write("Data inicial: ");
             DateTime dataInicial = DateTime.Parse(Console.ReadLine());
-            Console.Write ("Data final: ");
+            Console.Write("Data final: ");
             DateTime dataFinal = DateTime.Parse(Console.ReadLine());
             IList<Pedido> PedidosDoClientePorData = GerenciadorDePedido.FiltroIntervaloDatas(dataInicial, dataFinal, ClienteAtual);
             foreach (var pedido in PedidosDoClientePorData)
@@ -1184,9 +1203,26 @@ public class GerenciadorDeMenus
                 catch (ExcecaoEstoqueZero ez)
                 {
                     Console.WriteLine(ez.Message);
-                    Console.WriteLine("Escolha um novo produto.");
-                    PressioneQualquerTecla();
-                    confirma = 2;
+                    Console.WriteLine("[1] - IR PARA FINALIZAÇÃO DO PEDIDO");
+                    Console.WriteLine("[2] - ESCOLHER OUTRO PRODUTO");
+                    int OpcaoPedidoZero = LerInteiro(1, 2);
+                    if (OpcaoPedidoZero == 1)
+                    {
+                        if (NovoPedido.Itens.Count != 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Escolha um novo produto.");
+                        PressioneQualquerTecla();
+                        confirma = 2;                        
+                    }
                 }
                 catch (ExcecaoLimiteEstoqueAlcancado la)
                 {
@@ -1194,10 +1230,13 @@ public class GerenciadorDeMenus
                     Console.WriteLine("No momento há somente " + ProdutoPedido.QuantidadeEmEstoque + " itens em estoque.\nDeseja adicionar todos ao carrinho?");
                     Console.WriteLine("[1] - SIM");
                     Console.WriteLine("[2] - NÃO");
-                    int adiciona = int.Parse(Console.ReadLine());
+                    int adiciona = LerInteiro(1, 2);
                     if (adiciona == 1)
                         NovoItem = new PedidoItem(ProdutoPedido.QuantidadeEmEstoque, ProdutoPedido.Valor * ProdutoPedido.QuantidadeEmEstoque, ProdutoPedido);
-                    else break;
+                    else
+                    {
+                        confirma = 2;   
+                    }
                 }
 
                 if (confirma != 2)
@@ -1205,7 +1244,7 @@ public class GerenciadorDeMenus
                     Console.WriteLine("Total do item " + NovoItem.ProdutoPedido.Nome + ": R$" + NovoItem.PrecoTotal + "\n" + "Confirmar inclusão?");
                     Console.WriteLine("[1] - SIM");
                     Console.WriteLine("[2] - NÃO");
-                    confirma = int.Parse(Console.ReadLine());                    
+                    confirma = LerInteiro(1, 2);
                 }
 
                 if (confirma == 1 || NovoPedido.Itens.Count != 0) //assim eu posso cancelar a adição mas fechar o carrinho em seguida
@@ -1215,7 +1254,7 @@ public class GerenciadorDeMenus
 
                     Console.WriteLine("[1] - ADICIONAR MAIS ITENS AO CARRINHO");
                     Console.WriteLine("[2] - FINALIZAR CARRINHO");
-                    OpcaoCarrinho = int.Parse(Console.ReadLine());
+                    OpcaoCarrinho = LerInteiro(1, 2);
                 }
 
                 else
@@ -1223,7 +1262,7 @@ public class GerenciadorDeMenus
                     OpcaoCarrinho = 1;
                     confirma = 1;
                 }
-                
+
             } while (OpcaoCarrinho == 1);
 
             Console.WriteLine("Selecione a transportadora:");
@@ -1250,15 +1289,11 @@ public class GerenciadorDeMenus
             }
 
             NovoPedido.DataHoraPedido = DateTime.Now;
-
-            Console.WriteLine("\nResumo do seu carrinho:");
-            EscreveDetalhesPedido(NovoPedido);
-            PressioneQualquerTecla();
             return;
         }
     }
 
-    void EscreveDetalhesPedido(Pedido PedidoConsultado)
+    private void EscreveDetalhesPedido(Pedido PedidoConsultado)
     {
         Console.WriteLine("------------------------------------------------------------------------------------");
         Console.WriteLine(PedidoConsultado.DetalhesPedido());
@@ -1270,7 +1305,7 @@ public class GerenciadorDeMenus
         Console.WriteLine("------------------------------------------------------------------------------------");
     }
 
-    void CarregaDados()
+    private void CarregaDados()
     {
         // Testa se o Json é nulo para cada repositório
         try
@@ -1279,18 +1314,18 @@ public class GerenciadorDeMenus
         }
         catch (JsonException)
         {
-            
+
         }
-// ============================================================        
+        // ============================================================        
         try
         {
             GerenciadorDeProduto.CarregaProdutos();
         }
         catch (JsonException)
         {
-            
+
         }
-// ============================================================
+        // ============================================================
         try
         {
             GerenciadorDeFornecedor.CarregaFornecedores();
@@ -1299,7 +1334,7 @@ public class GerenciadorDeMenus
         {
 
         }
-// ============================================================
+        // ============================================================
         try
         {
             GerenciadorDeTransportadora.CarregaTransportadoras();
@@ -1308,7 +1343,7 @@ public class GerenciadorDeMenus
         {
 
         }
-// ============================================================
+        // ============================================================
         try
         {
             GerenciadorDeCliente.CarregaClientes();
@@ -1317,18 +1352,18 @@ public class GerenciadorDeMenus
         {
 
         }
-// ============================================================
+        // ============================================================
         try
         {
             GerenciadorDePedido.CarregaPedidos();
         }
         catch (JsonException)
         {
-            
+
         }
     }
 
-    void SalvaDados()
+    private void SalvaDados()
     {
         GerenciadorDeUsuario.SalvaUsuarios();
         GerenciadorDeProduto.SalvaProdutos();
@@ -1336,5 +1371,33 @@ public class GerenciadorDeMenus
         GerenciadorDeTransportadora.SalvaTransportadoras();
         GerenciadorDeCliente.SalvaClientes();
         GerenciadorDePedido.SalvaPedidos();
+    }
+
+    public int LerInteiro(int LimiteMenor, int LimiteMaior)
+    {
+        int ValorSelecionado;
+        do
+        {
+            bool Flag = true;
+            try
+            {
+                ValorSelecionado = int.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Valor digitado inválido! Digite novamente: ");
+                ValorSelecionado = -1;
+                Flag = false;
+            }
+            if ((ValorSelecionado > LimiteMaior || ValorSelecionado < LimiteMenor) && Flag)
+            {
+                Console.WriteLine("Valor digitado inválido! Digite novamente: ");
+                ValorSelecionado = -1;
+            }
+        }
+        while (ValorSelecionado == -1);
+
+
+        return ValorSelecionado;
     }
 }
