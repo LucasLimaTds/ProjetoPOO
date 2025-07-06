@@ -288,7 +288,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Escolha o usuário que deseja editar:");
                         ExibirListaUsuarios();
-                        int id = int.Parse(Console.ReadLine());
+                        int id = LerInteiro(-1, -1);
                         Usuario UsuarioEditar = GerenciadorDeUsuario.Procura(id);
                         if (UsuarioEditar != null)
                         {
@@ -398,7 +398,7 @@ public class GerenciadorDeMenus
             }
 
             Console.WriteLine("Digite o número do pedido que deseja consultar:");
-            int Npedido = int.Parse(Console.ReadLine());
+            int Npedido = LerInteiro(-1, -1);
             Pedido PedidoConsultado = GerenciadorDePedido.Procura(Npedido);
             if (PedidoConsultado != null)
             {
@@ -482,7 +482,7 @@ public class GerenciadorDeMenus
                         {
                             Console.WriteLine("Escolha o fornecedor que deseja editar:");
                             ExibirListaFornecedores();
-                            int id = int.Parse(Console.ReadLine());
+                            int id = LerInteiro(-1, -1);
                             if (id == 0)
                             {
                                 Console.WriteLine("Fornecedor padrão do sistema! Impossível alterar");
@@ -516,7 +516,7 @@ public class GerenciadorDeMenus
                             Console.WriteLine("Escolha o fornecedor que deseja remover: ");
                             ExibirListaFornecedores();
                             Console.WriteLine("Insira o ID do fornecedor a ser removido: ");
-                            idRemocao = int.Parse(Console.ReadLine());
+                            idRemocao = LerInteiro(-1, -1);
                             if (idRemocao == 0)
                             {
                                 Console.WriteLine("Fornecedor padrão do sistema! Impossível remover");
@@ -552,7 +552,7 @@ public class GerenciadorDeMenus
                             Console.WriteLine("Escolha o fornecedor a ser consultado:");
                             ExibirListaFornecedores();
                             Console.WriteLine("Digite o ID do fornecedor: ");
-                            int idFornecedor = int.Parse(Console.ReadLine());
+                            int idFornecedor = LerInteiro(-1, -1);
                             Console.WriteLine(GerenciadorDeFornecedor.ConsultarFornecedor(idFornecedor));
                             Console.WriteLine("-------------------------------------------------------------------");
                         }
@@ -685,14 +685,52 @@ public class GerenciadorDeMenus
                         nome = Console.ReadLine();
 
                         Console.WriteLine("Insira o valor do novo produto: ");
-                        valor = double.Parse(Console.ReadLine());
+                        do
+                        {
+                            bool FlagValor = true;
+                            try
+                            {
+                                valor = double.Parse(Console.ReadLine());
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                valor = -1;
+                                FlagValor = false;
+                            }
+                            if (valor <= 0 && FlagValor)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                valor = -1; 
+                            }
+                        }
+                        while (valor == -1);
 
                         Console.WriteLine("Insira a quantidade do produto: ");
-                        quantidade = int.Parse(Console.ReadLine());
+                        do
+                        {
+                            bool FlagQnt = true;
+                            try
+                            {
+                                quantidade = int.Parse(Console.ReadLine());
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                quantidade = -1;
+                                FlagQnt = false;
+                            }
+                            if (quantidade < 0 && FlagQnt)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                quantidade = -1; 
+                            }
+                        }
+                        while (quantidade == -1);
 
                         Console.WriteLine("Escolha o fornecedor para o produto:");
                         ExibirListaFornecedores();
-                        idfornecedor = int.Parse(Console.ReadLine());
+                        idfornecedor = LerInteiro(-1, -1);
 
                         Fornecedor FornecedorDoProduto = GerenciadorDeFornecedor.Procura(idfornecedor);
                         if (FornecedorDoProduto != null)
@@ -716,7 +754,7 @@ public class GerenciadorDeMenus
                         {
                             Console.WriteLine("Escolha o produto que deseja editar:");
                             ExibirListaProdutos();
-                            int id = int.Parse(Console.ReadLine());
+                            int id = LerInteiro(-1, -1);
                             Produto ProdutoEditar = GerenciadorDeProduto.Procura(id);
                             if (ProdutoEditar != null)
                             {
@@ -743,7 +781,7 @@ public class GerenciadorDeMenus
                             Console.WriteLine("Escolha o produto que deseja remover: ");
                             ExibirListaProdutos();
                             Console.WriteLine("Insira o ID do produto a ser removido: ");
-                            idRemocao = int.Parse(Console.ReadLine());
+                            idRemocao = LerInteiro(-1, -1);
                             Produto ProdutoRemover = GerenciadorDeProduto.Procura(idRemocao);
                             if (ProdutoRemover != null)
                             {
@@ -772,7 +810,7 @@ public class GerenciadorDeMenus
                             Console.WriteLine("Escolha o produto a ser consultado:");
                             ExibirListaProdutos();
                             Console.WriteLine("Digite o ID do produto: ");
-                            int idProduto = int.Parse(Console.ReadLine());
+                            int idProduto = LerInteiro(-1, -1);
                             Console.WriteLine(GerenciadorDeProduto.ConsultarProduto(idProduto));
                             Console.WriteLine("-------------------------------------------------------------------");
                         }
@@ -836,7 +874,27 @@ public class GerenciadorDeMenus
                 case 2:
                     {
                         Console.WriteLine("Insira o novo valor:");
-                        novoValor = double.Parse(Console.ReadLine());
+                        do
+                        {
+                            bool FlagValor = true;
+                            try
+                            {
+                                novoValor = double.Parse(Console.ReadLine());
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                novoValor = -1;
+                                FlagValor = false;
+                            }
+                            if (novoValor <= 0 && FlagValor)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                novoValor = -1; 
+                            }
+                        }
+                        while (novoValor == -1);
+
                         GerenciadorDeProduto.AlterarValor(novoValor, ProdutoAlterado);
                         Console.WriteLine("Valor alterado!");
                         PressioneQualquerTecla();
@@ -846,7 +904,27 @@ public class GerenciadorDeMenus
                 case 3:
                     {
                         Console.WriteLine("Insira a nova quantidade em estoque:");
-                        novaQnt = int.Parse(Console.ReadLine());
+                        do
+                        {
+                            bool FlagQnt = true;
+                            try
+                            {
+                                novaQnt = int.Parse(Console.ReadLine());
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                novaQnt = -1;
+                                FlagQnt = false;
+                            }
+                            if (novaQnt < 0 && FlagQnt)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                novaQnt = -1; 
+                            }
+                        }
+                        while (novaQnt == -1);
+
                         GerenciadorDeProduto.AlterarEstoque(novaQnt, ProdutoAlterado);
                         Console.WriteLine("Quantidade alterada!");
                         PressioneQualquerTecla();
@@ -858,7 +936,7 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Escolha o novo fornecedor:");
                         ExibirListaFornecedores();
                         Console.WriteLine("Insira o ID do novo fornecedor:");
-                        novoId = int.Parse(Console.ReadLine());
+                        novoId = LerInteiro(-1, -1);
                         Fornecedor FornecedorAlterado = GerenciadorDeFornecedor.Procura(novoId);
                         if (FornecedorAlterado != null)
                         {
@@ -904,7 +982,26 @@ public class GerenciadorDeMenus
                         Console.WriteLine("Insira o nome da nova transportadora: ");
                         nome = Console.ReadLine();
                         Console.WriteLine("Insira o preço cobrado por Km: ");
-                        valor = double.Parse(Console.ReadLine());
+                        do
+                        {
+                            bool FlagValor = true;
+                            try
+                            {
+                                valor = double.Parse(Console.ReadLine());
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                valor = -1;
+                                FlagValor = false;
+                            }
+                            if (valor <= 0 && FlagValor)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                valor = -1; 
+                            }
+                        }
+                        while (valor == -1);
                         GerenciadorDeTransportadora.Cadastrar(new Transportadora(nome, valor));
                         ExibirListaTransportadoras();
 
@@ -918,7 +1015,7 @@ public class GerenciadorDeMenus
                         {
                             Console.WriteLine("Escolha a transportadora que deseja editar");
                             ExibirListaTransportadoras();
-                            int id = int.Parse(Console.ReadLine());
+                            int id = LerInteiro(-1, -1);
                             Transportadora TransportadoraEditada = GerenciadorDeTransportadora.Procura(id);
 
                             if (TransportadoraEditada != null)
@@ -946,7 +1043,7 @@ public class GerenciadorDeMenus
                             Console.WriteLine("Escolha a transportadora que deseja remover: ");
                             ExibirListaTransportadoras();
                             Console.WriteLine("Insira o ID da transportadora a ser removida: ");
-                            idRemocao = int.Parse(Console.ReadLine());
+                            idRemocao = LerInteiro(-1, -1);
                             Transportadora TransportadoraRemover = GerenciadorDeTransportadora.Procura(idRemocao);
                             if (TransportadoraRemover != null)
                             {
@@ -974,7 +1071,7 @@ public class GerenciadorDeMenus
                             Console.WriteLine("Escolha a transportadora a ser consultada:");
                             ExibirListaTransportadoras();
                             Console.WriteLine("Digite o ID da transportadora: ");
-                            int idTransportadora = int.Parse(Console.ReadLine());
+                            int idTransportadora = LerInteiro(-1, -1);
                             Console.WriteLine(GerenciadorDeTransportadora.ConsultarTransportadora(idTransportadora));
                             Console.WriteLine("-------------------------------------------------------------------");
                         }
@@ -1037,7 +1134,26 @@ public class GerenciadorDeMenus
                 case 2:
                     {
                         Console.WriteLine("Insira o novo valor por km:");
-                        novoValor = double.Parse(Console.ReadLine());
+                        do
+                        {
+                            bool FlagValor = true;
+                            try
+                            {
+                                novoValor = double.Parse(Console.ReadLine());
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                novoValor = -1;
+                                FlagValor = false;
+                            }
+                            if (novoValor <= 0 && FlagValor)
+                            {
+                                Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                                novoValor = -1; 
+                            }
+                        }
+                        while (novoValor == -1);
                         GerenciadorDeTransportadora.AlteraPrecoPorKm(novoValor, TransportadoraEditar);
                         Console.WriteLine("Valor alterado!");
                         PressioneQualquerTecla();
@@ -1138,7 +1254,7 @@ public class GerenciadorDeMenus
         do
         {
             Console.WriteLine("Digite o número do pedido que deseja consultar:");
-            int Npedido = int.Parse(Console.ReadLine());
+            int Npedido = LerInteiro(-1, -1);
             pedidoConsultado = GerenciadorDePedido.ProcuraComCliente(Npedido, ClienteAtual);
             if (pedidoConsultado == null)
             {
@@ -1186,7 +1302,7 @@ public class GerenciadorDeMenus
                 do
                 {
                     Console.WriteLine("Digite o ID do produto que deseja adicionar ao carrinho:");
-                    int IdProdutoSelecionado = int.Parse(Console.ReadLine());
+                    int IdProdutoSelecionado = LerInteiro(-1, -1);
                     ProdutoPedido = GerenciadorDeProduto.Procura(IdProdutoSelecionado);
                     if (ProdutoPedido == null)
                         Console.WriteLine("Não há produtos com o código digitado! Tente novamente.");
@@ -1194,7 +1310,28 @@ public class GerenciadorDeMenus
                 while (ProdutoPedido == null);
 
                 Console.WriteLine("Digite a quantidade que deseja adicionar ao carrinho:");
-                int QntProdutoSelecionado = int.Parse(Console.ReadLine());
+                int QntProdutoSelecionado;
+                do
+                {
+                    bool FlagQnt = true;
+                    try
+                    {
+                        QntProdutoSelecionado = int.Parse(Console.ReadLine());
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                        FlagQnt = false;
+                        QntProdutoSelecionado = -1;
+                    }
+                    if (QntProdutoSelecionado < 1 && FlagQnt)
+                    {
+                        Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                        QntProdutoSelecionado = -1;
+                    }
+                }
+                while (QntProdutoSelecionado == -1);
+
                 PedidoItem NovoItem = new PedidoItem();
                 try
                 {
@@ -1274,13 +1411,34 @@ public class GerenciadorDeMenus
             Console.WriteLine("-------------------------------------------------------------------");
 
             Console.WriteLine("Digite o ID da transportadora que deseja utilizar:");
-            int IdTransportadoraSelecionada = int.Parse(Console.ReadLine());
+            int IdTransportadoraSelecionada = LerInteiro(-1, -1);
 
             Transportadora TransportadoraSelecionada = GerenciadorDeTransportadora.Procura(IdTransportadoraSelecionada);
 
             NovoPedido.TransportadoraPedido = TransportadoraSelecionada;
             Console.WriteLine("Digite a quilometragem:");
-            double kms = double.Parse(Console.ReadLine());
+            double kms;
+            do
+            {
+                bool FlagKm = true;
+                try
+                {
+                    kms = double.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                    kms = -1;
+                    FlagKm = false;
+                }
+                if (kms <= 0 && FlagKm)
+                {
+                    Console.WriteLine("Valor digitado inválido! Digite novamente:");
+                    kms = -1; 
+                }
+            }
+            while (kms == -1);
+            
             NovoPedido.PrecoFrete = kms * TransportadoraSelecionada.PrecoPorKM;
             NovoPedido.PrecoTotal = NovoPedido.PrecoFrete;
             for (int i = 0; i < NovoPedido.Itens.Count; i++)
@@ -1385,12 +1543,17 @@ public class GerenciadorDeMenus
             }
             catch (FormatException)
             {
-                Console.WriteLine("Valor digitado inválido! Digite novamente: ");
+                Console.WriteLine("Valor digitado inválido! Digite novamente:");
                 ValorSelecionado = -1;
                 Flag = false;
             }
-            if ((ValorSelecionado > LimiteMaior || ValorSelecionado < LimiteMenor) && Flag)
+            if (LimiteMenor == -1 && LimiteMaior == -1)
             {
+                continue; // Está verificando o ID de um objeto.
+            }
+            else if ((ValorSelecionado > LimiteMaior || ValorSelecionado < LimiteMenor) && Flag)
+            {
+                // Está verificando as opções dos menus.
                 Console.WriteLine("Valor digitado inválido! Digite novamente: ");
                 ValorSelecionado = -1;
             }
