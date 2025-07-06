@@ -70,11 +70,4 @@ public abstract class RepositorioBaseV<T> : IRepositorioBase<T>
         }
         return null;
     }
-
-    // public String Consulta(int Id, T[] Vetor) //IMPLEMENTAR CASO PRECISE DEPOIS
-    // {
-    //     T ObjConsulta = Procura(Id, Vetor);
-    //     return "";
-    //     //vale a pena manter isso dentro da interface base, já que sempre vai ter que ser override nos repositorios?
-    // }
 }

@@ -4,7 +4,7 @@ namespace Biblioteca.Excecoes;
 
 public class ExcecaoEstoqueZero : Exception
 {
-    public ExcecaoEstoqueZero(String msg) : base(msg)
+    public ExcecaoEstoqueZero(string msg) : base(msg)
     {
         
     }

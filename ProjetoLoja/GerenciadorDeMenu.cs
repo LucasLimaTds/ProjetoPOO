@@ -1210,7 +1210,6 @@ public class GerenciadorDeMenus
 
     private void CarrinhoDeCompras(Cliente ClienteAtual)
     {
-        //SEPARADO EM DOIS MÉTODOS PRA CASO QUEIRA EDITAR O PEDIDO ANTES DE ENVIAR
         Pedido NovoPedido = new Pedido();
         CriarPedido(ClienteAtual, ref NovoPedido);
         // lógica de edição do carrinho
@@ -1280,7 +1279,7 @@ public class GerenciadorDeMenus
                 Console.Clear();
                 Console.WriteLine("CONSULTA DE PRODUTOS\n");
                 IList<Produto> ProdutosFiltrados;
-                do //vai repetir até a lista não retornar vazia
+                do
                 {
                     Console.WriteLine("Digite a palavra-chave ou o código do produto que deseja consultar:");
                     string ProdutoConsultado = Console.ReadLine();
@@ -1384,7 +1383,7 @@ public class GerenciadorDeMenus
                     confirma = LerInteiro(1, 2);
                 }
 
-                if (confirma == 1 || NovoPedido.Itens.Count != 0) //assim eu posso cancelar a adição mas fechar o carrinho em seguida
+                if (confirma == 1 || NovoPedido.Itens.Count != 0)
                 {
                     if (confirma == 1)
                         NovoPedido.Itens.Add(NovoItem);
@@ -1549,7 +1548,7 @@ public class GerenciadorDeMenus
             }
             if (LimiteMenor == -1 && LimiteMaior == -1 && Flag)
             {
-                // Está verificando os ID's dos objetos
+                // Está verificando os ID's dos objetos.
                 if (ValorSelecionado == -1)
                 {
                     ValorSelecionado = -2;
