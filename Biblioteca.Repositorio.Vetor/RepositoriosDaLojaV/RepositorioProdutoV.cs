@@ -40,9 +40,9 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
     {
         if (idProduto > 1)
         {
-            return true; // Há produtos cadastrados
+            return true;
         }
-        return false; // Não há produtos cadastrados
+        return false;
     }
 
     public IList<Produto> FiltroNomeProduto(string ProdutoConsultado)
@@ -69,10 +69,12 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
 
    public void SalvaProdutos()
     {
-        string SalvaJson = JsonSerializer.Serialize(Valores);
-        File.WriteAllText("dados_produtos.json", SalvaJson);
-        SalvaJson = JsonSerializer.Serialize(idProduto);
-        File.WriteAllText("id_produto.json", SalvaJson);
+        if (Valores[0] != null) {
+            string SalvaJson = JsonSerializer.Serialize(Valores);
+            File.WriteAllText("dados_produtos.json", SalvaJson);
+            SalvaJson = JsonSerializer.Serialize(idProduto);
+            File.WriteAllText("id_produto.json", SalvaJson);
+        }
     }
 
     public void CarregaProdutos()
@@ -84,10 +86,7 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
         else
         {
             string CarregaJson = File.ReadAllText("dados_produtos.json");
-            if (CarregaJson != null)
-            {
-                Valores = JsonSerializer.Deserialize<Produto[]>(CarregaJson);                
-            }
+            Valores = JsonSerializer.Deserialize<Produto[]>(CarregaJson); 
         }
 
         if (!File.Exists("id_produto.json"))
@@ -97,10 +96,7 @@ public class RepositorioProdutoV : RepositorioBaseV<Produto>, IRepositorioProdut
         else
         {
             string CarregaId = File.ReadAllText("id_produto.json");
-            if (CarregaId != null)
-            {
-                idProduto = JsonSerializer.Deserialize<int>(CarregaId);
-            }
+            idProduto = JsonSerializer.Deserialize<int>(CarregaId);
         }
     }
 }

@@ -27,10 +27,13 @@ public class RepositorioClienteL : RepositorioBaseL<Cliente>, IRepositorioClient
     }
     public void SalvaClientes()
     {
-        string SalvaJson = JsonSerializer.Serialize(Valores);
-        File.WriteAllText("dados_clientes.json", SalvaJson);
-        SalvaJson = JsonSerializer.Serialize(idCliente);
-        File.WriteAllText("id_cliente.json", SalvaJson);
+        if (!(Valores.Count == 0))
+        {
+            string SalvaJson = JsonSerializer.Serialize(Valores);
+            File.WriteAllText("dados_clientes.json", SalvaJson);
+            SalvaJson = JsonSerializer.Serialize(idCliente);
+            File.WriteAllText("id_cliente.json", SalvaJson);   
+        }
     }
     public void CarregaClientes()
     {
@@ -41,10 +44,7 @@ public class RepositorioClienteL : RepositorioBaseL<Cliente>, IRepositorioClient
         else
         {
             string CarregaJson = File.ReadAllText("dados_clientes.json");
-            if (CarregaJson != null)
-            {
-                Valores = JsonSerializer.Deserialize<List<Cliente>>(CarregaJson);
-            }
+            Valores = JsonSerializer.Deserialize<List<Cliente>>(CarregaJson);            
         }
 
         if (!File.Exists("id_cliente.json"))

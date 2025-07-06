@@ -1272,12 +1272,60 @@ public class GerenciadorDeMenus
 
     void CarregaDados()
     {
-        GerenciadorDeUsuario.CarregaUsuarios();
-        GerenciadorDeProduto.CarregaProdutos();
-        GerenciadorDeFornecedor.CarregaFornecedores();
-        GerenciadorDeTransportadora.CarregaTransportadoras();
-        GerenciadorDeCliente.CarregaClientes();
-        GerenciadorDePedido.CarregaPedidos();
+        // Testa se o Json é nulo para cada repositório
+        try
+        {
+            GerenciadorDeUsuario.CarregaUsuarios();
+        }
+        catch (JsonException)
+        {
+            
+        }
+// ============================================================        
+        try
+        {
+            GerenciadorDeProduto.CarregaProdutos();
+        }
+        catch (JsonException)
+        {
+            
+        }
+// ============================================================
+        try
+        {
+            GerenciadorDeFornecedor.CarregaFornecedores();
+        }
+        catch (JsonException)
+        {
+
+        }
+// ============================================================
+        try
+        {
+            GerenciadorDeTransportadora.CarregaTransportadoras();
+        }
+        catch (JsonException)
+        {
+
+        }
+// ============================================================
+        try
+        {
+            GerenciadorDeCliente.CarregaClientes();
+        }
+        catch (JsonException)
+        {
+
+        }
+// ============================================================
+        try
+        {
+            GerenciadorDePedido.CarregaPedidos();
+        }
+        catch (JsonException)
+        {
+            
+        }
     }
 
     void SalvaDados()

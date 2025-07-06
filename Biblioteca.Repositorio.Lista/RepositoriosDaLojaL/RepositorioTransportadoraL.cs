@@ -45,10 +45,13 @@ public class RepositorioTransportadoraL : RepositorioBaseL<Transportadora>, IRep
     }
     public void SalvaTransportadoras()
     {
-        string SalvaJson = JsonSerializer.Serialize(Valores);
-        File.WriteAllText("dados_transportadoras.json", SalvaJson);
-        SalvaJson = JsonSerializer.Serialize(idTransportadora);
-        File.WriteAllText("id_transportadora.json", SalvaJson);
+        if (!(Valores.Count == 0))
+        {
+            string SalvaJson = JsonSerializer.Serialize(Valores);
+            File.WriteAllText("dados_transportadoras.json", SalvaJson);
+            SalvaJson = JsonSerializer.Serialize(idTransportadora);
+            File.WriteAllText("id_transportadora.json", SalvaJson);
+        }
     }
     public void CarregaTransportadoras()
     {
@@ -59,10 +62,7 @@ public class RepositorioTransportadoraL : RepositorioBaseL<Transportadora>, IRep
         else
         {
             string CarregaJson = File.ReadAllText("dados_transportadoras.json");
-            if (CarregaJson != null)
-            {
-                Valores = JsonSerializer.Deserialize<List<Transportadora>>(CarregaJson);
-            }
+            Valores = JsonSerializer.Deserialize<List<Transportadora>>(CarregaJson);
         }
 
         if (!File.Exists("id_transportadora.json"))
