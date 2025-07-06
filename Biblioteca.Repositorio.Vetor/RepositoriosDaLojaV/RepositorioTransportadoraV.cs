@@ -46,10 +46,13 @@ public class RepositorioTransportadoraV : RepositorioBaseV<Transportadora>, IRep
     }
     public void SalvaTransportadoras()
     {
-        string SalvaJson = JsonSerializer.Serialize(Valores);
-        File.WriteAllText("dados_transportadoras.json", SalvaJson);
-        SalvaJson = JsonSerializer.Serialize(idTransportadora);
-        File.WriteAllText("id_transportadora.json", SalvaJson);
+        if (Valores[0] != null)
+        {
+            string SalvaJson = JsonSerializer.Serialize(Valores);
+            File.WriteAllText("dados_transportadoras.json", SalvaJson);
+            SalvaJson = JsonSerializer.Serialize(idTransportadora);
+            File.WriteAllText("id_transportadora.json", SalvaJson);
+        }
     }
     public void CarregaTransportadoras()
     {
@@ -60,10 +63,7 @@ public class RepositorioTransportadoraV : RepositorioBaseV<Transportadora>, IRep
         else
         {
             string CarregaJson = File.ReadAllText("dados_transportadoras.json");
-            if (CarregaJson != null)
-            {
-                Valores = JsonSerializer.Deserialize<Transportadora[]>(CarregaJson);
-            }
+            Valores = JsonSerializer.Deserialize<Transportadora[]>(CarregaJson);
         }
 
         if (!File.Exists("id_transportadora.json"))
@@ -73,10 +73,7 @@ public class RepositorioTransportadoraV : RepositorioBaseV<Transportadora>, IRep
         else
         {
             string CarregaJson = File.ReadAllText("id_transportadora.json");
-            if (CarregaJson != null)
-            {
-                idTransportadora = JsonSerializer.Deserialize<int>(CarregaJson);
-            }
+            idTransportadora = JsonSerializer.Deserialize<int>(CarregaJson);
         }
     }
 }

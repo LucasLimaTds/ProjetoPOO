@@ -70,10 +70,13 @@ public class RepositorioFornecedorV : RepositorioBaseV<Fornecedor>, IRepositorio
     }
     public void SalvaFornecedores()
     {
-        string SalvaJson = JsonSerializer.Serialize(Valores);
-        File.WriteAllText("dados_fornecedores.json", SalvaJson);
-        SalvaJson = JsonSerializer.Serialize(idFornecedor);
-        File.WriteAllText("id_fornecedor.json", SalvaJson);
+        if (Valores[0] != null)
+        {
+            string SalvaJson = JsonSerializer.Serialize(Valores);
+            File.WriteAllText("dados_fornecedores.json", SalvaJson);
+            SalvaJson = JsonSerializer.Serialize(idFornecedor);
+            File.WriteAllText("id_fornecedor.json", SalvaJson);
+        }
     }
     public void CarregaFornecedores()
     {
@@ -84,10 +87,7 @@ public class RepositorioFornecedorV : RepositorioBaseV<Fornecedor>, IRepositorio
         else
         {
             string CarregaJson = File.ReadAllText("dados_fornecedores.json");
-            if (CarregaJson != null)
-            {
-                Valores = JsonSerializer.Deserialize<Fornecedor[]>(CarregaJson);
-            }
+            Valores = JsonSerializer.Deserialize<Fornecedor[]>(CarregaJson);
         }
 
         if (!File.Exists("id_fornecedor.json"))
@@ -97,10 +97,7 @@ public class RepositorioFornecedorV : RepositorioBaseV<Fornecedor>, IRepositorio
         else
         {
             string CarregaJson = File.ReadAllText("id_fornecedor.json");
-            if (CarregaJson != null)
-            {
-                idFornecedor = JsonSerializer.Deserialize<int>(CarregaJson);
-            }
+            idFornecedor = JsonSerializer.Deserialize<int>(CarregaJson);
         }
     }
 }

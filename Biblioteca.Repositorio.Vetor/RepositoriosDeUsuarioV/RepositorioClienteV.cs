@@ -29,10 +29,13 @@ public class RepositorioClienteV : RepositorioBaseV<Cliente>, IRepositorioClient
     }
     public void SalvaClientes()
     {
-        string SalvaJson = JsonSerializer.Serialize(Valores);
-        File.WriteAllText("dados_clientes.json", SalvaJson);
-        SalvaJson = JsonSerializer.Serialize(idCliente);
-        File.WriteAllText("id_cliente.json", SalvaJson);
+        if (Valores[0] != null)
+        {
+            string SalvaJson = JsonSerializer.Serialize(Valores);
+            File.WriteAllText("dados_clientes.json", SalvaJson);
+            SalvaJson = JsonSerializer.Serialize(idCliente);
+            File.WriteAllText("id_cliente.json", SalvaJson);
+        }
     }
     public void CarregaClientes()
     {
@@ -43,10 +46,7 @@ public class RepositorioClienteV : RepositorioBaseV<Cliente>, IRepositorioClient
         else
         {
             string CarregaJson = File.ReadAllText("dados_clientes.json");
-            if (CarregaJson != null)
-            {
-                Valores = JsonSerializer.Deserialize<Cliente[]>(CarregaJson);
-            }
+            Valores = JsonSerializer.Deserialize<Cliente[]>(CarregaJson);
         }
 
         if (!File.Exists("id_cliente.json"))
@@ -56,10 +56,7 @@ public class RepositorioClienteV : RepositorioBaseV<Cliente>, IRepositorioClient
         else
         {
             string CarregaJson = File.ReadAllText("id_cliente.json");
-            if (CarregaJson != null)
-            {
-                idCliente = JsonSerializer.Deserialize<int>(CarregaJson);
-            }
+            idCliente = JsonSerializer.Deserialize<int>(CarregaJson);
         }
     }
 }
