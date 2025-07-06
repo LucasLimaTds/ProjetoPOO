@@ -72,10 +72,7 @@ public class RepositorioTransportadoraL : RepositorioBaseL<Transportadora>, IRep
         else
         {
             string CarregaJson = File.ReadAllText("id_transportadora.json");
-            if (CarregaJson != null)
-            {
-                idTransportadora = JsonSerializer.Deserialize<int>(CarregaJson);
-            }
+            idTransportadora = JsonSerializer.Deserialize<int>(CarregaJson);
         }
     }
 }

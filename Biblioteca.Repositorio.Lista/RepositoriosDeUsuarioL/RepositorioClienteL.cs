@@ -54,10 +54,7 @@ public class RepositorioClienteL : RepositorioBaseL<Cliente>, IRepositorioClient
         else
         {
             string CarregaJson = File.ReadAllText("id_cliente.json");
-            if (CarregaJson != null)
-            {
-                idCliente = JsonSerializer.Deserialize<int>(CarregaJson);
-            }
+            idCliente = JsonSerializer.Deserialize<int>(CarregaJson);
         }
     }
 }

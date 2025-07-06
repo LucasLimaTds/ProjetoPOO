@@ -71,10 +71,13 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
     }
     public void SalvaPedidos()
     {
-        string SalvaJson = JsonSerializer.Serialize(Valores);
-        File.WriteAllText("dados_pedidos.json", SalvaJson);
-        SalvaJson = JsonSerializer.Serialize(IdPedido);
-        File.WriteAllText("id_pedido.json", SalvaJson);
+        if (!(Valores.Count == 0))
+        {
+            string SalvaJson = JsonSerializer.Serialize(Valores);
+            File.WriteAllText("dados_pedidos.json", SalvaJson);
+            SalvaJson = JsonSerializer.Serialize(IdPedido);
+            File.WriteAllText("id_pedido.json", SalvaJson);
+        }
     }
     public void CarregaPedidos()
     {
@@ -85,10 +88,7 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
         else
         {
             string CarregaJson = File.ReadAllText("dados_pedidos.json");
-            if (CarregaJson != null)
-            {
-                Valores = JsonSerializer.Deserialize<List<Pedido>>(CarregaJson);
-            }
+            Valores = JsonSerializer.Deserialize<List<Pedido>>(CarregaJson);
         }
 
         if (!File.Exists("id_pedido.json"))
@@ -98,10 +98,7 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
         else
         {
             string CarregaId = File.ReadAllText("id_pedido.json");
-            if (CarregaId != null)
-            {
-                IdPedido = JsonSerializer.Deserialize<int>(CarregaId);
-            }
+            IdPedido = JsonSerializer.Deserialize<int>(CarregaId);
         }
     }
 }

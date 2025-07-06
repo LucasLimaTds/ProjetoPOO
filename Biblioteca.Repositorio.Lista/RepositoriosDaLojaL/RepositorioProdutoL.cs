@@ -67,10 +67,13 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
 
     public void SalvaProdutos()
     {
-        string SalvaJson = JsonSerializer.Serialize(Valores);
-        File.WriteAllText("dados_produtos.json", SalvaJson);
-        SalvaJson = JsonSerializer.Serialize(idProduto);
-        File.WriteAllText("id_produto.json", SalvaJson);
+        if (!(Valores.Count == 0))
+        {
+            string SalvaJson = JsonSerializer.Serialize(Valores);
+            File.WriteAllText("dados_produtos.json", SalvaJson);
+            SalvaJson = JsonSerializer.Serialize(idProduto);
+            File.WriteAllText("id_produto.json", SalvaJson);
+        }
     }
 
     public void CarregaProdutos()
@@ -82,10 +85,7 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
         else
         {
             string CarregaJson = File.ReadAllText("dados_produtos.json");
-            if (CarregaJson != null)
-            {
-                Valores = JsonSerializer.Deserialize<List<Produto>>(CarregaJson);
-            }
+            Valores = JsonSerializer.Deserialize<List<Produto>>(CarregaJson);
         }
 
         if (!File.Exists("id_produto.json"))
@@ -95,10 +95,7 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
         else
         {
             string CarregaId = File.ReadAllText("id_produto.json");
-            if (CarregaId != null)
-            {
-                idProduto = JsonSerializer.Deserialize<int>(CarregaId);
-            }
+            idProduto = JsonSerializer.Deserialize<int>(CarregaId);
         }
     }
 }
