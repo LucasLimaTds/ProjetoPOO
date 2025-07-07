@@ -9,8 +9,8 @@ public class Cliente : IObjetoComId
     public int ID { get; set; }
     public Usuario UsuarioDoCliente { get; set; }
     public Endereco EnderecoDoCliente { get; set; }
-    public string Telefone;
-    public string Nome;
+    public string Telefone { get; set; }
+    public string Nome { get; set; }
     public Cliente()
     {
 

@@ -110,6 +110,7 @@ public class GerenciadorDeMenus
         Console.Write("Digite o telefone do novo cliente: ");
         string novoTelefone = Console.ReadLine();
         GerenciadorDeCliente.Cadastrar(new Cliente(novoTelefone, novoNome, CadastroEndereco(), GerenciadorDeUsuario.RetornaUltimo()));
+        GerenciadorDeCliente.SalvaClientes();
         PressioneQualquerTecla();
     }
 
@@ -1339,10 +1340,11 @@ public class GerenciadorDeMenus
         {
             NovoPedido.ClienteDoPedido = ClienteAtual;
             int OpcaoCarrinho;
-            int confirma = 1;
+            int confirma;
 
             do
             {
+                confirma = 1;
                 Console.Clear();
                 Console.WriteLine("CONSULTA DE PRODUTOS\n");
                 IList<Produto> ProdutosFiltrados;
@@ -1424,7 +1426,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Escolha um novo produto.");
                         PressioneQualquerTecla();
-                        confirma = 2;                        
+                        confirma = 2;
                     }
                 }
                 catch (ExcecaoLimiteEstoqueAlcancado la)
@@ -1438,7 +1440,7 @@ public class GerenciadorDeMenus
                         NovoItem = new PedidoItem(ProdutoPedido.QuantidadeEmEstoque, ProdutoPedido.Valor * ProdutoPedido.QuantidadeEmEstoque, ProdutoPedido);
                     else
                     {
-                        confirma = 2;   
+                        confirma = 2;
                     }
                 }
 
@@ -1463,7 +1465,6 @@ public class GerenciadorDeMenus
                 else
                 {
                     OpcaoCarrinho = 1;
-                    confirma = 1;
                 }
 
             } while (OpcaoCarrinho == 1);
