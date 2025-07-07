@@ -85,13 +85,13 @@ public class GerenciadorDeMenus
         Console.Write("Senha: ");
         string Senha = Console.ReadLine();
 
-        Usuario UsuarioAtual = null;
+        Usuario UsuarioAtual = new Usuario();
 
-        if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha, UsuarioAtual) == 0)
+        if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha, ref UsuarioAtual) == 0)
         {
             MenuAdmin(); //mostra as opções para usuarios admin
         }
-        else if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha, UsuarioAtual) == 1)
+        else if (GerenciadorDeUsuario.ValidarUsuario(Email, Senha, ref UsuarioAtual) == 1)
         {
             MenuCliente(UsuarioAtual); //mostra opcoes para clientes 
         }
@@ -273,7 +273,7 @@ public class GerenciadorDeMenus
         Console.WriteLine("[1] - REALIZAR INCLUSÃO DE ADMIN");
         Console.WriteLine("[2] - REALIZAR ALTERAÇÃO DE USUÁRIO");
         Console.WriteLine("[3] - CONSULTAR USUÁRIOS CADASTRADOS");
-        Console.WriteLine("[4] - CONSULTAR USUÁRIOS CADASTRADOS");
+        Console.WriteLine("[4] - CONSULTAR CLIENTES CADASTRADOS");
         Console.WriteLine("[5] - ACESSAR PEDIDOS DE CLIENTES");
         Console.WriteLine("[0] - VOLTAR AO MENU");
     }
@@ -326,6 +326,7 @@ public class GerenciadorDeMenus
                 case 4:
                     {
                         ExibirListaClientes();
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 5:
@@ -1196,6 +1197,7 @@ public class GerenciadorDeMenus
     private void MenuCliente(Usuario UsuarioAtual)
     {
         Cliente ClienteAtual = GerenciadorDeCliente.ProcuraCliente(UsuarioAtual);
+        //Console.WriteLine("cliente atual:" + ClienteAtual.Nome);  //REMOVER DA VERSÂO FINAL
         while (true)
         {
             Console.Clear();
@@ -1221,6 +1223,7 @@ public class GerenciadorDeMenus
                     }
                 case 0:
                     {
+                        SalvaDados();
                         return;
                     }
             }
@@ -1247,8 +1250,6 @@ public class GerenciadorDeMenus
 
     private void ConsultarPedidos(Cliente ClienteAtual)
     {
-        
-        Console.WriteLine("Cliente atual: " + ClienteAtual.Nome);
         while (true)
         {
             IList<Pedido> PedidosDoClientePorData = null;
@@ -1304,7 +1305,7 @@ public class GerenciadorDeMenus
                 PressioneQualquerTecla();
             }
         }
-        
+    
     }
 
     private void CriarPedido(Cliente ClienteAtual, ref Pedido NovoPedido)

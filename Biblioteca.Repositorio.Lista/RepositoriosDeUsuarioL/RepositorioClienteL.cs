@@ -18,7 +18,7 @@ public class RepositorioClienteL : RepositorioBaseL<Cliente>, IRepositorioClient
     {
         for (int i = 0; i < Valores.Count; i++)
         {
-            if (Valores[i].UsuarioDoCliente == usuario)
+            if (Valores[i].UsuarioDoCliente.ID == usuario.ID)
             {
                 return Valores[i];
             }

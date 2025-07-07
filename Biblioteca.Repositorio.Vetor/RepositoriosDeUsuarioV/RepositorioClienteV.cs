@@ -20,7 +20,7 @@ public class RepositorioClienteV : RepositorioBaseV<Cliente>, IRepositorioClient
     {
         for (int i = 0; i < Valores.Length; i++)
         {
-            if (Valores[i].UsuarioDoCliente == usuario)
+            if (Valores[i].UsuarioDoCliente.ID == usuario.ID)
             {
                 return Valores[i];
             }
