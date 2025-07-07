@@ -227,6 +227,7 @@ public class GerenciadorDeMenus
                     }
                 case 0:
                     {
+                        SalvaDados();
                         return;
                     }
             }
@@ -1228,42 +1229,62 @@ public class GerenciadorDeMenus
 
     private void ConsultarPedidos(Cliente ClienteAtual)
     {
-        Console.Clear();
-        Console.WriteLine("Escolha a opção de consulta:");
-        Console.WriteLine("[1] - POR NÚMERO");
-        Console.WriteLine("[2] - POR INTERVALO DE DATAS");
-        int opcaoUsuario = LerInteiro(1, 2);
-
-        if (opcaoUsuario == 2)
+        while (true)
         {
-            Console.WriteLine("Digite a data inicial e final do filtro");
-            Console.Write("Data inicial: ");
-            DateTime dataInicial = DateTime.Parse(Console.ReadLine());
-            Console.Write("Data final: ");
-            DateTime dataFinal = DateTime.Parse(Console.ReadLine());
-            IList<Pedido> PedidosDoClientePorData = GerenciadorDePedido.FiltroIntervaloDatas(dataInicial, dataFinal, ClienteAtual);
-            foreach (var pedido in PedidosDoClientePorData)
-            {
-                Console.WriteLine(pedido.ToString());
-            }
-            Console.WriteLine("-------------------------------------------------------------------");
-        }
+            IList<Pedido> PedidosDoClientePorData = null;
+            Console.Clear();
+            Console.WriteLine("Escolha a opção de consulta:");
+            Console.WriteLine("[1] - POR NÚMERO");
+            Console.WriteLine("[2] - POR INTERVALO DE DATAS");
+            Console.WriteLine("[0] - VOLTAR AO MENU");
+            int opcaoUsuario = LerInteiro(0, 2);
 
-        Pedido pedidoConsultado;
-        do
-        {
-            Console.WriteLine("Digite o número do pedido que deseja consultar:");
-            int Npedido = LerInteiro(-1, -1);
-            pedidoConsultado = GerenciadorDePedido.ProcuraComCliente(Npedido, ClienteAtual);
-            if (pedidoConsultado == null)
+            if (opcaoUsuario == 0)
             {
-                Console.WriteLine("Número de pedido inválido! Tente novamente.");
+                return;
+            }
+
+            if (opcaoUsuario == 2)
+            {
+                Console.WriteLine("Digite a data inicial e final do filtro");
+                Console.Write("Data inicial: ");
+                DateTime dataInicial = DateTime.Parse(Console.ReadLine());
+                Console.Write("Data final: ");
+                DateTime dataFinal = DateTime.Parse(Console.ReadLine());
+                PedidosDoClientePorData = GerenciadorDePedido.FiltroIntervaloDatas(dataInicial, dataFinal, ClienteAtual);
+                if (PedidosDoClientePorData.Count != 0)
+                {
+                    foreach (var pedido in PedidosDoClientePorData)
+                    {
+                        Console.WriteLine(pedido.ToString());
+                    }
+                    Console.WriteLine("-------------------------------------------------------------------");
+                }
+                else
+                {
+                    Console.WriteLine("Não há pedidos nesse intervalo de datas! Tente novamente.");
+                    PressioneQualquerTecla();
+                }
+            }
+
+            if (opcaoUsuario == 1 || PedidosDoClientePorData.Count != 0)
+            {
+                Pedido pedidoConsultado;
+                Console.WriteLine("Digite o número do pedido que deseja consultar:");
+                int Npedido = LerInteiro(-1, -1);
+                pedidoConsultado = GerenciadorDePedido.ProcuraComCliente(Npedido, ClienteAtual);
+                if (pedidoConsultado == null)
+                {
+                    Console.WriteLine("Número de pedido inválido! Tente novamente.");
+                }
+                else
+                {
+                    EscreveDetalhesPedido(pedidoConsultado);
+                } 
+                PressioneQualquerTecla();
             }
         }
-        while (pedidoConsultado == null);
-
-        EscreveDetalhesPedido(pedidoConsultado);
-        PressioneQualquerTecla();
+        
     }
 
     private void CriarPedido(Cliente ClienteAtual, ref Pedido NovoPedido)
