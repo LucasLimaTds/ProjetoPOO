@@ -387,26 +387,31 @@ public class GerenciadorDeMenus
 
     private void AcessarPedidos()
     {
-        Console.Clear();
         int consultaPedido = 1;
         do
         {
+            Console.Clear();
             Console.WriteLine("CONSULTAR PEDIDOS:");
             Console.WriteLine("[1] - LISTAR TODOS");
             Console.WriteLine("[2] - POR NÚMERO");
             Console.WriteLine("[3] - POR DATA DE REALIZACAO");
-            int opcaoUsuario = LerInteiro(1, 3);
+            Console.WriteLine("[O] - VOLTAR AO MENU");
+            int opcaoUsuario = LerInteiro(0, 3);
 
-            if (opcaoUsuario == 1)
+            if (opcaoUsuario == 0)
+            {
+                return;
+            }
+
+            else if (opcaoUsuario == 1)
             {
                 foreach (var pedido in GerenciadorDePedido.Listar())
                 {
                     Console.WriteLine(pedido.ToString());
                 }
-                opcaoUsuario = 0;
             }
 
-            if (opcaoUsuario == 3)
+            else if (opcaoUsuario == 3)
             {
                 Console.WriteLine("Digite a data de realização a ser consultada");
                 DateTime dataConsulta = DateTime.Parse(Console.ReadLine());
