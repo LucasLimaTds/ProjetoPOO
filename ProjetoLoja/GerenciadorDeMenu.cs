@@ -1202,7 +1202,6 @@ public class GerenciadorDeMenus
     private void MenuCliente(Usuario UsuarioAtual)
     {
         Cliente ClienteAtual = GerenciadorDeCliente.ProcuraCliente(UsuarioAtual);
-        //Console.WriteLine("cliente atual:" + ClienteAtual.Nome);  //REMOVER DA VERSÂO FINAL
         while (true)
         {
             Console.Clear();

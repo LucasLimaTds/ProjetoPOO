@@ -39,7 +39,7 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
     {
         if (Valores[0] != null)
         {
-            return Valores.Where(p => p.DataHoraPedido.Date >= dataInicial.Date && p.DataHoraPedido.Date <= dataFinal && p.ClienteDoPedido == clienteAtual).ToArray();
+            return Valores.Where(p => p.DataHoraPedido.Date >= dataInicial.Date && p.DataHoraPedido.Date <= dataFinal && p.ClienteDoPedido.ID == clienteAtual.ID).ToArray();
         }
         return null;
     }
@@ -50,7 +50,7 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
         {
             for (int i = 0; i < Valores.Count; i++)
             {
-                if (Valores[i].ID == Id && Valores[i].ClienteDoPedido == clienteAtual)
+                if (Valores[i].ID == Id && Valores[i].ClienteDoPedido.ID == clienteAtual.ID)
                 {
                     return Valores[i];
                 }
