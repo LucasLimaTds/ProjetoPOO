@@ -388,6 +388,15 @@ public class GerenciadorDeMenus
     private void AcessarPedidos()
     {
         int consultaPedido = 1;
+        bool existePedidos = true;
+        
+        IList<Pedido> todosPedidos = GerenciadorDePedido.Listar();
+        if (todosPedidos[0] == null)
+        {
+            Console.WriteLine("Não há pedidos cadastrados!");
+            PressioneQualquerTecla();
+            return;
+        }
         do
         {
             Console.Clear();
@@ -405,44 +414,57 @@ public class GerenciadorDeMenus
 
             else if (opcaoUsuario == 1)
             {
-                foreach (var pedido in GerenciadorDePedido.Listar())
+                foreach (var pedido in todosPedidos)
                 {
                     Console.WriteLine(pedido.ToString());
                 }
             }
-
+            
             else if (opcaoUsuario == 3)
             {
                 Console.WriteLine("Digite a data de realização a ser consultada");
                 DateTime dataConsulta = DateTime.Parse(Console.ReadLine());
                 IList<Pedido> pedidosFiltrados = GerenciadorDePedido.FiltroDataRealizacao(dataConsulta);
-                foreach (var pedido in pedidosFiltrados)
+                if (pedidosFiltrados.Count != 0)
                 {
-                    Console.WriteLine(pedido.ToString());
+                    foreach (var pedido in pedidosFiltrados)
+                    {
+                        Console.WriteLine(pedido.ToString());
+                    }
                 }
+                else
+                {
+                    Console.WriteLine("Não há pedidos cadastrados nessa data!");
+                    PressioneQualquerTecla();
+                    existePedidos = false;
+                }
+
             }
 
-            Console.WriteLine("Digite o número do pedido que deseja consultar:");
-            int Npedido = LerInteiro(-1, -1);
-            Pedido PedidoConsultado = GerenciadorDePedido.Procura(Npedido);
-            if (PedidoConsultado != null)
+            if (existePedidos == true)
             {
-                EscreveDetalhesPedido(PedidoConsultado);
-                Console.WriteLine("[1] - CONSULTAR NOVO PEDIDO");
-                Console.WriteLine("[2] - EDITAR O PEDIDO CONSULTADO");
-                Console.WriteLine("[0] - VOLTAR AO MENU");
-                consultaPedido = LerInteiro(0, 2);
-
-                if (consultaPedido == 2)
+                Console.WriteLine("Digite o número do pedido que deseja consultar:");
+                int Npedido = LerInteiro(-1, -1);
+                Pedido PedidoConsultado = GerenciadorDePedido.Procura(Npedido);
+                if (PedidoConsultado != null)
                 {
-                    EditarPedido(PedidoConsultado);
+                    EscreveDetalhesPedido(PedidoConsultado);
+                    Console.WriteLine("[1] - CONSULTAR NOVO PEDIDO");
+                    Console.WriteLine("[2] - EDITAR O PEDIDO CONSULTADO");
+                    Console.WriteLine("[0] - VOLTAR AO MENU");
+                    consultaPedido = LerInteiro(0, 2);
+
+                    if (consultaPedido == 2)
+                    {
+                        EditarPedido(PedidoConsultado);
+                    }
                 }
-            }
-            else
-            {
-                Console.WriteLine("Pedido não encontrado!");
-                Console.WriteLine("-------------------------------------------------------------------");
-                PressioneQualquerTecla();
+                else
+                {
+                    Console.WriteLine("Pedido não encontrado!");
+                    Console.WriteLine("-------------------------------------------------------------------");
+                    PressioneQualquerTecla();
+                }
             }
         }
         while (consultaPedido == 1);
@@ -1277,7 +1299,7 @@ public class GerenciadorDeMenus
                 Console.Write("Data final: ");
                 DateTime dataFinal = DateTime.Parse(Console.ReadLine());
                 PedidosDoClientePorData = GerenciadorDePedido.FiltroIntervaloDatas(dataInicial, dataFinal, ClienteAtual);
-                if (PedidosDoClientePorData.Count != 0)
+                if (PedidosDoClientePorData != null)
                 {
                     foreach (var pedido in PedidosDoClientePorData)
                     {
@@ -1292,7 +1314,7 @@ public class GerenciadorDeMenus
                 }
             }
 
-            if (opcaoUsuario == 1 || PedidosDoClientePorData.Count != 0)
+            if (opcaoUsuario == 1 || PedidosDoClientePorData != null)
             {
                 Pedido pedidoConsultado;
                 Console.WriteLine("Digite o número do pedido que deseja consultar:");
@@ -1309,7 +1331,6 @@ public class GerenciadorDeMenus
                 PressioneQualquerTecla();
             }
         }
-    
     }
 
     private void CriarPedido(Cliente ClienteAtual, ref Pedido NovoPedido)

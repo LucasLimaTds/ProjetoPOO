@@ -37,7 +37,7 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
 
     public IList<Pedido> FiltroIntervaloDatas(DateTime dataInicial, DateTime dataFinal, Cliente clienteAtual)
     {
-        if (Valores[0] != null)
+        if (Valores.Count != 0)
         {
             return Valores.Where(p => p.DataHoraPedido.Date >= dataInicial.Date && p.DataHoraPedido.Date <= dataFinal && p.ClienteDoPedido.ID == clienteAtual.ID).ToArray();
         }
@@ -45,8 +45,8 @@ public class RepositorioPedidoL : RepositorioBaseL<Pedido>, IRepositorioPedido
     }
 
     public Pedido ProcuraComCliente(int Id, Cliente clienteAtual)
-    {
-        if (Valores[0] != null)
+    { 
+        if (Valores.Count !=0 )
         {
             for (int i = 0; i < Valores.Count; i++)
             {
