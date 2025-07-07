@@ -26,7 +26,7 @@ public class Produto : IObjetoComId
     
     public override string ToString()
     {
-        return $"ID: {ID} | Nome: {Nome} | Quantidade em Estoque: {(QuantidadeEmEstoque == 0 ? "Indisponível" : QuantidadeEmEstoque)}";
+        return $"ID: {ID} | Nome: {Nome} | Preço: R${Valor} | Quantidade em Estoque: {(QuantidadeEmEstoque == 0 ? "Indisponível" : QuantidadeEmEstoque)}";
     }
 
 }

@@ -1272,6 +1272,7 @@ public class GerenciadorDeMenus
             Console.WriteLine("\nResumo do seu carrinho:");
             EscreveDetalhesPedido(NovoPedido);
             PressioneQualquerTecla();
+            GerenciadorDePedido.SalvaPedidos();
         }
     }
 
