@@ -28,7 +28,7 @@ public class Pedido : IObjetoComId
         return $"Número: {ID} | Situação: {Situacao}";
     }
 
-    public string DetalhesPedido() //Lista detalhes da mesma forma que no repositório
+    public string DetalhesPedido()
     {
         return $"| Pedido Número: {ID} \n| Preço Total: R${PrecoTotal} | Situação: {Situacao} | Transportadora: {TransportadoraPedido.Nome} | Preço Frete: R${PrecoFrete} ";
     }
