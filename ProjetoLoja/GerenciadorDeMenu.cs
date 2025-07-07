@@ -247,6 +247,18 @@ public class GerenciadorDeMenus
         Console.WriteLine("-------------------------------------------------------------------");
     }
 
+    private void ExibirListaClientes()
+    {
+        IList<Cliente> TodosClientes = GerenciadorDeCliente.Listar();
+        Console.WriteLine("\nClientes cadastrados:");
+
+        foreach (var item in TodosClientes)
+        {
+            Console.WriteLine(item.ToString());
+        }
+        Console.WriteLine("-------------------------------------------------------------------");
+    }
+
     private void OpcoesDoCadastro()
     {
         Console.WriteLine("[1] - REALIZAR INCLUSÃO");
@@ -261,7 +273,8 @@ public class GerenciadorDeMenus
         Console.WriteLine("[1] - REALIZAR INCLUSÃO DE ADMIN");
         Console.WriteLine("[2] - REALIZAR ALTERAÇÃO DE USUÁRIO");
         Console.WriteLine("[3] - CONSULTAR USUÁRIOS CADASTRADOS");
-        Console.WriteLine("[4] - ACESSAR PEDIDOS DE CLIENTES");
+        Console.WriteLine("[4] - CONSULTAR USUÁRIOS CADASTRADOS");
+        Console.WriteLine("[5] - ACESSAR PEDIDOS DE CLIENTES");
         Console.WriteLine("[0] - VOLTAR AO MENU");
     }
 
@@ -274,7 +287,7 @@ public class GerenciadorDeMenus
 
             OpcoesDoCadastroDeUsuarios();
 
-            int OpcaoUsuario = LerInteiro(0, 4);
+            int OpcaoUsuario = LerInteiro(0, 5);
 
             switch (OpcaoUsuario)
             {
@@ -311,6 +324,11 @@ public class GerenciadorDeMenus
                         break;
                     }
                 case 4:
+                    {
+                        ExibirListaClientes();
+                        break;
+                    }
+                case 5:
                     {
                         AcessarPedidos();
                         break;
@@ -1229,6 +1247,8 @@ public class GerenciadorDeMenus
 
     private void ConsultarPedidos(Cliente ClienteAtual)
     {
+        
+        Console.WriteLine("Cliente atual: " + ClienteAtual.Nome);
         while (true)
         {
             IList<Pedido> PedidosDoClientePorData = null;
@@ -1280,7 +1300,7 @@ public class GerenciadorDeMenus
                 else
                 {
                     EscreveDetalhesPedido(pedidoConsultado);
-                } 
+                }
                 PressioneQualquerTecla();
             }
         }

@@ -13,7 +13,7 @@ public class Cliente : IObjetoComId
     public string Nome;
     public Cliente()
     {
-        
+
     }
     public Cliente(string telefone, string nome, Endereco endereco, Usuario usuario)
     {
@@ -22,4 +22,9 @@ public class Cliente : IObjetoComId
         EnderecoDoCliente = endereco;
         UsuarioDoCliente = usuario;
     }  
+    
+    public override string ToString()
+    {
+        return $"ID: {ID} | Nome: {Nome}";
+    }
 }
