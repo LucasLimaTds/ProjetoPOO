@@ -16,16 +16,6 @@ public class RepositorioPedidoV : RepositorioBaseV<Pedido>, IRepositorioPedido
         return IdPedido++;
     }
 
-    public string ConsultarPedido(int Id)
-    {
-        Pedido pedido = Procura(Id);
-        if (pedido != null)
-        {
-            return $"Número: {pedido.ID} | Situação: {pedido.Situacao} | Transportadora: {pedido.TransportadoraPedido} | Itens: ";
-        }
-        return "Pedido não encontrado";
-    }
-
     public IList<Pedido> FiltroCliente(Cliente clienteAtual)
     {
         return Valores.Where(p => p.ClienteDoPedido == clienteAtual).ToArray();
