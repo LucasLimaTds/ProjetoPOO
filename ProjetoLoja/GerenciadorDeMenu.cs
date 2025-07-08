@@ -393,7 +393,7 @@ public class GerenciadorDeMenus
                     {
                         Console.WriteLine("Insira a nova senha:");
                         novaSenha = Console.ReadLine();
-                        GerenciadorDeUsuario.AlterarEmail(novaSenha, UsuarioEditar);
+                        GerenciadorDeUsuario.AlterarSenha(novaSenha, UsuarioEditar);
                         Console.WriteLine("Senha alterada!");
                         PressioneQualquerTecla();
                         break;
