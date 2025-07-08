@@ -199,10 +199,11 @@ public class GerenciadorDeMenus
             Console.WriteLine("[2] - CADASTRO DE FORNECEDORES");
             Console.WriteLine("[3] - CADASTRO DE PRODUTOS");
             Console.WriteLine("[4] - CADASTRO DE TRANSPORTADORAS");
+            Console.WriteLine("[5] - SALVAR DADOS");
             Console.WriteLine("[0] - FAZER LOGOUT");
 
             int OpcaoUsuario;
-            OpcaoUsuario = LerInteiro(0, 4);
+            OpcaoUsuario = LerInteiro(0, 5);
 
             switch (OpcaoUsuario)
             {
@@ -224,6 +225,13 @@ public class GerenciadorDeMenus
                 case 4:
                     {
                         MenuCadastroTransportadora();
+                        break;
+                    }
+                case 5:
+                    {
+                        SalvaDados();
+                        Console.WriteLine("Dados salvos com sucesso!");
+                        PressioneQualquerTecla();
                         break;
                     }
                 case 0:
@@ -392,7 +400,7 @@ public class GerenciadorDeMenus
         bool existePedidos = true;
         
         IList<Pedido> todosPedidos = GerenciadorDePedido.Listar();
-        if (todosPedidos[0] == null)
+        if (todosPedidos == null || todosPedidos.Count==0)
         {
             Console.WriteLine("Não há pedidos cadastrados!");
             PressioneQualquerTecla();
@@ -1521,14 +1529,14 @@ public class GerenciadorDeMenus
 
     private void EscreveDetalhesPedido(Pedido PedidoConsultado)
     {
-        Console.WriteLine("------------------------------------------------------------------------------------");
+        Console.WriteLine("----------------------------------------------------------------------------------------------------------");
         Console.WriteLine(PedidoConsultado.DetalhesPedido());
-        Console.WriteLine("------------------------------------------------------------------------------------");
+        Console.WriteLine("----------------------------------------------------------------------------------------------------------");
         foreach (var descricaoPedido in PedidoConsultado.Itens)
         {
             Console.WriteLine(descricaoPedido.ToString());
         }
-        Console.WriteLine("------------------------------------------------------------------------------------");
+        Console.WriteLine("----------------------------------------------------------------------------------------------------------");
     }
 
     private void CarregaDados()
