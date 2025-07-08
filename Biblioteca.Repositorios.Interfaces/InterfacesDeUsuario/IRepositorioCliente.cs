@@ -8,4 +8,5 @@ public interface IRepositorioCliente : IRepositorioBase<Cliente>
     public Cliente ProcuraCliente(Usuario usuario);
     void SalvaClientes();
     void CarregaClientes();
+    bool VerificaExistenciaClientes();
 }

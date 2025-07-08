@@ -334,12 +334,24 @@ public class GerenciadorDeMenus
                     }
                 case 4:
                     {
+                        if (!GerenciadorDeCliente.VerificaExistenciaClientes())
+                        {
+                            Console.WriteLine("Não há clientes cadastrados!");
+                            PressioneQualquerTecla();
+                            break;
+                        }
                         ExibirListaClientes();
                         PressioneQualquerTecla();
                         break;
                     }
                 case 5:
                     {
+                        if (!GerenciadorDePedido.VerificaExistenciaPedidos())
+                        {
+                            Console.WriteLine("Não há pedidos cadastrados!");
+                            PressioneQualquerTecla();
+                            break;
+                        }
                         AcessarPedidos();
                         break;
                     }
@@ -400,12 +412,6 @@ public class GerenciadorDeMenus
         bool existePedidos = true;
         
         IList<Pedido> todosPedidos = GerenciadorDePedido.Listar();
-        if (todosPedidos == null || todosPedidos.Count==0)
-        {
-            Console.WriteLine("Não há pedidos cadastrados!");
-            PressioneQualquerTecla();
-            return;
-        }
         do
         {
             Console.Clear();
@@ -1253,6 +1259,12 @@ public class GerenciadorDeMenus
                     }
                 case 2:
                     {
+                        if (!GerenciadorDePedido.VerificaExistenciaPedidos())
+                        {
+                            Console.WriteLine("Não há pedidos cadastrados!");
+                            PressioneQualquerTecla();
+                            break;
+                        }
                         ConsultarPedidos(ClienteAtual);
                         break;
                     }

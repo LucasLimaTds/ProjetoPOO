@@ -13,4 +13,5 @@ public interface IRepositorioPedido : IRepositorioBase<Pedido>
     void AlterarSituacao(int opcaoSituacao, Pedido pedidoConsultado);
     void SalvaPedidos();
     void CarregaPedidos();
+    bool VerificaExistenciaPedidos();
 }

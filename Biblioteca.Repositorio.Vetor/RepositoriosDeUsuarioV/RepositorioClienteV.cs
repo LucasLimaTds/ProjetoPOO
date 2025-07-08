@@ -59,4 +59,12 @@ public class RepositorioClienteV : RepositorioBaseV<Cliente>, IRepositorioClient
             idCliente = JsonSerializer.Deserialize<int>(CarregaJson);
         }
     }
+    public bool VerificaExistenciaClientes()
+    {
+        if (idCliente > 1)
+        {
+            return true;
+        }
+        return false;
+    }
 }

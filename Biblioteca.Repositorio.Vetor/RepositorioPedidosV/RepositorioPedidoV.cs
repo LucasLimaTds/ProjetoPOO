@@ -44,7 +44,7 @@ public class RepositorioPedidoV : RepositorioBaseV<Pedido>, IRepositorioPedido
         }
         return null;
     }
-    
+
     public Pedido ProcuraComCliente(int Id, Cliente clienteAtual)
     {
         if (Valores[0] != null)
@@ -55,7 +55,7 @@ public class RepositorioPedidoV : RepositorioBaseV<Pedido>, IRepositorioPedido
                 {
                     return Valores[i];
                 }
-            }            
+            }
         }
         return null;
     }
@@ -109,5 +109,13 @@ public class RepositorioPedidoV : RepositorioBaseV<Pedido>, IRepositorioPedido
             string CarregaId = File.ReadAllText("id_pedido.json");
             IdPedido = JsonSerializer.Deserialize<int>(CarregaId);
         }
+    }
+    public bool VerificaExistenciaPedidos()
+    {
+        if (IdPedido > 1)
+        {
+            return true;
+        }
+        return false;
     }
 }
