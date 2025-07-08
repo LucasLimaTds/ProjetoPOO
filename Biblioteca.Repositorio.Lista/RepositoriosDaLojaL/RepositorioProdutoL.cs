@@ -19,7 +19,7 @@ public class RepositorioProdutoL : RepositorioBaseL<Produto>, IRepositorioProdut
         Produto Produto = Procura(id);
         if (Produto != null)
         {
-            return $"Produto ID: {Produto.ID} | Nome: {Produto.Nome} | Preço: R$ {Produto.Valor} | Fornecedor: {Produto.FornecedorDoProduto.Nome}";
+            return $"Produto ID: {Produto.ID} | Nome: {Produto.Nome} | Preço: R$ {Produto.Valor} | Fornecedor: {Produto.FornecedorDoProduto.Nome} | Estoque: {Produto.QuantidadeEmEstoque}";
         }
         return "Produto não encontrado!";
     }
